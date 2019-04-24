@@ -1,0 +1,173 @@
+#include "GameMap.h"
+
+Tileset::Tileset(int rows, int columns, int tileWidth, int tileHeight) {
+	this->rows = rows;
+	this->columns = columns;
+	this->tileWidth = tileWidth;
+	this->tileHeight = tileHeight;
+}
+
+void Tileset::Add(int id, LPSPRITE tile) {
+	tiles[id] = tile;
+}
+
+int Tileset::GetRows() {
+	return rows;
+}
+
+int Tileset::GetColumns() {
+	return columns;
+}
+
+int Tileset::GetTileWidth() {
+	return tileWidth;
+}
+
+int Tileset::GetTileHeight() {
+	return tileHeight;
+}
+
+LPSPRITE Tileset::GetSprite(int id) {
+	return tiles[id];
+}
+//GameMap::GameMap() {
+//	auto bufferWidth = Graphic::GetInstance()->GetBackBufferWidth();
+//	auto bufferHeight = Graphic::GetInstance()->GetBackBufferHeight();
+//	grid = new Grid(MyHelper::ToRect(0, bufferWidth, 0, bufferHeight), 1, 1);
+//}
+//
+//GameMap::GameMap(char * tilesetPath, int tileWidth, int tileHeight) {
+//}
+
+GameMap::GameMap(char * tilesetPath, char * mapPath, int tileHeight, int tileWidth) {
+	LoadTileset(tilesetPath, tileWidth, tileHeight);
+	SetMapPath(mapPath);
+}
+
+void GameMap::SetMapPath(char * mapPath) {
+	this->mapPath = mapPath;
+	std::fstream reader(mapPath);
+	if (reader.fail()) {
+		return;
+	}
+	reader >> rows;
+	reader >> columns;
+	mapIDs = new int*[rows];
+
+	for (int i = 0; i < rows; i++) {
+		mapIDs[i] = new int[columns];
+		for (int j = 0; j < columns; j++) {
+			reader >> mapIDs[i][j];
+		}
+	}
+
+	BoxCollider gridRect = BoxCollider(GetHeight(), 0, 0, GetWidth());
+	grid = new Grid(gridRect);
+
+	reader >> mapObject;
+	int id = 0;
+	int i = 0;
+	int posx = 0;
+	int posy = 0;
+	int wid = 0;
+	int hei = 0;
+	for (int i = 0; i < mapObject; i++) {
+		reader >> id;
+		reader >> posx;
+		reader >> posy;
+		reader >> wid;
+		reader >> hei;
+		Entity *x = new Entity();
+		x->SetTag((Entity::EntityTypes)id);
+		x->SetStatic(true);
+		x->SetPosition(D3DXVECTOR3(posx + wid / 2, posy - hei / 2, 0));
+		x->SetWidth(wid);
+		x->SetHeight(hei);
+		grid->InsertStaticEntity(x);
+	}
+
+}
+
+int GameMap::GetWidth() {
+	return tileset->GetTileWidth() * columns;
+}
+
+int GameMap::GetHeight() {
+	return tileset->GetTileHeight() * rows;
+}
+
+int GameMap::GetTileWidth() {
+	return tileset->GetTileWidth();
+}
+
+int GameMap::GetTileHeight() {
+	return tileset->GetTileHeight();
+}
+
+Grid * GameMap::GetGrid() {
+	return grid;
+}
+
+void GameMap::SetCamera(Camera * cam) {
+	camera = cam;
+}
+
+void GameMap::Draw() {
+
+	for (size_t i = 0; i < 1; i++) {
+
+		//chieu dai va chieu rong cua tile
+		int tileWidth = tileset->GetTileWidth();
+		int tileHeight = tileset->GetTileHeight();
+
+		for (int m = 0; m < this->rows; m++) {
+			for (int n = 0; n < this->columns; n++) {
+				int id = mapIDs[m][n];
+				LPSPRITE sprite = tileset->GetSprite(id);
+
+				BoxCollider spriteBound;
+				spriteBound.top = (rows - m - 1) * tileHeight;
+				spriteBound.bottom = spriteBound.top - tileHeight;
+				spriteBound.left = n * tileWidth;
+				spriteBound.right = spriteBound.left + tileWidth;
+
+				if (camera->IsContain(spriteBound)) {
+					D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, (rows - m - 1) * tileHeight + tileHeight / 2, 0);
+					sprite->SetHeight(tileHeight); 
+					sprite->SetWidth(tileWidth);
+					sprite->Draw(position, BoxCollider());
+				}
+			}
+
+		}
+	}
+
+}
+
+GameMap::~GameMap() {
+	delete mapIDs;
+}
+
+void GameMap::LoadTileset(char * filePath, int tileWidth, int tileHeight) {
+	//Parse map tu file 
+	Textures::GetInstance()->Add(TEX_STAGE31, filePath, D3DCOLOR_XRGB(255, 0, 255));
+	auto texture = Textures::GetInstance()->Get(TEX_STAGE31);
+	D3DSURFACE_DESC desc;
+	texture->GetLevelDesc(0, &desc);
+	auto width = desc.Width;
+	auto height = desc.Height;
+	tileset = new Tileset(height / tileHeight, width / tileWidth, tileWidth, tileHeight);
+	
+	for (int i = 0; i < tileset->GetRows(); i++) {
+		for (int j = 0; j < tileset->GetColumns(); j++) {
+			BoxCollider r;
+			r.top = i * tileHeight;
+			r.left = j * tileWidth;
+			r.bottom = r.top + tileHeight;
+			r.right = r.left + tileWidth;
+			LPSPRITE sprite = new Sprite(r, texture);
+			tileset->Add(i * tileset->GetColumns() + j, sprite);
+		}
+	}
+}
+
