@@ -1,17 +1,17 @@
 #pragma once
-#include "Entity.h"
 #include "Textures.h"
 #include "Animation.h"
 #include "GameConfig.h"
+#include "Enemy.h"
+#include "EnemyData.h"
+#include "EnemyState.h"
 
-class Sparta : public Entity {
+class Sparta : public Enemy {
 public:
 	Sparta();
 	~Sparta();
-	virtual void Update(double dt);
 	virtual void Render();
 	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime);
-	BoxCollider GetRect();
 	//virtual int GetWidth();
 	//virtual int GetHeight();
 	virtual void SetVelocity(D3DXVECTOR2 velocity);
@@ -19,11 +19,9 @@ public:
 	virtual void SetColliderLeft(int left);
 	virtual void SetColliderBottom(int bottom);
 	virtual void SetColliderRight(int right);
+	virtual void SetStage(EnemyState::State);
 	virtual BoxCollider GetCollider();
 
 protected:
-	Animation *anim;
-	BoxCollider collider;
-	float collisionTime;
-	SideCollision side;
+	EnemyState *spartaFollowState;
 };

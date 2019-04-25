@@ -10,10 +10,6 @@ PlayerRunningState::PlayerRunningState(PlayerData * data) {
 PlayerRunningState::~PlayerRunningState() {
 }
 
-void PlayerRunningState::Update(double dt) {
-	m_Animation->Update(dt);
-}
-
 void PlayerRunningState::Render() {
 	m_Animation->Render(playerData->player->GetPosition(), BoxCollider(), D3DCOLOR_XRGB(255, 255, 255), playerData->player->GetMoveDirection() == Entity::EntityDirection::RightToLeft);
 }

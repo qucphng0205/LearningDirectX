@@ -20,12 +20,20 @@ BoxCollider Entity::GetRect() {
 	return r;
 }
 
-Entity::EntityTypes Entity::GetTag() {
+Entity::EntityTag Entity::GetTag() {
 	return tag;
 }
 
-void Entity::SetTag(EntityTypes tag) {
+void Entity::SetTag(EntityTag tag) {
 	this->tag = tag;
+}
+
+Entity::EntityType Entity::GetType() {
+	return type;
+}
+
+void Entity::SetType(EntityType type) {
+	this->type = type;
 }
 
 void Entity::SetStatic(bool flag) {
@@ -88,6 +96,11 @@ int Entity::GetHeight() {
 }
 
 void Entity::SetVelocity(D3DXVECTOR2 vel) {
+	if (vel.x > 0)
+		direction = LeftToRight;
+	else
+		if (vel.x < 0)
+			direction = RightToLeft;
 	velocity = vel;
 }
 
@@ -100,6 +113,11 @@ float Entity::GetVx(){
 }
 
 void Entity::SetVx(float vx) {
+	if (vx > 0)
+		direction = LeftToRight;
+	else
+		if (vx < 0)
+			direction = RightToLeft;
 	this->velocity.x = vx;
 }
 

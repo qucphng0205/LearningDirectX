@@ -27,23 +27,30 @@ public:
 		bool IsCollided;
 		BoxCollider regionCollision;
 	};
-	enum EntityTypes
+	enum EntityTag
 	{
 		Ground,
 		Player,
-		Enemy,
+		Sparta,
 		None
+	};
+	enum EntityType {
+		StaticType,
+		PlayerType,
+		EnemyType,
+		NoneType
 	};
 	enum EntityDirection {
 		LeftToRight,
 		RightToLeft
 	};
-	EntityTypes tag;
 
 	virtual BoxCollider GetRect();
 
-	virtual EntityTypes GetTag();
-	virtual void SetTag(EntityTypes tag);
+	virtual EntityTag GetTag();
+	virtual void SetTag(EntityTag tag);
+	virtual EntityType GetType();
+	virtual void SetType(EntityType type);
 	virtual void SetStatic(bool flag);
 	virtual void SetPosition(float x, float y);
 	virtual void SetPosition(D3DXVECTOR2 pos);
@@ -52,7 +59,7 @@ public:
 	virtual void AddPosition(D3DXVECTOR2 pos);
 	virtual void AddPosition(float x, float y);
 	virtual D3DXVECTOR3 GetPosition();
-	
+
 	virtual EntityDirection GetMoveDirection();
 	virtual void SetMoveDirection(EntityDirection direction);
 	virtual void SetWidth(int width);
@@ -81,7 +88,8 @@ public:
 
 protected:
 	int id;
-
+	EntityTag tag;
+	EntityType type;
 	//duoc goi khi set position cua Entity, dung cho ke thua
 	virtual void OnSetPosition(D3DXVECTOR3 pos);
 

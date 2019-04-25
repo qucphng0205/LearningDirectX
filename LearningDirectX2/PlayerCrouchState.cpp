@@ -12,10 +12,6 @@ PlayerCrouchState::PlayerCrouchState(PlayerData * data) {
 PlayerCrouchState::~PlayerCrouchState() {
 }
 
-void PlayerCrouchState::Update(double dt) {
-	m_Animation->Update(dt);
-}
-
 void PlayerCrouchState::Render() {
 	m_Animation->Render(playerData->player->GetPosition(), BoxCollider(), D3DCOLOR_XRGB(255, 255, 255), playerData->player->GetMoveDirection() == Entity::EntityDirection::RightToLeft);
 }

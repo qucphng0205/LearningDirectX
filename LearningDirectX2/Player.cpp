@@ -25,7 +25,8 @@ Player::Player() {
 	useItemState = new PlayerUseItemState(playerData);
 
 	SetState(PlayerState::Idle);
-	SetTag(Entity::Player);
+	SetTag(Entity::EntityTag::Player);
+	SetType(Entity::EntityType::PlayerType);
 
 	D3DSURFACE_DESC desc;
 	Textures::GetInstance()->Get(TEX_PLAYER)->GetLevelDesc(0, &desc);
@@ -140,15 +141,6 @@ int Player::GetWidth() {
 
 int Player::GetHeight() {
 	return collider.top - collider.bottom;
-}
-
-void Player::SetVelocity(D3DXVECTOR2 velocity) {
-	if (velocity.x > 0)
-		direction = LeftToRight;
-	else
-		if (velocity.x < 0)
-			direction = RightToLeft;
-	Entity::SetVelocity(velocity);
 }
 
 void Player::OnFalling() {

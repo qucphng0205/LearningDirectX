@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Player">
-      <UniqueIdentifier>{2da1c967-07fd-42bf-9b5e-9e45dbb3237c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Framework">
       <UniqueIdentifier>{46f46cac-3436-48d4-acde-36bfc24b6f0a}</UniqueIdentifier>
     </Filter>
@@ -31,43 +28,49 @@
     <Filter Include="Header Files\Scene">
       <UniqueIdentifier>{0faa50d7-a1fa-4bcb-a5f4-441dfd57b9ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Enemy">
-      <UniqueIdentifier>{5f37ca3d-d6d5-41cb-976f-eacabc8cf20b}</UniqueIdentifier>
+    <Filter Include="Header Files\Object\Enemy">
+      <UniqueIdentifier>{5392a0c0-0198-4da2-8d5b-66f34c40faaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Player">
+      <UniqueIdentifier>{2da1c967-07fd-42bf-9b5e-9e45dbb3237c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Enemy\Sparta">
+      <UniqueIdentifier>{06658c96-b328-4be0-9695-76b7626f2edc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PlayerData.cpp">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerRunningState.cpp">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerIdleState.cpp">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerSlashState.cpp">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerCrouchState.cpp">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerCrouchSlashState.cpp">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerJumpingState.cpp">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerClimbState.cpp">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerUseItemState.cpp">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
@@ -123,43 +126,52 @@
     <ClCompile Include="Textures.cpp">
       <Filter>Header Files\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyState.cpp">
+      <Filter>Header Files\Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Header Files\Object\Enemy</Filter>
+    </ClCompile>
     <ClCompile Include="Sparta.cpp">
-      <Filter>Header Files\Enemy</Filter>
+      <Filter>Header Files\Object\Enemy\Sparta</Filter>
+    </ClCompile>
+    <ClCompile Include="SpartaFollowState.cpp">
+      <Filter>Header Files\Object\Enemy\Sparta</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerData.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerIdleState.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerRunningState.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerSlashState.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerJumpingState.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerCrouchState.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerCrouchSlashState.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerClimbState.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerUseItemState.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Header Files\Framework</Filter>
@@ -218,8 +230,20 @@
     <ClInclude Include="Textures.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyData.h">
+      <Filter>Header Files\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyState.h">
+      <Filter>Header Files\Object\Enemy</Filter>
+    </ClInclude>
     <ClInclude Include="Sparta.h">
-      <Filter>Header Files\Enemy</Filter>
+      <Filter>Header Files\Object\Enemy\Sparta</Filter>
+    </ClInclude>
+    <ClInclude Include="SpartaFollowState.h">
+      <Filter>Header Files\Object\Enemy\Sparta</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

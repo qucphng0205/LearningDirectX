@@ -19,7 +19,6 @@ public:
 	virtual int GetBigHeight();
 	virtual int GetWidth();
 	virtual int GetHeight();
-	virtual void SetVelocity(D3DXVECTOR2 velocity);
 	virtual void OnFalling();
 	virtual void SetColliderTop(int top);
 	virtual void SetColliderLeft(int left);

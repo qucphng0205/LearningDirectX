@@ -7,7 +7,6 @@ class PlayerIdleState : public PlayerState {
 public:
 	PlayerIdleState(PlayerData *data);
 	~PlayerIdleState();
-	virtual void Update(double dt);
 	virtual void Render();
 	virtual void HandleInput();
 	virtual void OnCollision(Entity *impactor, Entity::SideCollision side);

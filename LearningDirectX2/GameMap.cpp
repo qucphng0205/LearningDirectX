@@ -78,7 +78,7 @@ void GameMap::SetMapPath(char * mapPath) {
 		reader >> wid;
 		reader >> hei;
 		Entity *x = new Entity();
-		x->SetTag((Entity::EntityTypes)id);
+		x->SetTag((Entity::EntityTag)id);
 		x->SetStatic(true);
 		x->SetPosition(D3DXVECTOR3(posx + wid / 2, posy - hei / 2, 0));
 		x->SetWidth(wid);
