@@ -1,12 +1,13 @@
 #include "Sparta.h"
 
-Sparta::Sparta() {
-	Enemy::Enemy();
+Sparta::Sparta() : Enemy() {
+	//Set type
 	auto textures = Textures::GetInstance();
 	textures->Add(TEX_SPARTA, "Resources/Sprites/spartaspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
-
-	SetTag(Entity::Sparta);
-
+	spartaFollowState = new SpartaFollowState(enemyData);
+	//Set tag
+	tag = Entity::Sparta;
+	SetState(EnemyState::Follow);
 	D3DSURFACE_DESC desc;
 	textures->Get(TEX_SPARTA)->GetLevelDesc(0, &desc);
 	width = desc.Width / 3;
@@ -17,19 +18,13 @@ Sparta::~Sparta() {
 }
 
 void Sparta::Render() {
-	enemyData->state->Render();
+	if (isActive)
+		enemyData->state->Render();
 }
 
 void Sparta::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
-}
-
-void Sparta::SetVelocity(D3DXVECTOR2 velocity) {
-	if (velocity.x > 0)
-		direction = LeftToRight;
-	else
-		if (velocity.x < 0)
-			direction = RightToLeft;
-	Enemy::SetVelocity(velocity);
+	if (!isActive)
+		Enemy::OnCollision(impactor, side, collisionTime);
 }
 
 void Sparta::SetColliderTop(int top) {
@@ -49,7 +44,7 @@ void Sparta::SetColliderRight(int right) {
 	collider.right = right;
 }
 
-void Sparta::SetStage(EnemyState::State state) {
+void Sparta::SetState(EnemyState::State state) {
 	if (state == EnemyState::Follow)
 		enemyData->state = spartaFollowState;
 	enemyData->state->ResetState();
@@ -57,4 +52,9 @@ void Sparta::SetStage(EnemyState::State state) {
 
 BoxCollider Sparta::GetCollider() {
 	return collider;
+}
+
+void Sparta::Spawn() {
+	SetState(EnemyState::Follow);
+	Enemy::Spawn();
 }

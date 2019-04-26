@@ -47,7 +47,7 @@ HWND CreateGameWindow(HINSTANCE hInstance, int nCmdShow, int ScreenWidth, int Sc
 		CreateWindow(
 			WINDOW_CLASS_NAME,
 			MAIN_WINDOW_TITLE,
-			WS_OVERLAPPEDWINDOW, // WS_EX_TOPMOST | WS_VISIBLE | WS_POPUP,
+			WS_OVERLAPPEDWINDOW, // WS_EX_TOPMOST | WS_Active | WS_POPUP,
 			//x position
 			CW_USEDEFAULT,
 			//y position
@@ -77,24 +77,63 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	MSG msg;
 	bool done = false;
 	float dt = 0;
+
+	//--use gettickcount
+	//DWORD tick_per_frame = 1000.0f / FPS;
+	//float _DeltaTime = 0;
+	//DWORD tick_start = GetTickCount();
+
+	DWORD startTime = GetTickCount();
+	int slFrame = 0;
+
 	while (!done) {
-		GameTime::GetInstance()->StartCounter();
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-			if (msg.message == WM_QUIT) done = 1;
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-		dt += GameTime::GetInstance()->GetCounter();
-		if (dt >= SPF) {
-			gameManager.ProcessInput();
-			gameManager.Update(dt);
-			gameManager.Render();
-			dt = 0;
-		}
-		else {
-			Sleep(SPF - dt);
-			dt = SPF;
-		}
+
+			GameTime::GetInstance()->StartCounter();
+			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
+				if (msg.message == WM_QUIT) done = 1;
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+
+			//DWORD now = GetTickCount();
+			//DWORD dt = now - tick_start;
+			//if (dt >= tick_per_frame) {
+
+			//	if (GetTickCount() - startTime >= 1000) {
+			//		DebugOut(L"so luong frame: %d\n", slFrame);
+			//		startTime = GetTickCount();
+			//		slFrame = 0;
+			//	}
+			//	else
+			//		slFrame++;
+			//		
+			//	tick_start = GetTickCount();
+			//	gameManager.ProcessInput();
+			//	gameManager.Update(dt / 1000.0f);
+			//	gameManager.Render();
+			//}
+			//else 
+			//	Sleep(tick_per_frame - dt);
+
+			dt += GameTime::GetInstance()->GetCounter();
+			if (dt >= SPF) {
+				
+				if (GetTickCount() - startTime >= 1000) {
+					DebugOut(L"so luong frame/s: %d\n", slFrame);
+					startTime = GetTickCount();
+					slFrame = 0;
+				}
+				else
+					slFrame++;
+				gameManager.ProcessInput();
+				gameManager.Update(dt);
+				gameManager.Render();
+				dt = 0;
+			}
+			else {
+				Sleep(SPF - dt);
+				dt = SPF;
+			}
 	}
 	return 0;
 }

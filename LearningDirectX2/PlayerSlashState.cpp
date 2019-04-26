@@ -5,7 +5,7 @@ PlayerSlashState::PlayerSlashState(PlayerData * data) {
 	this->playerData = data;
 	auto texs = Textures::GetInstance();
 	m_Animation = new Animation();
-	m_Animation->AddFramesA(texs->Get(TEX_PLAYER), 2, 2, 3, 9, 4, 0.06f);
+	m_Animation->AddFramesA(texs->Get(TEX_PLAYER), 2, 2, 3, 9, 4, 0.08f);
 }
 
 PlayerSlashState::~PlayerSlashState() {
@@ -92,4 +92,6 @@ void PlayerSlashState::ResetState(int dummy) {
 	player->SetColliderTop(16);
 	player->SetColliderBottom(-16);
 	PlayerState::ResetState(dummy);
+	if (dummy != -1)
+		m_Animation->SetCurrentFrame(dummy);
 }

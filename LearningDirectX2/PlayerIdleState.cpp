@@ -18,23 +18,25 @@ void PlayerIdleState::Render() {
 void PlayerIdleState::HandleInput() {
 	//xu ly theo priority nghe, Slash, Jump, Running, Crouch,... ?
 	KeyBoard *keyboard = KeyBoard::GetInstance();
-	if (keyboard->GetKeyDown(DIK_D)) 
+	if (keyboard->GetKeyDown(DIK_D))
 		playerData->player->SetState(Slash);
 	else
 		if (keyboard->GetKeyDown(DIK_F))
 			playerData->player->SetState(Jump);
 		else
-	if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW))
-		playerData->player->SetState(Running);
-	else
-		if (keyboard->GetKey(DIK_RIGHTARROW) && !keyboard->GetKey(DIK_LEFTARROW))
-			playerData->player->SetState(Running);
-		else
-			if (keyboard->GetKey(DIK_DOWNARROW))
-				playerData->player->SetState(Crouch);
-			else 
-				playerData->player->SetVelocity(D3DXVECTOR2(0, 0));
-} 
+			if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW)) {
+				playerData->player->SetState(Running, 0);
+			}
+			else
+				if (keyboard->GetKey(DIK_RIGHTARROW) && !keyboard->GetKey(DIK_LEFTARROW)) {
+					playerData->player->SetState(Running, 0);
+				}
+				else
+					if (keyboard->GetKey(DIK_DOWNARROW))
+						playerData->player->SetState(Crouch);
+					else
+						playerData->player->SetVelocity(D3DXVECTOR2(0, 0));
+}
 
 void PlayerIdleState::OnCollision(Entity * impactor, Entity::SideCollision side) {
 }

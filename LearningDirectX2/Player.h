@@ -10,15 +10,15 @@ public:
 	~Player();
 	virtual void Update(double dt);
 	virtual void Render();
-	void SetState(PlayerState::State name);
+	void SetState(PlayerState::State name, int dummy = -1);
 	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime);
 	BoxCollider GetRect();
 	BoxCollider GetBigBound();
 	PlayerState::State GetState();
 	virtual int GetBigWidth();
 	virtual int GetBigHeight();
-	virtual int GetWidth();
-	virtual int GetHeight();
+	virtual float GetWidth();
+	virtual float GetHeight();
 	virtual void OnFalling();
 	virtual void SetColliderTop(int top);
 	virtual void SetColliderLeft(int left);

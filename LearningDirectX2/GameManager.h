@@ -4,7 +4,6 @@
 #include "PlayScene.h"
 #include "Graphic.h"
 #include "KeyBoard.h"
-#define FPS 60;
 
 class GameManager {
 

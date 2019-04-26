@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="CamBox.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionDetector.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyGroup.cpp" />
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -34,6 +36,7 @@
     <ClCompile Include="KeyBoard.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyHelper.cpp" />
+    <ClCompile Include="ObjectGroup.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerClimbState.cpp" />
     <ClCompile Include="PlayerCrouchSlashState.cpp" />
@@ -56,11 +59,13 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="CamBox.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionDetector.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyData.h" />
+    <ClInclude Include="EnemyGroup.h" />
     <ClInclude Include="EnemyState.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameConfig.h" />
@@ -69,6 +74,7 @@
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="ObjectGroup.h" />
     <ClInclude Include="KeyBoard.h" />
     <ClInclude Include="MyHelper.h" />
     <ClInclude Include="Player.h" />

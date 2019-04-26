@@ -56,12 +56,13 @@ void PlayerRunningState::ResetState(int dummy) {
 	player->SetColliderTop(16);
 	player->SetColliderBottom(-16);
 	auto keyboard = KeyBoard::GetInstance();
-	//if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW))
-	//	playerData->player->SetVelocity(D3DXVECTOR2(-PLAYER_RUN_VELOCITY, 0));
-	//else
-	//	if (keyboard->GetKey(DIK_RIGHTARROW) && !keyboard->GetKey(DIK_LEFTARROW))
-	//		playerData->player->SetVelocity(D3DXVECTOR2(PLAYER_RUN_VELOCITY, 0));
-
+	if (dummy == 0) {
+		if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW))
+			playerData->player->SetVelocity(D3DXVECTOR2(-PLAYER_RUN_VELOCITY, 0));
+		else
+			if (keyboard->GetKey(DIK_RIGHTARROW) && !keyboard->GetKey(DIK_LEFTARROW))
+				playerData->player->SetVelocity(D3DXVECTOR2(PLAYER_RUN_VELOCITY, 0));
+	}
 	PlayerState::ResetState(dummy);
 }
 

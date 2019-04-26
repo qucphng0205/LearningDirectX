@@ -21,7 +21,6 @@ void GameManager::Update(double dt) {
 		SceneManager::GetInstance()->UpdateWithEffect();
 	}*/
 	SceneManager::GetInstance()->GetCurrentScene()->Update(dt);
-	Render();
 }
 
 void GameManager::Render() {

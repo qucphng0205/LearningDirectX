@@ -2,8 +2,9 @@
 #include "Sprites.h"
 #include "Textures.h"
 #include "Camera.h"
-//#include "QuadTree.h"
 #include "Grid.h"
+#include "Sparta.h"
+#include "EnemyGroup.h"
 #include <iostream>
 #include <fstream>
 
@@ -34,9 +35,16 @@ public:
 	Grid *GetGrid();
 	void SetCamera(Camera *cam);
 	void Draw();
+	//Active objects
+	void CheckActive(D3DXVECTOR2 velocity);
+	void GetActiveObject(std::vector<Entity*> entities);
+	void UpdateActive(double dt);
+	void RenderActive();
 
 	~GameMap();
 private:
+	EnemyGroup *enemyGroup;
+
 	Grid *grid;
 	void LoadTileset(char *filePath, int tileWidth, int tileHeight);
 	Tileset *tileset;

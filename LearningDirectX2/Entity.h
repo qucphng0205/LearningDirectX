@@ -6,6 +6,7 @@
 class Entity {
 
 public:
+	bool wasInCamera;
 	bool isStatic;
 	static int currentID;
 
@@ -32,6 +33,7 @@ public:
 		Ground,
 		Player,
 		Sparta,
+		CamRect,
 		None
 	};
 	enum EntityType {
@@ -46,7 +48,8 @@ public:
 	};
 
 	virtual BoxCollider GetRect();
-
+	virtual void SetActive(bool active);
+	virtual bool IsActive();
 	virtual EntityTag GetTag();
 	virtual void SetTag(EntityTag tag);
 	virtual EntityType GetType();
@@ -63,9 +66,9 @@ public:
 	virtual EntityDirection GetMoveDirection();
 	virtual void SetMoveDirection(EntityDirection direction);
 	virtual void SetWidth(int width);
-	virtual int GetWidth();
+	virtual float GetWidth();
 	virtual void SetHeight(int height);
-	virtual int GetHeight();
+	virtual float GetHeight();
 
 	virtual D3DXVECTOR2 GetVelocity();
 	virtual void SetVelocity(D3DXVECTOR2 vel);
@@ -83,10 +86,12 @@ public:
 	virtual int GetID();
 
 	virtual void Update(double dt);
+	virtual void Render();
 
 	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
 
 protected:
+	bool isActive;
 	int id;
 	EntityTag tag;
 	EntityType type;

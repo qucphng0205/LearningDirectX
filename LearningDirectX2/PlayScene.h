@@ -5,11 +5,10 @@
 #include "Entity.h"
 #include "CollisionDetector.h"
 #include "Player.h"
+#include "CamBox.h"
+#include "EnemyGroup.h"
 
 class PlayScene : public Scene {
-
-	LPDIRECT3DTEXTURE9 player1_win_texture;
-	LPDIRECT3DTEXTURE9 player2_win_texture;
 
 	DWORD showTime;
 	DWORD showTimeRate;
@@ -26,6 +25,7 @@ public:
 	virtual void ProcessInput();
 	virtual void Update(double dt);
 	void CheckCollision(double dt = 0.0167f);
+	void CheckActive();
 	void CheckCamera();
 	void Reset();
 };

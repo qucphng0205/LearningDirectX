@@ -56,6 +56,10 @@ int Animation::GetHeightCurrentFrame() {
 	return frames[currentFrame]->GetHeight();
 }
 
+void Animation::SetCurrentFrame(int frame) {
+	this->currentFrame = frame;
+}
+
 void Animation::Render(D3DXVECTOR3 position, BoxCollider sourceRect, D3DXCOLOR colorKey, bool isReverse){
 	if (currentFrame == 1)
 		currentFrame = 1;

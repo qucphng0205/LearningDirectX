@@ -1,8 +1,7 @@
 #include "SpartaFollowState.h"
 #include "Enemy.h"
 
-SpartaFollowState::SpartaFollowState(EnemyData *data) {
-	EnemyState::EnemyState(data);
+SpartaFollowState::SpartaFollowState(EnemyData *data) : EnemyState(data) {
 	auto textures = Textures::GetInstance();
 	LPDIRECT3DTEXTURE9 texture = textures->Get(TEX_SPARTA);
 	m_Animation = new Animation();

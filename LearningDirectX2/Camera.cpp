@@ -41,13 +41,23 @@ BoxCollider Camera::GetRect() {
 	return r;
 }
 
-bool Camera::IsContain(BoxCollider r) {
+bool Camera::IsHalfContaint(BoxCollider r) {
+	BoxCollider bound = GetRect();
+	return ((bound.left < r.right && bound.left > r.left) || bound.right < r.right && bound.right > r.left);
+}
+
+bool Camera::IsCollide(BoxCollider r) {
 	BoxCollider bound = GetRect();
 	if (r.right < bound.left || r.left > bound.right)
 		return false;
 	if (r.top < bound.bottom || r.bottom > bound.top)
 		return false;
 	return true;
+}
+
+bool Camera::IsContaint(BoxCollider r) {
+	BoxCollider bound = GetRect();
+	return (bound.top >= r.top && bound.bottom <= r.bottom && bound.left <= r.left && bound.right >= r.right);
 }
 
 Camera::~Camera() {

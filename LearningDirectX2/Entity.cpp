@@ -20,6 +20,14 @@ BoxCollider Entity::GetRect() {
 	return r;
 }
 
+void Entity::SetActive(bool active) {
+	isActive = active;
+}
+
+bool Entity::IsActive() {
+	return isActive;
+}
+
 Entity::EntityTag Entity::GetTag() {
 	return tag;
 }
@@ -83,7 +91,7 @@ void Entity::SetWidth(int width) {
 	this->width = width;
 }
 
-int Entity::GetWidth() {
+float Entity::GetWidth() {
 	return width;
 }
 
@@ -91,7 +99,7 @@ void Entity::SetHeight(int height) {
 	this->height = height;
 }
 
-int Entity::GetHeight() {
+float Entity::GetHeight() {
 	return height;
 }
 
@@ -149,6 +157,9 @@ int Entity::GetID() {
 void Entity::Update(double dt) {
 	position.x += velocity.x * dt;
 	position.y += velocity.y * dt;
+}
+
+void Entity::Render() {
 }
 
 void Entity::OnCollision(Entity * impactor, SideCollision side, float collisionTime) {

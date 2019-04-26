@@ -32,6 +32,8 @@ Player::Player() {
 	Textures::GetInstance()->Get(TEX_PLAYER)->GetLevelDesc(0, &desc);
 	width = desc.Width / 4;
 	height = desc.Height / 9;
+
+	isActive = true;
 }
 
 Player::~Player() {
@@ -55,9 +57,9 @@ void Player::Render() {
 	playerData->state->Render();
 }
 
-void Player::SetState(PlayerState::State name) {
+void Player::SetState(PlayerState::State name, int dummy) {
 	bool falling = false;
-	int dummy = 0;
+
 	switch (name) {
 	case PlayerState::Running:
 		playerData->state = runningState;
@@ -94,6 +96,8 @@ void Player::SetState(PlayerState::State name) {
 }
 
 void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
+	if (impactor->GetTag() == CamRect)
+		return;
 	playerData->state->OnCollision(impactor, side);
 	if (side == Bottom && velocity.y < 0) {
 		velocity.y *= collisionTime;
@@ -135,11 +139,11 @@ int Player::GetBigHeight() {
 	return Entity::GetHeight();
 }
 
-int Player::GetWidth() {
+float Player::GetWidth() {
 	return collider.right - collider.left;
 }
 
-int Player::GetHeight() {
+float Player::GetHeight() {
 	return collider.top - collider.bottom;
 }
 

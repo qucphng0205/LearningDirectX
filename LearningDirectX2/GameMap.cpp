@@ -61,6 +61,9 @@ void GameMap::SetMapPath(char * mapPath) {
 		}
 	}
 
+	enemyGroup = new EnemyGroup();
+
+
 	BoxCollider gridRect = BoxCollider(GetHeight(), 0, 0, GetWidth());
 	grid = new Grid(gridRect);
 
@@ -71,19 +74,38 @@ void GameMap::SetMapPath(char * mapPath) {
 	int posy = 0;
 	int wid = 0;
 	int hei = 0;
+	int direction = 1;
 	for (int i = 0; i < mapObject; i++) {
 		reader >> id;
 		reader >> posx;
 		reader >> posy;
 		reader >> wid;
 		reader >> hei;
-		Entity *x = new Entity();
-		x->SetTag((Entity::EntityTag)id);
-		x->SetStatic(true);
-		x->SetPosition(D3DXVECTOR3(posx + wid / 2, posy - hei / 2, 0));
-		x->SetWidth(wid);
-		x->SetHeight(hei);
-		grid->InsertStaticEntity(x);
+		//reader >> direction;
+		switch (id) {
+		case 0: {
+			Entity *ground = new Entity();
+			ground->SetTag((Entity::EntityTag)id);
+			ground->SetStatic(true);
+			ground->SetPosition(D3DXVECTOR3(posx + wid / 2, posy - hei / 2, 0));
+			ground->SetWidth(wid);
+			ground->SetHeight(hei);
+			grid->InsertStaticEntity(ground);
+		}
+			break;
+		case 1: {
+			Sparta *sparta = new Sparta();
+			BoxCollider box;
+			box.top = posy;
+			box.left = posx;
+			box.bottom = posy - hei;
+			box.right = posx + wid;
+			sparta->SetSpawnBox(box, direction);
+			enemyGroup->AddObject(sparta);
+		}
+			break;
+		}
+		
 	}
 
 }
@@ -131,7 +153,7 @@ void GameMap::Draw() {
 				spriteBound.left = n * tileWidth;
 				spriteBound.right = spriteBound.left + tileWidth;
 
-				if (camera->IsContain(spriteBound)) {
+				if (camera->IsCollide(spriteBound)) {
 					D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, (rows - m - 1) * tileHeight + tileHeight / 2, 0);
 					sprite->SetHeight(tileHeight); 
 					sprite->SetWidth(tileWidth);
@@ -142,6 +164,22 @@ void GameMap::Draw() {
 		}
 	}
 
+}
+
+void GameMap::CheckActive(D3DXVECTOR2 velocity) {
+	enemyGroup->CheckActive(camera, velocity);
+}
+
+void GameMap::GetActiveObject(std::vector<Entity*> entities) {
+	enemyGroup->GetActiveObject(entities);
+}
+
+void GameMap::UpdateActive(double dt) {
+	enemyGroup->Update(dt);
+}
+
+void GameMap::RenderActive() {
+	enemyGroup->Render();
 }
 
 GameMap::~GameMap() {

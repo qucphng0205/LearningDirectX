@@ -18,6 +18,8 @@ public:
 	float GetWidth();
 	float GetHeight();
 	BoxCollider GetRect();
-	bool IsContain(BoxCollider r);
+	bool IsHalfContaint(BoxCollider r);
+	bool IsCollide(BoxCollider r);
+	bool IsContaint(BoxCollider r);
 	~Camera();
 };

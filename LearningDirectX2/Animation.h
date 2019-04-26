@@ -36,6 +36,7 @@ public:
 	void AddFramesA(LPDIRECT3DTEXTURE9 texture, int stRows, int fnRows, int columns, int rowNumber, int columnNumber, float timePerFrame = 0.1f, D3DCOLOR colorKey = D3DCOLOR_XRGB(255, 255, 255));
 	int GetWidthCurrentFrame();
 	int GetHeightCurrentFrame();
+	void SetCurrentFrame(int frame);
 	void Render(D3DXVECTOR3 position = D3DXVECTOR3(), BoxCollider sourceRect= BoxCollider(), D3DXCOLOR colorKey = D3DCOLOR_XRGB(255, 255, 255), bool isReverse = false);
 	void Update(double dt);
 	void ResetAnimation();

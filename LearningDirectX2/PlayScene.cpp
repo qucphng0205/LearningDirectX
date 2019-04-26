@@ -20,6 +20,7 @@ PlayScene::~PlayScene() {
 
 void PlayScene::Render() {
 	map->Draw();
+	map->RenderActive();
 	player->Render();
 }
 
@@ -30,7 +31,9 @@ void PlayScene::ProcessInput() {
 
 void PlayScene::Update(double dt) {
 	CheckCollision(dt);
+	map->UpdateActive(dt);
 	player->Update(dt);
+	CheckActive();
 	D3DXVECTOR3 playerPos = player->GetPosition();
 	camera->FollowPlayer(playerPos.x, playerPos.y);
 	CheckCamera();
@@ -39,16 +42,26 @@ void PlayScene::Update(double dt) {
 
 void PlayScene::CheckCollision(double dt) {
 
+	CamBox *camBox = new CamBox(camera->GetRect(), player->GetVelocity());
 	vector<Entity*> collideObjects;
-	map->GetGrid()->GetEntityWithRect(collideObjects, camera->GetRect());
-	Entity::SideCollision side = Entity::NotKnow;
 
-	for (size_t i = 0; i < collideObjects.size(); i++) {
+	map->GetGrid()->GetEntityWithRect(collideObjects, camera->GetRect());
+	map->GetActiveObject(collideObjects);
+
+	auto side = Entity::NotKnow;
+
+	for (size_t i = 0; i < collideObjects.size() - 1; i++) {
 		for (size_t j = i + 1; j < collideObjects.size(); j++) {
 
+			//--DEBUG--
+			if (collideObjects[i]->GetTag() == Entity::CamRect && collideObjects[j]->GetTag() == Entity::Sparta)
+				i = i;
+
 			float collisionTime = CollisionDetector::SweptAABB(collideObjects[j], collideObjects[i], side, dt);
+
 			if (collisionTime == 2)
 				continue;
+
 			collideObjects[j]->OnCollision(collideObjects[i], side, collisionTime);
 			collisionTime = CollisionDetector::SweptAABB(collideObjects[i], collideObjects[j], side, dt);
 
@@ -62,8 +75,8 @@ void PlayScene::CheckCollision(double dt) {
 
 	for (size_t i = 0; i < collideObjects.size(); i++) {
 
-		if (exPlayer.bottom < 40)
-			exPlayer = exPlayer;
+		if (collideObjects[i]->GetTag() == Entity::Sparta)
+			i = i;
 
 		if (collideObjects[i]->isStatic) {
 			float groundTime = CollisionDetector::SweptAABB(exPlayer, player->GetVelocity(), collideObjects[i]->GetRect(), D3DXVECTOR2(0, 0), side, dt);
@@ -94,6 +107,12 @@ void PlayScene::CheckCollision(double dt) {
 		player->OnFalling();
 	}
 }
+
+void PlayScene::CheckActive() {
+	map->CheckActive(player->GetVelocity());
+}
+
+
 
 void PlayScene::CheckCamera() {
 	D3DXVECTOR3 camPos = camera->GetPosition();

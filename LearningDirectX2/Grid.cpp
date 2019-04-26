@@ -1,26 +1,34 @@
 #include "Grid.h"
 
+GridCell::GridCell() {
+	pos = D3DXVECTOR2(0, 0);
+}
+
 void GridCell::SetRect(float width, float height) {
 	rect = BoxCollider(pos.y, pos.x, pos.y - height, pos.x + width);
 }
 
 void GridCell::ClearAllEntities() {
-	m_Entities.clear();
+	//m_Enemies.clear();
 	m_StaticEntities.clear();
 }
 
+//void GridCell::ClearEnemies() {
+//	m_Enemies.clear();
+//}
+
 void GridCell::GetAllEntityTo(std::vector<Entity*> &entities) {
-	//add non-static
-	for (auto child : m_Entities) {
-		int childID = child->GetID();
-		for (size_t i = 0; i < entities.size(); i++)
-			if (childID == entities[i]->GetID()) {
-				childID = -1;
-				break;
-			}
-		if (childID != -1)
-			entities.push_back(child);
-	}
+	//add enemies
+	//for (auto child : m_Enemies) {
+	//	int childID = child->GetID();
+	//	for (size_t i = 0; i < entities.size(); i++)
+	//		if (childID == entities[i]->GetID()) {
+	//			childID = -1;
+	//			break;
+	//		}
+	//	if (childID != -1)
+	//		entities.push_back(child);
+	//}
 	//add static
 	for (auto child : m_StaticEntities) {
 		int childID = child->GetID();
@@ -35,9 +43,9 @@ void GridCell::GetAllEntityTo(std::vector<Entity*> &entities) {
 	}
 }
 
-void GridCell::PushEntity(Entity * entity) {
-	m_Entities.push_back(entity);
-}
+//void GridCell::PushEnemy(Enemy * enemy) {
+//	m_Enemies.push_back(enemy);
+//}
 
 void GridCell::PushStaticEntity(Entity * entity) {
 	m_StaticEntities.push_back(entity);
@@ -53,6 +61,9 @@ bool Grid::IsOverlap(BoxCollider r1, BoxCollider r2) {
 }
 
 Grid::Grid(BoxCollider r, int rows, int columns) {
+	//--Debug
+	rows = 1;
+	columns = 1;
 
 	cellWidth = (float)(r.right - r.left) / rows;
 	cellHeight = (float)(r.top - r.bottom) / columns;
@@ -81,13 +92,20 @@ void Grid::Clear() {
 			cells[i][j].ClearAllEntities();
 }
 
-void Grid::InsertEntity(Entity * entity) {
-	BoxCollider entityBound = entity->GetRect();
-	for (int i = 0; i < rows; i++)
-		for (int j = 0; j < columns; j++)
-			if (IsOverlap(cells[i][j].GetRect(), entityBound))
-				cells[i][j].PushEntity(entity);
-}
+//void Grid::ClearEnemies() {
+//	for (int i = 0; i < rows; i++)
+//		for (int j = 0; j < columns; j++)
+//			cells[i][j].ClearEnemies();
+//	
+//}
+
+//void Grid::InsertEnemy(Enemy * enemy) {
+//	BoxCollider entityBound = enemy->GetRect();
+//	for (int i = 0; i < rows; i++)
+//		for (int j = 0; j < columns; j++)
+//			if (IsOverlap(cells[i][j].GetRect(), entityBound))
+//				cells[i][j].PushEnemy(enemy);
+//}
 
 void Grid::InsertStaticEntity(Entity * entity) {
 	BoxCollider entityBound = entity->GetRect();

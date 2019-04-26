@@ -1,7 +1,9 @@
 #include "Enemy.h"
 
-Enemy::Enemy() {
+Enemy::Enemy() : Entity() {
 	type = Entity::EnemyType;
+	enemyData = new EnemyData();
+	enemyData->enemy = this;
 }
 
 Enemy::~Enemy() {
@@ -16,11 +18,26 @@ BoxCollider Enemy::GetRect() {
 	return r;
 }
 
+BoxCollider Enemy::GetSpawnRect() {
+	return spawnBox;
+}
+
+void Enemy::SetActive(bool active) {
+	isActive = active;
+	if (isActive) 
+		Spawn();
+}
+
+void Enemy::SetRect(BoxCollider box) {
+	collider = box;
+}
+
 void Enemy::SetSpawnBox(BoxCollider box, int direction) {
 	spawnBox = box;
-	spawnPosition.x = box.left + width / 2.0f;
-	spawnPosition.y = box.bottom + height / 2.0f;
+	spawnPosition.x = (box.left + box.right) / 2.0f;
+	spawnPosition.y = (box.bottom + box.top) / 2.0f;
 	spawnDirection = (EntityDirection)direction;
+	MakeInactive();
 }
 
 void Enemy::SetColliderTop(int top) {
@@ -40,11 +57,34 @@ void Enemy::SetColliderRight(int right) {
 	collider.right = right;
 }
 
+float Enemy::GetWidth() {
+	return collider.right - collider.left;
+}
+
+float Enemy::GetHeight() {
+	return collider.top - collider.bottom;
+}
+
 BoxCollider Enemy::GetCollider() {
 	return collider;
 }
 
+void Enemy::OnCollision(Entity * impactor, SideCollision side, float collisionTime) {
+	if (collisionTime == 0)
+		return;
+}
+
+void Enemy::MakeInactive() {
+	isActive = false;
+	position = spawnPosition;
+	direction = spawnDirection;
+	SetColliderTop((spawnBox.top - spawnBox.bottom) / 2.0f);
+	SetColliderBottom(-collider.top);
+	SetColliderLeft((spawnBox.left - spawnBox.right) / 2.0f);
+}
+
 void Enemy::Spawn() {
 	direction = spawnDirection;
-	position = spawnPosition;
+	position.x = spawnBox.left + width / 2; 
+	position.y = spawnBox.bottom + height / 2;
 }

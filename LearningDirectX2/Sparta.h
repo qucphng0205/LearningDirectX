@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "EnemyData.h"
 #include "EnemyState.h"
+#include "SpartaFollowState.h"
 
 class Sparta : public Enemy {
 public:
@@ -12,16 +13,15 @@ public:
 	~Sparta();
 	virtual void Render();
 	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime);
-	//virtual int GetWidth();
-	//virtual int GetHeight();
-	virtual void SetVelocity(D3DXVECTOR2 velocity);
+	//virtual float GetWidth();
+	//virtual float GetHeight();
 	virtual void SetColliderTop(int top);
 	virtual void SetColliderLeft(int left);
 	virtual void SetColliderBottom(int bottom);
 	virtual void SetColliderRight(int right);
-	virtual void SetStage(EnemyState::State);
+	virtual void SetState(EnemyState::State);
 	virtual BoxCollider GetCollider();
-
+	virtual void Spawn();
 protected:
 	EnemyState *spartaFollowState;
 };

@@ -19,7 +19,7 @@ void PlayerJumpingState::HandleInput() {
 	auto player = playerData->player;
 	auto keyboard = KeyBoard::GetInstance();
 	if (keyboard->GetKeyDown(DIK_D)) {
-		player->SetState(Slash);
+		player->SetState(Slash, 1);
 		return;
 	}
 	if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW)) {

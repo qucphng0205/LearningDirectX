@@ -10,10 +10,10 @@ Entity::CollisionReturn CollisionDetector::RectAndRect(BoxCollider rect, BoxColl
 	result.IsCollided = true;
 
 	BoxCollider bound;
-	bound.top = rect.top > rect2.top ? rect.top : rect2.top;
+	bound.top = rect.top < rect2.top ? rect.top : rect2.top;
 	bound.left = rect.left > rect2.left ? rect.left : rect2.left;
 	bound.right = rect.right < rect2.right ? rect.right : rect2.right;
-	bound.bottom = rect.bottom < rect2.bottom ? rect.bottom : rect2.bottom;
+	bound.bottom = rect.bottom > rect2.bottom ? rect.bottom : rect2.bottom;
 
 	result.regionCollision = bound;
 	return result;
@@ -63,6 +63,8 @@ Entity::SideCollision CollisionDetector::GetSideCollision4(BoxCollider e1, Entit
 
 float CollisionDetector::SweptAABB(Entity * ent1, Entity * ent2, Entity::SideCollision &side, double dt) {
 	BoxCollider r1 = ent1->GetRect();
+	if (r1.GetWidth() == 0)
+		r1 = r1;
 	BoxCollider r2 = ent2->GetRect();
 
 	D3DXVECTOR2 vel2 = ent2->GetVelocity() * dt;
