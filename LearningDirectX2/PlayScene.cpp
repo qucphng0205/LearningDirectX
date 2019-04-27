@@ -97,6 +97,7 @@ void PlayScene::CheckCollision(double dt) {
 					if (player->GetVelocity().y < 0)
 						player->OnCollision(collideObjects[i], side, groundTime);
 
+					//--DEBUG--
 					if (exPlayer.bottom + player->GetVelocity().y * groundTime * dt < 40) {
 						groundTime = CollisionDetector::SweptAABB(exPlayer, x, impactorRect, D3DXVECTOR2(0, 0), side, dt);
 						isOnGround = isOnGround;

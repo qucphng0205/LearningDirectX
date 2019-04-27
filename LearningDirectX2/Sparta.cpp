@@ -18,8 +18,7 @@ Sparta::~Sparta() {
 }
 
 void Sparta::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
-	if (!isActive)
-		Enemy::OnCollision(impactor, side, collisionTime);
+	//if (!isActive)
 }
 
 void Sparta::SetColliderTop(int top) {

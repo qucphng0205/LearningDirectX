@@ -55,6 +55,18 @@
     <Filter Include="Header Files\Object\Player\Player">
       <UniqueIdentifier>{d187da9b-75ab-4f5d-974b-4a14e87d7d27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\Enemy\Cat">
+      <UniqueIdentifier>{338a9fba-d7c2-4fc2-9641-9f9cbdfb6017}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Enemy\Thrower">
+      <UniqueIdentifier>{91cf9d8c-f4c1-4ac9-83af-a54167976707}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Enemy\Eagle">
+      <UniqueIdentifier>{2bd9d657-3b9b-4303-9287-16b0062f87d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Enemy\Soldier">
+      <UniqueIdentifier>{23d0c80f-86da-4104-a0a4-c12191a101c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -164,6 +176,24 @@
     </ClCompile>
     <ClCompile Include="PlayerData.cpp">
       <Filter>Header Files\Object\Player\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Cat.cpp">
+      <Filter>Header Files\Object\Enemy\Cat</Filter>
+    </ClCompile>
+    <ClCompile Include="CatFollowState.cpp">
+      <Filter>Header Files\Object\Enemy\Cat</Filter>
+    </ClCompile>
+    <ClCompile Include="Thrower.cpp">
+      <Filter>Header Files\Object\Enemy\Thrower</Filter>
+    </ClCompile>
+    <ClCompile Include="ThrowerFollowState.cpp">
+      <Filter>Header Files\Object\Enemy\Thrower</Filter>
+    </ClCompile>
+    <ClCompile Include="Eagle.cpp">
+      <Filter>Header Files\Object\Enemy\Eagle</Filter>
+    </ClCompile>
+    <ClCompile Include="EagleFollowState.cpp">
+      <Filter>Header Files\Object\Enemy\Eagle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +310,24 @@
     </ClInclude>
     <ClInclude Include="PlayerState.h">
       <Filter>Header Files\Object\Player\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Cat.h">
+      <Filter>Header Files\Object\Enemy\Cat</Filter>
+    </ClInclude>
+    <ClInclude Include="CatFollowState.h">
+      <Filter>Header Files\Object\Enemy\Cat</Filter>
+    </ClInclude>
+    <ClInclude Include="Thrower.h">
+      <Filter>Header Files\Object\Enemy\Thrower</Filter>
+    </ClInclude>
+    <ClInclude Include="ThrowerFollowState.h">
+      <Filter>Header Files\Object\Enemy\Thrower</Filter>
+    </ClInclude>
+    <ClInclude Include="Eagle.h">
+      <Filter>Header Files\Object\Enemy\Eagle</Filter>
+    </ClInclude>
+    <ClInclude Include="EagleFollowState.h">
+      <Filter>Header Files\Object\Enemy\Eagle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

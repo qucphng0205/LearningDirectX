@@ -80,8 +80,6 @@ BoxCollider Enemy::GetCollider() {
 }
 
 void Enemy::OnCollision(Entity * impactor, SideCollision side, float collisionTime) {
-	if (collisionTime == 0)
-		return;
 }
 
 void Enemy::MakeInactive() {

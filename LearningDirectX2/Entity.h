@@ -6,7 +6,6 @@
 class Entity {
 
 public:
-	bool wasInCamera;
 	bool isStatic;
 	static int currentID;
 
@@ -33,6 +32,9 @@ public:
 		Ground,
 		Player,
 		Sparta,
+		Cat,
+		Thrower,
+		Eagle,
 		CamRect,
 		None
 	};

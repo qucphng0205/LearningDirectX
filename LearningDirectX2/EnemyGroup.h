@@ -2,6 +2,7 @@
 #include "ObjectGroup.h"
 #include "BoxCollider.h"
 #include "Enemy.h"
+#include "GameConfig.h"
 
 class EnemyGroup : public ObjectGroup {
 public:

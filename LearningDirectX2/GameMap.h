@@ -5,6 +5,9 @@
 #include "Grid.h"
 #include "Sparta.h"
 #include "EnemyGroup.h"
+#include "Cat.h"
+#include "Thrower.h"
+#include "Eagle.h"
 #include <iostream>
 #include <fstream>
 

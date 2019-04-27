@@ -13,7 +13,6 @@ void ObjectGroup::AddObject(Entity * e) {
 	//	if (e == entities[i])
 	//		return;
 	entities.push_back(e);
-	e->wasInCamera = false;
 }
 
 void ObjectGroup::GetActiveObject(std::vector<Entity*> entities) {

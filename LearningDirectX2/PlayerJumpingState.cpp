@@ -78,7 +78,9 @@ void PlayerJumpingState::ResetState(int dummy) {
 	player->SetColliderTop(16);
 	player->SetColliderBottom(-6);
 
-	playerData->player->SetVy(PLAYER_MIN_JUMP_VELOCITY);
+	//dummy = 0: back to this state from slash or something else 
+	if (!player->onAir)
+		playerData->player->SetVy(PLAYER_MIN_JUMP_VELOCITY);
 	currentState = 0;
 	player->onAir = true;
 

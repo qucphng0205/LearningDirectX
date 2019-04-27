@@ -22,8 +22,12 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="CamBox.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Cat.cpp" />
+    <ClCompile Include="CatFollowState.cpp" />
     <ClCompile Include="CollisionDetector.cpp" />
     <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="Eagle.cpp" />
+    <ClCompile Include="EagleFollowState.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyGroup.cpp" />
     <ClCompile Include="EnemyState.cpp" />
@@ -55,14 +59,20 @@
     <ClCompile Include="SpartaFollowState.cpp" />
     <ClCompile Include="Sprites.cpp" />
     <ClCompile Include="Textures.cpp" />
+    <ClCompile Include="Thrower.cpp" />
+    <ClCompile Include="ThrowerFollowState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="CamBox.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Cat.h" />
+    <ClInclude Include="CatFollowState.h" />
     <ClInclude Include="CollisionDetector.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="Eagle.h" />
+    <ClInclude Include="EagleFollowState.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyData.h" />
     <ClInclude Include="EnemyGroup.h" />
@@ -95,6 +105,8 @@
     <ClInclude Include="SpartaFollowState.h" />
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="Textures.h" />
+    <ClInclude Include="Thrower.h" />
+    <ClInclude Include="ThrowerFollowState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in" />

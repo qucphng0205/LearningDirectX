@@ -44,18 +44,18 @@ void Player::Update(double dt) {
 
 	if (playerData->state)
 		playerData->state->Update(dt);
-	//if (playerData->state->GetState() == PlayerState::Idle)
-	//	DebugOut(L"State idle-ing\n");
-	//DebugOut(L"Velocity: %f, Position.y: %f and %f\n", velocity.y, GetBigBound().bottom, GetBigBound().bottom + velocity.y * dt);
+
 	Entity::Update(dt);
 	BoxCollider exPlayer = BoxCollider(GetPosition(), GetWidth(), GetBigHeight());
 
+	//--DEBUG--
 	if (vely != velocity)
 		vely = vely;
-
+	//--DEBUG--
 	if (exPlayer.bottom < 39) {
 		vely = vely;
 	}
+	//-Debug
 	auto xside = NotKnow;
 	auto impactorRect = BoxCollider(40, 0, 0, 544);
 	float groundTime = CollisionDetector::SweptAABB(exPlayer, GetVelocity(), impactorRect, D3DXVECTOR2(0, 0), xside, dt);
@@ -106,10 +106,11 @@ void Player::SetState(PlayerState::State name, int dummy) {
 		break;
 	}
 	currentState = playerData->state->GetState();
+
 	playerData->state->ResetState(dummy);
-	if (falling && velocity.y > 0) {
-		SetVy(0);
-	}
+	//if (falling && velocity.y > 0) {
+	//	SetVy(0);
+	//}
 }
 
 void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
@@ -165,6 +166,7 @@ float Player::GetHeight() {
 }
 
 void Player::OnFalling() {
+	onAir = true;
 	SetState(PlayerState::Falling);
 }
 

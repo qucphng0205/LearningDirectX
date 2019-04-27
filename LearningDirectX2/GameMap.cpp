@@ -81,7 +81,7 @@ void GameMap::SetMapPath(char * mapPath) {
 		reader >> posy;
 		reader >> wid;
 		reader >> hei;
-		//reader >> direction;
+		reader >> direction;
 		switch (id) {
 		case 0: {
 			Entity *ground = new Entity();
@@ -92,7 +92,7 @@ void GameMap::SetMapPath(char * mapPath) {
 			ground->SetHeight(hei);
 			grid->InsertStaticEntity(ground);
 		}
-			break;
+				break;
 		case 1: {
 			Sparta *sparta = new Sparta();
 			BoxCollider box;
@@ -103,7 +103,39 @@ void GameMap::SetMapPath(char * mapPath) {
 			sparta->SetSpawnBox(box, direction);
 			enemyGroup->AddObject(sparta);
 		}
-			break;
+				break;
+		case 2: {
+			Cat *cat = new Cat();
+			BoxCollider box;
+			box.top = posy;
+			box.left = posx;
+			box.bottom = posy - hei;
+			box.right = posx + wid;
+			cat->SetSpawnBox(box, direction);
+			enemyGroup->AddObject(cat);
+		}
+				break;
+		case 3:	{
+			Thrower *thrower = new Thrower();
+			BoxCollider box;
+			box.top = posy;
+			box.left = posx;
+			box.bottom = posy - hei;
+			box.right = posx + wid;
+			thrower->SetSpawnBox(box, direction);
+			enemyGroup->AddObject(thrower);
+		}
+				break;
+		case 4: {
+			Eagle *eagle = new Eagle();
+			BoxCollider box;
+			box.top = posy;
+			box.left = posx;
+			box.bottom = posy - hei;
+			box.right = posx + wid;
+			eagle->SetSpawnBox(box, direction);
+			enemyGroup->AddObject(eagle);
+		}
 		}
 		
 	}
