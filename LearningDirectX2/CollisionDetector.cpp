@@ -42,7 +42,7 @@ Entity::SideCollision CollisionDetector::GetSideCollision4(BoxCollider e1, Entit
 	D3DXVECTOR2 direct = D3DXVECTOR2(pos2.x - pos1.x, pos2.y - pos1.y);
 	D3DXVec2Normalize(&direct, &direct);
 
-	if (direct.y < 0) {
+	if (direct.y > 0) {
 		if (direct.x <= cornerAngle && direct.x >= -cornerAngle)
 			result = Entity::Top;
 		else if (direct.x <= 1.1f && direct.x > cornerAngle)

@@ -5,7 +5,7 @@ SpartaFollowState::SpartaFollowState(EnemyData *data) : EnemyState(data) {
 	auto textures = Textures::GetInstance();
 	LPDIRECT3DTEXTURE9 texture = textures->Get(TEX_SPARTA);
 	m_Animation = new Animation();
-	m_Animation->AddFrames(texture, 1, 3, 0.3f);
+	m_Animation->AddFrames(texture, 1, 4, SPARTA_FRAME * (1/60.0f));
 }
 
 SpartaFollowState::~SpartaFollowState() {

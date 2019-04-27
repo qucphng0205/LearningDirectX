@@ -119,7 +119,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			if (dt >= SPF) {
 				
 				if (GetTickCount() - startTime >= 1000) {
-					DebugOut(L"so luong frame/s: %d\n", slFrame);
+					//DebugOut(L"so luong frame/s: %d\n", slFrame);
 					startTime = GetTickCount();
 					slFrame = 0;
 				}

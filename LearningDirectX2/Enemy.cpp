@@ -9,6 +9,16 @@ Enemy::Enemy() : Entity() {
 Enemy::~Enemy() {
 }
 
+void Enemy::Update(double dt) {
+	if (isActive)
+		enemyData->state->Update(dt);
+}
+
+void Enemy::Render() {
+	if (isActive)
+		enemyData->state->Render();
+}
+
 BoxCollider Enemy::GetRect() {
 	BoxCollider r;
 	r.top = position.y + collider.top;

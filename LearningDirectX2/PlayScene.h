@@ -12,7 +12,6 @@ class PlayScene : public Scene {
 
 	DWORD showTime;
 	DWORD showTimeRate;
-	int win;
 
 	GameMap *map;
 	Camera *camera;

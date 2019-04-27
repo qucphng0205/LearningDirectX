@@ -40,16 +40,31 @@ Player::~Player() {
 }
 
 void Player::Update(double dt) {
+	auto vely = velocity;
+
 	if (playerData->state)
 		playerData->state->Update(dt);
 	//if (playerData->state->GetState() == PlayerState::Idle)
 	//	DebugOut(L"State idle-ing\n");
 	//DebugOut(L"Velocity: %f, Position.y: %f and %f\n", velocity.y, GetBigBound().bottom, GetBigBound().bottom + velocity.y * dt);
 	Entity::Update(dt);
+	BoxCollider exPlayer = BoxCollider(GetPosition(), GetWidth(), GetBigHeight());
+
+	if (vely != velocity)
+		vely = vely;
+
+	if (exPlayer.bottom < 39) {
+		vely = vely;
+	}
+	auto xside = NotKnow;
+	auto impactorRect = BoxCollider(40, 0, 0, 544);
+	float groundTime = CollisionDetector::SweptAABB(exPlayer, GetVelocity(), impactorRect, D3DXVECTOR2(0, 0), xside, dt);
+
 	if ((side == Left && velocity.x < 0) || (side == Right && velocity.x > 0))
 		velocity.x = 0;
 	if ((side == Bottom && velocity.y < 0))
 		velocity.y = 0;
+
 	side = NotKnow;
 }
 
@@ -90,9 +105,11 @@ void Player::SetState(PlayerState::State name, int dummy) {
 		falling = true;
 		break;
 	}
+	currentState = playerData->state->GetState();
 	playerData->state->ResetState(dummy);
-	if (falling)
+	if (falling && velocity.y > 0) {
 		SetVy(0);
+	}
 }
 
 void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
@@ -101,7 +118,7 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 	playerData->state->OnCollision(impactor, side);
 	if (side == Bottom && velocity.y < 0) {
 		velocity.y *= collisionTime;
-		DebugOut(L"Set lai velocity.y: %f", collisionTime);
+		DebugOut(L"Set lai velocity la: %f", velocity.y);
 	}
 	else if ((side == Right && velocity.x > 0) || (side == Left && velocity.x < 0))
 		velocity.x *= collisionTime;

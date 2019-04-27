@@ -9,6 +9,10 @@ class Enemy : public Entity {
 public:
 	Enemy();
 	~Enemy();
+
+	virtual void Update(double dt);
+	virtual void Render();
+
 	virtual BoxCollider GetRect();
 	virtual BoxCollider GetSpawnRect();
 	virtual void SetActive(bool active);

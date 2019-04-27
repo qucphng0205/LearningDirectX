@@ -10,16 +10,11 @@ Sparta::Sparta() : Enemy() {
 	SetState(EnemyState::Follow);
 	D3DSURFACE_DESC desc;
 	textures->Get(TEX_SPARTA)->GetLevelDesc(0, &desc);
-	width = desc.Width / 3;
+	width = desc.Width / 4;
 	height = desc.Height;
 }
 
 Sparta::~Sparta() {
-}
-
-void Sparta::Render() {
-	if (isActive)
-		enemyData->state->Render();
 }
 
 void Sparta::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {

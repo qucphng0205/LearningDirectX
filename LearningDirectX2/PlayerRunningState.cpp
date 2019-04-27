@@ -4,7 +4,7 @@ PlayerRunningState::PlayerRunningState(PlayerData * data) {
 	this->playerData = data;
 	auto texs = Textures::GetInstance();
 	m_Animation = new Animation();
-	m_Animation->AddFramesA(texs->Get(TEX_PLAYER), 5, 5, 3, 9, 4, 0.01f);
+	m_Animation->AddFramesA(texs->Get(TEX_PLAYER), 5, 5, 3, 9, 4, PLAYER_RUNNING_FRAME * (1.0/60));
 }
 
 PlayerRunningState::~PlayerRunningState() {

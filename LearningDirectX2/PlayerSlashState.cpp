@@ -57,7 +57,7 @@ void PlayerSlashState::HandleInput() {
 				else player->SetVx(0);
 
 			float vy = player->GetVelocity().y;
-			player->AddVy(-PLAYER_JUMP_ACCELERATEY);
+			player->AddVy(-GRAVITY);
 			if (player->GetVelocity().y <= PLAYER_MAX_FALLING_VELOCITY) {
 				player->SetVy(PLAYER_MAX_FALLING_VELOCITY);
 			}
@@ -78,7 +78,7 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 				else
 					playerData->player->SetState(Idle);
 		playerData->player->onAir = false;
-		OutputDebugString(L"OnAir = false (Slash State)");
+		OutputDebugString(L"slash to ground");
 	}
 }
 

@@ -30,6 +30,7 @@ void PlayScene::ProcessInput() {
 }
 
 void PlayScene::Update(double dt) {
+	ProcessInput();
 	CheckCollision(dt);
 	map->UpdateActive(dt);
 	player->Update(dt);
@@ -37,7 +38,6 @@ void PlayScene::Update(double dt) {
 	D3DXVECTOR3 playerPos = player->GetPosition();
 	camera->FollowPlayer(playerPos.x, playerPos.y);
 	CheckCamera();
-	ProcessInput();
 }
 
 void PlayScene::CheckCollision(double dt) {
@@ -70,39 +70,58 @@ void PlayScene::CheckCollision(double dt) {
 		}
 	};
 
-	BoxCollider exPlayer = BoxCollider(player->GetPosition(), 16, player->GetBigHeight());
+	BoxCollider exPlayer = BoxCollider(player->GetPosition(), player->GetWidth(), player->GetBigHeight());
 	bool isOnGround = false;
+
+	if (player->GetVelocity().y == -270)
+		exPlayer = exPlayer;
 
 	for (size_t i = 0; i < collideObjects.size(); i++) {
 
-		if (collideObjects[i]->GetTag() == Entity::Sparta)
-			i = i;
+		auto impactorRect = collideObjects[i]->GetRect();
 
 		if (collideObjects[i]->isStatic) {
-			float groundTime = CollisionDetector::SweptAABB(exPlayer, player->GetVelocity(), collideObjects[i]->GetRect(), D3DXVECTOR2(0, 0), side, dt);
-			if (Entity::Bottom) {
-				if (groundTime == 0) {
-					isOnGround = true;
-					continue;
-				}
-				else
-					if (groundTime != 2) {
-						player->OnCollision(collideObjects[i], side, groundTime);
-						isOnGround = true;
+
+			float groundTime = CollisionDetector::SweptAABB(exPlayer, player->GetVelocity(), impactorRect, D3DXVECTOR2(0, 0), side, dt);
+
+			if (groundTime != 2)
+				if (side == Entity::Bottom && abs(exPlayer.bottom - impactorRect.top) <= PLAYER_OFFSET_GROUND) {
+					if (player->GetVelocity().y > 0)
 						continue;
+
+					if (player->GetVelocity().y < 0)
+						player = player;
+
+					auto x = player->GetVelocity();
+
+					if (player->GetVelocity().y < 0)
+						player->OnCollision(collideObjects[i], side, groundTime);
+
+					if (exPlayer.bottom + player->GetVelocity().y * groundTime * dt < 40) {
+						groundTime = CollisionDetector::SweptAABB(exPlayer, x, impactorRect, D3DXVECTOR2(0, 0), side, dt);
+						isOnGround = isOnGround;
 					}
-			}
+					
+					isOnGround = true;
+				}
+			continue;
 		}
 
 		float collisionTime = CollisionDetector::SweptAABB(player, collideObjects[i], side, dt);
+
 		if (collisionTime == 2)
 			continue;
+
+		if (side == Entity::Bottom && collideObjects[i]->isStatic)
+			continue;
+
 		player->OnCollision(collideObjects[i], side, collisionTime);
 		collisionTime = CollisionDetector::SweptAABB(collideObjects[i], player, side, dt);
 		collideObjects[i]->OnCollision(player, side, collisionTime);
 	}
 
 	PlayerState::State state = player->GetState();
+
 	if (!isOnGround && !player->onAir) {
 		player->OnFalling();
 	}

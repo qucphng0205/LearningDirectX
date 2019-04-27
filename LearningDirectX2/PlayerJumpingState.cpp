@@ -5,7 +5,7 @@ PlayerJumpingState::PlayerJumpingState(PlayerData * data) {
 	this->playerData = data;
 	auto texs = Textures::GetInstance();
 	m_Animation = new Animation();
-	m_Animation->AddFramesA(texs->Get(TEX_PLAYER), 8, 8, 4, 9, 4, 0.01f);
+	m_Animation->AddFramesA(texs->Get(TEX_PLAYER), 8, 8, 4, 9, 4, PLAYER_JUMPING_FRAME * (1.0f/60));
 }
 
 PlayerJumpingState::~PlayerJumpingState() {
@@ -41,14 +41,16 @@ void PlayerJumpingState::HandleInput() {
 		}
 		else player->SetVx(0);
 
-	player->AddVy(-PLAYER_JUMP_ACCELERATEY);
+	player->AddVy(-GRAVITY);
+	if (player->GetVelocity().y < 0)
+		int x = 0;
 	if (player->GetVelocity().y <= PLAYER_MAX_FALLING_VELOCITY) {
 		player->SetVy(PLAYER_MAX_FALLING_VELOCITY);
 	}
 }
 
 void PlayerJumpingState::OnCollision(Entity * impactor, Entity::SideCollision side) {
-
+	
 	if (impactor->GetTag() == Entity::Ground && side == Entity::Bottom) {
 		auto keyboard = KeyBoard::GetInstance();
 		if (keyboard->GetKey(DIK_LEFTARROW) && !(keyboard->GetKey(DIK_RIGHTARROW)))
@@ -62,7 +64,7 @@ void PlayerJumpingState::OnCollision(Entity * impactor, Entity::SideCollision si
 				else
 					playerData->player->SetState(Idle);
 		playerData->player->onAir = false;
-		OutputDebugString(L"OnAir = false (Jump State)");
+		OutputDebugString(L"Jumping to ground\n");
 	}
 }
 
