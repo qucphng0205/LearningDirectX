@@ -42,6 +42,10 @@ void Textures::Add(int id, LPCSTR path, D3DCOLOR transparentColor) {
 	//DebugOut(L"[INFO] Texture loaded Ok: id=%d, %s \n", id, path);
 }
 
+bool Textures::HasContained(int id) {
+	return textures.count(id);
+}
+
 LPDIRECT3DTEXTURE9 Textures::Get(unsigned int i) {
 	return textures[i];
 }

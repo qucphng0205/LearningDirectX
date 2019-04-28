@@ -3,7 +3,7 @@
 Thrower::Thrower() : Enemy() {
 	//Set type
 	auto textures = Textures::GetInstance();
-	textures->Add(TEX_THROWER, "Resources/Sprites/throwerspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
+		textures->Add(TEX_THROWER, "Resources/Sprites/throwerspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 	throwerFollowState = new ThrowerFollowState(enemyData);
 	//Set tag
 	tag = Entity::Thrower;

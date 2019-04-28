@@ -10,6 +10,7 @@ class Textures {
 public:
 	Textures();
 	void Add(int id, LPCSTR path, D3DCOLOR transparentColor);
+	bool HasContained(int id);
 	LPDIRECT3DTEXTURE9 Get(unsigned int i);
 	static Textures *GetInstance();
 };

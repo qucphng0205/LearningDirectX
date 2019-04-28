@@ -216,6 +216,9 @@
     <ClCompile Include="Item.cpp">
       <Filter>Header Files\Object\Item\General</Filter>
     </ClCompile>
+    <ClCompile Include="ItemState.cpp">
+      <Filter>Header Files\Object\Item\General</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -360,6 +363,12 @@
       <Filter>Header Files\Object\General</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
+      <Filter>Header Files\Object\Item\General</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemData.h">
+      <Filter>Header Files\Object\Item\General</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemState.h">
       <Filter>Header Files\Object\Item\General</Filter>
     </ClInclude>
   </ItemGroup>

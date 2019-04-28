@@ -3,7 +3,7 @@
 Sparta::Sparta() : Enemy() {
 	//Set type
 	auto textures = Textures::GetInstance();
-	textures->Add(TEX_SPARTA, "Resources/Sprites/spartaspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
+		textures->Add(TEX_SPARTA, "Resources/Sprites/spartaspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 	spartaFollowState = new SpartaFollowState(enemyData);
 	//Set tag
 	tag = Entity::Sparta;

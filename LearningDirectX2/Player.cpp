@@ -10,7 +10,8 @@
 #include "Debug.h"
 
 Player::Player() {
-	Textures::GetInstance()->Add(TEX_PLAYER, "Resources/Sprites/ryuspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
+	Textures *textures = Textures::GetInstance();
+	textures->Add(TEX_PLAYER, "Resources/Sprites/ryuspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 
 	playerData = new PlayerData();
 	playerData->player = this;
@@ -29,7 +30,7 @@ Player::Player() {
 	SetType(Entity::EntityType::PlayerType);
 
 	D3DSURFACE_DESC desc;
-	Textures::GetInstance()->Get(TEX_PLAYER)->GetLevelDesc(0, &desc);
+	textures->Get(TEX_PLAYER)->GetLevelDesc(0, &desc);
 	width = desc.Width / 4;
 	height = desc.Height / 9;
 

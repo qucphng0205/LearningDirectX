@@ -3,7 +3,7 @@
 Soldier::Soldier() : Enemy() {
 	//Set type
 	auto textures = Textures::GetInstance();
-	textures->Add(TEX_SOLDIER, "Resources/Sprites/soldierspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
+		textures->Add(TEX_SOLDIER, "Resources/Sprites/soldierspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 	soldierFollowState = new SoldierFollowState(enemyData);
 	soldierAttackState = new SoldierAttackState(enemyData);
 	//Set tag

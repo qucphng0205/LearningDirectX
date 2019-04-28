@@ -33,9 +33,10 @@ BoxCollider Enemy::GetSpawnRect() {
 }
 
 void Enemy::SetActive(bool active) {
-	isActive = active;
-	if (isActive) 
+	if (active)
 		Spawn();
+	else
+		MakeInactive();
 }
 
 void Enemy::SetRect(BoxCollider box) {
@@ -92,6 +93,7 @@ void Enemy::MakeInactive() {
 }
 
 void Enemy::Spawn() {
+	isActive = true;
 	direction = spawnDirection;
 	position.x = spawnBox.left - collider.left;
 	position.y = spawnBox.bottom - collider.bottom;

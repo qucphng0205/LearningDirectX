@@ -3,7 +3,7 @@
 Cat::Cat() : Enemy() {
 	//Set type
 	auto textures = Textures::GetInstance();
-	textures->Add(TEX_CAT, "Resources/Sprites/catspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
+		textures->Add(TEX_CAT, "Resources/Sprites/catspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 	catFollowState = new CatFollowState(enemyData);
 	//Set tag
 	tag = Entity::Cat;

@@ -8,6 +8,8 @@
 #define TEX_THROWER 7
 #define TEX_EAGLE 8
 #define TEX_SOLDIER 9
+#define TEX_HOLDER 10
+#define TEX_ITEM 11
 
 #define PLAYER_SLASH_FRAME 7
 #define PLAYER_RUNNING_FRAME 4
@@ -18,6 +20,7 @@
 #define EAGLE_FRAME 15
 #define SOLDIER_FOLLOW_FRAME 15
 #define SOLDIER_ATTACK_FRAME 2
+#define HOLDER_FRAME 10
 
 #define GRID_ROWS 5
 #define GRID_COLUMNS 5
