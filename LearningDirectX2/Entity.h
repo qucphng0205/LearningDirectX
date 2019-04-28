@@ -35,6 +35,16 @@ public:
 		Cat,
 		Thrower,
 		Eagle,
+		Soldier,
+		SpiritPoints5,
+		SpiritPoints10,
+		Scores500,
+		Scores1000,
+		TimeFreeze,
+		Health,
+		ThrowingStar,
+		WindmillStar,
+		Flames,
 		CamRect,
 		None
 	};
@@ -42,6 +52,7 @@ public:
 		StaticType,
 		PlayerType,
 		EnemyType,
+		ItemType,
 		NoneType
 	};
 	enum EntityDirection {

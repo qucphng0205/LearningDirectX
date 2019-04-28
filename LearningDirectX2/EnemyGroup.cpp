@@ -50,6 +50,7 @@ void EnemyGroup::Update(double dt) {
 
 void EnemyGroup::Render() {
 	for (size_t i = 0; i < entities.size(); i++)
-		if (entities[i]->IsActive())
-			entities[i]->Render();
+		if (entities[i]->IsActive()) {
+				entities[i]->Render();
+		}
 }

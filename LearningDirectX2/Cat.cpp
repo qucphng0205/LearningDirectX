@@ -48,6 +48,7 @@ BoxCollider Cat::GetCollider() {
 }
 
 void Cat::Spawn() {
+	//Set state first
 	SetState(EnemyState::Follow);
 	Enemy::Spawn();
 }

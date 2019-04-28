@@ -37,6 +37,7 @@
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="KeyBoard.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyHelper.cpp" />
@@ -55,6 +56,9 @@
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Soldier.cpp" />
+    <ClCompile Include="SoldierAttackState.cpp" />
+    <ClCompile Include="SoldierFollowState.cpp" />
     <ClCompile Include="Sparta.cpp" />
     <ClCompile Include="SpartaFollowState.cpp" />
     <ClCompile Include="Sprites.cpp" />
@@ -84,6 +88,7 @@
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="ObjectGroup.h" />
     <ClInclude Include="KeyBoard.h" />
     <ClInclude Include="MyHelper.h" />
@@ -101,6 +106,9 @@
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Soldier.h" />
+    <ClInclude Include="SoldierAttackState.h" />
+    <ClInclude Include="SoldierFollowState.h" />
     <ClInclude Include="Sparta.h" />
     <ClInclude Include="SpartaFollowState.h" />
     <ClInclude Include="Sprites.h" />

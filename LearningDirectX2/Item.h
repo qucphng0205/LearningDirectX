@@ -1,43 +1,48 @@
 #pragma once
 #include "Entity.h"
-#include "EnemyData.h"
+#include "ItemData.h"
 #include "GameConfig.h"
-#include "EnemyState.h"
 #include "Camera.h"
+#include "ItemState.h"
 
-class Enemy : public Entity {
+class Item : public Entity {
 public:
-	Enemy();
-	~Enemy();
+
+	enum ItemState {
+		Unavailable,
+		Available
+	};
+
+
+	Item();
+	~Item();
 
 	virtual void Update(double dt);
 	virtual void Render();
 
+	//Get real rect in world 
 	virtual BoxCollider GetRect();
+	//Get spawn box in world
 	virtual BoxCollider GetSpawnRect();
+
 	virtual void SetActive(bool active);
-	virtual void SetRect(BoxCollider box);
+	//= SetCollider
 	virtual void SetSpawnBox(BoxCollider box, int direction);
-	virtual void SetColliderTop(int top);
-	virtual void SetColliderLeft(int left);
-	virtual void SetColliderBottom(int bottom);
-	virtual void SetColliderRight(int right);
-	//Get collilder width
 	virtual float GetWidth();
-	//Get collider height;
 	virtual float GetHeight();
-	virtual BoxCollider GetCollider();
 	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
 	virtual void MakeInactive();
 	virtual void Spawn();
 
 protected:
 
+	ItemState state;
+
 	D3DXVECTOR3 spawnPosition;
-	Entity::EntityDirection spawnDirection;
 	BoxCollider spawnBox;
-	BoxCollider collider;
 	float collisionTime;
 	SideCollision side;
-	EnemyData *enemyData;
+	ItemData *itemData;
 };
+
+

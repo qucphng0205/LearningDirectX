@@ -1,24 +1,23 @@
 #pragma once
 #include "Entity.h"
 #include "Animation.h"
-#include "EnemyData.h"
-#include "CollisionDetector.h"
+#include "ItemData.h"
 #include "GameConfig.h"
 
-class EnemyState {
+class ItemState {
 public:
 	enum State {
-		Follow,
-		Attack
+		Unavailable,
+		Available
 	};
-	EnemyState(EnemyData *data);
-	EnemyState();
-	~EnemyState();
+	ItemState(ItemData *data);
+	ItemState();
+	~ItemState();
 	virtual void Update(double dt);
 	virtual void Render();
 	virtual void OnCollision(Entity *impactor, Entity::SideCollision side);
 	virtual void ResetState();
 protected:
 	Animation *m_Animation;
-	EnemyData *enemyData;
+	ItemData *itemData;
 };

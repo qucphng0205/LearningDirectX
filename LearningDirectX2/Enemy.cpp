@@ -93,6 +93,6 @@ void Enemy::MakeInactive() {
 
 void Enemy::Spawn() {
 	direction = spawnDirection;
-	position.x = spawnBox.left + width / 2; 
-	position.y = spawnBox.bottom + height / 2;
+	position.x = spawnBox.left - collider.left;
+	position.y = spawnBox.bottom - collider.bottom;
 }

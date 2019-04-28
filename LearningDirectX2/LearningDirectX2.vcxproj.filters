@@ -67,6 +67,15 @@
     <Filter Include="Header Files\Object\Enemy\Soldier">
       <UniqueIdentifier>{23d0c80f-86da-4104-a0a4-c12191a101c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\General">
+      <UniqueIdentifier>{491964bc-0835-4ecc-8927-b7c19ad0a036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Item">
+      <UniqueIdentifier>{cc81334e-0f41-4579-9972-09f082f1b5a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Item\General">
+      <UniqueIdentifier>{2f0170e7-199d-4fa3-ad79-c60490303adb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -74,12 +83,6 @@
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Header Files\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Header Files\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Header Files\Object</Filter>
     </ClCompile>
     <ClCompile Include="Debug.cpp">
       <Filter>Header Files\Misc</Filter>
@@ -113,9 +116,6 @@
     </ClCompile>
     <ClCompile Include="SpartaFollowState.cpp">
       <Filter>Header Files\Object\Enemy\Sparta</Filter>
-    </ClCompile>
-    <ClCompile Include="CamBox.cpp">
-      <Filter>Header Files\Object</Filter>
     </ClCompile>
     <ClCompile Include="ObjectGroup.cpp">
       <Filter>Header Files\Manager\Group</Filter>
@@ -195,19 +195,31 @@
     <ClCompile Include="EagleFollowState.cpp">
       <Filter>Header Files\Object\Enemy\Eagle</Filter>
     </ClCompile>
+    <ClCompile Include="Soldier.cpp">
+      <Filter>Header Files\Object\Enemy\Soldier</Filter>
+    </ClCompile>
+    <ClCompile Include="SoldierFollowState.cpp">
+      <Filter>Header Files\Object\Enemy\Soldier</Filter>
+    </ClCompile>
+    <ClCompile Include="SoldierAttackState.cpp">
+      <Filter>Header Files\Object\Enemy\Soldier</Filter>
+    </ClCompile>
+    <ClCompile Include="CamBox.cpp">
+      <Filter>Header Files\Object\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Header Files\Object\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Header Files\Object\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Header Files\Object\Item\General</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
       <Filter>Header Files\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="BoxCollider.h">
-      <Filter>Header Files\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="Debug.h">
       <Filter>Header Files\Misc</Filter>
@@ -241,9 +253,6 @@
     </ClInclude>
     <ClInclude Include="SpartaFollowState.h">
       <Filter>Header Files\Object\Enemy\Sparta</Filter>
-    </ClInclude>
-    <ClInclude Include="CamBox.h">
-      <Filter>Header Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="EnemyGroup.h">
       <Filter>Header Files\Manager\Group</Filter>
@@ -328,6 +337,30 @@
     </ClInclude>
     <ClInclude Include="EagleFollowState.h">
       <Filter>Header Files\Object\Enemy\Eagle</Filter>
+    </ClInclude>
+    <ClInclude Include="Soldier.h">
+      <Filter>Header Files\Object\Enemy\Soldier</Filter>
+    </ClInclude>
+    <ClInclude Include="SoldierFollowState.h">
+      <Filter>Header Files\Object\Enemy\Soldier</Filter>
+    </ClInclude>
+    <ClInclude Include="SoldierAttackState.h">
+      <Filter>Header Files\Object\Enemy\Soldier</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>Header Files\Object\General</Filter>
+    </ClInclude>
+    <ClInclude Include="CamBox.h">
+      <Filter>Header Files\Object\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Object\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Object\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Object\Item\General</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
