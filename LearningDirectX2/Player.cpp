@@ -9,7 +9,17 @@
 #include "PlayerUseItemState.h"
 #include "Debug.h"
 
-Player::Player() {
+
+Player* Player::instance = NULL;
+
+Player * Player::GetInstance() {
+	return instance;
+}
+
+Player::Player() : Entity() {
+
+	instance = this;
+
 	Textures *textures = Textures::GetInstance();
 	textures->Add(TEX_PLAYER, "Resources/Sprites/ryuspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 
@@ -43,10 +53,14 @@ Player::~Player() {
 void Player::Update(double dt) {
 	auto vely = velocity;
 
+	
+
 	if (playerData->state)
 		playerData->state->Update(dt);
 
-	Entity::Update(dt);
+	if ((position.x + collider.left) + velocity.x * dt >= 16)
+		Entity::Update(dt);
+
 	BoxCollider exPlayer = BoxCollider(GetPosition(), GetWidth(), GetBigHeight());
 
 	//--DEBUG--

@@ -86,6 +86,7 @@ void GameMap::SetMapPath(char * mapPath) {
 		case 0: {
 			Entity *ground = new Entity();
 			ground->SetTag((Entity::EntityTag)id);
+			ground->SetType(Entity::StaticType);
 			ground->SetStatic(true);
 			ground->SetPosition(D3DXVECTOR3(posx + wid / 2, posy - hei / 2, 0));
 			ground->SetWidth(wid);
@@ -212,7 +213,7 @@ void GameMap::SetMapPath(char * mapPath) {
 		enemyGroup->CheckActive(camera, velocity);
 	}
 
-	void GameMap::GetActiveObject(std::vector<Entity*> entities) {
+	void GameMap::GetActiveObject(std::vector<Entity*> &entities) {
 		enemyGroup->GetActiveObject(entities);
 	}
 

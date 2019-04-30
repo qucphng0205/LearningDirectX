@@ -8,7 +8,6 @@ Soldier::Soldier() : Enemy() {
 	soldierAttackState = new SoldierAttackState(enemyData);
 	//Set tag
 	tag = Entity::Soldier;
-	SetState(EnemyState::Follow);
 	D3DSURFACE_DESC desc;
 	textures->Get(TEX_SOLDIER)->GetLevelDesc(0, &desc);
 	width = desc.Width / 4;

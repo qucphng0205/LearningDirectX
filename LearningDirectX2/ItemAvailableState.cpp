@@ -13,9 +13,8 @@ ItemAvailableState::~ItemAvailableState() {
 
 void ItemAvailableState::ResetState() {
 
-	auto enemy = itemData->item;
+	auto item = itemData->item;
 
-	//Enemy khac nhau co collide khac nhau, initilize class phai chu y 
 }
 
 void ItemAvailableState::Update(double dt) {

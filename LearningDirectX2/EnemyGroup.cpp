@@ -9,9 +9,6 @@ void EnemyGroup::CheckActive(Camera *cam, D3DXVECTOR2 camVelocity) {
 	BoxCollider camBox = cam->GetRect();
 	D3DXVECTOR2 center = camBox.GetCenter();
 	for (size_t i = 0; i < entities.size(); i++) {
-		//--DEBUG--
-		if (i == 9)
-			i = 9;
 		auto entityRect = entities[i]->GetRect();
 		if (!entities[i]->IsActive()) {
 

@@ -4,6 +4,7 @@
 #include "GameConfig.h"
 #include "EnemyState.h"
 #include "Camera.h"
+#include "Player.h"
 
 class Enemy : public Entity {
 public:

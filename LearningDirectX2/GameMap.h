@@ -41,7 +41,7 @@ public:
 	void Draw();
 	//Active objects
 	void CheckActive(D3DXVECTOR2 velocity);
-	void GetActiveObject(std::vector<Entity*> entities);
+	void GetActiveObject(std::vector<Entity*> &entities);
 	void UpdateActive(double dt);
 	void RenderActive();
 

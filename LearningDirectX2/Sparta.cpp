@@ -3,11 +3,10 @@
 Sparta::Sparta() : Enemy() {
 	//Set type
 	auto textures = Textures::GetInstance();
-		textures->Add(TEX_SPARTA, "Resources/Sprites/spartaspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
+	textures->Add(TEX_SPARTA, "Resources/Sprites/spartaspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 	spartaFollowState = new SpartaFollowState(enemyData);
 	//Set tag
 	tag = Entity::Sparta;
-	SetState(EnemyState::Follow);
 	D3DSURFACE_DESC desc;
 	textures->Get(TEX_SPARTA)->GetLevelDesc(0, &desc);
 	width = desc.Width / 4;
@@ -18,7 +17,7 @@ Sparta::~Sparta() {
 }
 
 void Sparta::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
-	//if (!isActive)
+	Enemy::OnCollision(impactor, side, collisionTime);
 }
 
 void Sparta::SetColliderTop(int top) {

@@ -14,9 +14,7 @@ ItemHolderState::~ItemHolderState() {
 
 void ItemHolderState::ResetState() {
 
-	auto enemy = itemData->item;
-
-	//Enemy khac nhau co collide khac nhau, initilize class phai chu y 
+	auto item = itemData->item;
 }
 
 void ItemHolderState::Update(double dt) {

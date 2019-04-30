@@ -14,10 +14,18 @@ SpartaFollowState::~SpartaFollowState() {
 void SpartaFollowState::ResetState() {
 
 	auto enemy = enemyData->enemy;
-	
+	auto enemyX = enemy->GetPosition().x;
+	auto playerX = Player::GetInstance()->GetPosition().x;
+
+	if (playerX > enemyX)
+		enemy->SetVx(SPARTA_SPEED);
+	else
+		enemy->SetVx(-SPARTA_SPEED);
+
 	enemy->SetColliderTop(12);
 	enemy->SetColliderBottom(-21);
 	enemy->SetColliderLeft(-12);
+	enemy->SetColliderRight(4);
 }
 
 void SpartaFollowState::Update(double dt) {

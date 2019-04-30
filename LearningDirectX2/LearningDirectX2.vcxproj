@@ -38,6 +38,8 @@
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemAvailableState.cpp" />
+    <ClCompile Include="ItemHolderState.cpp" />
     <ClCompile Include="ItemState.cpp" />
     <ClCompile Include="KeyBoard.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -90,7 +92,9 @@
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemAvailableState.h" />
     <ClInclude Include="ItemData.h" />
+    <ClInclude Include="ItemHolderState.h" />
     <ClInclude Include="ItemState.h" />
     <ClInclude Include="ObjectGroup.h" />
     <ClInclude Include="KeyBoard.h" />

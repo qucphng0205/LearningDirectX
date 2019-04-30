@@ -7,7 +7,6 @@ Thrower::Thrower() : Enemy() {
 	throwerFollowState = new ThrowerFollowState(enemyData);
 	//Set tag
 	tag = Entity::Thrower;
-	SetState(EnemyState::Follow);
 	D3DSURFACE_DESC desc;
 	textures->Get(TEX_THROWER)->GetLevelDesc(0, &desc);
 	width = desc.Width / 4;

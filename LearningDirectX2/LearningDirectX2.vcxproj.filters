@@ -219,6 +219,12 @@
     <ClCompile Include="ItemState.cpp">
       <Filter>Header Files\Object\Item\General</Filter>
     </ClCompile>
+    <ClCompile Include="ItemHolderState.cpp">
+      <Filter>Header Files\Object\Item\General</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemAvailableState.cpp">
+      <Filter>Header Files\Object\Item\General</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -369,6 +375,12 @@
       <Filter>Header Files\Object\Item\General</Filter>
     </ClInclude>
     <ClInclude Include="ItemState.h">
+      <Filter>Header Files\Object\Item\General</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemHolderState.h">
+      <Filter>Header Files\Object\Item\General</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemAvailableState.h">
       <Filter>Header Files\Object\Item\General</Filter>
     </ClInclude>
   </ItemGroup>

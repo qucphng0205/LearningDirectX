@@ -43,83 +43,62 @@ void PlayScene::Update(double dt) {
 void PlayScene::CheckCollision(double dt) {
 
 	CamBox *camBox = new CamBox(camera->GetRect(), player->GetVelocity());
-	vector<Entity*> collideObjects;
+	vector<Entity*> staticObjects;
+	vector<Entity*> actives;
 
-	map->GetGrid()->GetEntityWithRect(collideObjects, camera->GetRect());
-	map->GetActiveObject(collideObjects);
+	map->GetGrid()->GetEntityWithRect(staticObjects, camera->GetRect());
+	map->GetActiveObject(actives);
 
 	auto side = Entity::NotKnow;
 
-	for (size_t i = 0; i < collideObjects.size() - 1; i++) {
-		for (size_t j = i + 1; j < collideObjects.size(); j++) {
+	//actives with ground
+	for (size_t i = 0; i < actives.size(); i++) {
+		for (size_t j = 0; j < staticObjects.size(); j++) {
 
-			//--DEBUG--
-			if (collideObjects[i]->GetTag() == Entity::CamRect && collideObjects[j]->GetTag() == Entity::Sparta)
-				i = i;
-
-			float collisionTime = CollisionDetector::SweptAABB(collideObjects[j], collideObjects[i], side, dt);
+			float collisionTime = CollisionDetector::SweptAABB(actives[i], staticObjects[j], side, dt);
 
 			if (collisionTime == 2)
 				continue;
 
-			collideObjects[j]->OnCollision(collideObjects[i], side, collisionTime);
-			collisionTime = CollisionDetector::SweptAABB(collideObjects[i], collideObjects[j], side, dt);
-
-			collideObjects[i]->OnCollision(collideObjects[j], side, collisionTime);
-
+			actives[i]->OnCollision(staticObjects[j], side, collisionTime);
 		}
-	};
+	}
 
 	BoxCollider exPlayer = BoxCollider(player->GetPosition(), player->GetWidth(), player->GetBigHeight());
 	bool isOnGround = false;
 
-	if (player->GetVelocity().y == -270)
-		exPlayer = exPlayer;
+	//player with ground
+	for (size_t i = 0; i < staticObjects.size(); i++) {
 
-	for (size_t i = 0; i < collideObjects.size(); i++) {
+		auto impactorRect = staticObjects[i]->GetRect();
 
-		auto impactorRect = collideObjects[i]->GetRect();
+		float groundTime = CollisionDetector::SweptAABB(exPlayer, player->GetVelocity(), impactorRect, D3DXVECTOR2(0, 0), side, dt);
 
-		if (collideObjects[i]->isStatic) {
+		if (groundTime != 2)
+			if (side == Entity::Bottom && abs(exPlayer.bottom - impactorRect.top) <= PLAYER_OFFSET_GROUND) {
 
-			float groundTime = CollisionDetector::SweptAABB(exPlayer, player->GetVelocity(), impactorRect, D3DXVECTOR2(0, 0), side, dt);
+				if (player->GetVelocity().y > 0)
+					continue;
 
-			if (groundTime != 2)
-				if (side == Entity::Bottom && abs(exPlayer.bottom - impactorRect.top) <= PLAYER_OFFSET_GROUND) {
-					if (player->GetVelocity().y > 0)
-						continue;
+				if (player->GetVelocity().y < 0)
+					player->OnCollision(staticObjects[i], side, groundTime);
 
-					if (player->GetVelocity().y < 0)
-						player = player;
-
-					auto x = player->GetVelocity();
-
-					if (player->GetVelocity().y < 0)
-						player->OnCollision(collideObjects[i], side, groundTime);
-
-					//--DEBUG--
-					if (exPlayer.bottom + player->GetVelocity().y * groundTime * dt < 40) {
-						groundTime = CollisionDetector::SweptAABB(exPlayer, x, impactorRect, D3DXVECTOR2(0, 0), side, dt);
-						isOnGround = isOnGround;
-					}
-					
-					isOnGround = true;
-				}
-			continue;
-		}
-
-		float collisionTime = CollisionDetector::SweptAABB(player, collideObjects[i], side, dt);
-
-		if (collisionTime == 2)
-			continue;
-
-		if (side == Entity::Bottom && collideObjects[i]->isStatic)
-			continue;
-
-		player->OnCollision(collideObjects[i], side, collisionTime);
-		collisionTime = CollisionDetector::SweptAABB(collideObjects[i], player, side, dt);
-		collideObjects[i]->OnCollision(player, side, collisionTime);
+				isOnGround = true;
+			}
 	}
+
+	//player with actives but later 
+	//for (int i = 0; i < actives.size(); i++) {
+
+	//	float collisionTime = CollisionDetector::SweptAABB(player, actives[i], side, dt);
+
+	//	if (collisionTime == 2)
+	//		continue;
+
+	//	player->OnCollision(actives[i], side, collisionTime);
+	//	collisionTime = CollisionDetector::SweptAABB(actives[i], player, side, dt);
+	//	actives[i]->OnCollision(player, side, collisionTime);
+	//}
 
 	PlayerState::State state = player->GetState();
 

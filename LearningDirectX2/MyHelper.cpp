@@ -17,3 +17,7 @@ float MyHelper::Clamp(float x, float a, float z) {
 			x = z;
 	return x;
 }
+
+float MyHelper::Distance(float x, float y) {
+	return (x > y) ? x - y : y - x;
+}

@@ -6,6 +6,7 @@
 
 class Player : public Entity {
 public:
+	static Player *GetInstance();
 	Player();
 	~Player();
 	virtual void Update(double dt);
@@ -30,6 +31,7 @@ public:
 	bool onAir;
 
 protected:
+	static Player *instance;
 	PlayerData *playerData;
 	PlayerState
 		*idleState,
