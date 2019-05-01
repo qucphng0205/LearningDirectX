@@ -8,6 +8,10 @@
 
 class Enemy : public Entity {
 public:
+	//--DEBUG--
+	float offsetScaleX;
+
+
 	Enemy();
 	~Enemy();
 
@@ -23,14 +27,18 @@ public:
 	virtual void SetColliderLeft(int left);
 	virtual void SetColliderBottom(int bottom);
 	virtual void SetColliderRight(int right);
+	virtual void SetMoveDirection(Entity::EntityDirection dir);
 	//Get collilder width
 	virtual float GetWidth();
+	virtual float GetBigWidth();
 	//Get collider height;
 	virtual float GetHeight();
+	virtual float GetBigHeight();
 	virtual BoxCollider GetCollider();
 	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
 	virtual void MakeInactive();
 	virtual void Spawn();
+	virtual Entity::EntityDirection GetSpawnDirection();
 
 protected:
 
@@ -41,4 +49,5 @@ protected:
 	float collisionTime;
 	SideCollision side;
 	EnemyData *enemyData;
+
 };

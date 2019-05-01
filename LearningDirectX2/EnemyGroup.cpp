@@ -9,11 +9,21 @@ void EnemyGroup::CheckActive(Camera *cam, D3DXVECTOR2 camVelocity) {
 	BoxCollider camBox = cam->GetRect();
 	D3DXVECTOR2 center = camBox.GetCenter();
 	for (size_t i = 0; i < entities.size(); i++) {
+
+		if (entities[i]->GetTag() == Entity::Soldier && entities[i]->IsActive())
+			i = i;
+
 		auto entityRect = entities[i]->GetRect();
+
+
 		if (!entities[i]->IsActive()) {
 
-			if (!cam->IsContaint(entityRect))
+			if (!cam->IsContaint(entityRect)) {
+				if (entities[i]->IsActive())
+					entities[i]->SetActive(false);
 				continue;
+			}
+
 
 			Entity::EntityDirection direction = entities[i]->GetMoveDirection();
 			auto childPos = entities[i]->GetPosition();

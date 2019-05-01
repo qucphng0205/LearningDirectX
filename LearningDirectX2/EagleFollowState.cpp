@@ -19,6 +19,10 @@ void EagleFollowState::ResetState() {
 	enemy->SetColliderTop(12);
 	enemy->SetColliderBottom(-12);
 	enemy->SetColliderLeft(-8);
+
+	enemy->offsetScaleX = enemy->GetBigWidth() - enemy->GetWidth();
+	enemy->SetVelocity(D3DXVECTOR2(0, 0));
+	EnemyState::ResetState();
 }
 
 void EagleFollowState::Update(double dt) {

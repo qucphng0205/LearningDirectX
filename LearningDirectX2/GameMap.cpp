@@ -82,6 +82,8 @@ void GameMap::SetMapPath(char * mapPath) {
 		reader >> wid;
 		reader >> hei;
 		reader >> direction;
+		if (i == 39)
+			i = i;
 		switch (id) {
 		case 0: {
 			Entity *ground = new Entity();

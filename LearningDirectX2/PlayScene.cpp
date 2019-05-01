@@ -53,6 +53,7 @@ void PlayScene::CheckCollision(double dt) {
 
 	//actives with ground
 	for (size_t i = 0; i < actives.size(); i++) {
+		bool onGround = false;
 		for (size_t j = 0; j < staticObjects.size(); j++) {
 
 			float collisionTime = CollisionDetector::SweptAABB(actives[i], staticObjects[j], side, dt);
@@ -61,7 +62,12 @@ void PlayScene::CheckCollision(double dt) {
 				continue;
 
 			actives[i]->OnCollision(staticObjects[j], side, collisionTime);
+			if (side == Entity::Bottom)
+				onGround = true;
 		}
+		//if (!onGround && actives[i]->GetVy() >= 0)
+		if (!onGround)
+			actives[i]->AddVy(-CAT_GRAVITY);
 	}
 
 	BoxCollider exPlayer = BoxCollider(player->GetPosition(), player->GetWidth(), player->GetBigHeight());

@@ -67,6 +67,7 @@
     <ClCompile Include="Sprites.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Thrower.cpp" />
+    <ClCompile Include="ThrowerAttackState.cpp" />
     <ClCompile Include="ThrowerFollowState.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +122,7 @@
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Thrower.h" />
+    <ClInclude Include="ThrowerAttackState.h" />
     <ClInclude Include="ThrowerFollowState.h" />
   </ItemGroup>
   <ItemGroup>

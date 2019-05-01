@@ -53,8 +53,6 @@ Player::~Player() {
 void Player::Update(double dt) {
 	auto vely = velocity;
 
-	
-
 	if (playerData->state)
 		playerData->state->Update(dt);
 

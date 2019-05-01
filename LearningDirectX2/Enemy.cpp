@@ -4,6 +4,7 @@ Enemy::Enemy() : Entity() {
 	type = Entity::EnemyType;
 	enemyData = new EnemyData();
 	enemyData->enemy = this;
+	direction = Entity::LeftToRight;
 }
 
 Enemy::~Enemy() {
@@ -24,6 +25,7 @@ BoxCollider Enemy::GetRect() {
 	BoxCollider r;
 	r.top = position.y + collider.top;
 	r.bottom = position.y + collider.bottom;
+
 	if (direction == Entity::LeftToRight) {
 		r.left = position.x + collider.left;
 		r.right = position.x + collider.right;
@@ -75,12 +77,30 @@ void Enemy::SetColliderRight(int right) {
 	collider.right = right;
 }
 
+void Enemy::SetMoveDirection(Entity::EntityDirection dir) {
+	if (dir == direction)
+		return;
+	direction = dir;
+	if (dir == Entity::LeftToRight)
+		position.x += offsetScaleX;
+	else
+		position.x -= offsetScaleX;
+}
+
 float Enemy::GetWidth() {
 	return collider.right - collider.left;
 }
 
+float Enemy::GetBigWidth() {
+	return width;
+}
+
 float Enemy::GetHeight() {
 	return collider.top - collider.bottom;
+}
+
+float Enemy::GetBigHeight() {
+	return height;
 }
 
 BoxCollider Enemy::GetCollider() {
@@ -92,11 +112,11 @@ void Enemy::OnCollision(Entity * impactor, SideCollision side, float collisionTi
 	auto myRect = GetRect();
 	if (impactor->GetType() == Entity::StaticType) {
 		if (side == Entity::Bottom) {
-			if ((MyHelper::Distance(myRect.left, impactorRect.left) < ENEMY_OFFSET_BORDER && velocity.x < 0) || (MyHelper::Distance(myRect.right, impactorRect.right) < ENEMY_OFFSET_BORDER && velocity.x > 0 ))
+			if ((MyHelper::Distance(myRect.left, impactorRect.left) < ENEMY_OFFSET_BORDER && velocity.x < 0) || (MyHelper::Distance(myRect.right, impactorRect.right) < ENEMY_OFFSET_BORDER && velocity.x > 0) || (impactorRect.left > myRect.left && impactorRect.left < myRect.right && velocity.x < 0) || (impactorRect.right > myRect.left && impactorRect.right < myRect.right && velocity.x > 0))
 				SetVx(-velocity.x);
 			SetVy(0);
 		}
-	} 
+	}
 }
 
 void Enemy::MakeInactive() {
@@ -110,7 +130,11 @@ void Enemy::MakeInactive() {
 
 void Enemy::Spawn() {
 	isActive = true;
-	position.x = spawnBox.left - collider.left;
-	position.y = spawnBox.bottom - collider.bottom;
+	position.x = spawnBox.left - (collider.left + collider.right) / 2.0;
+	position.y = spawnBox.bottom - (collider.bottom + collider.top) / 2.0;
+}
+
+Entity::EntityDirection Enemy::GetSpawnDirection() {
+	return spawnDirection;
 }
 

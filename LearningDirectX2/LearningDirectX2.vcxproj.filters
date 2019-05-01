@@ -225,6 +225,9 @@
     <ClCompile Include="ItemAvailableState.cpp">
       <Filter>Header Files\Object\Item\General</Filter>
     </ClCompile>
+    <ClCompile Include="ThrowerAttackState.cpp">
+      <Filter>Header Files\Object\Enemy\Thrower</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -382,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="ItemAvailableState.h">
       <Filter>Header Files\Object\Item\General</Filter>
+    </ClInclude>
+    <ClInclude Include="ThrowerAttackState.h">
+      <Filter>Header Files\Object\Enemy\Thrower</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

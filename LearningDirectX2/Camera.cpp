@@ -43,7 +43,7 @@ BoxCollider Camera::GetRect() {
 
 bool Camera::IsHalfContaint(BoxCollider r) {
 	BoxCollider bound = GetRect();
-	return ((bound.left < r.right && bound.left > r.left) || bound.right < r.right && bound.right > r.left);
+	return ((bound.left < r.right && bound.left > r.left) || (bound.right < r.right && bound.right > r.left) || (bound.bottom > r.bottom && bound.bottom < r.top) || (bound.top > r.bottom && bound.top < r.top));
 }
 
 bool Camera::IsCollide(BoxCollider r) {

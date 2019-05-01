@@ -10,8 +10,8 @@ Soldier::Soldier() : Enemy() {
 	tag = Entity::Soldier;
 	D3DSURFACE_DESC desc;
 	textures->Get(TEX_SOLDIER)->GetLevelDesc(0, &desc);
-	width = desc.Width / 4;
-	height = desc.Height;
+	width = desc.Width / 2.0;
+	height = desc.Height / 2.0;
 }
 
 Soldier::~Soldier() {
