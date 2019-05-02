@@ -23,9 +23,16 @@ void SoldierFollowState::ResetState() {
 
 	enemy->offsetScaleX = enemy->GetBigWidth() - enemy->GetWidth();
 
+	if (Player::GetInstance()->GetPosition().x < enemy->GetPosition().x)
+		enemy->SetVx(-SOLDIER_SPEED);
+	else
+		enemy->SetVx(SOLDIER_SPEED);
+
 	EnemyState::ResetState();
 }
 
 void SoldierFollowState::Update(double dt) {
 	m_Animation->Update(dt);
+	if (m_Animation->GetPercentTime() >= SOLDIER_FOLLOW_PERCENTTIME)
+		enemyData->enemy->SetState(EnemyState::Attack);
 }

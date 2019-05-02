@@ -11,13 +11,13 @@ public:
 	//--DEBUG--
 	float offsetScaleX;
 
-
 	Enemy();
 	~Enemy();
 
 	virtual void Update(double dt);
 	virtual void Render();
 
+	
 	virtual BoxCollider GetRect();
 	virtual BoxCollider GetSpawnRect();
 	virtual void SetActive(bool active);
@@ -28,6 +28,7 @@ public:
 	virtual void SetColliderBottom(int bottom);
 	virtual void SetColliderRight(int right);
 	virtual void SetMoveDirection(Entity::EntityDirection dir);
+	virtual void SetState(EnemyState::State state);
 	//Get collilder width
 	virtual float GetWidth();
 	virtual float GetBigWidth();

@@ -21,6 +21,7 @@ void CatFollowState::ResetState() {
 	enemy->SetColliderLeft(-8);
 
 	enemy->offsetScaleX = enemy->GetBigWidth() - enemy->GetWidth();
+
 	if (enemy->GetSpawnDirection() == Entity::LeftToRight)
 		enemy->SetVx(CAT_SPEED);
 	else

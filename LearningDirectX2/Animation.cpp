@@ -78,11 +78,13 @@ void Animation::Update(double dt) {
 	}
 	else
 		currentTotalTime += dt;
+	time += dt;
 }
 
 void Animation::ResetAnimation() {
 	currentFrame = 0;
 	currentTotalTime = 0;
+	time = 0;
 }
 
 int Animation::GetCurrentFrameID(){
@@ -91,4 +93,8 @@ int Animation::GetCurrentFrameID(){
 
 bool Animation::IsLastFrame(double dt) {
 	return (currentFrame == totalFrame - 1 && currentTotalTime + dt >= defaultTime);
+}
+
+float Animation::GetPercentTime() {
+	return time / (defaultTime * totalFrame);
 }

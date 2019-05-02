@@ -16,7 +16,7 @@ public:
 		left = position.x - width / 2;
 		right = left + width;
 	}
-	D3DXVECTOR2 GetCenter() { return D3DXVECTOR2((left + right) / 2.0f, (top - bottom) / 2.0f); }
+	D3DXVECTOR2 GetCenter() { return D3DXVECTOR2((left + right) / 2.0f, (top + bottom) / 2.0f); }
 	float GetWidth() { return right - left; }
 	float GetHeight() { return top - bottom; }
 	void Multiply(float x) {

@@ -24,7 +24,7 @@ void ThrowerFollowState::ResetState() {
 		enemy->SetVx(-THROWER_SPEED);
 
 	//Enemy khac nhau co collide khac nhau, initilize class phai chu y 
-	enemy->SetColliderTop(13);
+	enemy->SetColliderTop(10);
 	enemy->SetColliderBottom(-22);
 	enemy->SetColliderLeft(-12);
 	enemy->SetColliderRight(4);

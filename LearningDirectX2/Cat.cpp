@@ -12,7 +12,6 @@ Cat::Cat() : Enemy() {
 	width = desc.Width / 4;
 	height = desc.Height;
 
-	offsetScaleX = width + 2 * collider.left;
 }
 
 Cat::~Cat() {

@@ -87,6 +87,9 @@ void Enemy::SetMoveDirection(Entity::EntityDirection dir) {
 		position.x -= offsetScaleX;
 }
 
+void Enemy::SetState(EnemyState::State state) {
+}
+
 float Enemy::GetWidth() {
 	return collider.right - collider.left;
 }
@@ -130,8 +133,8 @@ void Enemy::MakeInactive() {
 
 void Enemy::Spawn() {
 	isActive = true;
-	position.x = spawnBox.left - (collider.left + collider.right) / 2.0;
-	position.y = spawnBox.bottom - (collider.bottom + collider.top) / 2.0;
+	position.x = spawnBox.left + width / 2.0f;
+	position.y = spawnBox.bottom + height / 2.0f;
 }
 
 Entity::EntityDirection Enemy::GetSpawnDirection() {
