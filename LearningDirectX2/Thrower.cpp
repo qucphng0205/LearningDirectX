@@ -13,6 +13,8 @@ Thrower::Thrower() : Enemy() {
 
 	width = desc.Width / 2.0;
 	height = desc.Height / 2.0;
+
+	//Spawn knifes for thrower
 }
 
 Thrower::~Thrower() {
@@ -20,6 +22,8 @@ Thrower::~Thrower() {
 
 void Thrower::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
 	Enemy::OnCollision(impactor, side, collisionTime);
+	if (impactor->GetType() == Entity::StaticType && side == Bottom)
+		onGround = true;
 }
 
 void Thrower::SetVelocity(D3DXVECTOR2 vel){
@@ -33,6 +37,9 @@ void Thrower::SetVx(float vx) {
 void Thrower::Update(double dt) {
 	SetMoveDirection(Player::GetInstance()->GetPosition().x < position.x ? Entity::RightToLeft : Entity::LeftToRight);
 	Enemy::Update(dt);
+	if (!onGround)
+		AddVy(-CAT_GRAVITY);
+	onGround = false;
 }
 
 void Thrower::SetColliderTop(int top) {
@@ -67,4 +74,9 @@ BoxCollider Thrower::GetCollider() {
 void Thrower::Spawn() {
 	SetState(EnemyState::Follow);
 	Enemy::Spawn();
+}
+
+Entity * Thrower::SpawnKnife() {
+	float x = Player::GetInstance()->GetPosition().x;
+	return new Knife(x > position.x ? LeftToRight : RightToLeft);
 }

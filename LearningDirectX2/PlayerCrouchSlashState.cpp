@@ -44,8 +44,12 @@ PlayerState::State PlayerCrouchSlashState::GetState() {
 
 void PlayerCrouchSlashState::ResetState(int dummy) {
 	auto player = playerData->player;
-	player->SetColliderLeft(-12);
+	
+	//collider slash + crouch 
 	player->SetColliderTop(8);
 	player->SetColliderBottom(-16);
+	player->SetColliderLeft(-7);
+	player->SetColliderRight(31);
+
 	PlayerState::ResetState(dummy);
 }

@@ -8,7 +8,6 @@
 
 class Enemy : public Entity {
 public:
-	//--DEBUG--
 	float offsetScaleX;
 
 	Enemy();
@@ -37,12 +36,12 @@ public:
 	virtual float GetBigHeight();
 	virtual BoxCollider GetCollider();
 	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
-	virtual void MakeInactive();
-	virtual void Spawn();
 	virtual Entity::EntityDirection GetSpawnDirection();
 
 protected:
-
+	virtual void MakeInactive();
+	virtual void Spawn();
+	bool onGround;
 	D3DXVECTOR3 spawnPosition;
 	Entity::EntityDirection spawnDirection;
 	BoxCollider spawnBox;

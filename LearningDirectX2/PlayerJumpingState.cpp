@@ -52,6 +52,8 @@ void PlayerJumpingState::HandleInput() {
 void PlayerJumpingState::OnCollision(Entity * impactor, Entity::SideCollision side) {
 	
 	if (impactor->GetTag() == Entity::Ground && side == Entity::Bottom) {
+		if (playerData->player->GetVy() > 0)
+			return;
 		auto keyboard = KeyBoard::GetInstance();
 		if (keyboard->GetKey(DIK_LEFTARROW) && !(keyboard->GetKey(DIK_RIGHTARROW)))
 			playerData->player->SetState(Running);
@@ -64,7 +66,7 @@ void PlayerJumpingState::OnCollision(Entity * impactor, Entity::SideCollision si
 				else
 					playerData->player->SetState(Idle);
 		playerData->player->onAir = false;
-		OutputDebugString(L"Jumping to ground\n");
+		OutputDebugString(L"Falling to ground\n");
 	}
 }
 
@@ -74,11 +76,13 @@ PlayerState::State PlayerJumpingState::GetState() {
 
 void PlayerJumpingState::ResetState(int dummy) {
 	auto player = playerData->player;
-	player->SetColliderLeft(-9);
-	player->SetColliderTop(16);
-	player->SetColliderBottom(-6);
 
-	//dummy = 0: back to this state from slash or something else 
+	//jump collider around center point
+	player->SetColliderLeft(-7);
+	player->SetColliderTop(16);
+	player->SetColliderBottom(-3);
+
+	//onAir = falling, not onAir means it jumps from ground
 	if (!player->onAir)
 		playerData->player->SetVy(PLAYER_MIN_JUMP_VELOCITY);
 	currentState = 0;

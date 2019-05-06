@@ -2,18 +2,13 @@
 #include "Enemy.h"
 #include "Textures.h"
 #include "Animation.h"
-#include "ThrowerFollowState.h"
-#include "ThrowerAttackState.h"
-#include "Knife.h"
+#include "KnifeRotateState.h"
 
-class Thrower : public Enemy {
+class Knife : public Enemy {
 public:
-
-	Thrower();
-	~Thrower();
+	Knife(EntityDirection dir);
+	~Knife();
 	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime);
-	virtual void SetVelocity(D3DXVECTOR2 vel);
-	virtual void SetVx(float vx);
 	virtual void Update(double dt);
 	virtual void SetColliderTop(int top);
 	virtual void SetColliderLeft(int left);
@@ -22,9 +17,7 @@ public:
 	virtual void SetState(EnemyState::State);
 	virtual BoxCollider GetCollider();
 	virtual void Spawn();
-	virtual Entity* SpawnKnife();
+	virtual void Spawn(EntityDirection dir);
 protected:
-	Knife* knifePrefab;
-	EnemyState *throwerFollowState,
-		*throwerAttackState;
+	EnemyState *knifeRotateState;
 };

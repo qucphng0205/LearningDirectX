@@ -67,8 +67,7 @@ void Animation::Render(D3DXVECTOR3 position, BoxCollider sourceRect, D3DXCOLOR c
 }
 
 void Animation::Update(double dt) {
-	if (totalFrame <= 1)
-		return;
+
 	int nextFrame = currentFrame + 1;
 	if (nextFrame >= totalFrame)
 		nextFrame = 0;

@@ -35,8 +35,11 @@ PlayerState::State PlayerUseItemState::GetState() {
 
 void PlayerUseItemState::ResetState(int dummy) {
 	auto player = playerData->player;
-	player->SetColliderLeft(-9);
+
+	//collider usually smaller than sprite
+	player->SetColliderLeft(-7);
 	player->SetColliderTop(16);
 	player->SetColliderBottom(-16);
+
 	PlayerState::ResetState(dummy);
 }

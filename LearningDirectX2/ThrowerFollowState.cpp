@@ -5,7 +5,7 @@ ThrowerFollowState::ThrowerFollowState(EnemyData *data) : EnemyState(data) {
 	auto textures = Textures::GetInstance();
 	LPDIRECT3DTEXTURE9 texture = textures->Get(TEX_THROWER);
 	m_Animation = new Animation();
-	m_Animation->AddFramesA(texture, 1, 1, 2, 2, 2, THROWER_FRAME * (1 / 60.0f));
+	m_Animation->AddFramesA(texture, 1, 1, 2, 2, 2, THROWER_FOLLOW_FRAME * (1 / 60.0f));
 }
 
 ThrowerFollowState::~ThrowerFollowState() {
@@ -31,9 +31,16 @@ void ThrowerFollowState::ResetState() {
 
 	enemy->offsetScaleX = enemy->GetBigWidth() - enemy->GetWidth();
 
+	srand(time(0));
+
+	//rand from 0.3f to 4.0f
+	my_PrecentTime = (float)(rand() % THROWER_ATTACK_RAND + 3) / 10;
+
 	EnemyState::ResetState();
 }
 
 void ThrowerFollowState::Update(double dt) {
 	m_Animation->Update(dt);
+	if (m_Animation->GetPercentTime() >= my_PrecentTime)
+		enemyData->enemy->SetState(Attack);
 }

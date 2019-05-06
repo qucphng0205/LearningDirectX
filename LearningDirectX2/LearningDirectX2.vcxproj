@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="CamBox.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="CatFollowState.cpp" />
@@ -28,6 +27,7 @@
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Eagle.cpp" />
     <ClCompile Include="EagleFollowState.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyGroup.cpp" />
     <ClCompile Include="EnemyState.cpp" />
@@ -42,6 +42,8 @@
     <ClCompile Include="ItemHolderState.cpp" />
     <ClCompile Include="ItemState.cpp" />
     <ClCompile Include="KeyBoard.cpp" />
+    <ClCompile Include="Knife.cpp" />
+    <ClCompile Include="KnifeRotateState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyHelper.cpp" />
     <ClCompile Include="ObjectGroup.cpp" />
@@ -69,11 +71,11 @@
     <ClCompile Include="Thrower.cpp" />
     <ClCompile Include="ThrowerAttackState.cpp" />
     <ClCompile Include="ThrowerFollowState.cpp" />
+    <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="BoxCollider.h" />
-    <ClInclude Include="CamBox.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Cat.h" />
     <ClInclude Include="CatFollowState.h" />
@@ -81,6 +83,7 @@
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Eagle.h" />
     <ClInclude Include="EagleFollowState.h" />
+    <ClInclude Include="Effect.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyData.h" />
     <ClInclude Include="EnemyGroup.h" />
@@ -97,6 +100,8 @@
     <ClInclude Include="ItemData.h" />
     <ClInclude Include="ItemHolderState.h" />
     <ClInclude Include="ItemState.h" />
+    <ClInclude Include="Knife.h" />
+    <ClInclude Include="KnifeRotateState.h" />
     <ClInclude Include="ObjectGroup.h" />
     <ClInclude Include="KeyBoard.h" />
     <ClInclude Include="MyHelper.h" />
@@ -124,6 +129,7 @@
     <ClInclude Include="Thrower.h" />
     <ClInclude Include="ThrowerAttackState.h" />
     <ClInclude Include="ThrowerFollowState.h" />
+    <ClInclude Include="Unit.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in" />

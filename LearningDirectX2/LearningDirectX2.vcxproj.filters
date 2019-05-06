@@ -76,6 +76,12 @@
     <Filter Include="Header Files\Object\Item\General">
       <UniqueIdentifier>{2f0170e7-199d-4fa3-ad79-c60490303adb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\Effect">
+      <UniqueIdentifier>{78e40c04-cf69-4a17-bf67-9a0c98a4f031}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Enemy\Thrower\Knife">
+      <UniqueIdentifier>{ed23881e-ef59-4b7f-9e8d-397d822f6635}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -204,9 +210,6 @@
     <ClCompile Include="SoldierAttackState.cpp">
       <Filter>Header Files\Object\Enemy\Soldier</Filter>
     </ClCompile>
-    <ClCompile Include="CamBox.cpp">
-      <Filter>Header Files\Object\General</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Header Files\Object\General</Filter>
     </ClCompile>
@@ -227,6 +230,18 @@
     </ClCompile>
     <ClCompile Include="ThrowerAttackState.cpp">
       <Filter>Header Files\Object\Enemy\Thrower</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Header Files\Object\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Knife.cpp">
+      <Filter>Header Files\Object\Enemy\Thrower\Knife</Filter>
+    </ClCompile>
+    <ClCompile Include="KnifeRotateState.cpp">
+      <Filter>Header Files\Object\Enemy\Thrower\Knife</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Header Files\Manager\Collilde</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -362,9 +377,6 @@
     <ClInclude Include="BoxCollider.h">
       <Filter>Header Files\Object\General</Filter>
     </ClInclude>
-    <ClInclude Include="CamBox.h">
-      <Filter>Header Files\Object\General</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\Object\General</Filter>
     </ClInclude>
@@ -388,6 +400,18 @@
     </ClInclude>
     <ClInclude Include="ThrowerAttackState.h">
       <Filter>Header Files\Object\Enemy\Thrower</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Header Files\Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Knife.h">
+      <Filter>Header Files\Object\Enemy\Thrower\Knife</Filter>
+    </ClInclude>
+    <ClInclude Include="KnifeRotateState.h">
+      <Filter>Header Files\Object\Enemy\Thrower\Knife</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Header Files\Manager\Collilde</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

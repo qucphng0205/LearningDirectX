@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "EnemyGroup.h"
 
 Enemy::Enemy() : Entity() {
 	type = Entity::EnemyType;

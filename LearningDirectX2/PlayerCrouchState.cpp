@@ -46,7 +46,8 @@ PlayerState::State PlayerCrouchState::GetState() {
 
 void PlayerCrouchState::ResetState(int dummy) {
 	auto player = playerData->player;
-	player->SetColliderLeft(-9);
+	//Collider when crouch around center point
+	player->SetColliderLeft(-7);
 	player->SetColliderTop(8);
 	player->SetColliderBottom(-16);
 	PlayerState::ResetState(dummy);

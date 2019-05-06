@@ -36,6 +36,7 @@ public:
 		Thrower,
 		Eagle,
 		Soldier,
+		Projectile,
 		SpiritPoints5,
 		SpiritPoints10,
 		Scores500,
@@ -80,8 +81,10 @@ public:
 	virtual void SetMoveDirection(EntityDirection direction);
 	virtual void SetWidth(int width);
 	virtual float GetWidth();
+	virtual float GetBigWidth();
 	virtual void SetHeight(int height);
 	virtual float GetHeight();
+	virtual float GetBigHeight();
 
 	virtual D3DXVECTOR2 GetVelocity();
 	virtual void SetVelocity(D3DXVECTOR2 vel);

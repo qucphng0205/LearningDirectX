@@ -9,7 +9,8 @@ class EnemyState {
 public:
 	enum State {
 		Follow,
-		Attack
+		Attack,
+		Rotate
 	};
 	EnemyState(EnemyData *data);
 	EnemyState();

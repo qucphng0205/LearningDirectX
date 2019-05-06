@@ -47,8 +47,11 @@ PlayerState::State PlayerIdleState::GetState() {
 
 void PlayerIdleState::ResetState(int dummy) {
 	auto player = playerData->player;
-	player->SetColliderLeft(-9);
+
+	//around center point
 	player->SetColliderTop(16);
 	player->SetColliderBottom(-16);
+	player->SetColliderLeft(-7);
+
 	PlayerState::ResetState(dummy);
 }

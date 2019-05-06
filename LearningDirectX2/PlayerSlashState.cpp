@@ -65,7 +65,7 @@ void PlayerSlashState::HandleInput() {
 }
 
 void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side) {
-	if (impactor->GetTag() == Entity::Ground && side == Entity::Bottom) {
+	if (impactor->GetTag() == Entity::Ground && side == Entity::Bottom && playerData->player->onAir) {
 		auto keyboard = KeyBoard::GetInstance();
 		if (keyboard->GetKey(DIK_LEFTARROW) && !(keyboard->GetKey(DIK_RIGHTARROW)))
 			playerData->player->SetState(Running);
@@ -88,9 +88,13 @@ PlayerState::State PlayerSlashState::GetState() {
 
 void PlayerSlashState::ResetState(int dummy) {
 	auto player = playerData->player;
-	player->SetColliderLeft(-9);
+
+	//right + left collider is slash range 
 	player->SetColliderTop(16);
 	player->SetColliderBottom(-16);
+	player->SetColliderLeft(-7);
+	player->SetColliderRight(31);
+
 	PlayerState::ResetState(dummy);
 	if (dummy != -1)
 		m_Animation->SetCurrentFrame(dummy);

@@ -11,7 +11,8 @@ class Sparta : public Enemy {
 public:
 	Sparta();
 	~Sparta();
-	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime);
+	virtual void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime);
+	virtual void Update(double dt);
 	//virtual float GetWidth();
 	//virtual float GetHeight();
 	virtual void SetColliderTop(int top);

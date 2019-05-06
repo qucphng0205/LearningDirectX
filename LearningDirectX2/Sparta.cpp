@@ -18,6 +18,15 @@ Sparta::~Sparta() {
 
 void Sparta::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
 	Enemy::OnCollision(impactor, side, collisionTime);
+	if (impactor->GetType() == Entity::StaticType && side == Bottom)
+		onGround = true;
+}
+
+void Sparta::Update(double dt) {
+	Enemy::Update(dt);
+	if (!onGround)
+		AddVy(-CAT_GRAVITY);
+	onGround = false;
 }
 
 void Sparta::SetColliderTop(int top) {

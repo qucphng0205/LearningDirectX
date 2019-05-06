@@ -5,7 +5,7 @@ ThrowerAttackState::ThrowerAttackState(EnemyData *data) : EnemyState(data) {
 	auto textures = Textures::GetInstance();
 	LPDIRECT3DTEXTURE9 texture = textures->Get(TEX_THROWER);
 	m_Animation = new Animation();
-	m_Animation->AddFramesA(texture, 1, 1, 2, 2, 2, THROWER_FRAME * (1 / 60.0f));
+	m_Animation->AddFramesA(texture, 2, 2, 1, 2, 2, THROWER_ATTACK_FRAME * (1 / 60.0f));
 }
 
 ThrowerAttackState::~ThrowerAttackState() {
@@ -32,5 +32,10 @@ void ThrowerAttackState::ResetState() {
 }
 
 void ThrowerAttackState::Update(double dt) {
+	if (m_Animation->IsLastFrame(dt)) {
+		//--DEBUG
+		m_Animation->IsLastFrame(dt);
+		enemyData->enemy->SetState(Follow);
+	}
 	m_Animation->Update(dt);
 }

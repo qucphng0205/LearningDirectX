@@ -6,7 +6,6 @@
 #include "CollisionDetector.h"
 #include "Player.h"
 #include "CamBox.h"
-#include "EnemyGroup.h"
 
 class PlayScene : public Scene {
 

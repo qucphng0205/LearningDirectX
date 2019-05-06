@@ -95,12 +95,20 @@ float Entity::GetWidth() {
 	return width;
 }
 
+float Entity::GetBigWidth() {
+	return GetWidth();
+}
+
 void Entity::SetHeight(int height) {
 	this->height = height;
 }
 
 float Entity::GetHeight() {
 	return height;
+}
+
+float Entity::GetBigHeight() {
+	return GetHeight();
 }
 
 void Entity::SetVelocity(D3DXVECTOR2 vel) {

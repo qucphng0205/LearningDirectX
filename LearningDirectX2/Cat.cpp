@@ -11,7 +11,6 @@ Cat::Cat() : Enemy() {
 	textures->Get(TEX_CAT)->GetLevelDesc(0, &desc);
 	width = desc.Width / 4;
 	height = desc.Height;
-
 }
 
 Cat::~Cat() {
@@ -25,10 +24,18 @@ void Cat::OnCollision(Entity * impactor, Entity::SideCollision side, float colli
 			if ((MyHelper::Distance(myRect.left, impactorRect.left) < ENEMY_OFFSET_BORDER && velocity.x < 0) || (MyHelper::Distance(myRect.right, impactorRect.right) < ENEMY_OFFSET_BORDER && velocity.x > 0)/* || (impactorRect.left > myRect.left && impactorRect.left < myRect.right && velocity.x < 0) || (impactorRect.right > myRect.left && impactorRect.right < myRect.right && velocity.x > 0)*/)
 				SetVx(-velocity.x);
 			SetVy(CAT_JUMP_VELOCITY);
+			onGround = true;
 		}
 		//else if ((side == Left && velocity.x < 0) || (side == Right && velocity.x >0))
 		//	SetVx(-velocity.x);
 	}
+}
+
+void Cat::Update(double dt) {
+	Enemy::Update(dt);
+	if (!onGround)
+		AddVy(-CAT_GRAVITY);
+	onGround = false;
 }
 
 void Cat::SetColliderTop(int top) {

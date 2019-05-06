@@ -10,10 +10,10 @@ RECT MyHelper::BoxColliderToRect(BoxCollider col) {
 }
 
 float MyHelper::Clamp(float x, float a, float z) {
-	if (x <= a)
+	if (x < a)
 		x = a;
 	else
-		if (x >= z)
+		if (x > z)
 			x = z;
 	return x;
 }

@@ -61,9 +61,6 @@ void GameMap::SetMapPath(char * mapPath) {
 		}
 	}
 
-	enemyGroup = new EnemyGroup();
-
-
 	BoxCollider gridRect = BoxCollider(GetHeight(), 0, 0, GetWidth());
 	grid = new Grid(gridRect);
 
@@ -75,6 +72,7 @@ void GameMap::SetMapPath(char * mapPath) {
 	int wid = 0;
 	int hei = 0;
 	int direction = 1;
+	Unit *unit;
 	for (int i = 0; i < mapObject; i++) {
 		reader >> id;
 		reader >> posx;
@@ -93,7 +91,7 @@ void GameMap::SetMapPath(char * mapPath) {
 			ground->SetPosition(D3DXVECTOR3(posx + wid / 2, posy - hei / 2, 0));
 			ground->SetWidth(wid);
 			ground->SetHeight(hei);
-			grid->InsertStaticEntity(ground);
+			grid->AddStaticObject(ground);
 		}
 				break;
 		case 1: {
@@ -104,7 +102,7 @@ void GameMap::SetMapPath(char * mapPath) {
 			box.bottom = posy - hei;
 			box.right = posx + wid;
 			sparta->SetSpawnBox(box, direction);
-			enemyGroup->AddObject(sparta);
+			unit = new Unit(grid, sparta);
 		}
 				break;
 		case 2: {
@@ -115,7 +113,7 @@ void GameMap::SetMapPath(char * mapPath) {
 			box.bottom = posy - hei;
 			box.right = posx + wid;
 			cat->SetSpawnBox(box, direction);
-			enemyGroup->AddObject(cat);
+			unit = new Unit(grid, cat);
 		}
 				break;
 		case 3: {
@@ -126,7 +124,7 @@ void GameMap::SetMapPath(char * mapPath) {
 			box.bottom = posy - hei;
 			box.right = posx + wid;
 			thrower->SetSpawnBox(box, direction);
-			enemyGroup->AddObject(thrower);
+			unit = new Unit(grid, thrower);
 		}
 				break;
 		case 4: {
@@ -137,7 +135,7 @@ void GameMap::SetMapPath(char * mapPath) {
 			box.bottom = posy - hei;
 			box.right = posx + wid;
 			eagle->SetSpawnBox(box, direction);
-			enemyGroup->AddObject(eagle);
+			unit = new Unit(grid, eagle);
 		}
 				break;
 		case 5: {
@@ -148,7 +146,7 @@ void GameMap::SetMapPath(char * mapPath) {
 			box.bottom = posy - hei;
 			box.right = posx + wid;
 			soldier->SetSpawnBox(box, direction);
-			enemyGroup->AddObject(soldier);
+			unit = new Unit(grid, soldier);
 		}
 				break;
 		}
@@ -209,22 +207,6 @@ void GameMap::SetMapPath(char * mapPath) {
 			}
 		}
 
-	}
-
-	void GameMap::CheckActive(D3DXVECTOR2 velocity) {
-		enemyGroup->CheckActive(camera, velocity);
-	}
-
-	void GameMap::GetActiveObject(std::vector<Entity*> &entities) {
-		enemyGroup->GetActiveObject(entities);
-	}
-
-	void GameMap::UpdateActive(double dt) {
-		enemyGroup->Update(dt);
-	}
-
-	void GameMap::RenderActive() {
-		enemyGroup->Render();
 	}
 
 	GameMap::~GameMap() {

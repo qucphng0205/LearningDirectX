@@ -12,6 +12,7 @@ PlayScene::PlayScene() {
 
 	player = new Player();
 	player->SetPosition(32, 40 + player->GetBigHeight() / 2.0f);
+	(new Unit(map->GetGrid(), player))->SetActive(true);
 }
 
 PlayScene::~PlayScene() {
@@ -20,8 +21,7 @@ PlayScene::~PlayScene() {
 
 void PlayScene::Render() {
 	map->Draw();
-	map->RenderActive();
-	player->Render();
+	map->GetGrid()->Render();
 }
 
 void PlayScene::ProcessInput() {
@@ -30,94 +30,24 @@ void PlayScene::ProcessInput() {
 }
 
 void PlayScene::Update(double dt) {
+	DebugOut(L"New Frame\n");
+	CheckActive();
 	ProcessInput();
 	CheckCollision(dt);
-	map->UpdateActive(dt);
-	player->Update(dt);
-	CheckActive();
+	map->GetGrid()->Update(dt);
 	D3DXVECTOR3 playerPos = player->GetPosition();
 	camera->FollowPlayer(playerPos.x, playerPos.y);
 	CheckCamera();
 }
 
 void PlayScene::CheckCollision(double dt) {
-
-	CamBox *camBox = new CamBox(camera->GetRect(), player->GetVelocity());
-	vector<Entity*> staticObjects;
-	vector<Entity*> actives;
-
-	map->GetGrid()->GetEntityWithRect(staticObjects, camera->GetRect());
-	map->GetActiveObject(actives);
-
-	auto side = Entity::NotKnow;
-
-	//actives with ground
-	for (size_t i = 0; i < actives.size(); i++) {
-		bool onGround = false;
-		for (size_t j = 0; j < staticObjects.size(); j++) {
-
-			float collisionTime = CollisionDetector::SweptAABB(actives[i], staticObjects[j], side, dt);
-
-			if (collisionTime == 2)
-				continue;
-
-			actives[i]->OnCollision(staticObjects[j], side, collisionTime);
-			if (side == Entity::Bottom)
-				onGround = true;
-		}
-		//if (!onGround && actives[i]->GetVy() >= 0)
-		if (!onGround)
-			actives[i]->AddVy(-CAT_GRAVITY);
-	}
-
-	BoxCollider exPlayer = BoxCollider(player->GetPosition(), player->GetWidth(), player->GetBigHeight());
-	bool isOnGround = false;
-
-	//player with ground
-	for (size_t i = 0; i < staticObjects.size(); i++) {
-
-		auto impactorRect = staticObjects[i]->GetRect();
-
-		float groundTime = CollisionDetector::SweptAABB(exPlayer, player->GetVelocity(), impactorRect, D3DXVECTOR2(0, 0), side, dt);
-
-		if (groundTime != 2)
-			if (side == Entity::Bottom && abs(exPlayer.bottom - impactorRect.top) <= PLAYER_OFFSET_GROUND) {
-
-				if (player->GetVelocity().y > 0)
-					continue;
-
-				if (player->GetVelocity().y < 0)
-					player->OnCollision(staticObjects[i], side, groundTime);
-
-				isOnGround = true;
-			}
-	}
-
-	//player with actives but later 
-	//for (int i = 0; i < actives.size(); i++) {
-
-	//	float collisionTime = CollisionDetector::SweptAABB(player, actives[i], side, dt);
-
-	//	if (collisionTime == 2)
-	//		continue;
-
-	//	player->OnCollision(actives[i], side, collisionTime);
-	//	collisionTime = CollisionDetector::SweptAABB(actives[i], player, side, dt);
-	//	actives[i]->OnCollision(player, side, collisionTime);
-	//}
-
-	PlayerState::State state = player->GetState();
-
-	if (!isOnGround && !player->onAir) {
-		player->OnFalling();
-	}
+	map->GetGrid()->HandleCollision(dt);
 }
 
 void PlayScene::CheckActive() {
-	map->CheckActive(player->GetVelocity());
+	Entity::EntityDirection camDirection = player->GetVelocity().x > 0 ? Entity::LeftToRight : Entity::RightToLeft;
+	map->GetGrid()->HandleActive(camera->GetRect(), camDirection);
 }
-
-
 
 void PlayScene::CheckCamera() {
 	D3DXVECTOR3 camPos = camera->GetPosition();

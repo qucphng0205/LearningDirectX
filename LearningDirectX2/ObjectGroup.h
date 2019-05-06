@@ -6,12 +6,9 @@ public:
 	ObjectGroup();
 	~ObjectGroup();
 	void AddObject(Entity *e);
-	//Lay nhung object dang o trong camera
-	void GetActiveObject(std::vector<Entity*> &entities);
-	//Update nhung object o trong camera
-	virtual void Update(double dt) = 0;
-	//Render
-	virtual void Render() = 0;
-protected:
+	void GetStatics(std::vector<Entity*> &entities);
+	//void GetActiveObject(std::vector<Entity*> &entities);
+	//virtual void Update(double dt) = 0;
+	//virtual void Render() = 0;
 	std::vector<Entity*> entities;
 };

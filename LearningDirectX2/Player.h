@@ -16,8 +16,8 @@ public:
 	BoxCollider GetRect();
 	BoxCollider GetBigBound();
 	PlayerState::State GetState();
-	virtual int GetBigWidth();
-	virtual int GetBigHeight();
+	virtual float GetBigWidth();
+	virtual float GetBigHeight();
 	virtual float GetWidth();
 	virtual float GetHeight();
 	virtual void OnFalling();
@@ -29,7 +29,6 @@ public:
 
 	void HandleInput();
 	bool onAir;
-
 protected:
 	static Player *instance;
 	PlayerData *playerData;
@@ -46,4 +45,6 @@ protected:
 	BoxCollider collider;
 	float collisionTime;
 	SideCollision side;
+
+	bool onGround;
 };

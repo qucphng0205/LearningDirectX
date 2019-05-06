@@ -52,10 +52,14 @@ PlayerState::State PlayerRunningState::GetState() {
 
 void PlayerRunningState::ResetState(int dummy) {
 	auto player = playerData->player;
-	player->SetColliderLeft(-11);
+
+	//collider around center point, collider often smaller than player sprite
+	player->SetColliderLeft(-7);
 	player->SetColliderTop(16);
 	player->SetColliderBottom(-16);
+
 	auto keyboard = KeyBoard::GetInstance();
+	//if dummy == 0, turn left else turn right
 	if (dummy == 0) {
 		if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW))
 			playerData->player->SetVelocity(D3DXVECTOR2(-PLAYER_RUN_VELOCITY, 0));

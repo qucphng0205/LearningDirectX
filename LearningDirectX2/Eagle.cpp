@@ -22,6 +22,7 @@ void Eagle::OnCollision(Entity * impactor, Entity::SideCollision side, float col
 void Eagle::Update(double dt) {
 	SetMoveDirection(Player::GetInstance()->GetPosition().x < position.x ? Entity::RightToLeft : Entity::LeftToRight);
 	Enemy::Update(dt);
+
 	D3DXVECTOR3 target = Player::GetInstance()->GetPosition();
 	target.y -= 15;
 	D3DXVECTOR2 dir = D3DXVECTOR2(target - position);
