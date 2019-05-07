@@ -130,6 +130,9 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 	auto impactorRect = impactor->GetRect();
 	if (impactorRect.left == 16 && impactorRect.top == 40 && collisionTime != 0)
 		collisionTime = collisionTime;
+
+	if (impactor->GetType() == EnemyType)
+		return;
 	if (impactor->GetType() == StaticType && side == Bottom)
 		onGround = true;
 	playerData->state->OnCollision(impactor, side);
@@ -201,21 +204,8 @@ void Player::SetColliderRight(int right) {
 	collider.right = right;
 }
 
-void Player::SetMoveDirection(Entity::EntityDirection dir) {
-	if (dir == direction)
-		return;
-	direction = dir;
-	//DebugOut(L"left: %f, right: %f\n", collider.left, collider.right);
-}
-
 BoxCollider Player::GetCollider() {
 	return collider;
-}
-
-void Player::SwapLeftRightCollider() {
-	auto x = collider.left;
-	SetColliderLeft(-collider.right);
-	SetColliderRight(-x);
 }
 
 void Player::HandleInput() {

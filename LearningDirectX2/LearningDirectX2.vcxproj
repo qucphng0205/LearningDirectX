@@ -28,11 +28,10 @@
     <ClCompile Include="Eagle.cpp" />
     <ClCompile Include="EagleFollowState.cpp" />
     <ClCompile Include="Effect.cpp" />
-    <ClCompile Include="EffectChains.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyGroup.cpp" />
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameTime.cpp" />
@@ -85,12 +84,11 @@
     <ClInclude Include="Eagle.h" />
     <ClInclude Include="EagleFollowState.h" />
     <ClInclude Include="Effect.h" />
-    <ClInclude Include="EffectChains.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyData.h" />
+    <ClInclude Include="EnemyGroup.h" />
     <ClInclude Include="EnemyState.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="Explosion.h" />
     <ClInclude Include="GameConfig.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameMap.h" />

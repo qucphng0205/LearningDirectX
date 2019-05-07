@@ -113,10 +113,10 @@ float Entity::GetBigHeight() {
 
 void Entity::SetVelocity(D3DXVECTOR2 vel) {
 	if (vel.x > 0)
-		SetMoveDirection(LeftToRight);
+		direction = LeftToRight;
 	else
 		if (vel.x < 0)
-			SetMoveDirection(RightToLeft);
+			direction = RightToLeft;
 	velocity = vel;
 }
 
@@ -172,7 +172,4 @@ void Entity::Render() {
 
 void Entity::OnCollision(Entity * impactor, SideCollision side, float collisionTime) {
 	//velocity = D3DXVECTOR2(0, 0);
-}
-
-void Entity::OnDestroy() {
 }

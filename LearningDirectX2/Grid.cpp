@@ -1,11 +1,5 @@
 #include "Grid.h"
 #include "Unit.h"
-
-Grid *Grid::instance = NULL;
-
-Grid * Grid::GetInstance() {
-	return instance;
-}
 //
 //GridCell::GridCell() {
 //	pos = D3DXVECTOR2(0, 0);
@@ -155,9 +149,6 @@ Grid::Grid(BoxCollider r) {
 			cells[x][y] = NULL;
 
 	staticObjects = new ObjectGroup();
-	effects = NULL;
-
-	instance = this;
 
 	//Unit *x = new Unit(NULL, NULL);
 	//x->haha();
@@ -247,6 +238,7 @@ void Grid::HandleActive(BoxCollider camRect, Entity::EntityDirection camDirectio
 
 void Grid::HandleCollision(double dt) {
 	//COLLISION WITH STATIC: GROUND, WALL,...
+	//--DEBUG
 
 	for (int x = 0; x < columns; x++)
 		for (int y = 0; y < rows; y++)
@@ -297,9 +289,8 @@ void Grid::HandleCellWithStatic(Unit * unit, double dt) {
 		return;
 	while (unit != NULL) {
 		if (unit->entity->IsActive()) {
-			//--DEBUG
-			//if (unit->entity->GetTag() == Entity::Player)
-			//	OutputDebugString(L"Player's checked collision\n");
+			if (unit->entity->GetTag() == Entity::Player)
+				OutputDebugString(L"Player's checked collision\n");
 			for (size_t i = 0; i < staticObjects->entities.size(); i++)
 				HandleCollideStatic(unit->entity, staticObjects->entities[i], dt);
 		}
@@ -395,8 +386,6 @@ void Grid::Update(double dt) {
 		for (int y = 0; y < rows; y++)
 			if (cells[x][y] != NULL)
 				UpdateUnit(cells[x][y], dt);
-	//update effect
-	UpdateEffect(dt);
 	//update unit
 	for (int x = 0; x < columns; x++)
 		for (int y = 0; y < rows; y++)
@@ -420,7 +409,6 @@ void Grid::Render() {
 		for (int y = 0; y < rows; y++)
 			if (cells[x][y] != NULL)
 				RenderUnit(cells[x][y]);
-	RenderEffect();
 }
 
 void Grid::RenderUnit(Unit *unit) {
@@ -434,40 +422,5 @@ void Grid::RenderUnit(Unit *unit) {
 }
 
 void Grid::ahha() {
-}
-
-void Grid::AddEffect(EffectChain * chain) {
-	chain->prev = NULL;
-	chain->next = effects;
-	effects = chain;
-	if (chain->next != NULL)
-		chain->next->prev = chain;
-}
-
-void Grid::RemoveEffect(EffectChain *chain) {
-	if (chain->prev != NULL)
-		chain->prev->next = chain->next;
-	if (chain->next != NULL)
-		chain->next->prev = chain->prev;
-	if (effects == chain)
-		effects = chain->next;
-	chain = effects;
-}
-
-void Grid::UpdateEffect(double dt) {
-	auto chain = effects;
-	while (chain != NULL) {
-		if (!chain->data->Update(dt)) 
-			RemoveEffect(chain);
-		chain = chain->next;
-	}
-}
-
-void Grid::RenderEffect() {
-	auto chain = effects;
-	while (chain != NULL) {
-		chain->data->Render();
-		chain = chain->next;
-	}
 }
 

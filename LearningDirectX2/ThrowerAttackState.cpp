@@ -15,7 +15,7 @@ void ThrowerAttackState::ResetState() {
 
 	auto enemy = enemyData->enemy;
 
-	auto playerX = Camera::GetInstance()->GetPosition().x;
+	auto playerX = Player::GetInstance()->GetPosition().x;
 	auto enemyX = enemy->GetPosition().x;
 
 	enemy->SetVx(0);

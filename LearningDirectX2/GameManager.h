@@ -2,6 +2,8 @@
 
 #include "SceneManager.h"
 #include "PlayScene.h"
+#include "Graphic.h"
+#include "KeyBoard.h"
 
 class GameManager {
 

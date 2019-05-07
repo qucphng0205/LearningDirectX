@@ -1,12 +1,15 @@
 #pragma once
+#include "Sprites.h"
+#include "Textures.h"
 #include "Camera.h"
 #include "Grid.h"
+#include "Unit.h"
 #include "Sparta.h"
+#include "EnemyGroup.h"
 #include "Cat.h"
 #include "Thrower.h"
 #include "Eagle.h"
 #include "Soldier.h"
-#include "Unit.h"
 #include <iostream>
 #include <fstream>
 

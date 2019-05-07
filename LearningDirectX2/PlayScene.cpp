@@ -30,7 +30,7 @@ void PlayScene::ProcessInput() {
 }
 
 void PlayScene::Update(double dt) {
-	//DebugOut(L"New Frame\n");
+	DebugOut(L"New Frame\n");
 	CheckActive();
 	ProcessInput();
 	CheckCollision(dt);

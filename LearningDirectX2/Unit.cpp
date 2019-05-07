@@ -7,6 +7,7 @@ Unit::Unit(Grid *gr, Entity *ent) {
 	pos = D3DXVECTOR2(ent->GetPosition());
 	prev = NULL;
 	next = NULL;
+	OutputDebugString(L"ASD");
 	grid->Add(this);
 	active = false;
 }

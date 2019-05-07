@@ -35,7 +35,7 @@ void Thrower::SetVx(float vx) {
 }
 
 void Thrower::Update(double dt) {
-	SetMoveDirection(Camera::GetInstance()->GetPosition().x < position.x ? Entity::RightToLeft : Entity::LeftToRight);
+	SetMoveDirection(Player::GetInstance()->GetPosition().x < position.x ? Entity::RightToLeft : Entity::LeftToRight);
 	Enemy::Update(dt);
 	if (!onGround)
 		AddVy(-CAT_GRAVITY);
@@ -77,6 +77,6 @@ void Thrower::Spawn() {
 }
 
 Entity * Thrower::SpawnKnife() {
-	float x = Camera::GetInstance()->GetPosition().x;
+	float x = Player::GetInstance()->GetPosition().x;
 	return new Knife(x > position.x ? LeftToRight : RightToLeft);
 }

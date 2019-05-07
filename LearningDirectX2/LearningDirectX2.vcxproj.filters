@@ -82,9 +82,6 @@
     <Filter Include="Header Files\Object\Enemy\Thrower\Knife">
       <UniqueIdentifier>{ed23881e-ef59-4b7f-9e8d-397d822f6635}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Object\Effect\Explosion">
-      <UniqueIdentifier>{1d9bdccc-4257-490c-9a92-8dd5697202a4}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -127,6 +124,9 @@
       <Filter>Header Files\Object\Enemy\Sparta</Filter>
     </ClCompile>
     <ClCompile Include="ObjectGroup.cpp">
+      <Filter>Header Files\Manager\Group</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyGroup.cpp">
       <Filter>Header Files\Manager\Group</Filter>
     </ClCompile>
     <ClCompile Include="CollisionDetector.cpp">
@@ -243,12 +243,6 @@
     <ClCompile Include="Unit.cpp">
       <Filter>Header Files\Manager\Collilde</Filter>
     </ClCompile>
-    <ClCompile Include="Explosion.cpp">
-      <Filter>Header Files\Object\Effect\Explosion</Filter>
-    </ClCompile>
-    <ClCompile Include="EffectChains.cpp">
-      <Filter>Header Files\Manager\Group</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -286,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="SpartaFollowState.h">
       <Filter>Header Files\Object\Enemy\Sparta</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyGroup.h">
+      <Filter>Header Files\Manager\Group</Filter>
     </ClInclude>
     <ClInclude Include="ObjectGroup.h">
       <Filter>Header Files\Manager\Group</Filter>
@@ -415,12 +412,6 @@
     </ClInclude>
     <ClInclude Include="Unit.h">
       <Filter>Header Files\Manager\Collilde</Filter>
-    </ClInclude>
-    <ClInclude Include="Explosion.h">
-      <Filter>Header Files\Object\Effect\Explosion</Filter>
-    </ClInclude>
-    <ClInclude Include="EffectChains.h">
-      <Filter>Header Files\Manager\Group</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

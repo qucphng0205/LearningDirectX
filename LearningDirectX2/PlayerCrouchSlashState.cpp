@@ -48,15 +48,8 @@ void PlayerCrouchSlashState::ResetState(int dummy) {
 	//collider slash + crouch 
 	player->SetColliderTop(8);
 	player->SetColliderBottom(-16);
-
-	if (player->GetMoveDirection() == Entity::LeftToRight) {
-		player->SetColliderLeft(-7);
-		player->SetColliderRight(31);
-	}
-	else {
-		player->SetColliderRight(7);
-		player->SetColliderLeft(-31);
-	}
+	player->SetColliderLeft(-7);
+	player->SetColliderRight(31);
 
 	PlayerState::ResetState(dummy);
 }

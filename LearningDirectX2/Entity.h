@@ -105,7 +105,6 @@ public:
 	virtual void Render();
 
 	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
-	virtual void OnDestroy();
 
 protected:
 	bool isActive;

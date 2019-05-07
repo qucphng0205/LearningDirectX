@@ -1,7 +1,10 @@
 #pragma once
+#include "Textures.h"
 #include "Animation.h"
 #include "GameConfig.h"
 #include "Enemy.h"
+#include "EnemyData.h"
+#include "EnemyState.h"
 #include "SpartaFollowState.h"
 
 class Sparta : public Enemy {

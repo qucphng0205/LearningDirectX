@@ -1,13 +1,10 @@
 #pragma once
-#include "GameConfig.h"
 #include "Entity.h"
-#include "Textures.h"
 #include "EnemyData.h"
+#include "GameConfig.h"
 #include "EnemyState.h"
-#include "Explosion.h"
 #include "Camera.h"
-
-#include "Grid.h"
+#include "Player.h"
 
 class Enemy : public Entity {
 public:
@@ -18,6 +15,7 @@ public:
 
 	virtual void Update(double dt);
 	virtual void Render();
+
 	
 	virtual BoxCollider GetRect();
 	virtual BoxCollider GetSpawnRect();
@@ -39,7 +37,6 @@ public:
 	virtual BoxCollider GetCollider();
 	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
 	virtual Entity::EntityDirection GetSpawnDirection();
-	virtual void OnDestroy();
 
 protected:
 	virtual void MakeInactive();
@@ -53,5 +50,4 @@ protected:
 	SideCollision side;
 	EnemyData *enemyData;
 
-	EffectChain *effect;
 };

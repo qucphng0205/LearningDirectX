@@ -1,7 +1,11 @@
 #pragma once
 #include "Scene.h"
+#include "Textures.h"
 #include "GameMap.h"
+#include "Entity.h"
+#include "CollisionDetector.h"
 #include "Player.h"
+#include "CamBox.h"
 
 class PlayScene : public Scene {
 
