@@ -1,6 +1,7 @@
 #pragma once
 #include <d3dx9.h>
 #include <unordered_map>
+#include "Graphic.h"
 
 
 //textures database of game

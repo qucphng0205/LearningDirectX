@@ -1,6 +1,5 @@
 #pragma once
 #include "Enemy.h"
-#include "Textures.h"
 #include "Animation.h"
 #include "SoldierFollowState.h"
 #include "SoldierAttackState.h"

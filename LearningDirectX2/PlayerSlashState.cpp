@@ -65,6 +65,17 @@ void PlayerSlashState::HandleInput() {
 }
 
 void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side) {
+
+	if (impactor->GetType() == Entity::EnemyType) {
+		if (m_Animation->GetCurrentFrameID() == 0)
+			return;
+		auto slashDir = playerData->player->GetMoveDirection();
+		if ((slashDir == Entity::LeftToRight && side == Entity::Right) ||
+			(slashDir == Entity::RightToLeft && side == Entity::Left)) {
+			impactor->OnDestroy();
+		}
+	}
+
 	if (impactor->GetTag() == Entity::Ground && side == Entity::Bottom && playerData->player->onAir) {
 		auto keyboard = KeyBoard::GetInstance();
 		if (keyboard->GetKey(DIK_LEFTARROW) && !(keyboard->GetKey(DIK_RIGHTARROW)))
@@ -78,7 +89,6 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 				else
 					playerData->player->SetState(Idle);
 		playerData->player->onAir = false;
-		OutputDebugString(L"slash to ground");
 	}
 }
 
@@ -92,8 +102,15 @@ void PlayerSlashState::ResetState(int dummy) {
 	//right + left collider is slash range 
 	player->SetColliderTop(16);
 	player->SetColliderBottom(-16);
-	player->SetColliderLeft(-7);
-	player->SetColliderRight(31);
+	if (player->GetMoveDirection() == Entity::LeftToRight) {
+		player->SetColliderLeft(-7);
+		player->SetColliderRight(31);
+	}
+	else {
+		player->SetColliderRight(7);
+		player->SetColliderLeft(-31);
+	}
+
 
 	PlayerState::ResetState(dummy);
 	if (dummy != -1)

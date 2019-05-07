@@ -15,7 +15,7 @@ void ThrowerFollowState::ResetState() {
 
 	auto enemy = enemyData->enemy;
 
-	auto playerX = Player::GetInstance()->GetPosition().x;
+	auto playerX = Camera::GetInstance()->GetPosition().x;
 	auto enemyX = enemy->GetPosition().x; 
 
 	if (playerX > enemyX)

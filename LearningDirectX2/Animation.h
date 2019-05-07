@@ -23,13 +23,14 @@ typedef AnimationFrame *LPANIMATION_FRAME;
 
 class Animation {
 	DWORD lastFrameTime;
-	float defaultTime;
+	double defaultTime;
 	int currentFrame;
 	int totalFrame;
-	float currentTotalTime;
+	double currentTotalTime;
 	std::vector<LPANIMATION_FRAME> frames;
 	float time;
 
+	bool startUpdate;
 public:
 	Animation(float defaultTime = 0.1);
 	void AddFrame(LPANIMATION_FRAME frame);
@@ -43,6 +44,6 @@ public:
 	void ResetAnimation();
 	int GetCurrentFrameID();
 	bool IsLastFrame(double dt);
-	float GetPercentTime();
+	double GetPercentTime();
 };
 typedef Animation *LPANIMATION;

@@ -4,6 +4,8 @@
 #include "KeyBoard.h"
 #include "PlayerState.h"
 
+#include "Grid.h"
+
 class Player : public Entity {
 public:
 	static Player *GetInstance();
@@ -25,8 +27,9 @@ public:
 	virtual void SetColliderLeft(int left);
 	virtual void SetColliderBottom(int bottom);
 	virtual void SetColliderRight(int right);
+	virtual void SetMoveDirection(Entity::EntityDirection dir);
 	virtual BoxCollider GetCollider();
-
+	virtual void SwapLeftRightCollider();
 	void HandleInput();
 	bool onAir;
 protected:

@@ -24,7 +24,7 @@ void Soldier::OnCollision(Entity * impactor, Entity::SideCollision side, float c
 }
 
 void Soldier::Update(double dt) {
-	SetMoveDirection(Player::GetInstance()->GetPosition().x < position.x ? Entity::RightToLeft : Entity::LeftToRight);
+	SetMoveDirection(Camera::GetInstance()->GetPosition().x < position.x ? Entity::RightToLeft : Entity::LeftToRight);
 	Enemy::Update(dt);
 	if (!onGround)
 		AddVy(-CAT_GRAVITY);

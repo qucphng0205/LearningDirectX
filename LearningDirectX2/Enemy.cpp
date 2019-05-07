@@ -1,5 +1,4 @@
 #include "Enemy.h"
-#include "EnemyGroup.h"
 
 Enemy::Enemy() : Entity() {
 	type = Entity::EnemyType;
@@ -140,5 +139,11 @@ void Enemy::Spawn() {
 
 Entity::EntityDirection Enemy::GetSpawnDirection() {
 	return spawnDirection;
+}
+
+void Enemy::OnDestroy() {
+	effect = new EffectChain(new Explosion(position));
+	Grid::GetInstance()->AddEffect(effect);
+	SetActive(false);
 }
 
