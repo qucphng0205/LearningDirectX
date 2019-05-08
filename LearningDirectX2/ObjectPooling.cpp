@@ -17,7 +17,6 @@ void ObjectPooling::AddKnife(int number) {
 		unit = new Unit(Grid::GetInstance(), knife);
 		pool[KNIFE_POOL_INDEX].push_back(unit);
 	}
-	auto knives = pool[KNIFE_POOL_INDEX];
 }
 
 bool ObjectPooling::CheckQuantity(int index) {
@@ -28,17 +27,26 @@ bool ObjectPooling::CheckQuantity(int index) {
 	return false;
 }
 
-bool ObjectPooling::InstantiateKnife(D3DXVECTOR3 position) {
-	auto knives = pool[KNIFE_POOL_INDEX];
-	for (size_t i = 0; i < knives.size(); i++) {
-		Knife *knife = (Knife*)knives[i]->GetEntity();
-		if (!knife->IsActive()) {
-			knife->Instantiate(position);
-			knives[i]->Move(knife->GetPosition());
+bool ObjectPooling::Instantiate(int index, D3DXVECTOR3 position) {
+	auto weapons = pool[index];
+	for (size_t i = 0; i < weapons.size(); i++) {
+		Weapon *weapon = (Knife*)weapons[i]->GetEntity();
+		if (!weapon->IsActive()) {
+			weapon->Instantiate(position);
+			weapons[i]->Move(weapon->GetPosition());
 			return true;
 		}
 	}
 	return false;
+}
+
+void ObjectPooling::AddBullet(int number) {
+	Unit *unit;
+	for (int i = 0; i < number; i++) {
+		Bullet* bullet = new Bullet();
+		unit = new Unit(Grid::GetInstance(), bullet);
+		pool[BULLET_POOL_INDEX].push_back(unit);
+	}
 }
 
 ObjectPooling::ObjectPooling() {

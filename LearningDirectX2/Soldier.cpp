@@ -64,3 +64,10 @@ void Soldier::Spawn() {
 	SetState(EnemyState::Follow);
 	Enemy::Spawn();
 }
+
+void Soldier::SpawnBullet() {
+	D3DXVECTOR3 position = this->position;
+	position.y += OFFSET_TO_BULLET;
+	if (!ObjectPooling::GetInstance()->Instantiate(BULLET_POOL_INDEX, position))
+		SetState(EnemyState::Follow);
+}

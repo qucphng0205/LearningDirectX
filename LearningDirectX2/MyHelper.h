@@ -10,4 +10,5 @@ public:
 	static RECT BoxColliderToRect(BoxCollider col);
 	static float Clamp(float x, float a, float z);
 	static float Distance(float x, float y);
+	static float Lerp(float a, float b, float t);
 };

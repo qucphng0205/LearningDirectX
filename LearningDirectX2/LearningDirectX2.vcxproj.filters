@@ -85,6 +85,9 @@
     <Filter Include="Header Files\Object\Knife">
       <UniqueIdentifier>{ed23881e-ef59-4b7f-9e8d-397d822f6635}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\Bullet">
+      <UniqueIdentifier>{e381dd12-fec6-4a54-80f3-a522dab43ba8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -254,6 +257,9 @@
     </ClCompile>
     <ClCompile Include="ObjectPooling.cpp">
       <Filter>Header Files\Manager\Group</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Header Files\Object\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -433,6 +439,9 @@
     </ClInclude>
     <ClInclude Include="ObjectPooling.h">
       <Filter>Header Files\Manager\Group</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Header Files\Object\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

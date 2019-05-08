@@ -23,11 +23,17 @@ void SoldierAttackState::ResetState() {
 	//met moi vai c
 	enemy->offsetScaleX = enemy->GetBigWidth() - enemy->GetWidth();
 	enemy->SetVx(0);
+
+	frame = 0;
+
 	EnemyState::ResetState();
 }
 
 void SoldierAttackState::Update(double dt) {
 	m_Animation->Update(dt);
-	if (m_Animation->GetPercentTime() >= SOLDIER_ATTACK_PERCENTTIME)
+	frame++;
+	if (frame >= SOLDIER_ATTACK_LOOP_FRAMES)
 		enemyData->enemy->SetState(EnemyState::Follow);
+	if (frame % SOLDIER_ATTACK_SHOOT_FRAMES == 0)
+		((Soldier*)enemyData->enemy)->SpawnBullet();
 }

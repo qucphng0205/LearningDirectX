@@ -29,7 +29,9 @@ void ThrowerFollowState::ResetState() {
 	enemy->SetColliderLeft(-12);
 	enemy->SetColliderRight(4);
 
-	enemy->offsetScaleX = enemy->GetBigWidth() - enemy->GetWidth();
+	auto bigWidth = enemy->GetBigWidth();
+
+	enemy->offsetScaleX = bigWidth - (bigWidth / 2.0 + 4);
 
 	srand(time(0));
 

@@ -29,26 +29,19 @@ void Knife::OnCollision(Entity * impactor, Entity::SideCollision side, float col
 
 void Knife::Update(double dt) {
 
-
-	//if (abs(velocity.x) > 0)
-	//	velocity.x = 0;
-	//else 
-	//	velocity.x -= KNIFE_DRAG_FORCE;
-
-	if (velocity.y < -KNIFE_THROW_FORCE_Y)
-		velocity.y = -KNIFE_THROW_FORCE_Y;
-	else
-		velocity.y -= CAT_GRAVITY;
-
 	Weapon::Update(dt);
-}
-
-BoxCollider Knife::GetCollider() {
-	return collider;
+	if (tParam < 1)
+	tParam += dt * KNIFE_SPEED;
+	//HARD-CODE DETECTED
+	velocity.x = MyHelper::Lerp(startVelocity.x, startVelocity.x > 0 ? KNIFE_THROW_FORCE_MIN_X : -KNIFE_THROW_FORCE_MIN_X, tParam);
+	velocity.y = MyHelper::Lerp(startVelocity.y, -KNIFE_THROW_FORCE_Y, tParam);
 }
 
 #include "Debug.h"
 void Knife::Instantiate(D3DXVECTOR3 position) {
+
+	tParam = 0;
+
 	this->position = position;
 
 	srand(time(NULL));
@@ -60,7 +53,8 @@ void Knife::Instantiate(D3DXVECTOR3 position) {
 		velocity.x = -velocity.x;
 
 	velocity.y = KNIFE_THROW_FORCE_Y;
-	SetVelocity(velocity);
 
+	startVelocity = velocity;
+	SetVelocity(velocity);
 	Weapon::Spawn();
 }
