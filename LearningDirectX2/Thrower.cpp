@@ -35,7 +35,8 @@ void Thrower::SetVx(float vx) {
 }
 
 void Thrower::Update(double dt) {
-	SetMoveDirection(Camera::GetInstance()->GetPosition().x < position.x ? Entity::RightToLeft : Entity::LeftToRight);
+	auto center = GetRect().GetCenter().x;
+	SetMoveDirection(Camera::GetInstance()->GetPosition().x < center ? Entity::RightToLeft : Entity::LeftToRight);
 	Enemy::Update(dt);
 	if (!onGround)
 		AddVy(-CAT_GRAVITY);
@@ -83,6 +84,6 @@ void Thrower::Spawn() {
 void Thrower::SpawnKnife() {
 	D3DXVECTOR3 position = this->position;
 	position.y += collider.top;
-	if (!ObjectPooling::GetInstance()->InstantiateKnife(position))
+	if (!ObjectPooling::GetInstance()->Instantiate(KNIFE_POOL_INDEX, position))
 		SetState(EnemyState::Follow);
 }

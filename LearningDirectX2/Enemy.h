@@ -25,10 +25,10 @@ public:
 	virtual void SetActive(bool active);
 	virtual void SetRect(BoxCollider box);
 	virtual void SetSpawnBox(BoxCollider box, int direction);
-	virtual void SetColliderTop(int top);
-	virtual void SetColliderLeft(int left);
-	virtual void SetColliderBottom(int bottom);
-	virtual void SetColliderRight(int right);
+	virtual void SetColliderTop(float top);
+	virtual void SetColliderLeft(float left);
+	virtual void SetColliderBottom(float bottom);
+	virtual void SetColliderRight(float right);
 	virtual void SetMoveDirection(Entity::EntityDirection dir);
 	virtual void SetState(EnemyState::State state);
 	//Get collilder width
@@ -41,6 +41,7 @@ public:
 	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
 	virtual Entity::EntityDirection GetSpawnDirection();
 	virtual void OnDestroy();
+	//virtual void SwapLeftRightCollider();
 
 protected:
 	virtual void MakeInactive();

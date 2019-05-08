@@ -17,6 +17,7 @@ PlayScene::PlayScene() {
 
 	ObjectPooling *pool = ObjectPooling::GetInstance();
 	pool->AddKnife();
+	pool->AddBullet();
 }
 
 PlayScene::~PlayScene() {

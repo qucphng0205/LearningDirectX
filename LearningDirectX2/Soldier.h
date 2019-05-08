@@ -3,6 +3,7 @@
 #include "Animation.h"
 #include "SoldierFollowState.h"
 #include "SoldierAttackState.h"
+#include "ObjectPooling.h"
 
 class Soldier : public Enemy {
 public:
@@ -17,9 +18,10 @@ public:
 	virtual void SetState(EnemyState::State);
 	virtual BoxCollider GetCollider();
 	virtual void Spawn();
+	virtual void SpawnBullet();
 protected:
 	EnemyState
 		*soldierFollowState,
 		*soldierAttackState;
-		
+	
 };

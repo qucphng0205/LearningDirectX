@@ -61,20 +61,20 @@ void Enemy::SetSpawnBox(BoxCollider box, int direction) {
 	MakeInactive();
 }
 
-void Enemy::SetColliderTop(int top) {
+void Enemy::SetColliderTop(float top) {
 	collider.top = top;
 }
 
-void Enemy::SetColliderLeft(int left) {
+void Enemy::SetColliderLeft(float left) {
 	collider.left = left;
 	collider.right = -collider.left;
 }
 
-void Enemy::SetColliderBottom(int bottom) {
+void Enemy::SetColliderBottom(float bottom) {
 	collider.bottom = bottom;
 }
 
-void Enemy::SetColliderRight(int right) {
+void Enemy::SetColliderRight(float right) {
 	collider.right = right;
 }
 
@@ -147,4 +147,10 @@ void Enemy::OnDestroy() {
 	Grid::GetInstance()->AddEffect(effect);
 	SetActive(false);
 }
+
+//void Enemy::SwapLeftRightCollider() {
+//	auto x = collider.left;
+//	SetColliderLeft(-collider.right);
+//	SetColliderRight(-x);
+//}
 
