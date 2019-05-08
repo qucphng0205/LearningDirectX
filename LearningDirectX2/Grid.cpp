@@ -1,5 +1,11 @@
 #include "Grid.h"
 #include "Unit.h"
+
+Grid *Grid::instance = NULL;
+
+Grid * Grid::GetInstance() {
+	return instance;
+}
 //
 //GridCell::GridCell() {
 //	pos = D3DXVECTOR2(0, 0);
@@ -148,7 +154,9 @@ Grid::Grid(BoxCollider r) {
 		for (int y = 0; y < rows; y++)
 			cells[x][y] = NULL;
 
-	staticObjects = new ObjectGroup();
+	effects = NULL;
+
+	instance = this;
 
 	//Unit *x = new Unit(NULL, NULL);
 	//x->haha();
@@ -172,8 +180,25 @@ void Grid::Add(Unit * unit) {
 		unit->next->prev = unit;
 }
 
+void Grid::RemovePermanently(Unit * unit) {
+	int cellX = (int)(unit->pos.x / cellWidth);
+	int cellY = (int)(unit->pos.y / cellHeight);
+
+	if (unit->prev != NULL)
+		unit->prev->next = unit->next;
+
+	if (unit->next != NULL)
+		unit->next->prev = unit->prev;
+
+	if (cells[cellX][cellY] == unit)
+		cells[cellX][cellY] = unit->next;
+
+	delete unit;
+	unit = nullptr;
+}
+
 void Grid::AddStaticObject(Entity * ent) {
-	staticObjects->AddObject(ent);
+	staticObjects.push_back(ent);
 }
 
 void Grid::HandleActiveUnit(BoxCollider camBox, Entity::EntityDirection camDirection, int cellX, int cellY) {
@@ -182,7 +207,8 @@ void Grid::HandleActiveUnit(BoxCollider camBox, Entity::EntityDirection camDirec
 	float camCenterX = camBox.GetCenter().x;
 
 	while (unit != NULL) {
-		if (!unit->entity->IsActive()) {
+		unit->active = true;
+		if (!unit->entity->IsActive() && unit->entity->GetType() != Entity::ProjectileType) {
 			auto entity = unit->entity;
 			auto entityRect = entity->GetRect();
 			Entity::EntityDirection direction = entity->GetMoveDirection();
@@ -199,8 +225,8 @@ void Grid::HandleActiveUnit(BoxCollider camBox, Entity::EntityDirection camDirec
 			}
 			else {
 				//Neu o ben trai va player di phai
-				//Neu o ben phai va player di trai
-				entity->SetActive((childPos.x < camCenterX && camDirection == Entity::LeftToRight && entityRect.left - camBox.left <= ENEMY_OFFSET_BORDER) || (childPos.x > camCenterX && camDirection == Entity::RightToLeft && camBox.right - entityRect.right <= ENEMY_OFFSET_BORDER));
+				//Neu o ben phai va player di trai: MAYBE WRONG
+				entity->SetActive((childPos.x < camCenterX && camDirection == Entity::LeftToRight && entityRect.left - camBox.left <= ENEMY_OFFSET_BORDER)/* || (childPos.x > camCenterX && camDirection == Entity::RightToLeft && camBox.right - entityRect.right <= ENEMY_OFFSET_BORDER)*/);
 			}
 		}
 		unit = unit->next;
@@ -219,14 +245,13 @@ void Grid::HandleActive(BoxCollider camRect, Entity::EntityDirection camDirectio
 		for (int y = 0; y < rows; y++) {
 			if (cells[x][y] != NULL) {
 				if (x < r.left || x > r.right || y < r.bottom || y > r.top) {
+					cells[x][y]->active = false;
 					if (cells[x][y]->entity->IsActive()) {
-						cells[x][y]->entity->SetActive(false);
-						cells[x][y]->Move(cells[x][y]->entity->GetPosition());
-						//check after move
+						HandleInactiveUnit(cells[x][y]);
 						if (cells[x][y] == NULL)
 							continue;
+						cells[x][y]->Move(cells[x][y]->entity->GetPosition());
 					}
-					cells[x][y]->active = false;
 				}
 				else {
 					HandleActiveUnit(camRect, camDirection, x, y);
@@ -236,9 +261,22 @@ void Grid::HandleActive(BoxCollider camRect, Entity::EntityDirection camDirectio
 		}
 }
 
+void Grid::HandleInactiveUnit(Unit * unit) {
+	////--DEBUG
+	//if (unit->entity->GetTag() == Entity::Projectile)
+	//	unit = unit;
+	Unit *other = unit;
+	while (other != NULL) {
+		unit = other;
+		other = unit->next;
+		unit->active = false;
+		//maybe unit value of this unit pointer delete
+		unit->entity->SetActive(false);
+	}
+}
+
 void Grid::HandleCollision(double dt) {
 	//COLLISION WITH STATIC: GROUND, WALL,...
-	//--DEBUG
 
 	for (int x = 0; x < columns; x++)
 		for (int y = 0; y < rows; y++)
@@ -289,10 +327,11 @@ void Grid::HandleCellWithStatic(Unit * unit, double dt) {
 		return;
 	while (unit != NULL) {
 		if (unit->entity->IsActive()) {
-			if (unit->entity->GetTag() == Entity::Player)
-				OutputDebugString(L"Player's checked collision\n");
-			for (size_t i = 0; i < staticObjects->entities.size(); i++)
-				HandleCollideStatic(unit->entity, staticObjects->entities[i], dt);
+			//--DEBUG
+			//if (unit->entity->GetTag() == Entity::Player)
+			//	OutputDebugString(L"Player's checked collision\n");
+			for (size_t i = 0; i < staticObjects.size(); i++)
+				HandleCollideStatic(unit->entity, staticObjects[i], dt);
 		}
 		unit = unit->next;
 	}
@@ -346,8 +385,10 @@ void Grid::Move(Unit * unit, float x, float y) {
 	int cellY = (int)(y / cellHeight);
 
 	//Out of screen
-	if (cellX >= GRID_COLUMN)
+	if (cellX >= GRID_COLUMN || cellX < 0 || cellY >= GRID_ROW || cellY < 0) {
+		unit->entity->SetActive(false);
 		return;
+	}
 
 	unit->pos.x = x;
 	unit->pos.y = y;
@@ -355,8 +396,9 @@ void Grid::Move(Unit * unit, float x, float y) {
 	if (oldCellX == cellX && oldCellY == cellY)
 		return;
 
-	if (unit->entity->GetTag() == Entity::Player)
-		x = x;
+	//--DEBUG
+	//if (unit->entity->GetTag() == Entity::Player)
+	//	x = x;
 
 	if (unit->prev != NULL)
 		unit->prev->next = unit->next;
@@ -373,9 +415,13 @@ void Grid::Move(Unit * unit, float x, float y) {
 void Grid::MoveActiveUnit(Unit *unit) {
 	if (!unit->active)
 		return;
-	while (unit != NULL) {
+
+	Unit *other = unit;
+
+	while (other != NULL) {
+		unit = other;
+		other = unit->next;
 		unit->Move(unit->entity->GetPosition());
-		unit = unit->next;
 	}
 }
 
@@ -386,6 +432,8 @@ void Grid::Update(double dt) {
 		for (int y = 0; y < rows; y++)
 			if (cells[x][y] != NULL)
 				UpdateUnit(cells[x][y], dt);
+	//update effect
+	UpdateEffect(dt);
 	//update unit
 	for (int x = 0; x < columns; x++)
 		for (int y = 0; y < rows; y++)
@@ -409,6 +457,7 @@ void Grid::Render() {
 		for (int y = 0; y < rows; y++)
 			if (cells[x][y] != NULL)
 				RenderUnit(cells[x][y]);
+	RenderEffect();
 }
 
 void Grid::RenderUnit(Unit *unit) {
@@ -422,5 +471,40 @@ void Grid::RenderUnit(Unit *unit) {
 }
 
 void Grid::ahha() {
+}
+
+void Grid::AddEffect(EffectChain * chain) {
+	chain->prev = NULL;
+	chain->next = effects;
+	effects = chain;
+	if (chain->next != NULL)
+		chain->next->prev = chain;
+}
+
+void Grid::RemoveEffect(EffectChain *chain) {
+	if (chain->prev != NULL)
+		chain->prev->next = chain->next;
+	if (chain->next != NULL)
+		chain->next->prev = chain->prev;
+	if (effects == chain)
+		effects = chain->next;
+	chain = effects;
+}
+
+void Grid::UpdateEffect(double dt) {
+	auto chain = effects;
+	while (chain != NULL) {
+		if (!chain->data->Update(dt)) 
+			RemoveEffect(chain);
+		chain = chain->next;
+	}
+}
+
+void Grid::RenderEffect() {
+	auto chain = effects;
+	while (chain != NULL) {
+		chain->data->Render();
+		chain = chain->next;
+	}
 }
 

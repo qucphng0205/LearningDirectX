@@ -1,5 +1,4 @@
 #include "PlayerClimbState.h"
-#include "Textures.h"
 
 PlayerClimbState::PlayerClimbState(PlayerData * data) {
 	this->playerData = data;

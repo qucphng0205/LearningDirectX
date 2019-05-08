@@ -23,7 +23,7 @@ void SoldierFollowState::ResetState() {
 
 	enemy->offsetScaleX = enemy->GetBigWidth() - enemy->GetWidth();
 
-	if (Player::GetInstance()->GetPosition().x < enemy->GetPosition().x)
+	if (Camera::GetInstance()->GetPosition().x < enemy->GetPosition().x)
 		enemy->SetVx(-SOLDIER_SPEED);
 	else
 		enemy->SetVx(SOLDIER_SPEED);

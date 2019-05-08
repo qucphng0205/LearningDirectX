@@ -1,7 +1,7 @@
 #pragma once
+#include "KeyBoard.h"
 #include "Entity.h"
 #include "PlayerData.h"
-#include "KeyBoard.h"
 #include "PlayerState.h"
 
 class Player : public Entity {
@@ -25,8 +25,9 @@ public:
 	virtual void SetColliderLeft(int left);
 	virtual void SetColliderBottom(int bottom);
 	virtual void SetColliderRight(int right);
+	virtual void SetMoveDirection(Entity::EntityDirection dir);
 	virtual BoxCollider GetCollider();
-
+	virtual void SwapLeftRightCollider();
 	void HandleInput();
 	bool onAir;
 protected:

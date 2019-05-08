@@ -1,7 +1,6 @@
 #include "CollisionDetector.h"
 
 CollisionDetector::CollisionDetector() {
-
 }
 
 Entity::CollisionReturn CollisionDetector::RectAndRect(BoxCollider rect, BoxCollider rect2) {

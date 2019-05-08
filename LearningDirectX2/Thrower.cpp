@@ -3,7 +3,7 @@
 Thrower::Thrower() : Enemy() {
 	//Set type
 	auto textures = Textures::GetInstance();
-		textures->Add(TEX_THROWER, "Resources/Sprites/throwerspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
+	textures->Add(TEX_THROWER, "Resources/Sprites/throwerspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 	throwerFollowState = new ThrowerFollowState(enemyData);
 	throwerAttackState = new ThrowerAttackState(enemyData);
 	//Set tag
@@ -26,7 +26,7 @@ void Thrower::OnCollision(Entity * impactor, Entity::SideCollision side, float c
 		onGround = true;
 }
 
-void Thrower::SetVelocity(D3DXVECTOR2 vel){
+void Thrower::SetVelocity(D3DXVECTOR2 vel) {
 	velocity = vel;
 }
 
@@ -35,7 +35,7 @@ void Thrower::SetVx(float vx) {
 }
 
 void Thrower::Update(double dt) {
-	SetMoveDirection(Player::GetInstance()->GetPosition().x < position.x ? Entity::RightToLeft : Entity::LeftToRight);
+	SetMoveDirection(Camera::GetInstance()->GetPosition().x < position.x ? Entity::RightToLeft : Entity::LeftToRight);
 	Enemy::Update(dt);
 	if (!onGround)
 		AddVy(-CAT_GRAVITY);
@@ -60,6 +60,10 @@ void Thrower::SetColliderRight(int right) {
 }
 
 void Thrower::SetState(EnemyState::State state) {
+	if (state == EnemyState::Attack) 
+		if (!ObjectPooling::GetInstance()->CheckQuantity(KNIFE_POOL_INDEX))
+			return;
+
 	if (state == EnemyState::Follow)
 		enemyData->state = throwerFollowState;
 	else
@@ -76,7 +80,9 @@ void Thrower::Spawn() {
 	Enemy::Spawn();
 }
 
-Entity * Thrower::SpawnKnife() {
-	float x = Player::GetInstance()->GetPosition().x;
-	return new Knife(x > position.x ? LeftToRight : RightToLeft);
+void Thrower::SpawnKnife() {
+	D3DXVECTOR3 position = this->position;
+	position.y += collider.top;
+	if (!ObjectPooling::GetInstance()->InstantiateKnife(position))
+		SetState(EnemyState::Follow);
 }

@@ -1,7 +1,6 @@
 #include "Textures.h"
 #include "Debug.h"
-#include "GameManager.h"
-#include "Textures.h"
+
 Textures * Textures::instance = NULL;
 
 Textures::Textures() {

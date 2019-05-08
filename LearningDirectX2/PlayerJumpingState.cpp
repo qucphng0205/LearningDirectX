@@ -1,5 +1,4 @@
 #include "PlayerJumpingState.h"
-#include "Textures.h"
 
 PlayerJumpingState::PlayerJumpingState(PlayerData * data) {
 	this->playerData = data;

@@ -9,13 +9,14 @@ KnifeRotateState::KnifeRotateState(EnemyData *data) : EnemyState(data) {
 }
 
 KnifeRotateState::~KnifeRotateState() {
+	delete m_Animation;
 }
 
 void KnifeRotateState::ResetState() {
 
 	auto enemy = enemyData->enemy;
 
-	auto playerX = Player::GetInstance()->GetPosition().x;
+	auto playerX = Camera::GetInstance()->GetPosition().x;
 	auto enemyX = enemy->GetPosition().x;
 
 	EnemyState::ResetState();

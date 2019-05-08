@@ -1,9 +1,8 @@
 #pragma once
-#include "Entity.h"
+#include "GameConfig.h"
 #include "Animation.h"
 #include "EnemyData.h"
-#include "CollisionDetector.h"
-#include "GameConfig.h"
+#include "Entity.h"
 
 class EnemyState {
 public:

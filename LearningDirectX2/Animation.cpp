@@ -68,15 +68,37 @@ void Animation::Render(D3DXVECTOR3 position, BoxCollider sourceRect, D3DXCOLOR c
 
 void Animation::Update(double dt) {
 
+	//1. 0 frame -> fkey1 0
+	//2. 1 frame -> fkey1 0.1
+	//3. 2 frame -> fkey2 0.2
+	//4. 3 frame -> fkey2 0.3
+	//5. 4 frame -> fkey3 0.4
+	//6. 5 frame -> fkey3 0.5
+	//7. 6 frame -> fkey4 0.6
+	//8. 7 frame -> fkey4 0.7
+	//9. 8 frame -> fkey5 0.8
+	//10. 9 frame -> fkey5 0.9
+	//11. finish -> fkey1 1
+
+	//because state's set before update, so it's not update after set, animation flows at zero point, unity...
+	//delay 1 frame
+
+	if (!startUpdate) {
+		startUpdate = true;
+		return;
+	}
+
+	currentTotalTime += dt;
+
 	int nextFrame = currentFrame + 1;
 	if (nextFrame >= totalFrame)
 		nextFrame = 0;
+
 	if (currentTotalTime >= defaultTime) {
 		currentTotalTime = 0;
 		currentFrame = nextFrame;
 	}
-	else
-		currentTotalTime += dt;
+
 	time += dt;
 }
 
@@ -84,6 +106,7 @@ void Animation::ResetAnimation() {
 	currentFrame = 0;
 	currentTotalTime = 0;
 	time = 0;
+	startUpdate = false;
 }
 
 int Animation::GetCurrentFrameID(){
@@ -94,6 +117,6 @@ bool Animation::IsLastFrame(double dt) {
 	return (currentFrame == totalFrame - 1 && currentTotalTime + dt >= defaultTime);
 }
 
-float Animation::GetPercentTime() {
+double Animation::GetPercentTime() {
 	return time / (defaultTime * totalFrame);
 }

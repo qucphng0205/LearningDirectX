@@ -28,10 +28,11 @@
     <ClCompile Include="Eagle.cpp" />
     <ClCompile Include="EagleFollowState.cpp" />
     <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EffectChains.cpp" />
     <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="EnemyGroup.cpp" />
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameTime.cpp" />
@@ -47,6 +48,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyHelper.cpp" />
     <ClCompile Include="ObjectGroup.cpp" />
+    <ClCompile Include="ObjectPooling.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerClimbState.cpp" />
     <ClCompile Include="PlayerCrouchSlashState.cpp" />
@@ -72,6 +74,7 @@
     <ClCompile Include="ThrowerAttackState.cpp" />
     <ClCompile Include="ThrowerFollowState.cpp" />
     <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -84,11 +87,12 @@
     <ClInclude Include="Eagle.h" />
     <ClInclude Include="EagleFollowState.h" />
     <ClInclude Include="Effect.h" />
+    <ClInclude Include="EffectChains.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyData.h" />
-    <ClInclude Include="EnemyGroup.h" />
     <ClInclude Include="EnemyState.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Explosion.h" />
     <ClInclude Include="GameConfig.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameMap.h" />
@@ -105,6 +109,7 @@
     <ClInclude Include="ObjectGroup.h" />
     <ClInclude Include="KeyBoard.h" />
     <ClInclude Include="MyHelper.h" />
+    <ClInclude Include="ObjectPooling.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerClimbState.h" />
     <ClInclude Include="PlayerCrouchSlashState.h" />
@@ -130,6 +135,7 @@
     <ClInclude Include="ThrowerAttackState.h" />
     <ClInclude Include="ThrowerFollowState.h" />
     <ClInclude Include="Unit.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in" />
@@ -197,6 +203,7 @@
       <ConformanceMode>true</ConformanceMode>
       <CallingConvention>StdCall</CallingConvention>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <AdditionalDependencies>d3d9.lib;d3dx9.lib;dinput8.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>

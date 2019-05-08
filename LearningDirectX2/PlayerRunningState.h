@@ -1,7 +1,6 @@
 #pragma once
 #include "PlayerState.h"
 #include "Player.h"
-#include "Textures.h"
 
 class PlayerRunningState : public PlayerState {
 public:

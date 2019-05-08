@@ -1,5 +1,4 @@
 #include "PlayerCrouchSlashState.h"
-#include "Textures.h"
 
 PlayerCrouchSlashState::PlayerCrouchSlashState(PlayerData * data) {
 	this->playerData = data;
@@ -48,8 +47,15 @@ void PlayerCrouchSlashState::ResetState(int dummy) {
 	//collider slash + crouch 
 	player->SetColliderTop(8);
 	player->SetColliderBottom(-16);
-	player->SetColliderLeft(-7);
-	player->SetColliderRight(31);
+
+	if (player->GetMoveDirection() == Entity::LeftToRight) {
+		player->SetColliderLeft(-7);
+		player->SetColliderRight(31);
+	}
+	else {
+		player->SetColliderRight(7);
+		player->SetColliderLeft(-31);
+	}
 
 	PlayerState::ResetState(dummy);
 }

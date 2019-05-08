@@ -1,5 +1,4 @@
 #include "PlayerUseItemState.h"
-#include "Textures.h"
 
 PlayerUseItemState::PlayerUseItemState(PlayerData * data) {
 	this->playerData = data;

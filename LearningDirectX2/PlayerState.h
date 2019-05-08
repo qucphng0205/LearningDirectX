@@ -3,8 +3,8 @@
 #include "Animation.h"
 #include "PlayerData.h"
 #include "KeyBoard.h"
-#include "CollisionDetector.h"
 #include "GameConfig.h"
+#include "Textures.h"
 
 class PlayerState {
 public:

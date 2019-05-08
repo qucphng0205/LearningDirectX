@@ -1,5 +1,6 @@
 #include "ThrowerAttackState.h"
 #include "Enemy.h"
+#include "Thrower.h"
 
 ThrowerAttackState::ThrowerAttackState(EnemyData *data) : EnemyState(data) {
 	auto textures = Textures::GetInstance();
@@ -15,7 +16,7 @@ void ThrowerAttackState::ResetState() {
 
 	auto enemy = enemyData->enemy;
 
-	auto playerX = Player::GetInstance()->GetPosition().x;
+	auto playerX = Camera::GetInstance()->GetPosition().x;
 	auto enemyX = enemy->GetPosition().x;
 
 	enemy->SetVx(0);
@@ -27,6 +28,8 @@ void ThrowerAttackState::ResetState() {
 	enemy->SetColliderRight(4);
 
 	enemy->offsetScaleX = enemy->GetBigWidth() - enemy->GetWidth();
+
+	((Thrower*)enemy)->SpawnKnife();
 
 	EnemyState::ResetState();
 }

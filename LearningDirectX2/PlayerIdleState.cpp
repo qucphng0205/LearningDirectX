@@ -1,5 +1,4 @@
 #include "PlayerIdleState.h"
-#include "Textures.h"
 
 PlayerIdleState::PlayerIdleState(PlayerData * data) {
 	this->playerData = data;

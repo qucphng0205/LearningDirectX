@@ -3,6 +3,7 @@
 
 PlayScene::PlayScene() {
 	//LoadResources
+
 	map = new GameMap((char*)"Resources/map31TileSet.png", (char*)"Resources/map31.txt", 32, 32);
 	int width = Graphic::GetInstance()->GetBackBufferWidth();
 	int height = Graphic::GetInstance()->GetBackBufferHeight();
@@ -13,6 +14,9 @@ PlayScene::PlayScene() {
 	player = new Player();
 	player->SetPosition(32, 40 + player->GetBigHeight() / 2.0f);
 	(new Unit(map->GetGrid(), player))->SetActive(true);
+
+	ObjectPooling *pool = ObjectPooling::GetInstance();
+	pool->AddKnife();
 }
 
 PlayScene::~PlayScene() {
@@ -30,7 +34,7 @@ void PlayScene::ProcessInput() {
 }
 
 void PlayScene::Update(double dt) {
-	DebugOut(L"New Frame\n");
+	//DebugOut(L"New Frame\n");
 	CheckActive();
 	ProcessInput();
 	CheckCollision(dt);

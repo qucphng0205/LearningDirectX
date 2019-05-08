@@ -79,7 +79,10 @@
     <Filter Include="Header Files\Object\Effect">
       <UniqueIdentifier>{78e40c04-cf69-4a17-bf67-9a0c98a4f031}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Object\Enemy\Thrower\Knife">
+    <Filter Include="Header Files\Object\Effect\Explosion">
+      <UniqueIdentifier>{1d9bdccc-4257-490c-9a92-8dd5697202a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Knife">
       <UniqueIdentifier>{ed23881e-ef59-4b7f-9e8d-397d822f6635}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -124,9 +127,6 @@
       <Filter>Header Files\Object\Enemy\Sparta</Filter>
     </ClCompile>
     <ClCompile Include="ObjectGroup.cpp">
-      <Filter>Header Files\Manager\Group</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyGroup.cpp">
       <Filter>Header Files\Manager\Group</Filter>
     </ClCompile>
     <ClCompile Include="CollisionDetector.cpp">
@@ -235,13 +235,25 @@
       <Filter>Header Files\Object\Effect</Filter>
     </ClCompile>
     <ClCompile Include="Knife.cpp">
-      <Filter>Header Files\Object\Enemy\Thrower\Knife</Filter>
+      <Filter>Header Files\Object\Knife</Filter>
     </ClCompile>
     <ClCompile Include="KnifeRotateState.cpp">
-      <Filter>Header Files\Object\Enemy\Thrower\Knife</Filter>
+      <Filter>Header Files\Object\Knife</Filter>
     </ClCompile>
     <ClCompile Include="Unit.cpp">
       <Filter>Header Files\Manager\Collilde</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>Header Files\Object\Effect\Explosion</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectChains.cpp">
+      <Filter>Header Files\Manager\Group</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectPooling.cpp">
+      <Filter>Header Files\Manager\Group</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -280,9 +292,6 @@
     </ClInclude>
     <ClInclude Include="SpartaFollowState.h">
       <Filter>Header Files\Object\Enemy\Sparta</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyGroup.h">
-      <Filter>Header Files\Manager\Group</Filter>
     </ClInclude>
     <ClInclude Include="ObjectGroup.h">
       <Filter>Header Files\Manager\Group</Filter>
@@ -405,13 +414,25 @@
       <Filter>Header Files\Object\Effect</Filter>
     </ClInclude>
     <ClInclude Include="Knife.h">
-      <Filter>Header Files\Object\Enemy\Thrower\Knife</Filter>
+      <Filter>Header Files\Object\Knife</Filter>
     </ClInclude>
     <ClInclude Include="KnifeRotateState.h">
-      <Filter>Header Files\Object\Enemy\Thrower\Knife</Filter>
+      <Filter>Header Files\Object\Knife</Filter>
     </ClInclude>
     <ClInclude Include="Unit.h">
       <Filter>Header Files\Manager\Collilde</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion.h">
+      <Filter>Header Files\Object\Effect\Explosion</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectChains.h">
+      <Filter>Header Files\Manager\Group</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPooling.h">
+      <Filter>Header Files\Manager\Group</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

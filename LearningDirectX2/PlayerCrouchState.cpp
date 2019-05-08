@@ -1,5 +1,4 @@
 #include "PlayerCrouchState.h"
-#include "Textures.h"
 
 PlayerCrouchState::PlayerCrouchState(PlayerData * data) {
 	this->playerData = data;

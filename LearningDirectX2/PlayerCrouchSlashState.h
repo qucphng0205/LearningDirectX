@@ -1,6 +1,5 @@
 #pragma once
 #include "PlayerState.h"
-#include "PlayerData.h"
 #include "Player.h"
 
 class PlayerCrouchSlashState : public PlayerState {

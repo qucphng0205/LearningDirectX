@@ -1,14 +1,12 @@
 #pragma once
 #include "Enemy.h"
-#include "Textures.h"
 #include "Animation.h"
 #include "ThrowerFollowState.h"
 #include "ThrowerAttackState.h"
-#include "Knife.h"
+#include "ObjectPooling.h"
 
 class Thrower : public Enemy {
 public:
-
 	Thrower();
 	~Thrower();
 	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime);
@@ -22,7 +20,7 @@ public:
 	virtual void SetState(EnemyState::State);
 	virtual BoxCollider GetCollider();
 	virtual void Spawn();
-	virtual Entity* SpawnKnife();
+	virtual void SpawnKnife();
 protected:
 	Knife* knifePrefab;
 	EnemyState *throwerFollowState,

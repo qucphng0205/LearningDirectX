@@ -15,7 +15,7 @@ void SpartaFollowState::ResetState() {
 
 	auto enemy = enemyData->enemy;
 	auto enemyX = enemy->GetPosition().x;
-	auto playerX = Player::GetInstance()->GetPosition().x;
+	auto playerX = Camera::GetInstance()->GetPosition().x;
 
 	if (playerX > enemyX)
 		enemy->SetVx(SPARTA_SPEED);
