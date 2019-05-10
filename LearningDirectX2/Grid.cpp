@@ -151,8 +151,10 @@ Grid::Grid(BoxCollider r) {
 	cellHeight = (float)(r.top - r.bottom) / rows;
 
 	for (int x = 0; x < columns; x++)
-		for (int y = 0; y < rows; y++)
+		for (int y = 0; y < rows; y++) {
+			activeCells[x][y] = false;
 			cells[x][y] = NULL;
+		}
 
 	effects = NULL;
 
@@ -180,23 +182,6 @@ void Grid::Add(Unit * unit) {
 		unit->next->prev = unit;
 }
 
-void Grid::RemovePermanently(Unit * unit) {
-	int cellX = (int)(unit->pos.x / cellWidth);
-	int cellY = (int)(unit->pos.y / cellHeight);
-
-	if (unit->prev != NULL)
-		unit->prev->next = unit->next;
-
-	if (unit->next != NULL)
-		unit->next->prev = unit->prev;
-
-	if (cells[cellX][cellY] == unit)
-		cells[cellX][cellY] = unit->next;
-
-	delete unit;
-	unit = nullptr;
-}
-
 void Grid::AddStaticObject(Entity * ent) {
 	staticObjects.push_back(ent);
 }
@@ -214,7 +199,10 @@ void Grid::HandleActiveUnit(BoxCollider camBox, Entity::EntityDirection camDirec
 			Entity::EntityDirection direction = entity->GetMoveDirection();
 			auto childPos = entity->GetPosition();
 
-			if (direction == Entity::EntityDirection::RightToLeft) {
+			if (unit->entity->GetType() == Entity::ItemType)
+				entity->SetActive(true);
+
+			else if (direction == Entity::EntityDirection::RightToLeft) {
 
 				//neu entity xuat hien o border 
 				//Neu o ben trai va player di trai
@@ -242,23 +230,22 @@ void Grid::HandleActive(BoxCollider camRect, Entity::EntityDirection camDirectio
 	activeRect = r;
 	//CHECK ACTIVE FIRST
 	for (int x = 0; x < columns; x++)
-		for (int y = 0; y < rows; y++) {
-			if (cells[x][y] != NULL) {
-				if (x < r.left || x > r.right || y < r.bottom || y > r.top) {
-					cells[x][y]->active = false;
+		for (int y = 0; y < rows; y++)
+			if (x < r.left || x > r.right || y < r.bottom || y > r.top) {
+				activeCells[x][y] = false;
+				if (cells[x][y] != NULL) 
 					if (cells[x][y]->entity->IsActive()) {
 						HandleInactiveUnit(cells[x][y]);
 						if (cells[x][y] == NULL)
 							continue;
 						cells[x][y]->Move(cells[x][y]->entity->GetPosition());
 					}
-				}
-				else {
-					HandleActiveUnit(camRect, camDirection, x, y);
-					cells[x][y]->active = true;
-				}
 			}
-		}
+			else {
+				activeCells[x][y] = true;
+				if (cells[x][y] != NULL)
+					HandleActiveUnit(camRect, camDirection, x, y);
+			}
 }
 
 void Grid::HandleInactiveUnit(Unit * unit) {
@@ -280,16 +267,17 @@ void Grid::HandleCollision(double dt) {
 
 	for (int x = 0; x < columns; x++)
 		for (int y = 0; y < rows; y++)
-			if (cells[x][y] != NULL) {
-				if (cells[x][y]->entity->GetTag() == Entity::Player)
-					x = x;
+			if (cells[x][y] != NULL && activeCells[x][y] == true) {
+				//--DEBUG
+				//if (cells[x][y]->entity->GetTag() == Entity::Player)
+				//	x = x;
 				HandleCellWithStatic(cells[x][y], dt);
 			}
 
 	//CHECK COLLISION
 	for (int x = 0; x < columns; x++)
 		for (int y = 0; y < rows; y++)
-			if (cells[x][y] != NULL)
+			if (cells[x][y] != NULL && activeCells[x][y] == true)
 				HandleCell(x, y, activeRect, dt);
 }
 
@@ -323,8 +311,6 @@ void Grid::HandleUnit(Unit * unit, Unit * other, double dt) {
 }
 
 void Grid::HandleCellWithStatic(Unit * unit, double dt) {
-	if (!unit->active)
-		return;
 	while (unit != NULL) {
 		if (unit->entity->IsActive()) {
 			//--DEBUG
@@ -342,7 +328,9 @@ void Grid::HandleMelee(Entity * ent1, Entity * ent2, double dt) {
 	Entity::SideCollision side;
 
 	float collisionTime = 2;
-	CollisionDetector::SweptAABB(ent1, ent2, side, dt);
+
+	if (ent1->GetTag() == Entity::Player || ent2->GetTag() == Entity::Player)
+		ent1 = ent1;
 
 	if (!ent1->isStatic) {
 		collisionTime = CollisionDetector::SweptAABB(ent1, ent2, side, dt);
@@ -350,7 +338,7 @@ void Grid::HandleMelee(Entity * ent1, Entity * ent2, double dt) {
 			return;
 		ent1->OnCollision(ent2, side, collisionTime);
 	}
-	if (!ent1->isStatic) {
+	if (!ent2->isStatic) {
 		collisionTime = CollisionDetector::SweptAABB(ent2, ent1, side, dt);
 		ent2->OnCollision(ent1, side, collisionTime);
 	}
@@ -358,9 +346,6 @@ void Grid::HandleMelee(Entity * ent1, Entity * ent2, double dt) {
 
 void Grid::HandleCollideStatic(Entity * ent1, Entity * ent2, double dt) {
 	//ent2's always static
-	if (!ent2->isStatic)
-		return;
-
 	Entity::SideCollision side;
 
 	auto rectEnt1 = BoxCollider(ent1->GetPosition(), ent1->GetWidth(), ent1->GetBigHeight());
@@ -368,12 +353,13 @@ void Grid::HandleCollideStatic(Entity * ent1, Entity * ent2, double dt) {
 
 	float groundTime = CollisionDetector::SweptAABB(rectEnt1, ent1->GetVelocity(), impactorRect, D3DXVECTOR2(0, 0), side, dt);
 
-	//--DEBUG
-	if (ent1->GetTag() == Entity::Player && impactorRect.left == 16 && impactorRect.top == 40)
-		groundTime = groundTime;
+	////--DEBUG
+	//if (ent1->GetTag() == Entity::Player && impactorRect.left == 16 && impactorRect.top == 40)
+	//	groundTime = groundTime;
 
 	if (groundTime == 2)
 		return;
+
 	ent1->OnCollision(ent2, side, groundTime);
 }
 
@@ -413,9 +399,6 @@ void Grid::Move(Unit * unit, float x, float y) {
 }
 
 void Grid::MoveActiveUnit(Unit *unit) {
-	if (!unit->active)
-		return;
-
 	Unit *other = unit;
 
 	while (other != NULL) {
@@ -430,20 +413,18 @@ void Grid::Update(double dt) {
 	//used to bug: update 2 times if not update unit
 	for (int x = 0; x < columns; x++)
 		for (int y = 0; y < rows; y++)
-			if (cells[x][y] != NULL)
+			if (cells[x][y] != NULL && activeCells[x][y] == true)
 				UpdateUnit(cells[x][y], dt);
 	//update effect
 	UpdateEffect(dt);
 	//update unit
 	for (int x = 0; x < columns; x++)
 		for (int y = 0; y < rows; y++)
-			if (cells[x][y] != NULL)
+			if (cells[x][y] != NULL && activeCells[x][y] == true)
 				MoveActiveUnit(cells[x][y]);
 }
 
 void Grid::UpdateUnit(Unit *unit, double dt) {
-	if (!unit->active)
-		return;
 	while (unit != NULL) {
 		if (unit->entity->IsActive()) {
 			unit->entity->Update(dt);
@@ -455,14 +436,12 @@ void Grid::UpdateUnit(Unit *unit, double dt) {
 void Grid::Render() {
 	for (int x = 0; x < columns; x++)
 		for (int y = 0; y < rows; y++)
-			if (cells[x][y] != NULL)
+			if (cells[x][y] != NULL && activeCells[x][y] == true)
 				RenderUnit(cells[x][y]);
 	RenderEffect();
 }
 
 void Grid::RenderUnit(Unit *unit) {
-	if (!unit->active)
-		return;
 	while (unit != NULL) {
 		if (unit->entity->IsActive())
 			unit->entity->Render();
@@ -494,7 +473,7 @@ void Grid::RemoveEffect(EffectChain *chain) {
 void Grid::UpdateEffect(double dt) {
 	auto chain = effects;
 	while (chain != NULL) {
-		if (!chain->data->Update(dt)) 
+		if (!chain->data->Update(dt))
 			RemoveEffect(chain);
 		chain = chain->next;
 	}

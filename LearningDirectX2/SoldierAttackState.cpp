@@ -18,10 +18,8 @@ void SoldierAttackState::ResetState() {
 	//Enemy khac nhau co collide khac nhau, initilize class phai chu y 
 	enemy->SetColliderTop(16);
 	enemy->SetColliderBottom(-16);
-	enemy->SetColliderLeft(-12);
-	enemy->SetColliderRight(4);
-	//met moi vai c
-	enemy->offsetScaleX = enemy->GetBigWidth() - enemy->GetWidth();
+	enemy->SetColliderLeft(-8);
+
 	enemy->SetVx(0);
 
 	frame = 0;

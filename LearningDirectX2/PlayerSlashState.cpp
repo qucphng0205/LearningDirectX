@@ -65,30 +65,43 @@ void PlayerSlashState::HandleInput() {
 
 void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side) {
 
-	if (impactor->GetType() == Entity::EnemyType) {
+	Player *player = playerData->player;
+
+	auto impactorType = impactor->GetType();
+
+	////--DEBUG
+	//if (impactorType == Entity::EnemyType)
+	//	impactor = impactor;
+	
+	if (impactorType == Entity::EnemyType || impactorType == Entity::ProjectileType || impactorType == Entity::ItemType) {
 		if (m_Animation->GetCurrentFrameID() == 0)
 			return;
-		auto slashDir = playerData->player->GetMoveDirection();
-		if ((slashDir == Entity::LeftToRight && side == Entity::Right) ||
-			(slashDir == Entity::RightToLeft && side == Entity::Left)) {
+		////--DEBUG
+		//if (impactor->GetType() == Entity::ProjectileType)
+		//	impactor = impactor;
+		//auto slashDir = player->GetMoveDirection();
+		//auto posX = player->GetPosition().x;
+		//auto impactorX = impactor->GetPosition().x;
+
+		if (CollideWithKatana(impactor->GetRect())) {
 			impactor->OnDestroy();
-			return;
 		}
+		return;
 	}
 
-	if (impactor->GetTag() == Entity::Ground && side == Entity::Bottom && playerData->player->onAir) {
+	if (impactor->GetTag() == Entity::Ground && side == Entity::Bottom && player->onAir) {
 		auto keyboard = KeyBoard::GetInstance();
 		if (keyboard->GetKey(DIK_LEFTARROW) && !(keyboard->GetKey(DIK_RIGHTARROW)))
-			playerData->player->SetState(Running);
+			player->SetState(Running);
 		else
 			if (keyboard->GetKey(DIK_RIGHTARROW) && !(keyboard->GetKey(DIK_LEFTARROW)))
-				playerData->player->SetState(Running);
+				player->SetState(Running);
 			else
 				if (keyboard->GetKey(DIK_DOWNARROW))
-					playerData->player->SetState(Crouch);
+					player->SetState(Crouch);
 				else
-					playerData->player->SetState(Idle);
-		playerData->player->onAir = false;
+					player->SetState(Idle);
+		player->onAir = false;
 	}
 }
 
@@ -102,17 +115,25 @@ void PlayerSlashState::ResetState(int dummy) {
 	//right + left collider is slash range 
 	player->SetColliderTop(16);
 	player->SetColliderBottom(-16);
-	if (player->GetMoveDirection() == Entity::LeftToRight) {
-		player->SetColliderLeft(-7);
-		player->SetColliderRight(31);
-	}
-	else {
-		player->SetColliderRight(7);
-		player->SetColliderLeft(-31);
-	}
+	player->SetColliderLeft(-7);
+	player->SetColliderRight(31);
 
 
 	PlayerState::ResetState(dummy);
 	if (dummy != -1)
 		m_Animation->SetCurrentFrame(dummy);
+}
+
+#include "CollisionDetector.h"
+bool PlayerSlashState::CollideWithKatana(BoxCollider r) {
+	BoxCollider katana = playerData->player->GetRect();
+	katana.top -= 3;
+	katana.bottom += 18;
+	if (playerData->player->GetMoveDirection() == Entity::LeftToRight)
+		katana.left += 14;
+	else
+		katana.right -= 14;
+	if (CollisionDetector::IsCollide(katana, r))
+		return true;
+	return false;
 }

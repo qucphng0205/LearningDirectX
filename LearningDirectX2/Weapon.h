@@ -4,6 +4,10 @@
 #include "Textures.h"
 #include "Animation.h"
 #include "Camera.h"
+#include "Explosion.h"
+
+#include "Unit.h"
+#include "Grid.h"
 
 class Weapon : public Entity {
 public:
@@ -28,6 +32,7 @@ public:
 	virtual float GetBigHeight();
 	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
 	virtual void Instantiate(D3DXVECTOR3 position);
+	virtual void OnDestroy();
 protected:
 	virtual void MakeInactive();
 	virtual void Spawn();

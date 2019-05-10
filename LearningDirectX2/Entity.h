@@ -30,13 +30,11 @@ public:
 	enum EntityTag
 	{
 		Ground,
-		Player,
 		Sparta,
 		Cat,
 		Thrower,
 		Eagle,
 		Soldier,
-		Projectile,
 		SpiritPoints5,
 		SpiritPoints10,
 		Scores500,
@@ -46,7 +44,8 @@ public:
 		ThrowingStar,
 		WindmillStar,
 		Flames,
-		CamRect,
+		Projectile,
+		Player,
 		None
 	};
 	enum EntityType {

@@ -1,6 +1,6 @@
 #pragma once
-class Item;
 class ItemState;
+class Item;
 
 class ItemData {
 public:

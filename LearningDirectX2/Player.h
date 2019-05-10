@@ -27,7 +27,6 @@ public:
 	virtual void SetColliderRight(int right);
 	virtual void SetMoveDirection(Entity::EntityDirection dir);
 	virtual BoxCollider GetCollider();
-	virtual void SwapLeftRightCollider();
 	void HandleInput();
 	bool onAir;
 protected:

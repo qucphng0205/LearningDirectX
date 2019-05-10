@@ -35,7 +35,7 @@ BoxCollider Weapon::GetRect() {
 
 void Weapon::SetActive(bool active) {
 	if (active) 
-		//IS A BUG
+		//IS A BUG, INSTANTIATE WITH POSITION INSTEAD, BRO
 		Spawn();
 	else
 		MakeInactive();
@@ -84,6 +84,12 @@ void Weapon::OnCollision(Entity * impactor, SideCollision side, float collisionT
 void Weapon::Instantiate(D3DXVECTOR3 position) {
 	this->position = position;
 	Spawn();
+}
+
+void Weapon::OnDestroy() {
+	EffectChain *effect = new EffectChain(new Explosion(position));
+	Grid::GetInstance()->AddEffect(effect);
+	SetActive(false);
 }
 
 void Weapon::MakeInactive() {

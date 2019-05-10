@@ -5,10 +5,9 @@ ItemState::ItemState(ItemData *data) {
 	itemData = data;
 }
 
-ItemState::ItemState() {
-}
-
 ItemState::~ItemState() {
+	delete m_Animation;
+	m_Animation = NULL;
 }
 
 void ItemState::Update(double dt) {
@@ -26,4 +25,8 @@ void ItemState::OnCollision(Entity * impactor, Entity::SideCollision side) {
 
 void ItemState::ResetState() {
 	m_Animation->ResetAnimation();
+}
+
+ItemState::State ItemState::GetState() {
+	return Holder;
 }

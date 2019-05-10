@@ -22,14 +22,9 @@ void ThrowerAttackState::ResetState() {
 	enemy->SetVx(0);
 
 	//Enemy khac nhau co collide khac nhau, initilize class phai chu y 
-	enemy->SetColliderTop(13);
-	enemy->SetColliderBottom(-22);
-	enemy->SetColliderLeft(-12);
-	enemy->SetColliderRight(4);
-
-	auto bigWidth = enemy->GetBigWidth();
-
-	enemy->offsetScaleX = bigWidth - (bigWidth / 2.0 + 4);
+	enemy->SetColliderTop(10);
+	enemy->SetColliderBottom(-21);
+	enemy->SetColliderLeft(-8);
 
 	((Thrower*)enemy)->SpawnKnife();
 

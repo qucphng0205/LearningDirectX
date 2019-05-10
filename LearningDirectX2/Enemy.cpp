@@ -43,6 +43,10 @@ BoxCollider Enemy::GetSpawnRect() {
 }
 
 void Enemy::SetActive(bool active) {
+
+	if (active == isActive)
+		return;
+
 	if (active)
 		Spawn();
 	else
@@ -82,10 +86,6 @@ void Enemy::SetMoveDirection(Entity::EntityDirection dir) {
 	if (dir == direction)
 		return;
 	direction = dir;
-	if (dir == Entity::LeftToRight)
-		position.x += offsetScaleX;
-	else
-		position.x -= offsetScaleX;
 }
 
 void Enemy::SetState(EnemyState::State state) {

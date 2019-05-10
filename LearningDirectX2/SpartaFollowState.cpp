@@ -24,10 +24,8 @@ void SpartaFollowState::ResetState() {
 
 	enemy->SetColliderTop(12);
 	enemy->SetColliderBottom(-21);
-	enemy->SetColliderLeft(-12);
-	enemy->SetColliderRight(4);
-
-	enemy->offsetScaleX = enemy->GetBigWidth() - enemy->GetWidth();
+	enemy->SetColliderLeft(-9);
+	enemy->SetColliderRight(7);
 
 	EnemyState::ResetState();
 }

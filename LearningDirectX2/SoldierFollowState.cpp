@@ -18,10 +18,7 @@ void SoldierFollowState::ResetState() {
 	//Enemy khac nhau co collide khac nhau, initilize class phai chu y 
 	enemy->SetColliderTop(16);
 	enemy->SetColliderBottom(-16);
-	enemy->SetColliderLeft(-12);
-	enemy->SetColliderRight(4);
-
-	enemy->offsetScaleX = enemy->GetBigWidth() - enemy->GetWidth();
+	enemy->SetColliderLeft(-8);
 
 	if (Camera::GetInstance()->GetPosition().x < enemy->GetPosition().x)
 		enemy->SetVx(-SOLDIER_SPEED);

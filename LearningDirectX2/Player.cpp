@@ -129,7 +129,6 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 
 	auto impactorRect = impactor->GetRect();
 
-
 	//--DEBUG
 	//if (impactorRect.left == 16 && impactorRect.top == 40 && collisionTime != 0)
 	//	collisionTime = collisionTime;
@@ -151,9 +150,15 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 BoxCollider Player::GetRect() {
 	BoxCollider r;
 	r.top = position.y + collider.top;
-	r.left = position.x + collider.left;
-	r.right = position.x + collider.right;
 	r.bottom = position.y + collider.bottom;
+	if (direction == LeftToRight) {
+		r.left = position.x + collider.left;
+		r.right = position.x + collider.right;
+	}
+	else {
+		r.left = position.x - collider.right;
+		r.right = position.x - collider.left;
+	}
 	return r;
 }
 
@@ -217,12 +222,6 @@ void Player::SetMoveDirection(Entity::EntityDirection dir) {
 
 BoxCollider Player::GetCollider() {
 	return collider;
-}
-
-void Player::SwapLeftRightCollider() {
-	auto x = collider.left;
-	SetColliderLeft(-collider.right);
-	SetColliderRight(-x);
 }
 
 void Player::HandleInput() {

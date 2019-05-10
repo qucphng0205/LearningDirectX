@@ -252,14 +252,14 @@
     <ClCompile Include="EffectChains.cpp">
       <Filter>Header Files\Manager\Group</Filter>
     </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectPooling.cpp">
       <Filter>Header Files\Manager\Group</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>Header Files\Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Header Files\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -16,7 +16,6 @@ public:
 	Grid(BoxCollider r);
 	~Grid();
 	void Add(Unit *unit);
-	void RemovePermanently(Unit *unit);
 	void AddStaticObject(Entity *ent);
 	void HandleActiveUnit(BoxCollider camBox, Entity::EntityDirection camDirection, int cellX, int cellY);
 	void HandleActive(BoxCollider camRect, Entity::EntityDirection camDirection);
@@ -49,6 +48,7 @@ private:
 	int rows;
 	int columns;
 	Unit *cells[GRID_COLUMN][GRID_ROW];
+	bool activeCells[GRID_COLUMN][GRID_ROW];
 	RECT activeRect;
 
 	EffectChain *effects;

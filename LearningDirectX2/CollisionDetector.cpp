@@ -35,6 +35,7 @@ Entity::SideCollision CollisionDetector::GetSideCollision4(BoxCollider e1, Entit
 
 	auto pos1 = e1.GetCenter();
 	auto pos2 = data.regionCollision.GetCenter();
+
 	//cos = ke / huyen
 	auto cornerAngle = (e1Width / 2) / sqrt(pow(e1Width / 2, 2) + pow(e1Height / 2, 2));
 
@@ -62,8 +63,6 @@ Entity::SideCollision CollisionDetector::GetSideCollision4(BoxCollider e1, Entit
 
 float CollisionDetector::SweptAABB(Entity * ent1, Entity * ent2, Entity::SideCollision &side, double dt) {
 	BoxCollider r1 = ent1->GetRect();
-	if (r1.GetWidth() == 0)
-		r1 = r1;
 	BoxCollider r2 = ent2->GetRect();
 
 	D3DXVECTOR2 vel2 = ent2->GetVelocity() * dt;

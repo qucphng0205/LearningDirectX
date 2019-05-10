@@ -7,16 +7,16 @@
 class ItemState {
 public:
 	enum State {
-		Unavailable,
+		Holder,
 		Available
 	};
 	ItemState(ItemData *data);
-	ItemState();
 	~ItemState();
 	virtual void Update(double dt);
 	virtual void Render();
 	virtual void OnCollision(Entity *impactor, Entity::SideCollision side);
 	virtual void ResetState();
+	virtual State GetState();
 protected:
 	Animation *m_Animation;
 	ItemData *itemData;

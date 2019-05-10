@@ -7,6 +7,7 @@
 #include "Eagle.h"
 #include "Soldier.h"
 #include "Unit.h"
+#include "Item.h"
 #include <iostream>
 #include <fstream>
 

@@ -5,8 +5,8 @@
 
 class ItemAvailableState : public ItemState {
 public:
-	ItemAvailableState(ItemData *data);
-	~ItemAvailableState();
+	ItemAvailableState(ItemData *data, Entity::EntityTag tag);
 	virtual void ResetState();
 	virtual void Update(double dt);
+	virtual State GetState();
 };

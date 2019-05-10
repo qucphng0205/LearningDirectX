@@ -12,8 +12,6 @@
 
 class Enemy : public Entity {
 public:
-	float offsetScaleX;
-
 	Enemy();
 	~Enemy();
 

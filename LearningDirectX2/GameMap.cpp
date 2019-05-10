@@ -80,10 +80,8 @@ void GameMap::SetMapPath(char * mapPath) {
 		reader >> wid;
 		reader >> hei;
 		reader >> direction;
-		if (i == 39)
-			i = i;
-		switch (id) {
-		case 0: {
+
+		if (id == 0) {
 			Entity *ground = new Entity();
 			ground->SetTag((Entity::EntityTag)id);
 			ground->SetType(Entity::StaticType);
@@ -92,147 +90,135 @@ void GameMap::SetMapPath(char * mapPath) {
 			ground->SetWidth(wid);
 			ground->SetHeight(hei);
 			grid->AddStaticObject(ground);
+			continue;
 		}
-				break;
-		case 1: {
+
+		BoxCollider box;
+		box.top = posy;
+		box.left = posx;
+		box.bottom = posy - hei;
+		box.right = posx + wid;
+
+		switch (id) {
+		case Entity::Sparta: {
 			Sparta *sparta = new Sparta();
-			BoxCollider box;
-			box.top = posy;
-			box.left = posx;
-			box.bottom = posy - hei;
-			box.right = posx + wid;
 			sparta->SetSpawnBox(box, direction);
 			unit = new Unit(grid, sparta);
 		}
 				break;
-		case 2: {
+		case Entity::Cat: {
 			Cat *cat = new Cat();
-			BoxCollider box;
-			box.top = posy;
-			box.left = posx;
-			box.bottom = posy - hei;
-			box.right = posx + wid;
 			cat->SetSpawnBox(box, direction);
 			unit = new Unit(grid, cat);
 		}
 				break;
-		case 3: {
+		case Entity::Thrower: {
 			Thrower *thrower = new Thrower();
-			BoxCollider box;
-			box.top = posy;
-			box.left = posx;
-			box.bottom = posy - hei;
-			box.right = posx + wid;
 			thrower->SetSpawnBox(box, direction);
 			unit = new Unit(grid, thrower);
 		}
 				break;
-		case 4: {
+		case Entity::Eagle: {
 			Eagle *eagle = new Eagle();
-			BoxCollider box;
-			box.top = posy;
-			box.left = posx;
-			box.bottom = posy - hei;
-			box.right = posx + wid;
 			eagle->SetSpawnBox(box, direction);
 			unit = new Unit(grid, eagle);
 		}
 				break;
-		case 5: {
+		case Entity::Soldier: {
 			Soldier *soldier = new Soldier();
-			BoxCollider box;
-			box.top = posy;
-			box.left = posx;
-			box.bottom = posy - hei;
-			box.right = posx + wid;
 			soldier->SetSpawnBox(box, direction);
 			unit = new Unit(grid, soldier);
 		}
 				break;
+		default: {
+			Item *item = new Item(0, (Entity::EntityTag)id);
+			item->SetSpawnBox(box);
+			unit = new Unit(grid, item);
+		}
 		}
 	}
 }
 
-	int GameMap::GetWidth() {
-		return tileset->GetTileWidth() * columns;
-	}
+int GameMap::GetWidth() {
+	return tileset->GetTileWidth() * columns;
+}
 
-	int GameMap::GetHeight() {
-		return tileset->GetTileHeight() * rows;
-	}
+int GameMap::GetHeight() {
+	return tileset->GetTileHeight() * rows;
+}
 
-	int GameMap::GetTileWidth() {
-		return tileset->GetTileWidth();
-	}
+int GameMap::GetTileWidth() {
+	return tileset->GetTileWidth();
+}
 
-	int GameMap::GetTileHeight() {
-		return tileset->GetTileHeight();
-	}
+int GameMap::GetTileHeight() {
+	return tileset->GetTileHeight();
+}
 
-	Grid * GameMap::GetGrid() {
-		return grid;
-	}
+Grid * GameMap::GetGrid() {
+	return grid;
+}
 
-	void GameMap::SetCamera(Camera * cam) {
-		camera = cam;
-	}
+void GameMap::SetCamera(Camera * cam) {
+	camera = cam;
+}
 
-	void GameMap::Draw() {
+void GameMap::Draw() {
 
-		for (size_t i = 0; i < 1; i++) {
+	for (size_t i = 0; i < 1; i++) {
 
-			//chieu dai va chieu rong cua tile
-			int tileWidth = tileset->GetTileWidth();
-			int tileHeight = tileset->GetTileHeight();
+		//chieu dai va chieu rong cua tile
+		int tileWidth = tileset->GetTileWidth();
+		int tileHeight = tileset->GetTileHeight();
 
-			for (int m = 0; m < this->rows; m++) {
-				for (int n = 0; n < this->columns; n++) {
-					int id = mapIDs[m][n];
-					LPSPRITE sprite = tileset->GetSprite(id);
+		for (int m = 0; m < this->rows; m++) {
+			for (int n = 0; n < this->columns; n++) {
+				int id = mapIDs[m][n];
+				LPSPRITE sprite = tileset->GetSprite(id);
 
-					BoxCollider spriteBound;
-					spriteBound.top = (rows - m - 1) * tileHeight;
-					spriteBound.bottom = spriteBound.top - tileHeight;
-					spriteBound.left = n * tileWidth;
-					spriteBound.right = spriteBound.left + tileWidth;
+				BoxCollider spriteBound;
+				spriteBound.top = (rows - m - 1) * tileHeight;
+				spriteBound.bottom = spriteBound.top - tileHeight;
+				spriteBound.left = n * tileWidth;
+				spriteBound.right = spriteBound.left + tileWidth;
 
-					if (camera->IsCollide(spriteBound)) {
-						D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, (rows - m - 1) * tileHeight + tileHeight / 2, 0);
-						sprite->SetHeight(tileHeight);
-						sprite->SetWidth(tileWidth);
-						sprite->Draw(position, BoxCollider());
-					}
+				if (camera->IsCollide(spriteBound)) {
+					D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, (rows - m - 1) * tileHeight + tileHeight / 2, 0);
+					sprite->SetHeight(tileHeight);
+					sprite->SetWidth(tileWidth);
+					sprite->Draw(position, BoxCollider());
 				}
-
 			}
-		}
 
-	}
-
-	GameMap::~GameMap() {
-		delete mapIDs;
-	}
-
-	void GameMap::LoadTileset(char * filePath, int tileWidth, int tileHeight) {
-		//Parse map tu file 
-		Textures::GetInstance()->Add(TEX_STAGE31, filePath, D3DCOLOR_XRGB(255, 0, 255));
-		auto texture = Textures::GetInstance()->Get(TEX_STAGE31);
-		D3DSURFACE_DESC desc;
-		texture->GetLevelDesc(0, &desc);
-		auto width = desc.Width;
-		auto height = desc.Height;
-		tileset = new Tileset(height / tileHeight, width / tileWidth, tileWidth, tileHeight);
-
-		for (int i = 0; i < tileset->GetRows(); i++) {
-			for (int j = 0; j < tileset->GetColumns(); j++) {
-				BoxCollider r;
-				r.top = i * tileHeight;
-				r.left = j * tileWidth;
-				r.bottom = r.top + tileHeight;
-				r.right = r.left + tileWidth;
-				LPSPRITE sprite = new Sprite(r, texture);
-				tileset->Add(i * tileset->GetColumns() + j, sprite);
-			}
 		}
 	}
+
+}
+
+GameMap::~GameMap() {
+	delete mapIDs;
+}
+
+void GameMap::LoadTileset(char * filePath, int tileWidth, int tileHeight) {
+	//Parse map tu file 
+	Textures::GetInstance()->Add(TEX_STAGE31, filePath, D3DCOLOR_XRGB(255, 0, 255));
+	auto texture = Textures::GetInstance()->Get(TEX_STAGE31);
+	D3DSURFACE_DESC desc;
+	texture->GetLevelDesc(0, &desc);
+	auto width = desc.Width;
+	auto height = desc.Height;
+	tileset = new Tileset(height / tileHeight, width / tileWidth, tileWidth, tileHeight);
+
+	for (int i = 0; i < tileset->GetRows(); i++) {
+		for (int j = 0; j < tileset->GetColumns(); j++) {
+			BoxCollider r;
+			r.top = i * tileHeight;
+			r.left = j * tileWidth;
+			r.bottom = r.top + tileHeight;
+			r.right = r.left + tileWidth;
+			LPSPRITE sprite = new Sprite(r, texture);
+			tileset->Add(i * tileset->GetColumns() + j, sprite);
+		}
+	}
+}
 
