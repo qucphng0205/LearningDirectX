@@ -4,10 +4,27 @@ PlayerJumpingState::PlayerJumpingState(PlayerData * data) {
 	this->playerData = data;
 	auto texs = Textures::GetInstance();
 	m_Animation = new Animation();
-	m_Animation->AddFramesA(texs->Get(TEX_PLAYER), 8, 8, 4, 9, 4, PLAYER_JUMPING_FRAME * (1.0f/60));
+	m_Animation->AddFramesA(texs->Get(TEX_PLAYER), 8, 8, 4, 9, 4, PLAYER_JUMPING_FRAME * (1.0f / 60));
 }
 
 PlayerJumpingState::~PlayerJumpingState() {
+}
+#include "Debug.h"
+void PlayerJumpingState::Update(double dt) {
+	auto player = playerData->player;
+
+	float t = JUMP_TO_GROUND_SPEED * player->timeOnAir;
+	if (t > 1)
+		t = 1;
+	//linear interpolation
+	player->SetVy(MyHelper::Lerp(PLAYER_JUMP_FORCE, -PLAYER_JUMP_FORCE, t));
+
+	if (player->GetVelocity().y <= 0) {
+		DebugOut(L"timeOnAir = %f\n", player->timeOnAir);
+		player->status = Player::Falling;
+	}
+	PlayerState::Update(dt);
+	player->timeOnAir += dt;
 }
 
 void PlayerJumpingState::Render() {
@@ -39,33 +56,30 @@ void PlayerJumpingState::HandleInput() {
 			}
 		}
 		else player->SetVx(0);
-
-	player->AddVy(-GRAVITY);
-	if (player->GetVelocity().y < 0)
-		int x = 0;
-	if (player->GetVelocity().y <= PLAYER_MAX_FALLING_VELOCITY) {
-		player->SetVy(PLAYER_MAX_FALLING_VELOCITY);
-	}
 }
 
 void PlayerJumpingState::OnCollision(Entity * impactor, Entity::SideCollision side) {
-	
+
+	auto player = playerData->player;
+
 	if (impactor->GetTag() == Entity::Ground && side == Entity::Bottom) {
-		if (playerData->player->GetVy() > 0)
+		if (player->status == Player::Jumping)
 			return;
 		auto keyboard = KeyBoard::GetInstance();
+
+		player->status = Player::OnGround;
+		player->timeOnAir = 0;
+
 		if (keyboard->GetKey(DIK_LEFTARROW) && !(keyboard->GetKey(DIK_RIGHTARROW)))
-			playerData->player->SetState(Running);
+			player->SetState(Running);
 		else
 			if (keyboard->GetKey(DIK_RIGHTARROW) && !(keyboard->GetKey(DIK_LEFTARROW)))
-				playerData->player->SetState(Running);
+				player->SetState(Running);
 			else
 				if (keyboard->GetKey(DIK_DOWNARROW))
-					playerData->player->SetState(Crouch);
+					player->SetState(Crouch);
 				else
-					playerData->player->SetState(Idle);
-		playerData->player->onAir = false;
-		OutputDebugString(L"Falling to ground\n");
+					player->SetState(Idle);
 	}
 }
 
@@ -74,6 +88,10 @@ PlayerState::State PlayerJumpingState::GetState() {
 }
 
 void PlayerJumpingState::ResetState(int dummy) {
+	//1. falling from ground
+	//2. falling from slash
+
+
 	auto player = playerData->player;
 
 	//jump collider around center point
@@ -81,11 +99,19 @@ void PlayerJumpingState::ResetState(int dummy) {
 	player->SetColliderTop(16);
 	player->SetColliderBottom(-3);
 
-	//onAir = falling, not onAir means it jumps from ground
-	if (!player->onAir)
-		playerData->player->SetVy(PLAYER_MIN_JUMP_VELOCITY);
-	currentState = 0;
-	player->onAir = true;
+	if (player->timeOnAir == 0) {
+		//dummy = 0  means jumping
+		if (dummy == 0) {
+			playerData->player->SetVy(PLAYER_JUMP_FORCE);
+			player->status = Player::Jumping;
+			player->timeOnAir = 0;
+		}
+		else {
+			player->timeOnAir = 0.5f;
+			player->status = Player::Falling;
+		}
+	}
+	//else means from slash to jump with on air time = 0
 
 	PlayerState::ResetState(dummy);
 }

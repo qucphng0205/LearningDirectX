@@ -23,5 +23,6 @@ float MyHelper::Distance(float x, float y) {
 }
 
 float MyHelper::Lerp(float a, float b, float t) {
+	Clamp(t, 0, 1);
 	return a + (b - a) * t;
 }

@@ -6,12 +6,19 @@
 
 class Player : public Entity {
 public:
+
+	enum Status {
+		Jumping,
+		Falling,
+		OnGround
+	};
+
 	static Player *GetInstance();
 	Player();
 	~Player();
 	virtual void Update(double dt);
 	virtual void Render();
-	void SetState(PlayerState::State name, int dummy = -1);
+	void SetState(PlayerState::State name, int dummy = 0);
 	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime);
 	BoxCollider GetRect();
 	BoxCollider GetBigBound();
@@ -28,7 +35,12 @@ public:
 	virtual void SetMoveDirection(Entity::EntityDirection dir);
 	virtual BoxCollider GetCollider();
 	void HandleInput();
-	bool onAir;
+	Status status;
+
+	bool isImmortal;
+	bool checkGroundInFrame;
+	float timeOnAir;
+
 protected:
 	static Player *instance;
 	PlayerData *playerData;
@@ -45,6 +57,4 @@ protected:
 	BoxCollider collider;
 	float collisionTime;
 	SideCollision side;
-
-	bool onGround;
 };

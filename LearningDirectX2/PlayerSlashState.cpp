@@ -11,17 +11,34 @@ PlayerSlashState::~PlayerSlashState() {
 }
 
 void PlayerSlashState::Update(double dt) {
+	auto player = playerData->player;
+
 	if (m_Animation->IsLastFrame(dt)) {
-		if (playerData->player->onAir)
-			playerData->player->SetState(Falling);
+		if (player->status != Player::OnGround) {
+			//jump or falling is not important, on air time is exactly important thing
+			player->SetState(Jump);
+		}
 		else
 			if (KeyBoard::GetInstance()->GetKey(DIK_DOWNARROW))
-				playerData->player->SetState(Crouch);
+				player->SetState(Crouch);
 			else
-				playerData->player->SetState(Idle);
+				player->SetState(Idle);
 		return;
 	}
-	m_Animation->Update(dt);
+	
+	if (player->status != Player::OnGround) {
+
+		player->timeOnAir += dt;
+		if (player->timeOnAir > 1)
+			player->timeOnAir = 1;
+
+		player->SetVy(MyHelper::Lerp(PLAYER_JUMP_FORCE, -PLAYER_JUMP_FORCE, JUMP_TO_GROUND_SPEED * player->timeOnAir));
+
+		if (player->GetVelocity().y <= 0)
+			player->status = Player::Falling;
+	}
+
+	PlayerState::Update(dt);
 }
 
 void PlayerSlashState::Render() {
@@ -31,10 +48,10 @@ void PlayerSlashState::Render() {
 void PlayerSlashState::HandleInput() {
 	auto keyboard = KeyBoard::GetInstance();
 	auto player = playerData->player;
-	if (keyboard->GetKeyDown(DIK_F) && !player->onAir)
+	if (keyboard->GetKeyDown(DIK_F) && player->status == Player::OnGround)
 		player->SetState(Jump);
 	else
-		if (player->onAir) {
+		if (player->GetVelocity().y < 0) {
 
 			if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW)) {
 				if (player->GetMoveDirection() == Player::RightToLeft)
@@ -54,12 +71,6 @@ void PlayerSlashState::HandleInput() {
 					}
 				}
 				else player->SetVx(0);
-
-			float vy = player->GetVelocity().y;
-			player->AddVy(-GRAVITY);
-			if (player->GetVelocity().y <= PLAYER_MAX_FALLING_VELOCITY) {
-				player->SetVy(PLAYER_MAX_FALLING_VELOCITY);
-			}
 		}
 }
 
@@ -72,7 +83,7 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 	////--DEBUG
 	//if (impactorType == Entity::EnemyType)
 	//	impactor = impactor;
-	
+
 	if (impactorType == Entity::EnemyType || impactorType == Entity::ProjectileType || impactorType == Entity::ItemType) {
 		if (m_Animation->GetCurrentFrameID() == 0)
 			return;
@@ -89,7 +100,9 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 		return;
 	}
 
-	if (impactor->GetTag() == Entity::Ground && side == Entity::Bottom && player->onAir) {
+	if (impactor->GetTag() == Entity::Ground && side == Entity::Bottom && player->status == Player::Falling) {
+		player->status = Player::OnGround;
+		player->timeOnAir = 0;
 		auto keyboard = KeyBoard::GetInstance();
 		if (keyboard->GetKey(DIK_LEFTARROW) && !(keyboard->GetKey(DIK_RIGHTARROW)))
 			player->SetState(Running);
@@ -101,7 +114,6 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 					player->SetState(Crouch);
 				else
 					player->SetState(Idle);
-		player->onAir = false;
 	}
 }
 
@@ -118,9 +130,8 @@ void PlayerSlashState::ResetState(int dummy) {
 	player->SetColliderLeft(-7);
 	player->SetColliderRight(31);
 
-
 	PlayerState::ResetState(dummy);
-	if (dummy != -1)
+	if (dummy != 0)
 		m_Animation->SetCurrentFrame(dummy);
 }
 

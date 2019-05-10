@@ -353,9 +353,9 @@ void Grid::HandleCollideStatic(Entity * ent1, Entity * ent2, double dt) {
 
 	float groundTime = CollisionDetector::SweptAABB(rectEnt1, ent1->GetVelocity(), impactorRect, D3DXVECTOR2(0, 0), side, dt);
 
-	////--DEBUG
-	//if (ent1->GetTag() == Entity::Player && impactorRect.left == 16 && impactorRect.top == 40)
-	//	groundTime = groundTime;
+	//--DEBUG
+	if (ent1->GetTag() == Entity::Player && impactorRect.left == 16 && impactorRect.top == 40)
+		groundTime = groundTime;
 
 	if (groundTime == 2)
 		return;

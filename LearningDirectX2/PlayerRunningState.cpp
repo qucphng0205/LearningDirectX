@@ -10,6 +10,16 @@ PlayerRunningState::PlayerRunningState(PlayerData * data) {
 PlayerRunningState::~PlayerRunningState() {
 }
 
+void PlayerRunningState::Update(double dt) {
+	KeyBoard *keyboard = KeyBoard::GetInstance();
+	if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW))
+		playerData->player->SetVelocity(D3DXVECTOR2(-PLAYER_RUN_VELOCITY, 0));
+	else
+		if (keyboard->GetKey(DIK_RIGHTARROW) && !keyboard->GetKey(DIK_LEFTARROW))
+			playerData->player->SetVelocity(D3DXVECTOR2(PLAYER_RUN_VELOCITY, 0));
+	PlayerState::Update(dt);
+}
+
 void PlayerRunningState::Render() {
 	m_Animation->Render(playerData->player->GetPosition(), BoxCollider(), D3DCOLOR_XRGB(255, 255, 255), playerData->player->GetMoveDirection() == Entity::EntityDirection::RightToLeft);
 }
@@ -60,13 +70,9 @@ void PlayerRunningState::ResetState(int dummy) {
 
 	auto keyboard = KeyBoard::GetInstance();
 	//if dummy == 0, turn left else turn right
-	if (dummy == 0) {
-		if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW))
-			playerData->player->SetVelocity(D3DXVECTOR2(-PLAYER_RUN_VELOCITY, 0));
-		else
-			if (keyboard->GetKey(DIK_RIGHTARROW) && !keyboard->GetKey(DIK_LEFTARROW))
-				playerData->player->SetVelocity(D3DXVECTOR2(PLAYER_RUN_VELOCITY, 0));
-	}
+	//if (dummy == 0) {
+	//	
+	//}
 	PlayerState::ResetState(dummy);
 }
 
