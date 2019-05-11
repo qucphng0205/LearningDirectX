@@ -27,6 +27,7 @@ PlayScene::~PlayScene() {
 void PlayScene::Render() {
 	map->Draw();
 	map->GetGrid()->Render();
+	Graphic::GetInstance()->DrawString();
 }
 
 void PlayScene::ProcessInput() {

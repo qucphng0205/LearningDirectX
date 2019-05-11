@@ -174,6 +174,7 @@ void GameMap::Draw() {
 		for (int m = 0; m < this->rows; m++) {
 			for (int n = 0; n < this->columns; n++) {
 				int id = mapIDs[m][n];
+
 				LPSPRITE sprite = tileset->GetSprite(id);
 
 				BoxCollider spriteBound;

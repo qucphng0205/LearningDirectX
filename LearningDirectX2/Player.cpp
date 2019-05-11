@@ -37,6 +37,7 @@ Player::Player() : Entity() {
 	SetState(PlayerState::Idle);
 	SetTag(Entity::EntityTag::Player);
 	SetType(Entity::EntityType::PlayerType);
+	status = OnGround;
 
 	D3DSURFACE_DESC desc;
 	textures->Get(TEX_PLAYER)->GetLevelDesc(0, &desc);

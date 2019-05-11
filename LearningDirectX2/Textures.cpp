@@ -12,7 +12,7 @@ void Textures::Add(int id, LPCSTR path, D3DCOLOR transparentColor) {
 	D3DXIMAGE_INFO infor;
 	HRESULT result = D3DXGetImageInfoFromFileA(path, &infor);
 	if (result != D3D_OK) {
-		DebugOut(L"[ERROR] GetImageInfoFromFile failed: %s\n", path);
+		//DebugOut(L"[ERROR] GetImageInfoFromFile failed: %s\n", path);
 		return;
 	}
 	LPDIRECT3DDEVICE9 d3ddv = Graphic::GetInstance()->Getdirect3DDevice();
@@ -34,7 +34,7 @@ void Textures::Add(int id, LPCSTR path, D3DCOLOR transparentColor) {
 		&texture);
 
 	if (result != D3D_OK) {
-		OutputDebugString(L"[ERROR] CreateTextureFromFile failed\n");
+		//OutputDebugString(L"[ERROR] CreateTextureFromFile failed\n");
 		return;
 	}
 	textures[id] = texture;

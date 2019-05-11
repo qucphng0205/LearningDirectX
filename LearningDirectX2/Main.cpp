@@ -8,8 +8,10 @@
 #include "Debug.h"
 #define FPS 60
 #define SPF 1.0f/FPS
-#define WINDOW_CLASS_NAME L"BasicdirectX"
-#define MAIN_WINDOW_TITLE L"01 - FirstProject"
+//#define WINDOW_CLASS_NAME L"BasicdirectX"
+#define WINDOW_CLASS_NAME "BasicdirectX"
+//#define MAIN_WINDOW_TITLE L"01 - FirstProject"
+#define MAIN_WINDOW_TITLE "01 - FirstProject"
 #define BACKGROUND_COLOR D3DCOLOR_XRGB(255, 255, 200)
 
 LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
@@ -52,8 +54,8 @@ HWND CreateGameWindow(HINSTANCE hInstance, int nCmdShow, int ScreenWidth, int Sc
 			CW_USEDEFAULT,
 			//y position
 			CW_USEDEFAULT,
-			ScreenWidth,
-			ScreenHeight,
+			ScreenWidth * 3,
+			ScreenHeight * 3,
 			//parents window
 			NULL,
 			NULL,
@@ -61,7 +63,7 @@ HWND CreateGameWindow(HINSTANCE hInstance, int nCmdShow, int ScreenWidth, int Sc
 			NULL);
 	if (!hWnd)
 	{
-		OutputDebugString(L"[ERROR] CreateWindow failed");
+		//OutputDebugString(L"[ERROR] CreateWindow failed");
 		DWORD ErrCode = GetLastError();
 		return FALSE;
 	}

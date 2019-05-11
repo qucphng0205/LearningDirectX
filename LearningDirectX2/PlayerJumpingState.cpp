@@ -20,7 +20,7 @@ void PlayerJumpingState::Update(double dt) {
 	player->SetVy(MyHelper::Lerp(PLAYER_JUMP_FORCE, -PLAYER_JUMP_FORCE, t));
 
 	if (player->GetVelocity().y <= 0) {
-		DebugOut(L"timeOnAir = %f\n", player->timeOnAir);
+		//DebugOut(L"timeOnAir = %f\n", player->timeOnAir);
 		player->status = Player::Falling;
 	}
 	PlayerState::Update(dt);
