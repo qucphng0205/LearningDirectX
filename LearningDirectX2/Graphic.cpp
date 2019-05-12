@@ -38,32 +38,47 @@ void Graphic::InitFont() {
 	D3DXCreateFont(d3ddv, 8, 0, FW_NORMAL, 1, false,
 		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
 		NONANTIALIASED_QUALITY, DEFAULT_PITCH,
-		"Ninja Gaiden II (NES)", &smallFont);
-	D3DXCreateFont(d3ddv, 8, 4, FW_NORMAL, 1, false,
+		"Ninja Gaiden II (NES)", &normalFont);
+	D3DXCreateFont(d3ddv, 8, 3, FW_BOLD, 1, false,
 		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
 		NONANTIALIASED_QUALITY, DEFAULT_PITCH,
-		"Ninja Gaiden II (NES)", &hitFont);
-	SetRect(&scoreZone, 24, 17, 300, 300);
-	SetRect(&timerPZone, 24, 25, 300, 300);
+		"Ninja Gaiden II (NES)", &narrowFont);
+	SetRect(&leftZone, 24, 17, 300, 300);
 	SetRect(&rightZone, 128, 17, 300, 300);
+	SetRect(&playerHealthZone, 176, 25, 300, 300);
+	SetRect(&enemyHealthZone, 176, 33, 300, 300);
+	SetRect(&iconSpiritZone, 64, 33, 300, 300);
+	scoreInfor = "000000";
+	timeInfor = "146";
+	lifeInfor = "02";
+	spiritInfor = "00";
+	stageInfor = "3-1";
+	playerHealthInfor = ";;;;;";
+	enemyHealthInfor = "::::::::::::::::";
+	healthIcon = "::::::::::::::::\n::::::::::::::::";
+	iconSpirit = "+";
 }
 void Graphic::DrawString() {
-	SetRect(&rightZone, 128, 17, 300, 300);
-	D3DXMATRIX matrix;
-	D3DXMatrixIdentity(&matrix);
-	matrix._11 = 1;
-	matrix._22 = 1;
-	spriteHandler->SetTransform(&matrix);
-	scoreInfor = "SCORE-000000\nTIMER-146\nP-02 +-00";
-	smallFont->DrawText(spriteHandler, scoreInfor.c_str(), -1, &scoreZone, DT_LEFT | DT_NOCLIP,
+	std::string left = "SCORE-" + scoreInfor + "\nTIMER-" + timeInfor + "{  |\nP-" + lifeInfor + "  -" + spiritInfor + "}  ~";
+	std::string right = "STAGE-" + stageInfor + "\nNINJA-\nENEMY-";
+
+	normalFont->DrawText(spriteHandler, left.c_str(), -1, &leftZone, DT_LEFT | DT_NOCLIP,
 		0xFFFFFFFF);
-	rightInfor = "STAGE-3-1\nNINJA-\nENEMY-";
-	smallFont->DrawTextA(spriteHandler, rightInfor.c_str(), -1, &rightZone, DT_LEFT,
+
+	normalFont->DrawText(spriteHandler, right.c_str(), -1, &rightZone, DT_LEFT | DT_NOCLIP,
 		0xFFFFFFFF);
-	SetRect(&rightZone, 176, 25, 300, 300);
-	std::string x = "LLLLLLLL";
-	hitFont->DrawTextA(spriteHandler, x.c_str(), -1, &rightZone, DT_LEFT,
+
+	narrowFont->DrawText(spriteHandler, healthIcon.c_str(), -1, &playerHealthZone, DT_LEFT | DT_NOCLIP,
+		0xFFFFFFFF);
+
+	narrowFont->DrawText(spriteHandler, playerHealthInfor.c_str(), -1, &playerHealthZone, DT_LEFT | DT_NOCLIP,
 		D3DCOLOR_XRGB(252,116,180));
+
+	narrowFont->DrawText(spriteHandler, enemyHealthInfor.c_str(), -1, &enemyHealthZone, DT_LEFT | DT_NOCLIP,
+		D3DCOLOR_XRGB(252, 116, 180));
+
+	normalFont->DrawText(spriteHandler, iconSpirit.c_str(), -1, &iconSpiritZone, DT_LEFT | DT_NOCLIP,
+		D3DCOLOR_XRGB(252, 116, 180));
 }
 
 //void Graphic::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha) {
@@ -99,8 +114,8 @@ Graphic::~Graphic() {
 		d3ddv->Release();
 	if (d3d != NULL)
 		d3d->Release();
-	if (smallFont != NULL) {
-		smallFont->Release();
-		smallFont = NULL;
+	if (normalFont != NULL) {
+		normalFont->Release();
+		normalFont = NULL;
 	}
 }

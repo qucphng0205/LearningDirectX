@@ -22,14 +22,22 @@ protected:
 	int bufferWidth;
 	int bufferHeight;
 
-	ID3DXFont *smallFont;
-	ID3DXFont *hitFont;
-	RECT scoreZone;
-	RECT timerPZone;
+	ID3DXFont *normalFont;
+	ID3DXFont *narrowFont;
+	RECT leftZone;
 	RECT rightZone;
+	RECT iconSpiritZone;
+	RECT playerHealthZone;
+	RECT enemyHealthZone;
 	std::string scoreInfor;
-	std::string timerPInfor;
-	std::string rightInfor;
+	std::string timeInfor;
+	std::string lifeInfor;
+	std::string spiritInfor;
+	std::string stageInfor;
+	std::string playerHealthInfor;
+	std::string enemyHealthInfor;
+	std::string iconSpirit;
+	std::string healthIcon;
 public:
 	//Ham khoi tao
 	void Init(HWND hWnd);
