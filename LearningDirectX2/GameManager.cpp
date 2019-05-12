@@ -40,8 +40,6 @@ void GameManager::Render() {
 
 		spriteHandler->End();
 
-		Graphic::GetInstance()->DrawString();
-
 		device->EndScene();
 	}
 	device->Present(NULL, NULL, NULL, NULL);

@@ -23,7 +23,7 @@ protected:
 	int bufferHeight;
 
 	ID3DXFont *smallFont;
-	ID3DXFont *largeFont;
+	ID3DXFont *hitFont;
 	RECT scoreZone;
 	RECT timerPZone;
 	RECT rightZone;
