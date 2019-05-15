@@ -83,7 +83,7 @@ void GameMap::SetMapPath(char * mapPath) {
 
 		if (id == 0) {
 			Entity *ground = new Entity();
-			ground->SetTag((Entity::EntityTag)id);
+			ground->SetTag((Tag)id);
 			ground->SetType(Entity::StaticType);
 			ground->SetStatic(true);
 			ground->SetPosition(D3DXVECTOR3(posx + wid / 2, posy - hei / 2, 0));
@@ -100,38 +100,38 @@ void GameMap::SetMapPath(char * mapPath) {
 		box.right = posx + wid;
 
 		switch (id) {
-		case Entity::Sparta: {
+		case SPARTA: {
 			Sparta *sparta = new Sparta();
 			sparta->SetSpawnBox(box, direction);
 			unit = new Unit(grid, sparta);
 		}
 				break;
-		case Entity::Cat: {
+		case CAT: {
 			Cat *cat = new Cat();
 			cat->SetSpawnBox(box, direction);
 			unit = new Unit(grid, cat);
 		}
 				break;
-		case Entity::Thrower: {
+		case THROWER: {
 			Thrower *thrower = new Thrower();
 			thrower->SetSpawnBox(box, direction);
 			unit = new Unit(grid, thrower);
 		}
 				break;
-		case Entity::Eagle: {
+		case EAGLE: {
 			Eagle *eagle = new Eagle();
 			eagle->SetSpawnBox(box, direction);
 			unit = new Unit(grid, eagle);
 		}
 				break;
-		case Entity::Soldier: {
+		case SOLDIER: {
 			Soldier *soldier = new Soldier();
 			soldier->SetSpawnBox(box, direction);
 			unit = new Unit(grid, soldier);
 		}
 				break;
 		default: {
-			Item *item = new Item(0, (Entity::EntityTag)id);
+			Item *item = new Item(0, (Tag)id);
 			item->SetSpawnBox(box);
 			unit = new Unit(grid, item);
 		}
@@ -211,8 +211,8 @@ GameMap::~GameMap() {
 
 void GameMap::LoadTileset(char * filePath, int tileWidth, int tileHeight) {
 	//Parse map tu file 
-	Textures::GetInstance()->Add(TEX_STAGE31, filePath, D3DCOLOR_XRGB(255, 0, 255));
-	auto texture = Textures::GetInstance()->Get(TEX_STAGE31);
+	Textures::GetInstance()->Add(TEX_STagE31, filePath, D3DCOLOR_XRGB(255, 0, 255));
+	auto texture = Textures::GetInstance()->Get(TEX_STagE31);
 	D3DSURFACE_DESC desc;
 	texture->GetLevelDesc(0, &desc);
 	auto width = desc.Width;

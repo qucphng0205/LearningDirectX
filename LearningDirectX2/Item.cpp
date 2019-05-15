@@ -2,15 +2,15 @@
 #include "ItemHolderState.h"
 #include "ItemAvailableState.h"
 
-Item::Item(int stage, Entity::EntityTag tag) {
+Item::Item(int sTage, enum Tag Tag) {
 	type = Entity::ItemType;
-	this->tag = tag;
+	this->Tag = Tag;
 	itemData = new ItemData(this);
 	auto textures = Textures::GetInstance();
 	textures->Add(TEX_HOLDER, "Resources/Sprites/holderspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 	textures->Add(TEX_ITEM, "Resources/Sprites/itemspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
-	itemHolderState = new ItemHolderState(itemData, stage);
-	itemAvailableState = new ItemAvailableState(itemData, tag);
+	itemHolderState = new ItemHolderState(itemData, sTage);
+	itemAvailableState = new ItemAvailableState(itemData, Tag);
 
 	isDisappeared = false;
 	isActive = false;

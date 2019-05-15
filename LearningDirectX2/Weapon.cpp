@@ -1,7 +1,7 @@
 #include "Weapon.h"
 
 Weapon::Weapon() {
-	tag = Entity::Projectile;
+	Tag = PROJECTILE;
 	type = Entity::ProjectileType;
 }
 

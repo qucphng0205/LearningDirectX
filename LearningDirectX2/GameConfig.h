@@ -1,7 +1,7 @@
 #pragma once
-#define TEX_STAGE31 1
-#define TEX_STAGE32 2
-#define TEX_STAGE33 3
+#define TEX_STagE31 1
+#define TEX_STagE32 2
+#define TEX_STagE33 3
 #define TEX_PLAYER 4
 #define TEX_SPARTA 5
 #define TEX_CAT 6

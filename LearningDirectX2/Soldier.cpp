@@ -6,8 +6,8 @@ Soldier::Soldier() : Enemy() {
 		textures->Add(TEX_SOLDIER, "Resources/Sprites/soldierspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 	soldierFollowState = new SoldierFollowState(enemyData);
 	soldierAttackState = new SoldierAttackState(enemyData);
-	//Set tag
-	tag = Entity::Soldier;
+	//Set Tag
+	Tag = SOLDIER;
 	D3DSURFACE_DESC desc;
 	textures->Get(TEX_SOLDIER)->GetLevelDesc(0, &desc);
 	width = desc.Width / 2.0;

@@ -36,7 +36,7 @@ void PlayScene::Render() {
 	g->SetTimeInfo(timeLeft);
 	g->SetLifeInfo(DataManager::GetLife());
 	g->SetSpiritInfo(DataManager::GetSpiritPoint());
-	g->SetStageInfo(0);
+	g->SetSTageInfo(0);
 	g->SetPlayerHealthInfo(DataManager::GetHealth());
 	g->SetEnemyHealthInfo(16);
 

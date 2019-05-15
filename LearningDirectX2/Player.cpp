@@ -35,7 +35,7 @@ Player::Player() : Entity() {
 	useItemState = new PlayerUseItemState(playerData);
 
 	SetState(PlayerState::Idle);
-	SetTag(Entity::EntityTag::Player);
+	SetTag(PLAYER);
 	SetType(Entity::EntityType::PlayerType);
 	status = OnGround;
 
@@ -154,7 +154,7 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 
 	playerData->state->OnCollision(impactor, side);
 
-	if (impactor->GetTag() != Entity::Ground)
+	if (impactor->GetTag() != GROUND)
 		if ((side == Right && velocity.x > 0) || (side == Left && velocity.x < 0))
 			velocity.x *= collisionTime;
 

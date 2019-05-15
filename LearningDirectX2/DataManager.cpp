@@ -4,7 +4,7 @@ int DataManager::health = 16;
 int DataManager::life = 2;
 int DataManager::score = 0;
 int DataManager::spiritPoint = 0;
-Entity::EntityTag DataManager::item = Entity::None;
+Tag DataManager::item = NONE;
 
 int DataManager::GetHealth() {
 	return health;
@@ -20,10 +20,6 @@ int DataManager::GetScore() {
 
 void DataManager::SetScore(int scr) {
 	score = MyHelper::Clamp(scr, 0, 999999);
-}
-
-void DataManager::AddScore(int sco) {
-	score += sco;
 }
 
 int DataManager::GetSpiritPoint() {
@@ -42,10 +38,10 @@ void DataManager::SetLife(int lif) {
 	lif = MyHelper::Clamp(life, 0, 99);
 }
 
-Entity::EntityTag DataManager::GetItem() {
+Tag DataManager::GetItem() {
 	return item;
 }
 
-void DataManager::SetItem(Entity::EntityTag itm) {
+void DataManager::SetItem(Tag itm) {
 	item = itm;
 }

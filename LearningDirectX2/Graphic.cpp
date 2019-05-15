@@ -52,7 +52,7 @@ void Graphic::InitFont() {
 	timeInfor = "146";
 	lifeInfor = "02";
 	spiritInfor = "00";
-	stageInfor = "3-1";
+	sTageInfor = "3-1";
 	playerHealthInfor = ":::::";
 	enemyHealthInfor = "::::::::::::::::";
 	healthIcon = "::::::::::::::::\n::::::::::::::::";
@@ -60,7 +60,7 @@ void Graphic::InitFont() {
 }
 void Graphic::DrawString() {
 	std::string left = "SCORE-" + scoreInfor + "\nTIMER-" + timeInfor + "{  |\nP-" + lifeInfor + "  -" + spiritInfor + "}  ~";
-	std::string right = "STAGE-" + stageInfor + "\nNINJA-\nENEMY-";
+	std::string right = "STagE-" + sTageInfor + "\nNINJA-\nENEMY-";
 
 	normalFont->DrawText(spriteHandler, left.c_str(), -1, &leftZone, DT_LEFT | DT_NOCLIP,
 		0xFFFFFFFF);
@@ -152,13 +152,13 @@ void Graphic::SetSpiritInfo(int spirit) {
 		spiritInfor = "0" + spiritInfor;
 }
 
-void Graphic::SetStageInfo(int stage) {
-	switch (stage) {
-	case 0: stageInfor = "3-1";
+void Graphic::SetSTageInfo(int sTage) {
+	switch (sTage) {
+	case 0: sTageInfor = "3-1";
 		break;
-	case 1: stageInfor = "3-2";
+	case 1: sTageInfor = "3-2";
 		break;
-	case 2: stageInfor = "3-3";
+	case 2: sTageInfor = "3-3";
 		break;
 	}
 }

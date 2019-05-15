@@ -294,7 +294,7 @@ void Grid::HandleCollision(double dt) {
 		for (int y = 0; y < rows; y++)
 			if (cells[x][y] != NULL && activeCells[x][y] == true) {
 				//--DEBUG
-				//if (cells[x][y]->entity->GetTag() == Entity::Player)
+				//if (cells[x][y]->entity->GetTag() == PLAYER)
 				//	x = x;
 				HandleCellWithStatic(cells[x][y], dt);
 			}
@@ -339,7 +339,7 @@ void Grid::HandleCellWithStatic(Unit * unit, double dt) {
 	while (unit != NULL) {
 		if (unit->entity->IsActive()) {
 			//--DEBUG
-			//if (unit->entity->GetTag() == Entity::Player)
+			//if (unit->entity->GetTag() == PLAYER)
 			//	OutputDebugString(L"Player's checked collision\n");
 			for (size_t i = 0; i < staticObjects.size(); i++)
 				HandleCollideStatic(unit->entity, staticObjects[i], dt);
@@ -354,7 +354,7 @@ void Grid::HandleMelee(Entity * ent1, Entity * ent2, double dt) {
 
 	float collisionTime = 2;
 
-	if (ent1->GetTag() == Entity::Player || ent2->GetTag() == Entity::Player)
+	if (ent1->GetTag() == PLAYER || ent2->GetTag() == PLAYER)
 		ent1 = ent1;
 
 	if (!ent1->isStatic) {
@@ -379,7 +379,7 @@ void Grid::HandleCollideStatic(Entity * ent1, Entity * ent2, double dt) {
 	float groundTime = CollisionDetector::SweptAABB(rectEnt1, ent1->GetVelocity(), impactorRect, D3DXVECTOR2(0, 0), side, dt);
 
 	//--DEBUG
-	if (ent1->GetTag() == Entity::Player && impactorRect.left == 16 && impactorRect.top == 40)
+	if (ent1->GetTag() == PLAYER && impactorRect.left == 16 && impactorRect.top == 40)
 		groundTime = groundTime;
 
 	if (groundTime == 2)
@@ -408,7 +408,7 @@ void Grid::Move(Unit * unit, float x, float y) {
 		return;
 
 	//--DEBUG
-	//if (unit->entity->GetTag() == Entity::Player)
+	//if (unit->entity->GetTag() == PLAYER)
 	//	x = x;
 
 	if (unit->prev != NULL)

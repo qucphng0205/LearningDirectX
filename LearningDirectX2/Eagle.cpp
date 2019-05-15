@@ -6,8 +6,8 @@ Eagle::Eagle() : Enemy() {
 	auto textures = Textures::GetInstance();
 	textures->Add(TEX_EAGLE, "Resources/Sprites/eaglespritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 	eagleFollowState = new EagleFollowState(enemyData);
-	//Set tag
-	tag = Entity::Eagle;
+	//Set Tag
+	Tag = EAGLE;
 	D3DSURFACE_DESC desc;
 	textures->Get(TEX_EAGLE)->GetLevelDesc(0, &desc);
 	width = desc.Width / 4;

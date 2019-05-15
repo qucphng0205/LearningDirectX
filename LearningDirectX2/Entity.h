@@ -44,8 +44,8 @@ public:
 	virtual BoxCollider GetRect();
 	virtual void SetActive(bool active);
 	virtual bool IsActive();
-	virtual EntityTag GetTag();
-	virtual void SetTag(EntityTag tag);
+	virtual Tag GetTag();
+	virtual void SetTag(Tag Tag);
 	virtual EntityType GetType();
 	virtual void SetType(EntityType type);
 	virtual void SetStatic(bool flag);
@@ -90,7 +90,7 @@ public:
 protected:
 	bool isActive;
 	int id;
-	ObjectTag tag;
+	Tag Tag;
 	EntityType type;
 	//duoc goi khi set position cua Entity, dung cho ke thua
 	virtual void OnSetPosition(D3DXVECTOR3 pos);

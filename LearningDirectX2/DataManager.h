@@ -1,19 +1,19 @@
 #pragma once
-#include "Entity.h"
+#include "Tag.h"
 #include "MyHelper.h"
 
 struct EarnedData {
 	int score;
-	Entity::EntityTag item;
+	Tag item;
 	EarnedData() {
 		score = 0;
-		item = Entity::None;
+		item = NONE;
 	}
 	EarnedData(int score) {
 		this->score = score;
-		item = Entity::None;
+		item = NONE;
 	}
-	EarnedData(Entity::EntityTag item) {
+	EarnedData(Tag item) {
 		score = 0;
 		this->item = item;
 	}
@@ -26,17 +26,17 @@ private:
 	static int health;
 	static int score;
 	static int spiritPoint;
-	static Entity::EntityTag item;
+	static Tag item;
+	static void SetScore(int scr);
+	static void SetHealth(int hel);
+	static void SetSpiritPoint(int point);
+	static void SetLife(int lif);
+	static void SetItem(Tag itm);
 public:
 	static int GetHealth();
-	static void SetHealth(int hel);
 	static int GetScore();
-	static void SetScore(int scr);
-	static void AddScore(int score);
 	static int GetSpiritPoint();
-	static void SetSpiritPoint(int point);
 	static int GetLife();
-	static void SetLife(int lif);
-	static Entity::EntityTag GetItem();
-	static void SetItem(Entity::EntityTag itm);
+	static Tag GetItem();
+	//static int add
 };

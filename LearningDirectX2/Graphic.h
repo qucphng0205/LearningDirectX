@@ -34,7 +34,7 @@ protected:
 	std::string timeInfor;
 	std::string lifeInfor;
 	std::string spiritInfor;
-	std::string stageInfor;
+	std::string sTageInfor;
 	std::string playerHealthInfor;
 	std::string enemyHealthInfor;
 	std::string iconSpirit;
@@ -44,7 +44,7 @@ public:
 	void SetTimeInfo(int time);
 	void SetLifeInfo(int life);
 	void SetSpiritInfo(int spirit);
-	void SetStageInfo(int stage);
+	void SetSTageInfo(int sTage);
 	void SetPlayerHealthInfo(int health);
 	void SetEnemyHealthInfo(int health);
 	//Ham khoi tao

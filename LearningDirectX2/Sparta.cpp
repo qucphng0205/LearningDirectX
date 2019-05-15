@@ -5,8 +5,8 @@ Sparta::Sparta() : Enemy() {
 	auto textures = Textures::GetInstance();
 	textures->Add(TEX_SPARTA, "Resources/Sprites/spartaspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 	spartaFollowState = new SpartaFollowState(enemyData);
-	//Set tag
-	tag = Entity::Sparta;
+	//Set Tag
+	Tag = SPARTA;
 	D3DSURFACE_DESC desc;
 	textures->Get(TEX_SPARTA)->GetLevelDesc(0, &desc);
 	width = desc.Width / 4;

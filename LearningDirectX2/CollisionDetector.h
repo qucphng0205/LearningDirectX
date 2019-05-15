@@ -12,7 +12,7 @@ public:
 	//kiem tra 2 RECTco collide
 	static bool IsCollide(BoxCollider rect1, BoxCollider rect2, D3DXVECTOR2 vel1 = D3DXVECTOR2());
 
-	//neu Rectagle qua to thi va cham co the bi sai
+	//neu RecTagle qua to thi va cham co the bi sai
 	static Entity::SideCollision GetSideCollision4(BoxCollider e1, Entity::CollisionReturn data);
 
 	//kiem tra vi tri va cham dua vao vung va cham cua 2 vat the

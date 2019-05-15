@@ -88,7 +88,7 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 		if (m_Animation->GetCurrentFrameID() == 0)
 			return;
 		////--DEBUG
-		//if (impactor->GetType() == Entity::ProjectileType)
+		//if (impactor->GetType() == ProjectileType)
 		//	impactor = impactor;
 		//auto slashDir = player->GetMoveDirection();
 		//auto posX = player->GetPosition().x;
@@ -100,7 +100,7 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 		return;
 	}
 
-	if (impactor->GetTag() == Entity::Ground && side == Entity::Bottom && player->status == Player::Falling) {
+	if (impactor->GetTag() == GROUND && side == Entity::Bottom && player->status == Player::Falling) {
 		player->status = Player::OnGround;
 		player->timeOnAir = 0;
 		auto keyboard = KeyBoard::GetInstance();

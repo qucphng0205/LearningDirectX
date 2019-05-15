@@ -20,7 +20,7 @@ public:
 	//	Flames
 	//};
 
-	Item(int stage, EntityTag tag);
+	Item(int sTage, enum Tag Tag);
 	~Item();
 
 	virtual void Update(double dt);
@@ -35,7 +35,7 @@ public:
 	virtual BoxCollider GetSpawnRect();
 
 	virtual void SetActive(bool active);
-	
+
 	virtual float GetWidth();
 	virtual float GetHeight();
 	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
@@ -45,7 +45,7 @@ public:
 	bool onGround;
 
 protected:
-	int stage;
+	int sTage;
 	bool isDisappeared;
 	BoxCollider collider;
 	D3DXVECTOR3 spawnPosition;

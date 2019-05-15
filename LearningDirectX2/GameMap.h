@@ -8,6 +8,7 @@
 #include "Soldier.h"
 #include "Unit.h"
 #include "Item.h"
+#include "Tag.h"
 #include <iostream>
 #include <fstream>
 

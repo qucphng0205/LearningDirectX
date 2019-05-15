@@ -6,7 +6,7 @@ void Entity::OnSetPosition(D3DXVECTOR3 pos) {
 }
 
 Entity::Entity() {
-	tag = None;
+	Tag = NONE;
 	id = ++currentID;
 	isStatic = false;
 }
@@ -28,12 +28,12 @@ bool Entity::IsActive() {
 	return isActive;
 }
 
-Entity::EntityTag Entity::GetTag() {
-	return tag;
+Tag Entity::GetTag() {
+	return Tag;
 }
 
-void Entity::SetTag(EntityTag tag) {
-	this->tag = tag;
+void Entity::SetTag(enum Tag Tag) {
+	this->Tag = Tag;
 }
 
 Entity::EntityType Entity::GetType() {
