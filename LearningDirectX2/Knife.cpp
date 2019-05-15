@@ -19,6 +19,7 @@ Knife::Knife() : Weapon() {
 	SetColliderLeft(-height / 2);
 
 	isActive = false;
+	point = 100;
 }
 
 Knife::~Knife() {

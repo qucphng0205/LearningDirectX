@@ -88,10 +88,11 @@ void Weapon::Instantiate(D3DXVECTOR3 position) {
 	Spawn();
 }
 
-void Weapon::OnDestroy() {
+EarnedData Weapon::OnDestroy() {
 	EffectChain *effect = new EffectChain(new Explosion(position));
 	Grid::GetInstance()->AddEffect(effect);
 	SetActive(false);
+	return EarnedData(point);
 }
 
 void Weapon::MakeInactive() {

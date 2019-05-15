@@ -19,6 +19,7 @@ Bullet::Bullet() {
 	SetColliderLeft(-height / 2);
 
 	isActive = false;
+	point = 0;
 }
 
 Bullet::~Bullet() {

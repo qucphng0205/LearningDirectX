@@ -52,15 +52,18 @@ void Graphic::InitFont() {
 	timeInfor = "146";
 	lifeInfor = "02";
 	spiritInfor = "00";
-	sTageInfor = "3-1";
+	stageInfor = "3-1";
 	playerHealthInfor = ":::::";
 	enemyHealthInfor = "::::::::::::::::";
 	healthIcon = "::::::::::::::::\n::::::::::::::::";
 	iconSpirit = "+";
+	Textures::GetInstance()->Add(TEX_FLAMES, "Resources/Sprites/Flames.png", D3DCOLOR_XRGB(255, 163, 177));
+	Textures::GetInstance()->Add(TEX_THROWINGSTAR, "Resources/Sprites/ThrowingStar.png", D3DCOLOR_XRGB(255, 163, 177));
+	Textures::GetInstance()->Add(TEX_WINDMILLSTAR, "Resources/Sprites/WindmillStar.png", D3DCOLOR_XRGB(255, 163, 177));
 }
 void Graphic::DrawString() {
 	std::string left = "SCORE-" + scoreInfor + "\nTIMER-" + timeInfor + "{  |\nP-" + lifeInfor + "  -" + spiritInfor + "}  ~";
-	std::string right = "STagE-" + sTageInfor + "\nNINJA-\nENEMY-";
+	std::string right = "stage-" + stageInfor + "\nNINJA-\nENEMY-";
 
 	normalFont->DrawText(spriteHandler, left.c_str(), -1, &leftZone, DT_LEFT | DT_NOCLIP,
 		0xFFFFFFFF);
@@ -79,6 +82,23 @@ void Graphic::DrawString() {
 
 	normalFont->DrawText(spriteHandler, iconSpirit.c_str(), -1, &iconSpiritZone, DT_LEFT | DT_NOCLIP,
 		D3DCOLOR_XRGB(252, 116, 180));
+
+	switch (itemTag) {
+	case FLAMES:
+		Draw(105, 25, Textures::GetInstance()->Get(TEX_FLAMES));
+		break;
+	case THROWINGSTAR:
+		Draw(105, 25, Textures::GetInstance()->Get(TEX_THROWINGSTAR));
+		break;
+	case WINDMILLSTAR:
+		Draw(105, 25, Textures::GetInstance()->Get(TEX_WINDMILLSTAR));
+		break;
+	}
+}
+
+void Graphic::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture) {
+	auto position = D3DXVECTOR3(x, y, 0);
+	spriteHandler->Draw(texture, NULL, NULL, &position, D3DCOLOR_ARGB(255, 255, 255, 255));
 }
 
 //void Graphic::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha) {
@@ -152,13 +172,13 @@ void Graphic::SetSpiritInfo(int spirit) {
 		spiritInfor = "0" + spiritInfor;
 }
 
-void Graphic::SetSTageInfo(int sTage) {
-	switch (sTage) {
-	case 0: sTageInfor = "3-1";
+void Graphic::SetstageInfo(int stage) {
+	switch (stage) {
+	case 0: stageInfor = "3-1";
 		break;
-	case 1: sTageInfor = "3-2";
+	case 1: stageInfor = "3-2";
 		break;
-	case 2: sTageInfor = "3-3";
+	case 2: stageInfor = "3-3";
 		break;
 	}
 }
@@ -173,4 +193,8 @@ void Graphic::SetEnemyHealthInfo(int health) {
 	enemyHealthInfor = "";
 	for (int i = 0; i < health; i++)
 		enemyHealthInfor += ":";
+}
+
+void Graphic::SetItemInfo(Tag item) {
+	itemTag = item;
 }

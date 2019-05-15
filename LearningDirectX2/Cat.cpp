@@ -11,6 +11,7 @@ Cat::Cat() : Enemy() {
 	textures->Get(TEX_CAT)->GetLevelDesc(0, &desc);
 	width = desc.Width / 4;
 	height = desc.Height;
+	point = 200;
 }
 
 Cat::~Cat() {

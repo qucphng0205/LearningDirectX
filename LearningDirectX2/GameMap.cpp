@@ -211,8 +211,8 @@ GameMap::~GameMap() {
 
 void GameMap::LoadTileset(char * filePath, int tileWidth, int tileHeight) {
 	//Parse map tu file 
-	Textures::GetInstance()->Add(TEX_STagE31, filePath, D3DCOLOR_XRGB(255, 0, 255));
-	auto texture = Textures::GetInstance()->Get(TEX_STagE31);
+	Textures::GetInstance()->Add(TEX_stage31, filePath, D3DCOLOR_XRGB(255, 0, 255));
+	auto texture = Textures::GetInstance()->Get(TEX_stage31);
 	D3DSURFACE_DESC desc;
 	texture->GetLevelDesc(0, &desc);
 	auto width = desc.Width;

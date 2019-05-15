@@ -154,9 +154,10 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 
 	playerData->state->OnCollision(impactor, side);
 
-	if (impactor->GetTag() != GROUND)
-		if ((side == Right && velocity.x > 0) || (side == Left && velocity.x < 0))
-			velocity.x *= collisionTime;
+	//--OBSOLETE
+	//if (impactor->GetTag() != GROUND)
+	//	if ((side == Right && velocity.x > 0) || (side == Left && velocity.x < 0))
+	//		velocity.x *= collisionTime;
 
 	//--DEBUG
 	//if (impactorRect.left == 16 && impactorRect.top == 40 && collisionTime != 0)
@@ -244,4 +245,3 @@ void Player::HandleInput() {
 	if (this->playerData->state)
 		playerData->state->HandleInput();
 }
-

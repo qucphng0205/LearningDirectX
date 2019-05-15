@@ -1,7 +1,7 @@
 #pragma once
-#define TEX_STagE31 1
-#define TEX_STagE32 2
-#define TEX_STagE33 3
+#define TEX_stage31 1
+#define TEX_stage32 2
+#define TEX_stage33 3
 #define TEX_PLAYER 4
 #define TEX_SPARTA 5
 #define TEX_CAT 6
@@ -13,6 +13,9 @@
 #define TEX_KNIFE 12
 #define TEX_BULLET 13
 #define TEX_EXPLOSION 14
+#define TEX_FLAMES 15
+#define TEX_THROWINGSTAR 16
+#define TEX_WINDMILLSTAR 17
 
 #define PLAYER_SLASH_FRAME 7
 #define PLAYER_RUNNING_FRAME 4

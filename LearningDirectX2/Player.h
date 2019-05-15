@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "PlayerData.h"
 #include "PlayerState.h"
+#include "Item.h"
 
 class Player : public Entity {
 public:

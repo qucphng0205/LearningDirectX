@@ -1,6 +1,7 @@
 #pragma once
 #include "Tag.h"
 #include "MyHelper.h"
+#include "Textures.h"
 
 struct EarnedData {
 	int score;
@@ -27,6 +28,7 @@ private:
 	static int score;
 	static int spiritPoint;
 	static Tag item;
+
 	static void SetScore(int scr);
 	static void SetHealth(int hel);
 	static void SetSpiritPoint(int point);
@@ -38,5 +40,5 @@ public:
 	static int GetSpiritPoint();
 	static int GetLife();
 	static Tag GetItem();
-	//static int add
+	static void AddData(EarnedData data);
 };

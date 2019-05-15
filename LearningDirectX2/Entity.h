@@ -3,6 +3,7 @@
 #include <d3dx9.h>
 #include "BoxCollider.h"
 #include "Tag.h"
+#include "DataManager.h"
 
 class Entity {
 
@@ -85,7 +86,7 @@ public:
 	virtual void Render();
 
 	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
-	virtual void OnDestroy();
+	virtual EarnedData OnDestroy();
 
 protected:
 	bool isActive;

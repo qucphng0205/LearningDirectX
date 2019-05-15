@@ -38,7 +38,7 @@ public:
 	virtual BoxCollider GetCollider();
 	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
 	virtual Entity::EntityDirection GetSpawnDirection();
-	virtual void OnDestroy();
+	virtual EarnedData OnDestroy();
 	//virtual void SwapLeftRightCollider();
 
 protected:
@@ -54,4 +54,5 @@ protected:
 	EnemyData *enemyData;
 
 	EffectChain *effect;
+	int point;
 };

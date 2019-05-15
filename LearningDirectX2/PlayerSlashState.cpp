@@ -25,7 +25,7 @@ void PlayerSlashState::Update(double dt) {
 				player->SetState(Idle);
 		return;
 	}
-	
+
 	if (player->status != Player::OnGround) {
 
 		player->timeOnAir += dt;
@@ -87,16 +87,20 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 	if (impactorType == Entity::EnemyType || impactorType == Entity::ProjectileType || impactorType == Entity::ItemType) {
 		if (m_Animation->GetCurrentFrameID() == 0)
 			return;
-		////--DEBUG
-		//if (impactor->GetType() == ProjectileType)
-		//	impactor = impactor;
-		//auto slashDir = player->GetMoveDirection();
-		//auto posX = player->GetPosition().x;
-		//auto impactorX = impactor->GetPosition().x;
 
 		if (CollideWithKatana(impactor->GetRect())) {
-			impactor->OnDestroy();
+			if ((impactorType != Entity::ItemType) || (impactorType == Entity::ItemType && !((Item*)impactor)->IsAvailable()))
+				DataManager::AddData(impactor->OnDestroy());
 		}
+		else
+			if (CollideWithBody(impactor->GetRect())) {
+				if (impactorType == Entity::ItemType) {
+					DataManager::AddData(impactor->OnDestroy());
+				}
+				else {
+					//ENEMY OR PROJECTILE
+				}
+			}
 		return;
 	}
 
@@ -140,11 +144,23 @@ bool PlayerSlashState::CollideWithKatana(BoxCollider r) {
 	BoxCollider katana = playerData->player->GetRect();
 	katana.top -= 3;
 	katana.bottom += 18;
+	//tinh tu tay
 	if (playerData->player->GetMoveDirection() == Entity::LeftToRight)
 		katana.left += 14;
 	else
 		katana.right -= 14;
 	if (CollisionDetector::IsCollide(katana, r))
+		return true;
+	return false;
+}
+
+bool PlayerSlashState::CollideWithBody(BoxCollider r) {
+	BoxCollider body = playerData->player->GetRect();
+	if (playerData->player->GetMoveDirection() == Entity::LeftToRight)
+		body.right -= 24;
+	else
+		body.left += 24;
+	if (CollisionDetector::IsCollide(body, r))
 		return true;
 	return false;
 }

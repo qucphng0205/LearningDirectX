@@ -37,6 +37,10 @@ void PlayerCrouchState::HandleInput() {
 }
 
 void PlayerCrouchState::OnCollision(Entity * impactor, Entity::SideCollision side) {
+	auto impactorType = impactor->GetType();
+	if (impactorType == Entity::ItemType)
+		if (((Item*)impactor)->IsAvailable())
+			DataManager::AddData(impactor->OnDestroy());
 }
 
 PlayerState::State PlayerCrouchState::GetState() {

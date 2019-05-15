@@ -50,5 +50,5 @@ void ItemAvailableState::Update(double dt) {
 }
 
 ItemState::State ItemAvailableState::GetState() {
-	return Available;
+	return ItemState::Available;
 }

@@ -2,14 +2,14 @@
 #include "ItemHolderState.h"
 #include "ItemAvailableState.h"
 
-Item::Item(int sTage, enum Tag Tag) {
+Item::Item(int stage, enum Tag Tag) {
 	type = Entity::ItemType;
 	this->Tag = Tag;
 	itemData = new ItemData(this);
 	auto textures = Textures::GetInstance();
 	textures->Add(TEX_HOLDER, "Resources/Sprites/holderspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 	textures->Add(TEX_ITEM, "Resources/Sprites/itemspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
-	itemHolderState = new ItemHolderState(itemData, sTage);
+	itemHolderState = new ItemHolderState(itemData, stage);
 	itemAvailableState = new ItemAvailableState(itemData, Tag);
 
 	isDisappeared = false;
@@ -43,6 +43,14 @@ void Item::SetState(ItemState::State state) {
 	itemData->state->ResetState();
 }
 
+ItemState::State Item::GetState() {
+	return itemData->state->GetState();
+}
+
+bool Item::IsAvailable() {
+	return GetState() == ItemState::Available;
+}
+
 void Item::SetSpawnBox(BoxCollider box) {
 	position = D3DXVECTOR3(box.GetCenter());
 	collider.top = box.top - position.y;
@@ -68,8 +76,9 @@ void Item::SetActive(bool active) {
 
 	if (active == isActive)
 		return;
-
+	
 	if (active && !isDisappeared)
+		//BUG
 		Spawn();
 	else
 		MakeInactive();
@@ -103,8 +112,11 @@ void Item::Spawn() {
 	SetState(ItemState::Holder);
 }
 
-void Item::OnDestroy() {
-	if (itemData->state->GetState() == ItemState::Available)
-		return;
+EarnedData Item::OnDestroy() {
+	if (itemData->state->GetState() == ItemState::Available) {
+		SetActive(false);
+		return EarnedData(Tag);
+	}
 	SetState(ItemState::Available);
+	return EarnedData(0);
 }

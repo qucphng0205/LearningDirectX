@@ -174,5 +174,6 @@ void Entity::OnCollision(Entity * impactor, SideCollision side, float collisionT
 	//velocity = D3DXVECTOR2(0, 0);
 }
 
-void Entity::OnDestroy() {
+EarnedData Entity::OnDestroy() {
+	return EarnedData();
 }

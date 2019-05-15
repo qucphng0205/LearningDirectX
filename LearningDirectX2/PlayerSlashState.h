@@ -2,6 +2,8 @@
 #include "PlayerState.h"
 #include "Player.h"
 
+#include "Item.h"
+
 class PlayerSlashState : public PlayerState {
 public:
 	PlayerSlashState(PlayerData *data);
@@ -13,4 +15,5 @@ public:
 	virtual State GetState();
 	virtual void ResetState(int dummy);
 	virtual bool CollideWithKatana(BoxCollider r);
+	virtual bool CollideWithBody(BoxCollider r);
 };

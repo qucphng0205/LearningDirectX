@@ -28,5 +28,5 @@ void ItemState::ResetState() {
 }
 
 ItemState::State ItemState::GetState() {
-	return Holder;
+	return ItemState::Holder;
 }

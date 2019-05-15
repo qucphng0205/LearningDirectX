@@ -12,6 +12,7 @@ Eagle::Eagle() : Enemy() {
 	textures->Get(TEX_EAGLE)->GetLevelDesc(0, &desc);
 	width = desc.Width / 4;
 	height = desc.Height;
+	point = 300;
 }
 
 Eagle::~Eagle() {

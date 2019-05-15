@@ -1,12 +1,12 @@
 #include "ItemHolderState.h"
 #include "Item.h"
 
-ItemHolderState::ItemHolderState(ItemData *data, int sTage) : ItemState(data) {
+ItemHolderState::ItemHolderState(ItemData *data, int stage) : ItemState(data) {
 	auto textures = Textures::GetInstance();
 	LPDIRECT3DTEXTURE9 texture = textures->Get(TEX_HOLDER);
 	m_Animation = new Animation();
-	//sTage = 0 means STage 3-1, 1 means STage 3-2, 2 means STage 3-3, boss
-	if (sTage == 0) 
+	//stage = 0 means stage 3-1, 1 means stage 3-2, 2 means stage 3-3, boss
+	if (stage == 0) 
 		m_Animation->AddFramesA(texture, 1, 1, 2, 2, 2, HOLDER_FRAME * (1 / 60.0f));
 	else
 		m_Animation->AddFramesA(texture, 2, 2, 2, 2, 2, HOLDER_FRAME * (1 / 60.0f));
@@ -22,5 +22,5 @@ void ItemHolderState::Update(double dt) {
 }
 
 ItemState::State ItemHolderState::GetState() {
-	return Holder;
+	return ItemState::Holder;
 }

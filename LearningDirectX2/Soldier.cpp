@@ -12,6 +12,7 @@ Soldier::Soldier() : Enemy() {
 	textures->Get(TEX_SOLDIER)->GetLevelDesc(0, &desc);
 	width = desc.Width / 2.0;
 	height = desc.Height / 2.0;
+	point = 200;
 }
 
 Soldier::~Soldier() {

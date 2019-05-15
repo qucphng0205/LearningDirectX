@@ -32,12 +32,13 @@ public:
 	virtual float GetBigHeight();
 	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
 	virtual void Instantiate(D3DXVECTOR3 position);
-	virtual void OnDestroy();
+	virtual EarnedData OnDestroy();
 protected:
 	virtual void MakeInactive();
 	virtual void Spawn();
 	BoxCollider collider;
 	Animation *anim;
+	int point;
 };
 
 

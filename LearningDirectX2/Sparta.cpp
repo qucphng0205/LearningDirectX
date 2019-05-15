@@ -11,6 +11,7 @@ Sparta::Sparta() : Enemy() {
 	textures->Get(TEX_SPARTA)->GetLevelDesc(0, &desc);
 	width = desc.Width / 4;
 	height = desc.Height;
+	point = 100;
 }
 
 Sparta::~Sparta() {

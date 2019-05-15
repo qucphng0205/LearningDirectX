@@ -14,7 +14,7 @@ Thrower::Thrower() : Enemy() {
 	width = desc.Width / 2.0;
 	height = desc.Height / 2.0;
 
-	//Spawn knifes for thrower
+	point = 300;
 }
 
 Thrower::~Thrower() {

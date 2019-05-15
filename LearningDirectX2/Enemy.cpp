@@ -144,10 +144,11 @@ Entity::EntityDirection Enemy::GetSpawnDirection() {
 	return spawnDirection;
 }
 
-void Enemy::OnDestroy() {
+EarnedData Enemy::OnDestroy() {
 	effect = new EffectChain(new Explosion(position));
 	Grid::GetInstance()->AddEffect(effect);
 	SetActive(false);
+	return EarnedData(point);
 }
 
 //void Enemy::SwapLeftRightCollider() {

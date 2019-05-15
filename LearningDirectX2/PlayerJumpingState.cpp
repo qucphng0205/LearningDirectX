@@ -61,8 +61,13 @@ void PlayerJumpingState::HandleInput() {
 void PlayerJumpingState::OnCollision(Entity * impactor, Entity::SideCollision side) {
 
 	auto player = playerData->player;
+	auto impactorType = impactor->GetType();
 
-	if (impactor->GetTag() == GROUND && side == Entity::Bottom) {
+	if (impactorType == Entity::ItemType) {
+		if (((Item*)impactor)->IsAvailable())
+			DataManager::AddData(impactor->OnDestroy());
+	}
+	else if (impactor->GetTag() == GROUND && side == Entity::Bottom) {
 		if (player->status == Player::Jumping)
 			return;
 		auto keyboard = KeyBoard::GetInstance();

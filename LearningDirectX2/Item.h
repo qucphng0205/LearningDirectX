@@ -8,25 +8,16 @@
 
 class Item : public Entity {
 public:
-	//enum ItemType {
-	//	SpiritPoints5,
-	//	SpiritPoints10,
-	//	Scores500,
-	//	Scores1000,
-	//	TimeFreeze,
-	//	Health,
-	//	ThrowingStar,
-	//	WindmillStar,
-	//	Flames
-	//};
 
-	Item(int sTage, enum Tag Tag);
+	Item(int stage, enum Tag Tag);
 	~Item();
 
 	virtual void Update(double dt);
 	virtual void Render();
 
 	virtual void SetState(ItemState::State state);
+	virtual ItemState::State GetState();
+	virtual bool IsAvailable();
 
 	virtual void SetSpawnBox(BoxCollider box);
 	//Get real rect in world 
@@ -41,11 +32,11 @@ public:
 	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
 	virtual void MakeInactive();
 	virtual void Spawn();
-	virtual void OnDestroy();
+	virtual EarnedData OnDestroy();
 	bool onGround;
 
 protected:
-	int sTage;
+	int stage;
 	bool isDisappeared;
 	BoxCollider collider;
 	D3DXVECTOR3 spawnPosition;

@@ -8,5 +8,5 @@ public:
 	ItemAvailableState(ItemData *data, Tag Tag);
 	virtual void ResetState();
 	virtual void Update(double dt);
-	virtual State GetState();
+	virtual ItemState::State GetState();
 };
