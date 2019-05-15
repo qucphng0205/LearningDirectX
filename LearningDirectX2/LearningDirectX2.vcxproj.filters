@@ -88,6 +88,9 @@
     <Filter Include="Header Files\Object\Bullet">
       <UniqueIdentifier>{e381dd12-fec6-4a54-80f3-a522dab43ba8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\Tag">
+      <UniqueIdentifier>{cb8c4086-873d-4c68-b975-1107beb4fa58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -260,6 +263,9 @@
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
       <Filter>Header Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="DataManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -442,6 +448,12 @@
     </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>Header Files\Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="DataManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tag.h">
+      <Filter>Header Files\Object\Tag</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

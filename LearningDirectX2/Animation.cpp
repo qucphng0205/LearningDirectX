@@ -8,6 +8,13 @@ Animation::Animation(float defaultTime) {
 	this->defaultTime = defaultTime;
 }
 
+Animation::~Animation() {
+	for (size_t i = 0; i < frames.size(); i++) {
+		delete frames[i];
+		frames[i] = NULL;
+	}
+}
+
 void Animation::AddFrame(LPANIMATION_FRAME frame) {
 	frames.push_back(frame);
 }
@@ -60,7 +67,7 @@ void Animation::SetCurrentFrame(int frame) {
 	this->currentFrame = frame;
 }
 
-void Animation::Render(D3DXVECTOR3 position, BoxCollider sourceRect, D3DXCOLOR colorKey, bool isReverse){
+void Animation::Render(D3DXVECTOR3 position, BoxCollider sourceRect, D3DXCOLOR colorKey, bool isReverse) {
 	if (currentFrame == 1)
 		currentFrame = 1;
 	frames[currentFrame]->Draw(position, sourceRect, colorKey, isReverse);
@@ -109,7 +116,7 @@ void Animation::ResetAnimation() {
 	startUpdate = false;
 }
 
-int Animation::GetCurrentFrameID(){
+int Animation::GetCurrentFrameID() {
 	return currentFrame;
 }
 

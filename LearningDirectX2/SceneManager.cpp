@@ -19,3 +19,8 @@ void SceneManager::CreateScene(Scene * scene) {
 Scene * SceneManager::GetCurrentScene() {
 	return CurrentScene;
 }
+
+SceneManager::~SceneManager() {
+	delete CurrentScene;
+	CurrentScene = NULL;
+}

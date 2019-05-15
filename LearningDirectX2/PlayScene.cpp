@@ -19,16 +19,32 @@ PlayScene::PlayScene() {
 	ObjectPooling *pool = ObjectPooling::GetInstance();
 	pool->AddKnife();
 	pool->AddBullet();
+
+	timeLeft = 150;
 }
 
 PlayScene::~PlayScene() {
-
+	delete map;
+	map = NULL;
+	delete camera;
+	camera = NULL;
 }
 
 void PlayScene::Render() {
+	Graphic *g = Graphic::GetInstance();
+	g->SetScoreInfo(DataManager::GetScore());
+	g->SetTimeInfo(timeLeft);
+	g->SetLifeInfo(DataManager::GetLife());
+	g->SetSpiritInfo(DataManager::GetSpiritPoint());
+	g->SetStageInfo(0);
+	g->SetPlayerHealthInfo(DataManager::GetHealth());
+	g->SetEnemyHealthInfo(16);
+
 	map->Draw();
-	map->GetGrid()->Render();
+
 	Graphic::GetInstance()->DrawString();
+
+	map->GetGrid()->Render();
 }
 
 void PlayScene::ProcessInput() {
@@ -45,6 +61,7 @@ void PlayScene::Update(double dt) {
 	D3DXVECTOR3 playerPos = player->GetPosition();
 	camera->FollowPlayer(playerPos.x, playerPos.y);
 	CheckCamera();
+	timeLeft -= dt;
 }
 
 void PlayScene::CheckCollision(double dt) {

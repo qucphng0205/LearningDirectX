@@ -48,6 +48,24 @@ Player::Player() : Entity() {
 }
 
 Player::~Player() {
+	delete idleState;
+	idleState = NULL;
+	delete runningState;
+	runningState = NULL;
+	delete slashState;
+	slashState = NULL;
+	delete crouchState;
+	crouchState = NULL;
+	delete crouchSlashState;
+	crouchSlashState = NULL;
+	delete jumpState;
+	jumpState = NULL;
+	delete climbState;
+	climbState = NULL;
+	delete useItemState;
+	useItemState = NULL;
+	delete playerData;
+	playerData = NULL;
 }
 
 void Player::Update(double dt) {

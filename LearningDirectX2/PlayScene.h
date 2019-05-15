@@ -3,6 +3,7 @@
 #include "GameMap.h"
 #include "Player.h"
 #include "ObjectPooling.h"
+#include "DataManager.h"
 
 class PlayScene : public Scene {
 
@@ -12,6 +13,8 @@ class PlayScene : public Scene {
 	GameMap *map;
 	Camera *camera;
 	Player *player;
+
+	float timeLeft;
 
 public:
 	PlayScene();

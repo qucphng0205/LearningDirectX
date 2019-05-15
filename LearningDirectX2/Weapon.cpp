@@ -6,6 +6,8 @@ Weapon::Weapon() {
 }
 
 Weapon::~Weapon() {
+	delete anim;
+	anim = NULL;
 }
 
 void Weapon::Update(double dt) {

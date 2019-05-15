@@ -197,7 +197,16 @@ void GameMap::Draw() {
 }
 
 GameMap::~GameMap() {
+	delete grid;
+	grid = NULL;
+	delete tileset;
+	tileset = NULL;
+	for (int m = 0; m < this->rows; m++) {
+		delete mapIDs[m];
+		mapIDs[m] = NULL;
+	}
 	delete mapIDs;
+	mapIDs = NULL;
 }
 
 void GameMap::LoadTileset(char * filePath, int tileWidth, int tileHeight) {

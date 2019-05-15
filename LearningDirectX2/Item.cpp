@@ -17,6 +17,12 @@ Item::Item(int stage, Entity::EntityTag tag) {
 }
 
 Item::~Item() {
+	delete itemData;
+	itemData = NULL;
+	delete itemHolderState;
+	itemHolderState = NULL;
+	delete itemAvailableState;
+	itemAvailableState = NULL;
 }
 
 void Item::Update(double dt) {

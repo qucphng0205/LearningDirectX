@@ -9,6 +9,8 @@ Enemy::Enemy() : Entity() {
 }
 
 Enemy::~Enemy() {
+	delete enemyData;
+	enemyData = NULL;
 }
 
 void Enemy::Update(double dt) {

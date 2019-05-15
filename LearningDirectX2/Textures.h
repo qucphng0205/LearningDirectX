@@ -10,6 +10,7 @@ class Textures {
 	std::unordered_map<int, LPDIRECT3DTEXTURE9> textures;
 public:
 	Textures();
+	~Textures();
 	void Add(int id, LPCSTR path, D3DCOLOR transparentColor);
 	bool HasContained(int id);
 	LPDIRECT3DTEXTURE9 Get(unsigned int i);

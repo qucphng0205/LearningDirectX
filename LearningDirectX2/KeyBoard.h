@@ -18,18 +18,19 @@ private:
 	HWND hWnd;
 
 	//PLUS
-	DIMOUSESTATE mouse_State;
-	struct DIMOUSESTATE {
-		LONG lx;
-		LONG ly;
-		LONG lz;
-		BYTE rgbButton[4];
-	};
-	LPDIRECTINPUTDEVICE8 mouse;
+	//DIMOUSESTATE mouse_State;
+	//struct DIMOUSESTATE {
+	//	LONG lx;
+	//	LONG ly;
+	//	LONG lz;
+	//	BYTE rgbButton[4];
+	//};
+	//LPDIRECTINPUTDEVICE8 mouse;
 
 public:
 	static KeyBoard *GetInstance();
 	KeyBoard();
+	~KeyBoard();
 	void InitKeyboard(HWND _hWnd, HINSTANCE _hInstance);
 	void ProcessKeyboard();
 	bool GetKeyDown(int KeyCode);

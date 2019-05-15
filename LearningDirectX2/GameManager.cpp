@@ -9,7 +9,9 @@ GameManager::GameManager(HWND hWnd, HINSTANCE hInstance) {
 }
 
 GameManager::~GameManager() {
-
+	delete Graphic::GetInstance();
+	delete KeyBoard::GetInstance();
+	delete SceneManager::GetInstance();
 }
 
 void GameManager::Update(double dt) {

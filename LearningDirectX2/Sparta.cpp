@@ -14,6 +14,8 @@ Sparta::Sparta() : Enemy() {
 }
 
 Sparta::~Sparta() {
+	delete spartaFollowState;
+	spartaFollowState = NULL;
 }
 
 void Sparta::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {

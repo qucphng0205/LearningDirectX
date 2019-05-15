@@ -9,6 +9,8 @@ EnemyState::EnemyState() {
 }
 
 EnemyState::~EnemyState() {
+	delete m_Animation;
+	m_Animation = NULL;
 }
 
 void EnemyState::Update(double dt) {

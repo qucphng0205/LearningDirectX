@@ -15,6 +15,10 @@ Soldier::Soldier() : Enemy() {
 }
 
 Soldier::~Soldier() {
+	delete soldierFollowState;
+	delete soldierAttackState;
+	soldierFollowState = NULL;
+	soldierAttackState = NULL;
 }
 
 void Soldier::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {

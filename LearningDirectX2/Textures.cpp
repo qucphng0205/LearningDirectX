@@ -6,6 +6,10 @@ Textures * Textures::instance = NULL;
 Textures::Textures() {
 }
 
+Textures::~Textures() {
+
+}
+
 void Textures::Add(int id, LPCSTR path, D3DCOLOR transparentColor) {
 	if (textures[id])
 		return;

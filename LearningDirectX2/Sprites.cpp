@@ -103,14 +103,14 @@ void Sprite::Draw(D3DXVECTOR3 position, BoxCollider r, D3DXCOLOR colorKey, bool 
 		//	spriteHandler->SetTransform(&m_Maxtrix);
 		//}
 
-		RECT rr = MyHelper::BoxColliderToRect(inSourceRect);
+	RECT rr = MyHelper::BoxColliderToRect(inSourceRect);
 
-		spriteHandler->Draw(
-			texture,
-			&rr,
-			&center,
-			&p,
-			colorKey
-		);
-		spriteHandler->SetTransform(&oldMatrix);
-	}
+	spriteHandler->Draw(
+		texture,
+		&rr,
+		&center,
+		&p,
+		colorKey
+	);
+	spriteHandler->SetTransform(&oldMatrix);
+}

@@ -165,7 +165,32 @@ Grid::Grid(BoxCollider r) {
 }
 
 Grid::~Grid() {
-
+	//delete grid double link list
+	for (int x = 0; x < columns; x++)
+		for (int y = 0; y < rows; y++)
+			if (cells[x][y] != NULL) {
+				Unit *unit = cells[x][y];
+				Unit *other;
+				while (unit != NULL) {
+					other = unit->next;
+					delete unit;
+					unit = other;
+				}
+				cells[x][y] = NULL;
+			}
+	//delete effects double link list
+	EffectChain *chain = effects;
+	while (effects != NULL) {
+		chain = effects->next;
+		delete effects;
+		effects = chain;
+	}
+	effects = NULL;
+	//delete static object;
+	for (size_t i = 0; i < staticObjects.size(); i++) {
+		delete staticObjects[i];
+		staticObjects[i] = NULL;
+	}
 }
 
 void Grid::Add(Unit * unit) {

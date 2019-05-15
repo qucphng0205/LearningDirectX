@@ -13,6 +13,13 @@ KeyBoard::KeyBoard() {
 	keyboard = NULL;
 }
 
+KeyBoard::~KeyBoard() {
+	if (directinput != NULL)
+		directinput->Release();
+	if (keyboard != NULL)
+		keyboard->Release();
+}
+
 void KeyBoard::InitKeyboard(HWND _hWnd, HINSTANCE _hInstance) {
 	hWnd = _hWnd;
 	HRESULT
@@ -108,5 +115,6 @@ bool KeyBoard::GetKeyUp(int KeyCode) {
 }
 
 D3DXVECTOR2 KeyBoard::GetMouseDis() {
-	return D3DXVECTOR2(mouse_State.lX, mouse_State.lY);
+	return D3DXVECTOR2(0, 0);
+	//return D3DXVECTOR2(mouse_State.lX, mouse_State.lY);
 }

@@ -22,6 +22,7 @@ protected:
 	int bufferWidth;
 	int bufferHeight;
 
+	//DRAW STRING ON SCREEN BRO
 	ID3DXFont *normalFont;
 	ID3DXFont *narrowFont;
 	RECT leftZone;
@@ -39,6 +40,13 @@ protected:
 	std::string iconSpirit;
 	std::string healthIcon;
 public:
+	void SetScoreInfo(int score);
+	void SetTimeInfo(int time);
+	void SetLifeInfo(int life);
+	void SetSpiritInfo(int spirit);
+	void SetStageInfo(int stage);
+	void SetPlayerHealthInfo(int health);
+	void SetEnemyHealthInfo(int health);
 	//Ham khoi tao
 	void Init(HWND hWnd);
 	void InitFont();
@@ -56,7 +64,7 @@ public:
 		return spriteHandler;
 	}
 	int GetBackBufferWidth() { return SCREEN_WIDTH; }
-	int GetBackBufferHeight() {return SCREEN_HEIGHT; }
+	int GetBackBufferHeight() { return SCREEN_HEIGHT; }
 	HWND getHWND() { return hWnd; }
 	static Graphic *GetInstance();
 	~Graphic();

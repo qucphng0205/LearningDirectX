@@ -13,6 +13,7 @@ public:
 		return isTransitioning;
 	}*/
 	Scene* GetCurrentScene();
+	~SceneManager();
 private:
 	static SceneManager *instance;
 	Scene *CurrentScene;

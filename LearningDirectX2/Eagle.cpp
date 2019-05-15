@@ -15,6 +15,8 @@ Eagle::Eagle() : Enemy() {
 }
 
 Eagle::~Eagle() {
+	delete eagleFollowState;
+	eagleFollowState = NULL;
 }
 
 void Eagle::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {

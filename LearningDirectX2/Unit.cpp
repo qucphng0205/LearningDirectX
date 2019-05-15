@@ -11,6 +11,11 @@ Unit::Unit(Grid *gr, Entity *ent) {
 	active = false;
 }
 
+Unit::~Unit() {
+	delete entity;
+	entity = NULL;
+}
+
 void Unit::Move(float x, float y) {
 	grid->Move(this, x, y);
 }

@@ -25,7 +25,7 @@ void Graphic::Init(HWND hWnd) {
 	if (d3ddv == NULL)
 		OutputDebugString("[ERROR] CreateDevice failed\n");
 	//d3ddv->
-	
+
 	d3ddv->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backBuffer);
 	D3DXCreateSprite(d3ddv, &spriteHandler);
 	InitFont();
@@ -53,7 +53,7 @@ void Graphic::InitFont() {
 	lifeInfor = "02";
 	spiritInfor = "00";
 	stageInfor = "3-1";
-	playerHealthInfor = ";;;;;";
+	playerHealthInfor = ":::::";
 	enemyHealthInfor = "::::::::::::::::";
 	healthIcon = "::::::::::::::::\n::::::::::::::::";
 	iconSpirit = "+";
@@ -72,7 +72,7 @@ void Graphic::DrawString() {
 		0xFFFFFFFF);
 
 	narrowFont->DrawText(spriteHandler, playerHealthInfor.c_str(), -1, &playerHealthZone, DT_LEFT | DT_NOCLIP,
-		D3DCOLOR_XRGB(252,116,180));
+		D3DCOLOR_XRGB(252, 116, 180));
 
 	narrowFont->DrawText(spriteHandler, enemyHealthInfor.c_str(), -1, &enemyHealthZone, DT_LEFT | DT_NOCLIP,
 		D3DCOLOR_XRGB(252, 116, 180));
@@ -108,14 +108,69 @@ Graphic * Graphic::GetInstance() {
 }
 
 Graphic::~Graphic() {
-	if (backBuffer != NULL)
+	if (backBuffer != NULL) {
 		backBuffer->Release();
-	if (d3ddv != NULL)
+	}
+	if (d3ddv != NULL) {
 		d3ddv->Release();
-	if (d3d != NULL)
+	}
+	if (d3d != NULL) {
 		d3d->Release();
+	}
 	if (normalFont != NULL) {
 		normalFont->Release();
-		normalFont = NULL;
 	}
+	if (narrowFont != NULL) {
+		narrowFont->Release();
+	}
+	if (spriteHandler != NULL) {
+		spriteHandler->Release();
+	}
+}
+
+void Graphic::SetScoreInfo(int score) {
+	scoreInfor = std::to_string(score);
+	for (int i = scoreInfor.length(); i < 6; i++)
+		scoreInfor = "0" + scoreInfor;
+}
+
+void Graphic::SetTimeInfo(int time) {
+	timeInfor = std::to_string(time);
+	for (int i = timeInfor.length(); i < 3; i++)
+		timeInfor = "0" + timeInfor;
+}
+
+void Graphic::SetLifeInfo(int life) {
+	lifeInfor = std::to_string(life);
+	for (int i = lifeInfor.length(); i < 2; i++)
+		lifeInfor = "0" + lifeInfor;
+}
+
+void Graphic::SetSpiritInfo(int spirit) {
+	spiritInfor = std::to_string(spirit);
+	for (int i = spiritInfor.length(); i < 2; i++)
+		spiritInfor = "0" + spiritInfor;
+}
+
+void Graphic::SetStageInfo(int stage) {
+	switch (stage) {
+	case 0: stageInfor = "3-1";
+		break;
+	case 1: stageInfor = "3-2";
+		break;
+	case 2: stageInfor = "3-3";
+		break;
+	}
+}
+
+void Graphic::SetPlayerHealthInfo(int health) {
+	playerHealthInfor = "";
+	for (int i = 0; i < health; i++)
+		playerHealthInfor += ":";
+}
+
+void Graphic::SetEnemyHealthInfo(int health) {
+	enemyHealthInfor = "";
+	for (int i = 0; i < health; i++)
+		enemyHealthInfor += ":";
 }

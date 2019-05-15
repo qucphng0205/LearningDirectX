@@ -14,6 +14,8 @@ Cat::Cat() : Enemy() {
 }
 
 Cat::~Cat() {
+	delete catFollowState;
+	catFollowState = NULL;
 }
 
 void Cat::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {

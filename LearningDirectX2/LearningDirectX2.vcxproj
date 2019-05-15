@@ -25,6 +25,7 @@
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="CatFollowState.cpp" />
     <ClCompile Include="CollisionDetector.cpp" />
+    <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Eagle.cpp" />
     <ClCompile Include="EagleFollowState.cpp" />
@@ -85,6 +86,7 @@
     <ClInclude Include="Cat.h" />
     <ClInclude Include="CatFollowState.h" />
     <ClInclude Include="CollisionDetector.h" />
+    <ClInclude Include="DataManager.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Eagle.h" />
     <ClInclude Include="EagleFollowState.h" />
@@ -132,6 +134,7 @@
     <ClInclude Include="Sparta.h" />
     <ClInclude Include="SpartaFollowState.h" />
     <ClInclude Include="Sprites.h" />
+    <ClInclude Include="Tag.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Thrower.h" />
     <ClInclude Include="ThrowerAttackState.h" />

@@ -2,6 +2,7 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 #include "BoxCollider.h"
+#include "Tag.h"
 
 class Entity {
 
@@ -26,27 +27,6 @@ public:
 	{
 		bool IsCollided;
 		BoxCollider regionCollision;
-	};
-	enum EntityTag
-	{
-		Ground,
-		Sparta,
-		Cat,
-		Thrower,
-		Eagle,
-		Soldier,
-		SpiritPoints5,
-		SpiritPoints10,
-		Scores500,
-		Scores1000,
-		TimeFreeze,
-		Health,
-		ThrowingStar,
-		WindmillStar,
-		Flames,
-		Projectile,
-		Player,
-		None
 	};
 	enum EntityType {
 		StaticType,
@@ -110,7 +90,7 @@ public:
 protected:
 	bool isActive;
 	int id;
-	EntityTag tag;
+	ObjectTag tag;
 	EntityType type;
 	//duoc goi khi set position cua Entity, dung cho ke thua
 	virtual void OnSetPosition(D3DXVECTOR3 pos);

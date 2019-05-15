@@ -18,6 +18,10 @@ Thrower::Thrower() : Enemy() {
 }
 
 Thrower::~Thrower() {
+	delete throwerFollowState;
+	throwerFollowState = NULL;
+	delete throwerAttackState;
+	throwerAttackState = NULL;
 }
 
 void Thrower::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
@@ -61,7 +65,7 @@ void Thrower::SetColliderRight(int right) {
 }
 
 void Thrower::SetState(EnemyState::State state) {
-	if (state == EnemyState::Attack) 
+	if (state == EnemyState::Attack)
 		if (!ObjectPooling::GetInstance()->CheckQuantity(KNIFE_POOL_INDEX))
 			return;
 
