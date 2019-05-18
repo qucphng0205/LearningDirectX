@@ -21,9 +21,9 @@ void CatFollowState::ResetState() {
 	enemy->SetColliderLeft(-8);
 
 	if (enemy->GetSpawnDirection() == Entity::LeftToRight)
-		enemy->SetVx(CAT_SPEED);
+		enemy->SetVx(110);
 	else
-		enemy->SetVx(-CAT_SPEED);
+		enemy->SetVx(-110);
 
 	EnemyState::ResetState();
 }

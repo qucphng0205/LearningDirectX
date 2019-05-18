@@ -22,20 +22,32 @@ Eagle::~Eagle() {
 
 void Eagle::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
 }
+
+#include "Player.h"
+int i = 0;
 void Eagle::Update(double dt) {
 	SetMoveDirection(Camera::GetInstance()->GetPosition().x < position.x ? Entity::RightToLeft : Entity::LeftToRight);
+
 	Enemy::Update(dt);
 
-	D3DXVECTOR3 target = Camera::GetInstance()->GetPosition();
+	D3DXVECTOR3 target = Player::GetInstance()->GetPosition();
 	target.y -= 15;
 	D3DXVECTOR2 dir = D3DXVECTOR2(target - position);
 	D3DXVec2Normalize(&dir, &dir);
+	i++;
+	dir.x *= 5.5f;
+	dir.y *= 5.5f;
 
-	dir.x *= 5.0f;
-	dir.y *= 10.0f;
+	//--DEBUG
+	if (i == 110)
+		i = i;
+	if (i == 60)
+		i = 60;
+
 	AddVelocity(dir);
-	velocity.x = MyHelper::Clamp(velocity.x, -180.0f, 180.0f);
-	velocity.y = MyHelper::Clamp(velocity.y, -90.0f, 90.0f);
+
+	//velocity.x = MyHelper::Clamp(velocity.x, -200.0f, 200.0f);
+	velocity.y = MyHelper::Clamp(velocity.y, -80.0f, 80.0f);
 }
 
 void Eagle::SetColliderTop(int top) {
@@ -68,4 +80,5 @@ BoxCollider Eagle::GetCollider() {
 void Eagle::Spawn() {
 	SetState(EnemyState::Follow);
 	Enemy::Spawn();
+	i = 0;
 }

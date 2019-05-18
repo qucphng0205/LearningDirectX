@@ -22,9 +22,6 @@ Bullet::Bullet() {
 	point = 0;
 }
 
-Bullet::~Bullet() {
-}
-
 void Bullet::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
 }
 

@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="BigShuriken.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cat.cpp" />
@@ -65,6 +66,7 @@
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Shuriken.cpp" />
     <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="SoldierAttackState.cpp" />
     <ClCompile Include="SoldierFollowState.cpp" />
@@ -80,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="BigShuriken.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
@@ -128,6 +131,7 @@
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Shuriken.h" />
     <ClInclude Include="Soldier.h" />
     <ClInclude Include="SoldierAttackState.h" />
     <ClInclude Include="SoldierFollowState.h" />

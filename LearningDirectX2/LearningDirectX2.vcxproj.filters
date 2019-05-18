@@ -16,9 +16,6 @@
     <Filter Include="Header Files\Framework">
       <UniqueIdentifier>{46f46cac-3436-48d4-acde-36bfc24b6f0a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Object">
-      <UniqueIdentifier>{ca012626-80f4-4d89-852c-ceb9bd409d1d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Manager">
       <UniqueIdentifier>{e68e445b-8adf-4a28-a10f-3dad90f23357}</UniqueIdentifier>
     </Filter>
@@ -27,15 +24,6 @@
     </Filter>
     <Filter Include="Header Files\Scene">
       <UniqueIdentifier>{0faa50d7-a1fa-4bcb-a5f4-441dfd57b9ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Object\Enemy">
-      <UniqueIdentifier>{5392a0c0-0198-4da2-8d5b-66f34c40faaa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Object\Player">
-      <UniqueIdentifier>{2da1c967-07fd-42bf-9b5e-9e45dbb3237c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Object\Enemy\Sparta">
-      <UniqueIdentifier>{06658c96-b328-4be0-9695-76b7626f2edc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Manager\Group">
       <UniqueIdentifier>{d986dab5-8bd8-4c7f-b8be-e0fe7f3f0d03}</UniqueIdentifier>
@@ -46,14 +34,17 @@
     <Filter Include="Header Files\Manager\Game">
       <UniqueIdentifier>{c91b27a8-4eb1-4d92-800b-b710315179c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object">
+      <UniqueIdentifier>{ca012626-80f4-4d89-852c-ceb9bd409d1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Enemy">
+      <UniqueIdentifier>{5392a0c0-0198-4da2-8d5b-66f34c40faaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Enemy\Sparta">
+      <UniqueIdentifier>{06658c96-b328-4be0-9695-76b7626f2edc}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Object\Enemy\General">
       <UniqueIdentifier>{760e2c3d-8ffa-453d-976d-0bd73aa7347b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Object\Player\State">
-      <UniqueIdentifier>{46952d50-f538-4630-a631-f8bce52f3385}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Object\Player\Player">
-      <UniqueIdentifier>{d187da9b-75ab-4f5d-974b-4a14e87d7d27}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Object\Enemy\Cat">
       <UniqueIdentifier>{338a9fba-d7c2-4fc2-9641-9f9cbdfb6017}</UniqueIdentifier>
@@ -66,6 +57,15 @@
     </Filter>
     <Filter Include="Header Files\Object\Enemy\Soldier">
       <UniqueIdentifier>{23d0c80f-86da-4104-a0a4-c12191a101c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Player">
+      <UniqueIdentifier>{2da1c967-07fd-42bf-9b5e-9e45dbb3237c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Player\State">
+      <UniqueIdentifier>{46952d50-f538-4630-a631-f8bce52f3385}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Player\Player">
+      <UniqueIdentifier>{d187da9b-75ab-4f5d-974b-4a14e87d7d27}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Object\General">
       <UniqueIdentifier>{491964bc-0835-4ecc-8927-b7c19ad0a036}</UniqueIdentifier>
@@ -82,14 +82,17 @@
     <Filter Include="Header Files\Object\Effect\Explosion">
       <UniqueIdentifier>{1d9bdccc-4257-490c-9a92-8dd5697202a4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Object\Knife">
-      <UniqueIdentifier>{ed23881e-ef59-4b7f-9e8d-397d822f6635}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Object\Bullet">
-      <UniqueIdentifier>{e381dd12-fec6-4a54-80f3-a522dab43ba8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Object\Tag">
       <UniqueIdentifier>{cb8c4086-873d-4c68-b975-1107beb4fa58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Weapon">
+      <UniqueIdentifier>{27604140-3935-4bd4-929a-bc6d8bf40ffb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Weapon\Knife">
+      <UniqueIdentifier>{ed23881e-ef59-4b7f-9e8d-397d822f6635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Weapon\Bullet">
+      <UniqueIdentifier>{e381dd12-fec6-4a54-80f3-a522dab43ba8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -241,10 +244,10 @@
       <Filter>Header Files\Object\Effect</Filter>
     </ClCompile>
     <ClCompile Include="Knife.cpp">
-      <Filter>Header Files\Object\Knife</Filter>
+      <Filter>Header Files\Object\Weapon\Knife</Filter>
     </ClCompile>
     <ClCompile Include="KnifeRotateState.cpp">
-      <Filter>Header Files\Object\Knife</Filter>
+      <Filter>Header Files\Object\Weapon\Knife</Filter>
     </ClCompile>
     <ClCompile Include="Unit.cpp">
       <Filter>Header Files\Manager\Collilde</Filter>
@@ -259,13 +262,19 @@
       <Filter>Header Files\Manager\Group</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
-      <Filter>Header Files\Object\Bullet</Filter>
+      <Filter>Header Files\Object\Weapon\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
-      <Filter>Header Files\Object</Filter>
+      <Filter>Header Files\Object\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Shuriken.cpp">
+      <Filter>Header Files\Object\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="DataManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\Manager\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="BigShuriken.cpp">
+      <Filter>Header Files\Object\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -426,10 +435,10 @@
       <Filter>Header Files\Object\Effect</Filter>
     </ClInclude>
     <ClInclude Include="Knife.h">
-      <Filter>Header Files\Object\Knife</Filter>
+      <Filter>Header Files\Object\Weapon\Knife</Filter>
     </ClInclude>
     <ClInclude Include="KnifeRotateState.h">
-      <Filter>Header Files\Object\Knife</Filter>
+      <Filter>Header Files\Object\Weapon\Knife</Filter>
     </ClInclude>
     <ClInclude Include="Unit.h">
       <Filter>Header Files\Manager\Collilde</Filter>
@@ -440,20 +449,26 @@
     <ClInclude Include="EffectChains.h">
       <Filter>Header Files\Manager\Group</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Header Files\Object</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectPooling.h">
       <Filter>Header Files\Manager\Group</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>Header Files\Object\Bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="DataManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Object\Weapon\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Tag.h">
       <Filter>Header Files\Object\Tag</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\Object\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Shuriken.h">
+      <Filter>Header Files\Object\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="DataManager.h">
+      <Filter>Header Files\Manager\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="BigShuriken.h">
+      <Filter>Header Files\Object\Weapon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

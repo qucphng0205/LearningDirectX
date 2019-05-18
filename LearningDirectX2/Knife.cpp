@@ -22,18 +22,17 @@ Knife::Knife() : Weapon() {
 	point = 100;
 }
 
-Knife::~Knife() {
-}
-
 void Knife::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
 }
 
 void Knife::Update(double dt) {
 
 	Weapon::Update(dt);
+
+	//Mathf.Lerp(a, b, t);
 	if (tParam < 1)
-	tParam += dt * KNIFE_SPEED;
-	//HARD-CODE DETECTED
+		tParam += dt * KNIFE_SPEED;
+
 	velocity.x = MyHelper::Lerp(startVelocity.x, startVelocity.x > 0 ? KNIFE_THROW_FORCE_MIN_X : -KNIFE_THROW_FORCE_MIN_X, tParam);
 	velocity.y = MyHelper::Lerp(startVelocity.y, -KNIFE_THROW_FORCE_Y, tParam);
 }

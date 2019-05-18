@@ -233,13 +233,13 @@ void Grid::HandleActiveUnit(BoxCollider camBox, Entity::EntityDirection camDirec
 				//Neu o ben trai va player di trai
 				//Neu o ben phai va player di phai
 				entity->SetActive(
-					(childPos.x < camCenterX && camDirection == Entity::RightToLeft && entityRect.left - camBox.left <= ENEMY_OFFSET_BORDER) ||
-					(childPos.x > camCenterX && camDirection == Entity::LeftToRight && camBox.right - entityRect.right <= ENEMY_OFFSET_BORDER));
+					(childPos.x < camCenterX && camDirection == Entity::RightToLeft && abs(entityRect.left - camBox.left) <= ENEMY_OFFSET_BORDER) ||
+					(childPos.x > camCenterX && camDirection == Entity::LeftToRight && abs(camBox.right - entityRect.right) <= ENEMY_OFFSET_BORDER));
 			}
 			else {
 				//Neu o ben trai va player di phai
 				//Neu o ben phai va player di trai: MAYBE WRONG
-				entity->SetActive((childPos.x < camCenterX && camDirection == Entity::LeftToRight && entityRect.left - camBox.left <= ENEMY_OFFSET_BORDER)/* || (childPos.x > camCenterX && camDirection == Entity::RightToLeft && camBox.right - entityRect.right <= ENEMY_OFFSET_BORDER)*/);
+				entity->SetActive((childPos.x < camCenterX && camDirection == Entity::LeftToRight && abs(entityRect.left - camBox.left) <= ENEMY_OFFSET_BORDER)/* || (childPos.x > camCenterX && camDirection == Entity::RightToLeft && camBox.right - entityRect.right <= ENEMY_OFFSET_BORDER)*/);
 			}
 		}
 		unit = unit->next;

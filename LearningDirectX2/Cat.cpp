@@ -26,9 +26,11 @@ void Cat::OnCollision(Entity * impactor, Entity::SideCollision side, float colli
 		if (side == Entity::Bottom) {
 			if ((MyHelper::Distance(myRect.left, impactorRect.left) < ENEMY_OFFSET_BORDER && velocity.x < 0) || (MyHelper::Distance(myRect.right, impactorRect.right) < ENEMY_OFFSET_BORDER && velocity.x > 0)/* || (impactorRect.left > myRect.left && impactorRect.left < myRect.right && velocity.x < 0) || (impactorRect.right > myRect.left && impactorRect.right < myRect.right && velocity.x > 0)*/)
 				SetVx(-velocity.x);
-			SetVy(CAT_JUMP_VELOCITY);
-			onGround = true;
 		}
+
+		SetVy(CAT_JUMP_VELOCITY);
+		onGround = true;
+
 		//else if ((side == Left && velocity.x < 0) || (side == Right && velocity.x >0))
 		//	SetVx(-velocity.x);
 	}

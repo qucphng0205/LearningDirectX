@@ -11,7 +11,7 @@ int DataManager::GetHealth() {
 }
 
 void DataManager::SetHealth(int hel) {
-	DataManager::health = 0;// = MyHelper::Clamp(hel, 1, 16);
+	DataManager::health = MyHelper::Clamp(hel, 1, 16);
 }
 
 int DataManager::GetScore() {
