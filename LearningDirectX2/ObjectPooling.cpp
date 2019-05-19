@@ -52,13 +52,19 @@ void ObjectPooling::AddBullet(int number) {
 void ObjectPooling::AddShuriken(int number) {
 	Unit *unit;
 	for (int i = 0; i < number; i++) {
-		Shuriken* bullet = new Shuriken();
-		unit = new Unit(Grid::GetInstance(), bullet);
-		pool[BULLET_POOL_INDEX].push_back(unit);
+		Shuriken* shuriken = new Shuriken();
+		unit = new Unit(Grid::GetInstance(), shuriken);
+		pool[SHURIKEN_POOL_INDEX].push_back(unit);
 	}
 }
 
 void ObjectPooling::AddBigShuriken(int number) {
+	Unit *unit;
+	for (int i = 0; i < number; i++) {
+		BigShuriken* bigShuriken = new BigShuriken();
+		unit = new Unit(Grid::GetInstance(), bigShuriken);
+		pool[BIGSHURIKEN_POOL_INDEX].push_back(unit);
+	}
 }
 
 void ObjectPooling::AddFlames(int number) {

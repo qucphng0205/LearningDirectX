@@ -126,6 +126,7 @@ void Player::SetState(PlayerState::State name, int dummy) {
 		break;
 	case PlayerState::UseItem:
 		playerData->state = useItemState;
+		CheckForUseItem();
 		break;
 	case PlayerState::Jump:
 		playerData->state = jumpState;
@@ -235,6 +236,60 @@ void Player::SetMoveDirection(Entity::EntityDirection dir) {
 		return;
 	direction = dir;
 	//DebugOut(L"left: %f, right: %f\n", collider.left, collider.right);
+}
+
+#include "ObjectPooling.h"
+void Player::CheckForUseItem() {
+	enum Tag item = DataManager::GetItem();
+	switch (item) {
+	case (NONE):
+		ThrowBigShuriken();
+		break;
+	case (THROWINGSTAR):
+		ThrowShuriken();
+		break;
+	case (WINDMILLSTAR):
+		ThrowBigShuriken();
+		break;
+	case (FLAMES):
+		//ThrowFlames();
+		break;
+	}
+}
+
+void Player::ThrowShuriken() {
+
+	if (DataManager::GetSpiritPoint() < SHURIKEN_COST)
+		return;
+
+	ObjectPooling *pool = ObjectPooling::GetInstance();
+
+	D3DXVECTOR3 position = this->position;
+	if (direction == LeftToRight)
+		position.x += collider.right;
+	else
+		position.x += collider.left;
+
+	if (ObjectPooling::GetInstance()->Instantiate(SHURIKEN_POOL_INDEX, position))
+		DataManager::ConsumeSpiritPoint(SHURIKEN_COST);
+}
+
+void Player::ThrowBigShuriken() {
+	//--DEBUG
+	if (DataManager::GetSpiritPoint() < 0) //BIGSHURIKEN_COST)
+		return;
+
+	ObjectPooling *pool = ObjectPooling::GetInstance();
+
+	D3DXVECTOR3 position = this->position;
+	if (direction == LeftToRight)
+		position.x += collider.right;
+	else
+		position.x += collider.left;
+
+	//--DEBUG WITH ZERO
+	if (ObjectPooling::GetInstance()->Instantiate(BIGSHURIKEN_POOL_INDEX, position))
+		DataManager::ConsumeSpiritPoint(0);// BIGSHURIKEN_COST);
 }
 
 BoxCollider Player::GetCollider() {

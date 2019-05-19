@@ -34,6 +34,9 @@ public:
 	virtual void SetColliderBottom(int bottom);
 	virtual void SetColliderRight(int right);
 	virtual void SetMoveDirection(Entity::EntityDirection dir);
+	void CheckForUseItem();
+	void ThrowShuriken();
+	void ThrowBigShuriken();
 	virtual BoxCollider GetCollider();
 	void HandleInput();
 	Status status;

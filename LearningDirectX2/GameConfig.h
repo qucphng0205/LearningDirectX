@@ -1,4 +1,5 @@
 #pragma once
+//-------------------------------TEXTURE INDEX-----------------------
 #define TEX_stage31 1
 #define TEX_stage32 2
 #define TEX_stage33 3
@@ -20,6 +21,7 @@
 #define TEX_BIGSHURIKEN 19
 #define TEX_FLAMES 20
 
+//---------------------------------ANIMATION FRAME----------------------
 #define PLAYER_SLASH_FRAME 7
 #define PLAYER_RUNNING_FRAME 4
 #define PLAYER_JUMPING_FRAME 3
@@ -42,8 +44,11 @@
 #define BIGSHURIKEN_FRAME 3
 #define FLAMES_FRAME 1
 
+//-------------------------------------- GRID -------------------------
 #define GRID_ROW 4
 #define GRID_COLUMN 40
+
+//----------------------------PLAYER SPEED AND FORCE-------------------
 #define PLAYER_RUN_VELOCITY 90
 //1 mean 1s 
 //2 mean 0.5s
@@ -51,8 +56,8 @@
 //1 / x = s
 #define JUMP_TO_GROUND_SPEED 1.5
 #define PLAYER_JUMP_FORCE 270
-#define PLAYER_MAX_FALLING_VELOCITY -270
 
+//----------------------------BOT CONFIG-------------------------------
 #define SPARTA_SPEED 30.0f
 #define THROWER_SPEED 20.0f
 //PERCENT TIME OF FOLLOW (/ 10)
@@ -70,8 +75,8 @@
 #define KNIFE_DRAG_FORCE 10.0f
 #define BULLET_FORCE 110
 #define OFFSET_TO_BULLET 6
-#define SHURIKEN_SPEED 110
-//#define BIGSHURIKEN_SPEED 
+#define SHURIKEN_SPEED 150
+#define BIGSHURIKEN_SPEED 150
 
 #define PLAYER_OFFSET_GROUND PLAYER_JUMP_FORCE * 1.0 / 60
 #define ENEMY_OFFSET_BORDER 2
@@ -86,8 +91,17 @@
 #define BULLET_QUANTITY 9
 #define BULLET_POOL_INDEX 1
 //third
+//spirit points
+#define SHURIKEN_COST 3
 #define SHURIKEN_QUANTITY 3
+#define SHURIKEN_POOL_INDEX 2
 //fourth
-#define BIGSHURIKEN_QUANTITY 3
+//spirit points
+#define BIGSHURIKEN_COST 5
+#define BIGSHURIKEN_QUANTITY 1
+#define BIGSHURIKEN_POOL_INDEX 3
 //five
+//spirit points
+#define FLAMES_COST 5
 #define FLAMES_QUANTITY 3
+#define FLAMES_POOL_INDEX 4

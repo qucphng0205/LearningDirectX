@@ -19,6 +19,8 @@ PlayScene::PlayScene() {
 	ObjectPooling *pool = ObjectPooling::GetInstance();
 	pool->AddKnife();
 	pool->AddBullet();
+	pool->AddShuriken();
+	pool->AddBigShuriken();
 
 	timeLeft = 150;
 }

@@ -38,6 +38,7 @@ public:
 	static int GetHealth();
 	static int GetScore();
 	static int GetSpiritPoint();
+	static bool ConsumeSpiritPoint(int point);
 	static int GetLife();
 	static Tag GetItem();
 	static void AddData(EarnedData data);

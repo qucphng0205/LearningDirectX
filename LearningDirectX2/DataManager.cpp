@@ -26,6 +26,13 @@ int DataManager::GetSpiritPoint() {
 	return spiritPoint;
 }
 
+bool DataManager::ConsumeSpiritPoint(int point) {
+	if (spiritPoint < point)
+		return false;
+	spiritPoint -= point;
+	return true;
+}
+
 void DataManager::SetSpiritPoint(int point) {
 	spiritPoint = MyHelper::Clamp(point, 0, 99);
 }

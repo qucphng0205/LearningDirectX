@@ -2,6 +2,7 @@
 #include "Knife.h"
 #include "Bullet.h"
 #include "Shuriken.h"
+#include "BigShuriken.h"
 #include "Unit.h"
 #include <map>
 #include <vector>
