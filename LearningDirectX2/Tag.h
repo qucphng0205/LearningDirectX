@@ -31,7 +31,10 @@ enum Layer {
 	EProjectileType,
 	//Player projectile
 	PProjectileType,
-	ItemType,
+	//katana + pprojectile tac dong duoc
+	ItemHolderType,
+	//katana + pprojectile ko tac dong dc
+	ItemAvailableType,
 	NoneType
 };
 //}

@@ -14,6 +14,7 @@ public:
 	virtual void OnCollision(Entity *impactor, Entity::SideCollision side);
 	virtual State GetState();
 	virtual void ResetState(int dummy);
+	virtual BoxCollider GetBody();
 	virtual bool CollideWithKatana(BoxCollider r);
 	virtual bool CollideWithBody(BoxCollider r);
 };

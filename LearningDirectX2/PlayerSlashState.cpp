@@ -84,17 +84,18 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 	//if (impactorType == Layer::EnemyType)
 	//	impactor = impactor;
 
-	if (impactorType == Layer::EnemyType || impactorType == Layer::EProjectileType || impactorType == Layer::ItemType) {
+	if (impactorType == Layer::EnemyType || impactorType == Layer::EProjectileType || impactorType == Layer::ItemAvailableType || impactorType == Layer::ItemHolderType) {
+
 		if (m_Animation->GetCurrentFrameID() == 0)
 			return;
 
 		if (CollideWithKatana(impactor->GetRect())) {
-			if ((impactorType != Layer::ItemType) || (impactorType == Layer::ItemType && !((Item*)impactor)->IsAvailable()))
+			if (impactorType != Layer::ItemAvailableType)
 				DataManager::AddData(impactor->OnDestroy());
 		}
 		else
 			if (CollideWithBody(impactor->GetRect())) {
-				if (impactorType == Layer::ItemType) {
+				if (impactorType == Layer::ItemAvailableType) {
 					DataManager::AddData(impactor->OnDestroy());
 				}
 				else {
@@ -103,8 +104,7 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 			}
 		return;
 	}
-
-	if (impactor->GetTag() == GROUND && side == Entity::Bottom && player->status == Player::Falling) {
+	else if (impactor->GetTag() == GROUND && side == Entity::Bottom && player->status == Player::Falling) {
 		player->status = Player::OnGround;
 		player->timeOnAir = 0;
 		auto keyboard = KeyBoard::GetInstance();
@@ -139,6 +139,15 @@ void PlayerSlashState::ResetState(int dummy) {
 		m_Animation->SetCurrentFrame(dummy);
 }
 
+BoxCollider PlayerSlashState::GetBody() {
+	BoxCollider body = playerData->player->GetRect();
+	if (playerData->player->GetMoveDirection() == Entity::LeftToRight)
+		body.right -= 24;
+	else
+		body.left += 24;
+	return body;
+}
+
 #include "CollisionDetector.h"
 bool PlayerSlashState::CollideWithKatana(BoxCollider r) {
 	BoxCollider katana = playerData->player->GetRect();
@@ -155,11 +164,7 @@ bool PlayerSlashState::CollideWithKatana(BoxCollider r) {
 }
 
 bool PlayerSlashState::CollideWithBody(BoxCollider r) {
-	BoxCollider body = playerData->player->GetRect();
-	if (playerData->player->GetMoveDirection() == Entity::LeftToRight)
-		body.right -= 24;
-	else
-		body.left += 24;
+	BoxCollider body = GetBody();
 	if (CollisionDetector::IsCollide(body, r))
 		return true;
 	return false;

@@ -27,6 +27,7 @@ public:
 	virtual State GetState();
 	virtual int GetAnimationHeight();
 	virtual int GetAnimationWidth();
+	virtual BoxCollider GetBody();
 	virtual void ResetState(int dummy);
 	Animation *GetAnimation() { return m_Animation; }
 protected:

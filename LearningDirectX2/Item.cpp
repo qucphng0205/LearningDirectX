@@ -3,7 +3,7 @@
 #include "ItemAvailableState.h"
 
 Item::Item(int stage, enum Tag Tag) {
-	type = Layer::ItemType;
+	type = Layer::ItemHolderType;
 	this->Tag = Tag;
 	itemData = new ItemData(this);
 	auto textures = Textures::GetInstance();
@@ -38,8 +38,10 @@ void Item::Render() {
 void Item::SetState(ItemState::State state) {
 	if (state == ItemState::Holder)
 		itemData->state = itemHolderState;
-	else
+	else {
 		itemData->state = itemAvailableState;
+		type = Layer::ItemAvailableType;
+	}
 	itemData->state->ResetState();
 }
 

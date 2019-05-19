@@ -39,6 +39,10 @@ int PlayerState::GetAnimationWidth() {
 	return m_Animation->GetWidthCurrentFrame();
 }
 
+BoxCollider PlayerState::GetBody() {
+	return playerData->player->GetRect();
+}
+
 void PlayerState::ResetState(int dummy) {
 	m_Animation->ResetAnimation();
 }

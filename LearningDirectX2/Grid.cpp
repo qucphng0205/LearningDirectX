@@ -218,13 +218,13 @@ void Grid::HandleActiveUnit(BoxCollider camBox, Entity::EntityDirection camDirec
 
 	while (unit != NULL) {
 		unit->active = true;
-		if (!unit->entity->IsActive() && unit->entity->GetType() != Layer::EProjectileType) {
+		if (!unit->entity->IsActive() && unit->entity->GetType() != Layer::EProjectileType && unit->entity->GetType() != Layer::PProjectileType) {
 			auto entity = unit->entity;
 			auto entityRect = entity->GetRect();
 			Entity::EntityDirection direction = entity->GetMoveDirection();
 			auto childPos = entity->GetPosition();
 
-			if (unit->entity->GetType() == Layer::ItemType)
+			if (unit->entity->GetType() == Layer::ItemAvailableType || unit->entity->GetType() == Layer::ItemHolderType)
 				entity->SetActive(true);
 
 			else if (direction == Entity::EntityDirection::RightToLeft) {
@@ -253,7 +253,7 @@ void Grid::HandleActive(BoxCollider camRect, Entity::EntityDirection camDirectio
 	r.top = (int)MyHelper::Clamp(camRect.top / cellHeight, 0, rows);
 	r.bottom = (int)MyHelper::Clamp(camRect.bottom / cellHeight, 0, rows);
 	activeRect = r;
-	//CHECK ACTIVE FIRST
+	//CHECK ACTIVE: NAM TRONG CELL CHUA CAMERA THI XET ACTIVEUNIT
 	for (int x = 0; x < columns; x++)
 		for (int y = 0; y < rows; y++)
 			if (x < r.left || x > r.right || y < r.bottom || y > r.top) {

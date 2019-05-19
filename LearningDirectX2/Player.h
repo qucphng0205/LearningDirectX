@@ -3,7 +3,6 @@
 #include "Entity.h"
 #include "PlayerData.h"
 #include "PlayerState.h"
-#include "Item.h"
 
 class Player : public Entity {
 public:
@@ -34,6 +33,7 @@ public:
 	virtual void SetColliderBottom(int bottom);
 	virtual void SetColliderRight(int right);
 	virtual void SetMoveDirection(Entity::EntityDirection dir);
+	virtual BoxCollider GetBody();
 	void CheckForUseItem();
 	void ThrowShuriken();
 	void ThrowBigShuriken();

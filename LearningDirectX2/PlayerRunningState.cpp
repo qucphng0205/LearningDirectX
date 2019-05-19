@@ -55,9 +55,8 @@ void PlayerRunningState::HandleInput() {
 
 void PlayerRunningState::OnCollision(Entity * impactor, Entity::SideCollision side) {
 	auto impactorType = impactor->GetType();
-	if (impactorType == Layer::ItemType)
-		if (((Item*)impactor)->IsAvailable())
-			DataManager::AddData(impactor->OnDestroy());
+	if (impactorType == Layer::ItemAvailableType)
+		DataManager::AddData(impactor->OnDestroy());
 }
 
 PlayerState::State PlayerRunningState::GetState() {

@@ -76,9 +76,8 @@ void PlayerUseItemState::HandleInput() {
 
 void PlayerUseItemState::OnCollision(Entity * impactor, Entity::SideCollision side) {
 	auto impactorType = impactor->GetType();
-	if (impactorType == Layer::ItemType)
-		if (((Item*)impactor)->IsAvailable())
-			DataManager::AddData(impactor->OnDestroy());
+	if (impactorType == Layer::ItemAvailableType)
+		DataManager::AddData(impactor->OnDestroy());
 
 	Player *player = playerData->player;
 

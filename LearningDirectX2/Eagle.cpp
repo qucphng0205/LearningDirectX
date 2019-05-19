@@ -32,11 +32,14 @@ void Eagle::Update(double dt) {
 
 	D3DXVECTOR3 target = Player::GetInstance()->GetPosition();
 	target.y -= 15;
-	D3DXVECTOR2 dir = D3DXVECTOR2(target - position);
-	D3DXVec2Normalize(&dir, &dir);
-	i++;
-	dir.x *= 5.5f;
-	dir.y *= 5.5f;
+	D3DXVECTOR2 accelerate = D3DXVECTOR2(0, 0);
+
+	if (target.x < position.x)
+		accelerate.x = -5;
+	else if (target.x > position.x)
+		accelerate.x = 5;
+
+	position.y = MyHelper::Lerp(position.y, target.y, 0.02f);
 
 	//--DEBUG
 	if (i == 110)
@@ -44,10 +47,10 @@ void Eagle::Update(double dt) {
 	if (i == 60)
 		i = 60;
 
-	AddVelocity(dir);
+	AddVelocity(accelerate);
 
 	//velocity.x = MyHelper::Clamp(velocity.x, -200.0f, 200.0f);
-	velocity.y = MyHelper::Clamp(velocity.y, -80.0f, 80.0f);
+	//velocity.y = MyHelper::Clamp(velocity.y, -80.0f, 80.0f);
 }
 
 void Eagle::SetColliderTop(int top) {

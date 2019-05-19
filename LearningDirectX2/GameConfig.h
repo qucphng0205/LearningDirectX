@@ -75,8 +75,8 @@
 #define KNIFE_DRAG_FORCE 10.0f
 #define BULLET_FORCE 110
 #define OFFSET_TO_BULLET 6
-#define SHURIKEN_SPEED 150
-#define BIGSHURIKEN_SPEED 150
+#define SHURIKEN_SPEED 190
+#define BIGSHURIKEN_SPEED 190
 
 #define PLAYER_OFFSET_GROUND PLAYER_JUMP_FORCE * 1.0 / 60
 #define ENEMY_OFFSET_BORDER 2
@@ -93,7 +93,7 @@
 //third
 //spirit points
 #define SHURIKEN_COST 3
-#define SHURIKEN_QUANTITY 3
+#define SHURIKEN_QUANTITY 6
 #define SHURIKEN_POOL_INDEX 2
 //fourth
 //spirit points

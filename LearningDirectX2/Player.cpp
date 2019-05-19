@@ -238,6 +238,10 @@ void Player::SetMoveDirection(Entity::EntityDirection dir) {
 	//DebugOut(L"left: %f, right: %f\n", collider.left, collider.right);
 }
 
+BoxCollider Player::GetBody() {
+	return playerData->state->GetBody();
+}
+
 #include "ObjectPooling.h"
 void Player::CheckForUseItem() {
 	enum Tag item = DataManager::GetItem();

@@ -9,6 +9,9 @@ BigShuriken::BigShuriken() {
 	anim = new Animation();
 	anim->AddFrames(tex, 1, 2, BIGSHURIKEN_FRAME * (1 / 60.0f));
 
+	Tag = Tag::PPROJECTILE;
+	type = Layer::PProjectileType;
+
 	D3DSURFACE_DESC desc;
 	tex->GetLevelDesc(0, &desc);
 
@@ -40,29 +43,37 @@ void BigShuriken::Update(double dt) {
 	else if (target.x > position.x)
 		accelerate.x = 5;
 
-	position.y = MyHelper::Lerp(position.y, target.y, 0.1f);
+	position.y = MyHelper::Lerp(position.y, target.y, 0.06f);
 
 	//--DEBUG
-	i++;
-	if (i == 110)
-		i = i;
-	if (i == 60)
-		i = 60;
+	//i++;
+	//if (i == 110)
+	//	i = i;
+	//if (i == 60)
+	//	i = 60;
 
 	//SetVelocity(dir);
 	AddVelocity(accelerate);
-	//velocity.x = MyHelper::Clamp(velocity.x, -200.0f, 200.0f);
+	velocity.x = MyHelper::Clamp(velocity.x, -190.0f, 190.0f);
 	//velocity.y = MyHelper::Clamp(velocity.y, -80.0f, 80.0f);
 }
 
 void BigShuriken::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
+	if (impactor->GetType() == Layer::EnemyType || impactor->GetType() == Layer::ItemHolderType) {
+		impactor->OnDestroy();
+	}
+	else if (impactor->GetType() == Layer::PlayerType) {
+		auto body = ((Player*)impactor)->GetBody();
+		auto playerState = ((Player*)impactor)->GetState();
+		if (playerState != PlayerState::UseItem)
+			if (CollisionDetector::IsCollide(body, GetRect()))
+				OnDestroy();
+	}
 }
 
 void BigShuriken::Instantiate(D3DXVECTOR3 position) {
 	velocity.x = BIGSHURIKEN_SPEED;
 	velocity.y = 0;
-	//--DEBUG
-	i = 0;
 
 	if (Player::GetInstance()->GetPosition().x > position.x)
 		velocity.x = -velocity.x;
@@ -70,4 +81,9 @@ void BigShuriken::Instantiate(D3DXVECTOR3 position) {
 	SetVelocity(velocity);
 
 	Weapon::Instantiate(position);
+}
+
+EarnedData BigShuriken::OnDestroy() {
+	SetActive(false);
+	return EarnedData(0);
 }

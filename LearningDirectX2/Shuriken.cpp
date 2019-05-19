@@ -8,7 +8,9 @@ Shuriken::Shuriken() {
 
 	anim = new Animation();
 	anim->AddFrames(tex, 1, 4, SHURIKEN_FRAME * (1 / 60.0f));
+
 	Tag = Tag::PPROJECTILE;
+	type = Layer::PProjectileType;
 
 	D3DSURFACE_DESC desc;
 	tex->GetLevelDesc(0, &desc);
@@ -24,17 +26,32 @@ Shuriken::Shuriken() {
 	point = 0;
 }
 
-void Shuriken::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
+void Shuriken::Update(double dt) {
+	Weapon::Update(dt);
 }
+
+#include "CollisionDetector.h"
+void Shuriken::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
+	if (impactor->GetType() == Layer::EnemyType || impactor->GetType() == Layer::ItemHolderType) {
+		impactor->OnDestroy();
+		OnDestroy();
+	} 
+}
+
 
 void Shuriken::Instantiate(D3DXVECTOR3 position) {
 	velocity.x = SHURIKEN_SPEED;
 	velocity.y = 0;
 
-	if (Camera::GetInstance()->GetPosition().x > position.x)
+	if (Player::GetInstance()->GetPosition().x > position.x)
 		velocity.x = -velocity.x;
 
 	SetVelocity(velocity);
 
 	Weapon::Instantiate(position);
+}
+
+EarnedData Shuriken::OnDestroy() {
+	SetActive(false);
+	return EarnedData(0);
 }
