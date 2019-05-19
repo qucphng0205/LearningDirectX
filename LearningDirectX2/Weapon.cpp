@@ -1,8 +1,8 @@
 #include "Weapon.h"
 
 Weapon::Weapon() {
-	Tag = PROJECTILE;
-	type = Entity::ProjectileType;
+	Tag = EPROJECTILE;
+	type = Layer::EProjectileType;
 }
 
 Weapon::~Weapon() {

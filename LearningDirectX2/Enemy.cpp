@@ -2,7 +2,7 @@
 #include "EnemyState.h"
 
 Enemy::Enemy() : Entity() {
-	type = Entity::EnemyType;
+	type = Layer::EnemyType;
 	enemyData = new EnemyData();
 	enemyData->enemy = this;
 	direction = Entity::LeftToRight;
@@ -116,7 +116,7 @@ BoxCollider Enemy::GetCollider() {
 void Enemy::OnCollision(Entity * impactor, SideCollision side, float collisionTime) {
 	auto impactorRect = impactor->GetRect();
 	auto myRect = GetRect();
-	if (impactor->GetType() == Entity::StaticType) {
+	if (impactor->GetType() == Layer::StaticType) {
 		if (side == Entity::Bottom) {
 			if ((MyHelper::Distance(myRect.left, impactorRect.left) < ENEMY_OFFSET_BORDER && velocity.x < 0) || (MyHelper::Distance(myRect.right, impactorRect.right) < ENEMY_OFFSET_BORDER && velocity.x > 0) || (impactorRect.left > myRect.left && impactorRect.left < myRect.right && velocity.x < 0) || (impactorRect.right > myRect.left && impactorRect.right < myRect.right && velocity.x > 0))
 				SetVx(-velocity.x);

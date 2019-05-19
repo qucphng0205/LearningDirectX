@@ -22,7 +22,7 @@ Cat::~Cat() {
 void Cat::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
 	auto impactorRect = impactor->GetRect();
 	auto myRect = GetRect();
-	if (impactor->GetType() == Entity::StaticType) {
+	if (impactor->GetType() == Layer::StaticType) {
 		if (side == Entity::Bottom) {
 			if ((MyHelper::Distance(myRect.left, impactorRect.left) < ENEMY_OFFSET_BORDER && velocity.x < 0) || (MyHelper::Distance(myRect.right, impactorRect.right) < ENEMY_OFFSET_BORDER && velocity.x > 0)/* || (impactorRect.left > myRect.left && impactorRect.left < myRect.right && velocity.x < 0) || (impactorRect.right > myRect.left && impactorRect.right < myRect.right && velocity.x > 0)*/)
 				SetVx(-velocity.x);

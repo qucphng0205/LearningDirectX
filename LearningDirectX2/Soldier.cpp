@@ -24,7 +24,7 @@ Soldier::~Soldier() {
 
 void Soldier::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
 	Enemy::OnCollision(impactor, side, collisionTime);
-	if (impactor->GetType() == Entity::StaticType && side == Bottom)
+	if (impactor->GetType() == Layer::StaticType && side == Bottom)
 		onGround = true;
 }
 

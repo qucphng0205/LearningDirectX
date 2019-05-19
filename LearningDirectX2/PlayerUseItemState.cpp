@@ -11,10 +11,34 @@ PlayerUseItemState::~PlayerUseItemState() {
 }
 
 void PlayerUseItemState::Update(double dt) {
-	m_Animation->Update(dt);
-	int currentFrame = m_Animation->GetCurrentFrameID();
-	if (currentState >= currentFrame)
+	auto player = playerData->player;
+
+	if (m_Animation->IsLastFrame(dt)) {
+		if (player->status != Player::OnGround) {
+			//jump or falling is not important, on air time is exactly important thing
+			player->SetState(Jump);
+		}
+		else
+			if (KeyBoard::GetInstance()->GetKey(DIK_DOWNARROW))
+				player->SetState(Crouch);
+			else
+				player->SetState(Idle);
 		return;
+	}
+
+	if (player->status != Player::OnGround) {
+
+		player->timeOnAir += dt;
+		if (player->timeOnAir > 1)
+			player->timeOnAir = 1;
+
+		player->SetVy(MyHelper::Lerp(PLAYER_JUMP_FORCE, -PLAYER_JUMP_FORCE, JUMP_TO_GROUND_SPEED * player->timeOnAir));
+
+		if (player->GetVelocity().y <= 0)
+			player->status = Player::Falling;
+	}
+
+	PlayerState::Update(dt);
 }
 
 void PlayerUseItemState::Render() {
@@ -22,14 +46,61 @@ void PlayerUseItemState::Render() {
 }
 
 void PlayerUseItemState::HandleInput() {
+	auto keyboard = KeyBoard::GetInstance();
+	auto player = playerData->player;
+	if (keyboard->GetKeyDown(DIK_F) && player->status == Player::OnGround)
+		player->SetState(Jump);
+	else
+		if (player->GetVelocity().y < 0) {
 
+			if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW)) {
+				if (player->GetMoveDirection() == Player::RightToLeft)
+					player->SetVx(-PLAYER_RUN_VELOCITY);
+				else {
+					player->SetVx(-PLAYER_RUN_VELOCITY / 3.0f);
+					player->SetMoveDirection(Player::LeftToRight);
+				}
+			}
+			else
+				if (keyboard->GetKey(DIK_RIGHTARROW) && !keyboard->GetKey(DIK_LEFTARROW)) {
+					if (player->GetMoveDirection() == Player::LeftToRight)
+						player->SetVx(PLAYER_RUN_VELOCITY);
+					else {
+						player->SetVx(PLAYER_RUN_VELOCITY / 3.0f);
+						player->SetMoveDirection(Player::RightToLeft);
+					}
+				}
+				else player->SetVx(0);
+		}
 }
 
 void PlayerUseItemState::OnCollision(Entity * impactor, Entity::SideCollision side) {
 	auto impactorType = impactor->GetType();
-	if (impactorType == Entity::ItemType)
+	if (impactorType == Layer::ItemType)
 		if (((Item*)impactor)->IsAvailable())
 			DataManager::AddData(impactor->OnDestroy());
+
+	Player *player = playerData->player;
+
+	////--DEBUG
+	//if (impactorType == Layer::EnemyType)
+	//	impactor = impactor;
+
+	if (impactor->GetTag() == GROUND && side == Entity::Bottom && player->status == Player::Falling) {
+		player->status = Player::OnGround;
+		player->timeOnAir = 0;
+		auto keyboard = KeyBoard::GetInstance();
+		if (keyboard->GetKey(DIK_LEFTARROW) && !(keyboard->GetKey(DIK_RIGHTARROW)))
+			player->SetState(Running);
+		else
+			if (keyboard->GetKey(DIK_RIGHTARROW) && !(keyboard->GetKey(DIK_LEFTARROW)))
+				player->SetState(Running);
+			else
+				if (keyboard->GetKey(DIK_DOWNARROW))
+					player->SetState(Crouch);
+				else
+					player->SetState(Idle);
+	}
 }
 
 PlayerState::State PlayerUseItemState::GetState() {
@@ -45,4 +116,6 @@ void PlayerUseItemState::ResetState(int dummy) {
 	player->SetColliderBottom(-16);
 
 	PlayerState::ResetState(dummy);
+	if (dummy != 0)
+		m_Animation->SetCurrentFrame(dummy);
 }

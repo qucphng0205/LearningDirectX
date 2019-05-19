@@ -18,27 +18,25 @@ void PlayerCrouchState::Render() {
 void PlayerCrouchState::HandleInput() {
 	auto keyboard = KeyBoard::GetInstance();
 	//CrouchSlash, Slash, Jump, Running, Idle,...?
-	if (keyboard->GetKeyDown(DIK_D) && keyboard->GetKey(DIK_DOWNARROW))
+	if (keyboard->GetKey(DIK_UPARROW))
+		playerData->player->SetState(Idle);
+	else if (keyboard->GetKeyDown(DIK_D) && keyboard->GetKey(DIK_DOWNARROW))
 		playerData->player->SetState(CrouchSlash);
-	else
-		if (keyboard->GetKeyDown(DIK_D) && !keyboard->GetKey(DIK_DOWNARROW))
-			playerData->player->SetState(Slash);
-		else
-			if (keyboard->GetKeyDown(DIK_F))
-				playerData->player->SetState(Jump);
-			else
-				if (keyboard->GetKey(DIK_LEFT) && !keyboard->GetKey(DIK_RIGHT)) 
-					playerData->player->SetState(Running);
-				else
-					if (keyboard->GetKey(DIK_RIGHT) && !keyboard->GetKey(DIK_LEFT))
-						playerData->player->SetState(Running);
-					else if (!keyboard->GetKey(DIK_DOWNARROW))
-						playerData->player->SetState(Idle);
+	else if (keyboard->GetKeyDown(DIK_D) && !keyboard->GetKey(DIK_DOWNARROW))
+		playerData->player->SetState(Slash);
+	else if (keyboard->GetKeyDown(DIK_F))
+		playerData->player->SetState(Jump);
+	else if (keyboard->GetKey(DIK_LEFT) && !keyboard->GetKey(DIK_RIGHT))
+		playerData->player->SetState(Running);
+	else if (keyboard->GetKey(DIK_RIGHT) && !keyboard->GetKey(DIK_LEFT))
+		playerData->player->SetState(Running);
+	else if (!keyboard->GetKey(DIK_DOWNARROW))
+		playerData->player->SetState(Idle);
 }
 
 void PlayerCrouchState::OnCollision(Entity * impactor, Entity::SideCollision side) {
 	auto impactorType = impactor->GetType();
-	if (impactorType == Entity::ItemType)
+	if (impactorType == Layer::ItemType)
 		if (((Item*)impactor)->IsAvailable())
 			DataManager::AddData(impactor->OnDestroy());
 }

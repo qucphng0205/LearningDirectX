@@ -35,7 +35,10 @@ void PlayerJumpingState::HandleInput() {
 	auto player = playerData->player;
 	auto keyboard = KeyBoard::GetInstance();
 	if (keyboard->GetKeyDown(DIK_D)) {
-		player->SetState(Slash, 1);
+		if (keyboard->GetKey(DIK_UPARROW))
+			player->SetState(UseItem, 1);
+		else
+			player->SetState(Slash, 1);
 		return;
 	}
 	if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW)) {
@@ -63,7 +66,7 @@ void PlayerJumpingState::OnCollision(Entity * impactor, Entity::SideCollision si
 	auto player = playerData->player;
 	auto impactorType = impactor->GetType();
 
-	if (impactorType == Entity::ItemType) {
+	if (impactorType == Layer::ItemType) {
 		if (((Item*)impactor)->IsAvailable())
 			DataManager::AddData(impactor->OnDestroy());
 	}

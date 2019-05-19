@@ -3,7 +3,7 @@
 #include "ItemAvailableState.h"
 
 Item::Item(int stage, enum Tag Tag) {
-	type = Entity::ItemType;
+	type = Layer::ItemType;
 	this->Tag = Tag;
 	itemData = new ItemData(this);
 	auto textures = Textures::GetInstance();
@@ -95,7 +95,7 @@ float Item::GetHeight() {
 void Item::OnCollision(Entity * impactor, SideCollision side, float collisionTime) {
 	if (!itemData->state->GetState() == ItemState::Available)
 		return;
-	if (side == Entity::Bottom && impactor->GetType() == Entity::StaticType) {
+	if (side == Entity::Bottom && impactor->GetType() == Layer::StaticType) {
 		velocity.y *= collisionTime;
 		onGround = true;
 	}

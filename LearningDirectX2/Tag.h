@@ -17,8 +17,21 @@ enum Tag {
 	THROWINGSTAR,
 	WINDMILLSTAR,
 	FLAMES,
-	PROJECTILE,
+	EPROJECTILE,
+	PPROJECTILE,
 	PLAYER,
 	NONE
+};
+
+enum Layer {
+	StaticType,
+	PlayerType,
+	EnemyType,
+	//Enemy projectile
+	EProjectileType,
+	//Player projectile
+	PProjectileType,
+	ItemType,
+	NoneType
 };
 //}

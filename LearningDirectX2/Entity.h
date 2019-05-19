@@ -29,14 +29,7 @@ public:
 		bool IsCollided;
 		BoxCollider regionCollision;
 	};
-	enum EntityType {
-		StaticType,
-		PlayerType,
-		EnemyType,
-		ProjectileType,
-		ItemType,
-		NoneType
-	};
+	
 	enum EntityDirection {
 		LeftToRight,
 		RightToLeft
@@ -46,9 +39,9 @@ public:
 	virtual void SetActive(bool active);
 	virtual bool IsActive();
 	virtual Tag GetTag();
-	virtual void SetTag(Tag Tag);
-	virtual EntityType GetType();
-	virtual void SetType(EntityType type);
+	virtual void SetTag(enum Tag Tag);
+	virtual Layer GetType();
+	virtual void SetType(Layer type);
 	virtual void SetStatic(bool flag);
 	virtual void SetPosition(float x, float y);
 	virtual void SetPosition(D3DXVECTOR2 pos);
@@ -92,7 +85,7 @@ protected:
 	bool isActive;
 	int id;
 	Tag Tag;
-	EntityType type;
+	Layer type;
 	//duoc goi khi set position cua Entity, dung cho ke thua
 	virtual void OnSetPosition(D3DXVECTOR3 pos);
 

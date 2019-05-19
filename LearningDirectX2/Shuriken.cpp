@@ -8,6 +8,7 @@ Shuriken::Shuriken() {
 
 	anim = new Animation();
 	anim->AddFrames(tex, 1, 4, SHURIKEN_FRAME * (1 / 60.0f));
+	Tag = Tag::PPROJECTILE;
 
 	D3DSURFACE_DESC desc;
 	tex->GetLevelDesc(0, &desc);

@@ -4,7 +4,7 @@ PlayerRunningState::PlayerRunningState(PlayerData * data) {
 	this->playerData = data;
 	auto texs = Textures::GetInstance();
 	m_Animation = new Animation();
-	m_Animation->AddFramesA(texs->Get(TEX_PLAYER), 5, 5, 3, 9, 4, PLAYER_RUNNING_FRAME * (1.0/60));
+	m_Animation->AddFramesA(texs->Get(TEX_PLAYER), 5, 5, 3, 9, 4, PLAYER_RUNNING_FRAME * (1.0 / 60));
 }
 
 PlayerRunningState::~PlayerRunningState() {
@@ -30,32 +30,32 @@ void PlayerRunningState::HandleInput() {
 
 	if (keyboard->GetKeyDown(DIK_D)) {
 		playerData->player->SetVelocity(D3DXVECTOR2(0, 0));
-		playerData->player->SetState(Slash);
+		if (keyboard->GetKey(DIK_UPARROW))
+			playerData->player->SetState(UseItem);
+		else
+			playerData->player->SetState(Slash);
 	}
 	else
 		if (keyboard->GetKeyDown(DIK_F)) {
 			playerData->player->SetState(Jump);
 		}
-		else
-			if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW))
-				playerData->player->SetVelocity(D3DXVECTOR2(-PLAYER_RUN_VELOCITY, 0));
-			else
-				if (keyboard->GetKey(DIK_RIGHTARROW) && !keyboard->GetKey(DIK_LEFTARROW))
-					playerData->player->SetVelocity(D3DXVECTOR2(PLAYER_RUN_VELOCITY, 0));
-				else
-					if (keyboard->GetKey(DIK_DOWNARROW)) {
-						playerData->player->SetVelocity(D3DXVECTOR2(0, 0));
-						playerData->player->SetState(Crouch);
-					}
-					else {
-						playerData->player->SetVelocity(D3DXVECTOR2(0, 0));
-						playerData->player->SetState(Idle);
-					}
+		else if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW))
+			playerData->player->SetVelocity(D3DXVECTOR2(-PLAYER_RUN_VELOCITY, 0));
+		else if (keyboard->GetKey(DIK_RIGHTARROW) && !keyboard->GetKey(DIK_LEFTARROW))
+			playerData->player->SetVelocity(D3DXVECTOR2(PLAYER_RUN_VELOCITY, 0));
+		else if (keyboard->GetKey(DIK_DOWNARROW)) {
+			playerData->player->SetVelocity(D3DXVECTOR2(0, 0));
+			playerData->player->SetState(Crouch);
+		}
+		else {
+			playerData->player->SetVelocity(D3DXVECTOR2(0, 0));
+			playerData->player->SetState(Idle);
+		}
 }
 
 void PlayerRunningState::OnCollision(Entity * impactor, Entity::SideCollision side) {
 	auto impactorType = impactor->GetType();
-	if (impactorType == Entity::ItemType)
+	if (impactorType == Layer::ItemType)
 		if (((Item*)impactor)->IsAvailable())
 			DataManager::AddData(impactor->OnDestroy());
 }

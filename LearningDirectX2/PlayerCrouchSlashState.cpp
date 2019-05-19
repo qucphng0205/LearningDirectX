@@ -5,7 +5,6 @@ PlayerCrouchSlashState::PlayerCrouchSlashState(PlayerData * data) {
 	auto texs = Textures::GetInstance();
 	m_Animation = new Animation();
 	m_Animation->AddFramesA(texs->Get(TEX_PLAYER), 7, 7, 3, 9, 4, 0.1f);
-
 }
 
 PlayerCrouchSlashState::~PlayerCrouchSlashState() {
@@ -16,7 +15,7 @@ void PlayerCrouchSlashState::Update(double dt) {
 		if (KeyBoard::GetInstance()->GetKey(DIK_DOWNARROW))
 			playerData->player->SetState(Crouch);
 		else
-			playerData->player->SetState(Crouch);
+			playerData->player->SetState(Idle);
 		return;
 	}
 	m_Animation->Update(dt);
@@ -36,7 +35,7 @@ void PlayerCrouchSlashState::HandleInput() {
 
 void PlayerCrouchSlashState::OnCollision(Entity * impactor, Entity::SideCollision side) {
 	auto impactorType = impactor->GetType();
-	if (impactorType == Entity::ItemType)
+	if (impactorType == Layer::ItemType)
 		if (((Item*)impactor)->IsAvailable())
 			DataManager::AddData(impactor->OnDestroy());
 }

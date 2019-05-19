@@ -76,9 +76,18 @@
 #define PLAYER_OFFSET_GROUND PLAYER_JUMP_FORCE * 1.0 / 60
 #define ENEMY_OFFSET_BORDER 2
 
+//-----------------------OBJECTPOOLING-------------------
+
+//first
 #define KNIFE_QUANTITY 3
 #define KNIFE_POOL_INDEX 0
 //second
 #define KNIFE_SPEED 1
 #define BULLET_QUANTITY 9
 #define BULLET_POOL_INDEX 1
+//third
+#define SHURIKEN_QUANTITY 3
+//fourth
+#define BIGSHURIKEN_QUANTITY 3
+//five
+#define FLAMES_QUANTITY 3

@@ -36,11 +36,11 @@ void Entity::SetTag(enum Tag Tag) {
 	this->Tag = Tag;
 }
 
-Entity::EntityType Entity::GetType() {
+Layer Entity::GetType() {
 	return type;
 }
 
-void Entity::SetType(EntityType type) {
+void Entity::SetType(Layer type) {
 	this->type = type;
 }
 

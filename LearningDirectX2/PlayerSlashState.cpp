@@ -81,20 +81,20 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 	auto impactorType = impactor->GetType();
 
 	////--DEBUG
-	//if (impactorType == Entity::EnemyType)
+	//if (impactorType == Layer::EnemyType)
 	//	impactor = impactor;
 
-	if (impactorType == Entity::EnemyType || impactorType == Entity::ProjectileType || impactorType == Entity::ItemType) {
+	if (impactorType == Layer::EnemyType || impactorType == Layer::EProjectileType || impactorType == Layer::ItemType) {
 		if (m_Animation->GetCurrentFrameID() == 0)
 			return;
 
 		if (CollideWithKatana(impactor->GetRect())) {
-			if ((impactorType != Entity::ItemType) || (impactorType == Entity::ItemType && !((Item*)impactor)->IsAvailable()))
+			if ((impactorType != Layer::ItemType) || (impactorType == Layer::ItemType && !((Item*)impactor)->IsAvailable()))
 				DataManager::AddData(impactor->OnDestroy());
 		}
 		else
 			if (CollideWithBody(impactor->GetRect())) {
-				if (impactorType == Entity::ItemType) {
+				if (impactorType == Layer::ItemType) {
 					DataManager::AddData(impactor->OnDestroy());
 				}
 				else {

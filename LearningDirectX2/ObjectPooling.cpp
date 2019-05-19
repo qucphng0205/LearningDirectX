@@ -49,6 +49,21 @@ void ObjectPooling::AddBullet(int number) {
 	}
 }
 
+void ObjectPooling::AddShuriken(int number) {
+	Unit *unit;
+	for (int i = 0; i < number; i++) {
+		Shuriken* bullet = new Shuriken();
+		unit = new Unit(Grid::GetInstance(), bullet);
+		pool[BULLET_POOL_INDEX].push_back(unit);
+	}
+}
+
+void ObjectPooling::AddBigShuriken(int number) {
+}
+
+void ObjectPooling::AddFlames(int number) {
+}
+
 ObjectPooling::ObjectPooling() {
 	if (instance != NULL)
 		delete this;

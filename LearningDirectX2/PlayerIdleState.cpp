@@ -15,10 +15,14 @@ void PlayerIdleState::Render() {
 }
 
 void PlayerIdleState::HandleInput() {
-	//xu ly theo priority nghe, Slash, Jump, Running, Crouch,... ?
+	//xu ly theo priority 
 	KeyBoard *keyboard = KeyBoard::GetInstance();
-	if (keyboard->GetKeyDown(DIK_D))
-		playerData->player->SetState(Slash);
+	if (keyboard->GetKeyDown(DIK_D)) {
+		if (keyboard->GetKey(DIK_UPARROW))
+			playerData->player->SetState(UseItem);
+		else
+			playerData->player->SetState(Slash);
+	}
 	else
 		if (keyboard->GetKeyDown(DIK_F))
 			playerData->player->SetState(Jump);
@@ -39,7 +43,7 @@ void PlayerIdleState::HandleInput() {
 
 void PlayerIdleState::OnCollision(Entity * impactor, Entity::SideCollision side) {
 	auto impactorType = impactor->GetType();
-	if (impactorType == Entity::ItemType)
+	if (impactorType == Layer::ItemType)
 		if (((Item*)impactor)->IsAvailable())
 			DataManager::AddData(impactor->OnDestroy());
 }

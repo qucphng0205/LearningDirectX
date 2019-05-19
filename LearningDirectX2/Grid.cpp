@@ -218,13 +218,13 @@ void Grid::HandleActiveUnit(BoxCollider camBox, Entity::EntityDirection camDirec
 
 	while (unit != NULL) {
 		unit->active = true;
-		if (!unit->entity->IsActive() && unit->entity->GetType() != Entity::ProjectileType) {
+		if (!unit->entity->IsActive() && unit->entity->GetType() != Layer::EProjectileType) {
 			auto entity = unit->entity;
 			auto entityRect = entity->GetRect();
 			Entity::EntityDirection direction = entity->GetMoveDirection();
 			auto childPos = entity->GetPosition();
 
-			if (unit->entity->GetType() == Entity::ItemType)
+			if (unit->entity->GetType() == Layer::ItemType)
 				entity->SetActive(true);
 
 			else if (direction == Entity::EntityDirection::RightToLeft) {
