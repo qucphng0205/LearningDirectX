@@ -21,6 +21,7 @@ PlayScene::PlayScene() {
 	pool->AddBullet();
 	pool->AddShuriken();
 	pool->AddBigShuriken();
+	pool->AddFlames();
 
 	timeLeft = 150;
 }

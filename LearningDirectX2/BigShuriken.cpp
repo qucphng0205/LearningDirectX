@@ -59,10 +59,11 @@ void BigShuriken::Update(double dt) {
 }
 
 void BigShuriken::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
-	if (impactor->GetType() == Layer::EnemyType || impactor->GetType() == Layer::ItemHolderType) {
+	auto impactorType = impactor->GetType();
+	if (impactorType == Layer::EnemyType || impactorType == Layer::ItemHolderType || impactorType == Layer::EProjectileType) {
 		impactor->OnDestroy();
 	}
-	else if (impactor->GetType() == Layer::PlayerType) {
+	else if (impactorType == Layer::PlayerType) {
 		auto body = ((Player*)impactor)->GetBody();
 		auto playerState = ((Player*)impactor)->GetState();
 		if (playerState != PlayerState::UseItem)
@@ -72,7 +73,7 @@ void BigShuriken::OnCollision(Entity * impactor, Entity::SideCollision side, flo
 }
 
 void BigShuriken::Instantiate(D3DXVECTOR3 position) {
-	velocity.x = BIGSHURIKEN_SPEED;
+	velocity.x = BIGSHURIKEN_VELOCITY;
 	velocity.y = 0;
 
 	if (Player::GetInstance()->GetPosition().x > position.x)

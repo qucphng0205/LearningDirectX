@@ -19,12 +19,13 @@ void ObjectPooling::AddKnife(int number) {
 	}
 }
 
-bool ObjectPooling::CheckQuantity(int index) {
+int ObjectPooling::CheckQuantity(int index) {
+	int quantity = 0;
 	auto knives = pool[index];
 	for (size_t i = 0; i < knives.size(); i++)
 		if (!knives[i]->GetEntity()->IsActive())
-			return true;
-	return false;
+			quantity++;
+	return quantity;
 }
 
 bool ObjectPooling::Instantiate(int index, D3DXVECTOR3 position) {
@@ -68,6 +69,12 @@ void ObjectPooling::AddBigShuriken(int number) {
 }
 
 void ObjectPooling::AddFlames(int number) {
+	Unit *unit;
+	for (int i = 0; i < number; i++) {
+		Flames* bigShuriken = new Flames();
+		unit = new Unit(Grid::GetInstance(), bigShuriken);
+		pool[FLAMES_POOL_INDEX].push_back(unit);
+	}
 }
 
 ObjectPooling::ObjectPooling() {

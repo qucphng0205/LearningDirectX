@@ -247,7 +247,8 @@ void Player::CheckForUseItem() {
 	enum Tag item = DataManager::GetItem();
 	switch (item) {
 	case (NONE):
-		ThrowBigShuriken();
+		ThrowFlames();
+		//ThrowBigShuriken();
 		break;
 	case (THROWINGSTAR):
 		ThrowShuriken();
@@ -256,7 +257,7 @@ void Player::CheckForUseItem() {
 		ThrowBigShuriken();
 		break;
 	case (FLAMES):
-		//ThrowFlames();
+		ThrowFlames();
 		break;
 	}
 }
@@ -294,6 +295,28 @@ void Player::ThrowBigShuriken() {
 	//--DEBUG WITH ZERO
 	if (ObjectPooling::GetInstance()->Instantiate(BIGSHURIKEN_POOL_INDEX, position))
 		DataManager::ConsumeSpiritPoint(0);// BIGSHURIKEN_COST);
+}
+
+void Player::ThrowFlames() {
+	//--DEBUG
+	if (DataManager::GetSpiritPoint() < 0) //BIGSHURIKEN_COST)
+		return;
+	ObjectPooling *pool = ObjectPooling::GetInstance();
+
+	if (pool->CheckQuantity(FLAMES_POOL_INDEX) < 3)
+		return;
+
+	D3DXVECTOR3 position = this->position;
+	if (direction == LeftToRight)
+		position.x += collider.right;
+	else
+		position.x += collider.left;
+
+	//--DEBUG WITH ZERO
+	for (int i = 0; i < 3; i++)
+		ObjectPooling::GetInstance()->Instantiate(FLAMES_POOL_INDEX, position);
+
+	DataManager::ConsumeSpiritPoint(0);// BIGSHURIKEN_COST);
 }
 
 BoxCollider Player::GetCollider() {

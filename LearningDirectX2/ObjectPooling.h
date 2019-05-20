@@ -3,6 +3,7 @@
 #include "Bullet.h"
 #include "Shuriken.h"
 #include "BigShuriken.h"
+#include "Flames.h"
 #include "Unit.h"
 #include <map>
 #include <vector>
@@ -16,7 +17,7 @@ public:
 	void AddShuriken(int number = SHURIKEN_QUANTITY);
 	void AddBigShuriken(int number = BIGSHURIKEN_QUANTITY);
 	void AddFlames(int number = FLAMES_QUANTITY);
-	bool CheckQuantity(int index);
+	int CheckQuantity(int index);
 	bool Instantiate(int index, D3DXVECTOR3 position);
 private:
 	static ObjectPooling *instance;

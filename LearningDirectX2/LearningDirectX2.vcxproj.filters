@@ -276,6 +276,9 @@
     <ClCompile Include="BigShuriken.cpp">
       <Filter>Header Files\Object\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="Flames.cpp">
+      <Filter>Header Files\Object\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -468,6 +471,9 @@
       <Filter>Header Files\Manager\Game</Filter>
     </ClInclude>
     <ClInclude Include="BigShuriken.h">
+      <Filter>Header Files\Object\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Flames.h">
       <Filter>Header Files\Object\Weapon</Filter>
     </ClInclude>
   </ItemGroup>

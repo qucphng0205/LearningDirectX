@@ -32,15 +32,16 @@ void Shuriken::Update(double dt) {
 
 #include "CollisionDetector.h"
 void Shuriken::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
-	if (impactor->GetType() == Layer::EnemyType || impactor->GetType() == Layer::ItemHolderType) {
+	auto impactorType = impactor->GetType();
+	if (impactorType == Layer::EnemyType || impactorType == Layer::ItemHolderType || impactorType == Layer::EProjectileType) {
 		impactor->OnDestroy();
 		OnDestroy();
-	} 
+	}
 }
 
 
 void Shuriken::Instantiate(D3DXVECTOR3 position) {
-	velocity.x = SHURIKEN_SPEED;
+	velocity.x = SHURIKEN_VELOCITY;
 	velocity.y = 0;
 
 	if (Player::GetInstance()->GetPosition().x > position.x)

@@ -37,6 +37,7 @@ public:
 	void CheckForUseItem();
 	void ThrowShuriken();
 	void ThrowBigShuriken();
+	void ThrowFlames();
 	virtual BoxCollider GetCollider();
 	void HandleInput();
 	Status status;

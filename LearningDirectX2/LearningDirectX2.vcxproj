@@ -36,6 +36,7 @@
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="Flames.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameTime.cpp" />
@@ -100,6 +101,7 @@
     <ClInclude Include="EnemyState.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Explosion.h" />
+    <ClInclude Include="Flames.h" />
     <ClInclude Include="GameConfig.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameMap.h" />
