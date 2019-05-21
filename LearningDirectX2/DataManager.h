@@ -2,6 +2,7 @@
 #include "Tag.h"
 #include "MyHelper.h"
 #include "Textures.h"
+#include "DataManager.h"
 
 struct EarnedData {
 	int score;
@@ -28,6 +29,7 @@ private:
 	static int score;
 	static int spiritPoint;
 	static Tag item;
+	static float freezeTimeLeft;
 
 	static void SetScore(int scr);
 	static void SetHealth(int hel);
@@ -38,6 +40,8 @@ public:
 	static int GetHealth();
 	static int GetScore();
 	static int GetSpiritPoint();
+	static bool IsFreezeTime();
+	static void MinusFreezeTimeLeft(float time);
 	static bool ConsumeSpiritPoint(int point);
 	static int GetLife();
 	static Tag GetItem();

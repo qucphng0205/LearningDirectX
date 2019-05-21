@@ -109,3 +109,10 @@
 #define FLAMES_COST 5
 #define FLAMES_QUANTITY 3
 #define FLAMES_POOL_INDEX 4
+
+//class GameConfig {
+//public:
+//	static float freezeTimeLeft;
+//};
+//
+//float GameConfig::freezeTimeLeft = 0.0f;

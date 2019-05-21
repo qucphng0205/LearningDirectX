@@ -5,6 +5,7 @@ int DataManager::life = 2;
 int DataManager::score = 0;
 int DataManager::spiritPoint = 0;
 Tag DataManager::item = NONE;
+float DataManager::freezeTimeLeft = 0;
 
 int DataManager::GetHealth() {
 	return health;
@@ -24,6 +25,16 @@ void DataManager::SetScore(int scr) {
 
 int DataManager::GetSpiritPoint() {
 	return spiritPoint;
+}
+
+bool DataManager::IsFreezeTime() {
+	return (freezeTimeLeft > 0);
+}
+
+void DataManager::MinusFreezeTimeLeft(float time) {
+	if (freezeTimeLeft > 0)
+		freezeTimeLeft = MyHelper::Clamp(freezeTimeLeft - time, 0, 5);
+	
 }
 
 bool DataManager::ConsumeSpiritPoint(int point) {
@@ -67,6 +78,9 @@ void DataManager::AddData(EarnedData data) {
 			break;
 		case (HEALTH):
 			SetHealth(health + 6);
+			break;
+		case (TIMEFREEZE):
+			freezeTimeLeft = 5.0f;
 			break;
 		case (THROWINGSTAR):
 		case (WINDMILLSTAR):

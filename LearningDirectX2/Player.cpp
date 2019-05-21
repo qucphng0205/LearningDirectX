@@ -37,6 +37,7 @@ Player::Player() : Entity() {
 	SetState(PlayerState::Idle);
 	SetTag(PLAYER);
 	SetType(Layer::PlayerType);
+
 	status = OnGround;
 
 	D3DSURFACE_DESC desc;

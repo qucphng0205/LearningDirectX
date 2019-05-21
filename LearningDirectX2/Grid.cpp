@@ -258,7 +258,7 @@ void Grid::HandleActive(BoxCollider camRect, Entity::EntityDirection camDirectio
 		for (int y = 0; y < rows; y++)
 			if (x < r.left || x > r.right || y < r.bottom || y > r.top) {
 				activeCells[x][y] = false;
-				if (cells[x][y] != NULL) 
+				if (cells[x][y] != NULL)
 					if (cells[x][y]->entity->IsActive()) {
 						HandleInactiveUnit(cells[x][y]);
 						if (cells[x][y] == NULL)
@@ -452,7 +452,8 @@ void Grid::Update(double dt) {
 void Grid::UpdateUnit(Unit *unit, double dt) {
 	while (unit != NULL) {
 		if (unit->entity->IsActive()) {
-			unit->entity->Update(dt);
+			if (unit->entity->GetType() != EnemyType || !DataManager::IsFreezeTime())
+				unit->entity->Update(dt);
 		}
 		unit = unit->next;
 	}

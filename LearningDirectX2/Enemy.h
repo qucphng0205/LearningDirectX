@@ -1,14 +1,16 @@
 #pragma once
-#include "EnemyData.h"
 #include "GameConfig.h"
-#include "Entity.h"
 #include "Textures.h"
+#include "EnemyData.h"
+#include "Entity.h"
 #include "EnemyState.h"
 #include "Explosion.h"
 #include "Camera.h"
 
 #include "Unit.h"
 #include "Grid.h"
+
+
 
 class Enemy : public Entity {
 public:

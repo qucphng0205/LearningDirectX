@@ -66,6 +66,8 @@ void PlayScene::Update(double dt) {
 	camera->FollowPlayer(playerPos.x, playerPos.y);
 	CheckCamera();
 	timeLeft -= dt;
+	if (DataManager::IsFreezeTime())
+		DataManager::MinusFreezeTimeLeft(dt);
 }
 
 void PlayScene::CheckCollision(double dt) {

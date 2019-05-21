@@ -7,6 +7,7 @@
 #include "MyHelper.h"
 #include "CollisionDetector.h"
 #include "Effect.h"
+#include "DataManager.h"
 
 //not only the grid of the world, but also the box containts all the update-able object: effect, enemies,... or static objects like ground
 class Unit;
