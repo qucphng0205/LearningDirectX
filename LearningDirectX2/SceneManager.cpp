@@ -26,9 +26,6 @@ void SceneManager::LoadScene(Scene * scene) {
 	CreateScene(scene);
 }
 
-void SceneManager::ReloadScene() {
-}
-
 SceneManager::~SceneManager() {
 	delete CurrentScene;
 	CurrentScene = NULL;

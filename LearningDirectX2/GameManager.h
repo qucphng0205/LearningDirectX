@@ -13,4 +13,7 @@ public:
 	void ProcessInput();
 	void Update(double dt);
 	void Render();
+private:
+	double hihi;
+	bool haha;
 };

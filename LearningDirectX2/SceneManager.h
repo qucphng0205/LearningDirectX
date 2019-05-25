@@ -6,15 +6,8 @@ class SceneManager {
 public:
 	static SceneManager *GetInstance();
 	void CreateScene(Scene *scene);
-	//void CreateSceneWithTransition();
-	//void CreateSceneWithRandomTransition();
-	//void UpdateWithEffect();
-	/*bool isSceneTransitioning() {
-		return isTransitioning;
-	}*/
 	Scene* GetCurrentScene();
 	void LoadScene(Scene *scene);
-
 	~SceneManager();
 private:
 	static SceneManager *instance;

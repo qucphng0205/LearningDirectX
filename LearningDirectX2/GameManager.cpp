@@ -15,6 +15,11 @@ GameManager::~GameManager() {
 }
 
 void GameManager::Update(double dt) {
+	//hihi += dt;
+	//if ((int)hihi > 10) {
+	//	SceneManager::GetInstance()->LoadScene(new PlayScene());
+	//	hihi = 0;
+	//}
 	//neu khong chuyen canh thi update
 	/*if (!SceneManager::GetInstance()->isSceneTransitioning())
 		SceneManager::GetInstance()->GetCurrentScene()->Update(dt);
