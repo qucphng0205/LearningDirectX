@@ -100,6 +100,9 @@ void PlayerUseItemState::OnCollision(Entity * impactor, Entity::SideCollision si
 				else
 					player->SetState(Idle);
 	}
+	else if (impactorType == Layer::EnemyType || impactorType == Layer::EProjectileType) {
+		player->InjuredByOther(impactor);
+	}
 }
 
 PlayerState::State PlayerUseItemState::GetState() {

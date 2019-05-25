@@ -18,6 +18,7 @@ public:
 		Falling,
 		Climb,
 		UseItem,
+		Injured,
 	};
 	~PlayerState();
 	virtual void Update(double dt);

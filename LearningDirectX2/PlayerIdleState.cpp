@@ -45,6 +45,9 @@ void PlayerIdleState::OnCollision(Entity * impactor, Entity::SideCollision side)
 	auto impactorType = impactor->GetType();
 	if (impactorType == Layer::ItemAvailableType)
 		DataManager::AddData(impactor->OnDestroy());
+	else if (impactorType == Layer::EnemyType || impactorType == Layer::EProjectileType) {
+		playerData->player->InjuredByOther(impactor);
+	}
 }
 
 PlayerState::State PlayerIdleState::GetState() {

@@ -86,10 +86,9 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 
 	if (impactorType == Layer::EnemyType || impactorType == Layer::EProjectileType || impactorType == Layer::ItemAvailableType || impactorType == Layer::ItemHolderType) {
 
-		if (m_Animation->GetCurrentFrameID() == 0)
-			return;
+		bool isSlash = (m_Animation->GetCurrentFrameID() != 0);
 
-		if (CollideWithKatana(impactor->GetRect())) {
+		if (CollideWithKatana(impactor->GetRect()) && isSlash) {
 			if (impactorType != Layer::ItemAvailableType)
 				DataManager::AddData(impactor->OnDestroy());
 		}
@@ -99,7 +98,7 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 					DataManager::AddData(impactor->OnDestroy());
 				}
 				else {
-					//ENEMY OR PROJECTILE
+					player->InjuredByOther(impactor);
 				}
 			}
 		return;

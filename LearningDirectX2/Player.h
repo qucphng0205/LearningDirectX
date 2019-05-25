@@ -16,24 +16,27 @@ public:
 	static Player *GetInstance();
 	Player();
 	~Player();
-	virtual void Update(double dt);
-	virtual void Render();
+	void Update(double dt) override;
+	void Render() override;
 	void SetState(PlayerState::State name, int dummy = 0);
 	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime);
 	BoxCollider GetRect();
 	BoxCollider GetBigBound();
 	PlayerState::State GetState();
-	virtual float GetBigWidth();
-	virtual float GetBigHeight();
-	virtual float GetWidth();
-	virtual float GetHeight();
-	virtual void OnFalling();
-	virtual void SetColliderTop(int top);
-	virtual void SetColliderLeft(int left);
-	virtual void SetColliderBottom(int bottom);
-	virtual void SetColliderRight(int right);
-	virtual void SetMoveDirection(Entity::EntityDirection dir);
-	virtual BoxCollider GetBody();
+	float GetBigWidth() override;
+	float GetBigHeight() override;
+	float GetWidth() override;
+	float GetHeight() override;
+	void OnFalling();
+	void SetColliderTop(int top);
+	void SetColliderLeft(int left);
+	void SetColliderBottom(int bottom);
+	void SetColliderRight(int right);
+	void SetMoveDirection(Entity::EntityDirection dir) override;
+	BoxCollider GetBody();
+	void InjuredByOther(Entity *impactor);
+	void OnImmortal();
+	void OffImmortal();
 	void CheckForUseItem();
 	void ThrowShuriken();
 	void ThrowBigShuriken();
@@ -45,6 +48,10 @@ public:
 	bool isImmortal;
 	bool checkGroundInFrame;
 	float timeOnAir;
+	float immortalTime;
+
+	//check for immortal
+	bool renderPreviousFrame;
 
 protected:
 	static Player *instance;
@@ -57,9 +64,12 @@ protected:
 		*jumpState,
 		*crouchSlashState,
 		*climbState,
-		*useItemState;
+		*useItemState,
+		*injuredState;
+
 	PlayerState::State currentState;
 	BoxCollider collider;
 	float collisionTime;
 	SideCollision side;
+private:
 };

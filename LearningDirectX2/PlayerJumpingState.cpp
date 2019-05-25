@@ -88,6 +88,9 @@ void PlayerJumpingState::OnCollision(Entity * impactor, Entity::SideCollision si
 				else
 					player->SetState(Idle);
 	}
+	else if (impactorType == Layer::EnemyType || impactorType == Layer::EProjectileType) {
+		player->InjuredByOther(impactor);
+	}
 }
 
 PlayerState::State PlayerJumpingState::GetState() {
@@ -97,7 +100,6 @@ PlayerState::State PlayerJumpingState::GetState() {
 void PlayerJumpingState::ResetState(int dummy) {
 	//1. falling from ground
 	//2. falling from slash
-
 
 	auto player = playerData->player;
 

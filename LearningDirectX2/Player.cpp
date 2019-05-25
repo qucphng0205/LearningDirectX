@@ -7,6 +7,7 @@
 #include "PlayerJumpingState.h"
 #include "PlayerClimbState.h"
 #include "PlayerUseItemState.h"
+#include "PlayerInjuredState.h"
 #include "Debug.h"
 
 Player* Player::instance = NULL;
@@ -33,6 +34,7 @@ Player::Player() : Entity() {
 	jumpState = new PlayerJumpingState(playerData);
 	climbState = new PlayerClimbState(playerData);
 	useItemState = new PlayerUseItemState(playerData);
+	injuredState = new PlayerInjuredState(playerData);
 
 	SetState(PlayerState::Idle);
 	SetTag(PLAYER);
@@ -70,6 +72,15 @@ Player::~Player() {
 }
 
 void Player::Update(double dt) {
+
+	if (isImmortal && currentState != PlayerState::Injured) {
+		immortalTime += dt;
+		if (immortalTime > PLAYER_IMMORTAL_TIME) {
+			immortalTime = 0;
+			OffImmortal();
+		}
+	}
+
 	if ((position.x + collider.left) + velocity.x * dt >= 16)
 		Entity::Update(dt);
 
@@ -102,7 +113,12 @@ void Player::Update(double dt) {
 }
 
 void Player::Render() {
-	playerData->state->Render();
+	if (!isImmortal || (isImmortal && !renderPreviousFrame) || currentState == PlayerState::Injured) {
+		playerData->state->Render();
+		renderPreviousFrame = true;
+	}
+	else
+		renderPreviousFrame = false;
 }
 
 void Player::SetState(PlayerState::State name, int dummy) {
@@ -136,9 +152,12 @@ void Player::SetState(PlayerState::State name, int dummy) {
 		playerData->state = jumpState;
 		dummy = 1;
 		break;
+	case PlayerState::Injured:
+		playerData->state = injuredState;
+		break;
 	}
-	currentState = playerData->state->GetState();
 
+	currentState = playerData->state->GetState();
 	playerData->state->ResetState(dummy);
 }
 
@@ -243,6 +262,29 @@ BoxCollider Player::GetBody() {
 	return playerData->state->GetBody();
 }
 
+void Player::InjuredByOther(Entity *impactor) {
+	if (isImmortal)
+		return;
+	float impactorX = impactor->GetPosition().x;
+	if (impactorX > GetPosition().x)
+		SetMoveDirection(Entity::LeftToRight);
+	else
+		SetMoveDirection(Entity::RightToLeft);
+	if (currentState != PlayerState::Climb)
+		SetState(PlayerState::Injured);
+	else
+		OnImmortal();
+	DataManager::MinusHealth();
+	DataManager::GetHealth();
+}
+
+void Player::OnImmortal() {
+	isImmortal = true;
+}
+
+void Player::OffImmortal() {
+	isImmortal = false;
+}
 #include "ObjectPooling.h"
 void Player::CheckForUseItem() {
 	enum Tag item = DataManager::GetItem();

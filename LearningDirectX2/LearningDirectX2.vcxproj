@@ -59,6 +59,7 @@
     <ClCompile Include="PlayerCrouchState.cpp" />
     <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="PlayerIdleState.cpp" />
+    <ClCompile Include="PlayerInjuredState.cpp" />
     <ClCompile Include="PlayerJumpingState.cpp" />
     <ClCompile Include="PlayerRunningState.cpp" />
     <ClCompile Include="PlayerSlashState.cpp" />
@@ -102,6 +103,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Flames.h" />
+    <ClInclude Include="Flow.h" />
     <ClInclude Include="GameConfig.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameMap.h" />
@@ -125,6 +127,7 @@
     <ClInclude Include="PlayerCrouchState.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="PlayerIdleState.h" />
+    <ClInclude Include="PlayerInjuredState.h" />
     <ClInclude Include="PlayerJumpingState.h" />
     <ClInclude Include="PlayerRunningState.h" />
     <ClInclude Include="PlayerSlashState.h" />

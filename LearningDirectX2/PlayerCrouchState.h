@@ -6,10 +6,10 @@ class PlayerCrouchState : public PlayerState {
 public:
 	PlayerCrouchState(PlayerData *data);
 	~PlayerCrouchState();
-	virtual void Render();
-	virtual void HandleInput();
-	virtual void OnCollision(Entity *impactor, Entity::SideCollision side);
-	virtual State GetState();
-	virtual void ResetState(int dummy);
-	//Animation *GetAnimation() { return m_Animation; }
+	void Render() override;
+	void HandleInput() override;
+	void OnCollision(Entity *impactor, Entity::SideCollision side) override;
+	State GetState() override;
+	void ResetState(int dummy) override;
+
 };

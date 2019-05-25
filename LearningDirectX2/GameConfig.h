@@ -57,6 +57,11 @@
 #define JUMP_TO_GROUND_SPEED 1.5
 #define PLAYER_JUMP_FORCE 270
 
+#define PLAYER_INJURED_FORCE_X 60
+#define PLAYER_INJURED_FORCE_Y 110
+#define PLAYER_INJURED_SPEED 2
+#define PLAYER_IMMORTAL_TIME 0.4
+
 //----------------------------BOT CONFIG-------------------------------
 #define SPARTA_SPEED 30.0f
 #define THROWER_SPEED 20.0f

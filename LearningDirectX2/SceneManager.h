@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.h"
-
+#include "DataManager.h"
 
 class SceneManager {
 public:
@@ -13,6 +13,8 @@ public:
 		return isTransitioning;
 	}*/
 	Scene* GetCurrentScene();
+	void LoadScene(Scene *scene);
+
 	~SceneManager();
 private:
 	static SceneManager *instance;

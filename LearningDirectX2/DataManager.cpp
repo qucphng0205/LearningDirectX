@@ -7,6 +7,9 @@ int DataManager::spiritPoint = 0;
 Tag DataManager::item = NONE;
 float DataManager::freezeTimeLeft = 0;
 
+bool DataManager::isDeath = false;
+int DataManager::currentStage = 0;
+
 int DataManager::GetHealth() {
 	return health;
 }
@@ -25,6 +28,12 @@ void DataManager::SetScore(int scr) {
 
 int DataManager::GetSpiritPoint() {
 	return spiritPoint;
+}
+
+bool DataManager::MinusHealth() {
+	health--;
+	isDeath = (health <= 0);
+	return (isDeath);
 }
 
 bool DataManager::IsFreezeTime() {

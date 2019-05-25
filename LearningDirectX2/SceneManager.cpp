@@ -20,6 +20,15 @@ Scene * SceneManager::GetCurrentScene() {
 	return CurrentScene;
 }
 
+void SceneManager::LoadScene(Scene * scene) {
+	delete CurrentScene;
+	CurrentScene = NULL;
+	CreateScene(scene);
+}
+
+void SceneManager::ReloadScene() {
+}
+
 SceneManager::~SceneManager() {
 	delete CurrentScene;
 	CurrentScene = NULL;
