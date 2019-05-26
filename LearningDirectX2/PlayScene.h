@@ -17,11 +17,13 @@ class PlayScene : public Scene {
 	float timeLeft;
 
 public:
+	
 	PlayScene();
-	virtual ~PlayScene();
-	virtual void Render();
-	virtual void ProcessInput();
-	virtual void Update(double dt);
+	~PlayScene();
+	void Render() override;
+	void ProcessInput() override;
+	void Update(double dt) override;
+	int GetSceneID() override;
 	void CheckCollision(double dt = 0.0167f);
 	void CheckActive();
 	void CheckCamera();

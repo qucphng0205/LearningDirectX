@@ -9,6 +9,7 @@ float DataManager::freezeTimeLeft = 0;
 
 bool DataManager::isDeath = false;
 int DataManager::currentStage = 0;
+D3DXCOLOR DataManager::gameColor = D3DCOLOR_XRGB(255, 255, 255);
 
 int DataManager::GetHealth() {
 	return health;
@@ -100,6 +101,22 @@ void DataManager::AddData(EarnedData data) {
 			break;
 		}
 	}
+}
+
+bool DataManager::IsDeath() {
+	return isDeath;
+}
+
+int DataManager::GetCurrentStage() {
+	return currentStage;
+}
+
+void DataManager::SetGameColor(D3DXCOLOR color) {
+	gameColor = color;
+}
+
+D3DXCOLOR DataManager::GetGameColor(){
+	return gameColor;
 }
 
 void DataManager::SetItem(Tag itm) {

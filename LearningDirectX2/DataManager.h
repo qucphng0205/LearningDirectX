@@ -1,7 +1,6 @@
 #pragma once
 #include "Tag.h"
 #include "MyHelper.h"
-#include "Textures.h"
 
 struct EarnedData {
 	int score;
@@ -36,6 +35,8 @@ private:
 #pragma region loading data
 	static bool isDeath;
 	static int currentStage;
+	//for scene-transition
+	static D3DXCOLOR gameColor;
 #pragma endregion
 
 	static void SetScore(int scr);
@@ -45,7 +46,7 @@ private:
 	static void SetItem(Tag itm);
 public:
 	
-
+#pragma region Run-time data function
 	static int GetHealth();
 	static int GetScore();
 	static int GetSpiritPoint();
@@ -56,4 +57,14 @@ public:
 	static int GetLife();
 	static Tag GetItem();
 	static void AddData(EarnedData data);
+#pragma endregion
+
+#pragma region Loading data function
+	static bool IsDeath();
+	static int GetCurrentStage();
+	static void SetGameColor(D3DXCOLOR color);
+	static D3DXCOLOR GetGameColor();
+#pragma endregion
+
+	
 };

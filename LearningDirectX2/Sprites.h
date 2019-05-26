@@ -6,6 +6,7 @@
 #include "MyHelper.h"
 #include "Graphic.h"
 #include "BoxCollider.h"
+#include "DataManager.h"
 
 
 using namespace std;

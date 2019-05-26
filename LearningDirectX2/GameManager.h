@@ -1,7 +1,8 @@
 #pragma once
 
 #include "SceneManager.h"
-#include "PlayScene.h"
+#include "Graphic.h"
+#include "KeyBoard.h"
 
 class GameManager {
 
@@ -15,5 +16,4 @@ public:
 	void Render();
 private:
 	double hihi;
-	bool haha;
 };

@@ -1,6 +1,8 @@
 #include "PlayScene.h"
 #include "Debug.h"
 
+int PlayScene::sceneID = 0;
+
 PlayScene::PlayScene() {
 	//LoadResources
 
@@ -68,6 +70,10 @@ void PlayScene::Update(double dt) {
 	timeLeft -= dt;
 	if (DataManager::IsFreezeTime())
 		DataManager::MinusFreezeTimeLeft(dt);
+}
+
+int PlayScene::GetSceneID() {
+	return 0;
 }
 
 void PlayScene::CheckCollision(double dt) {

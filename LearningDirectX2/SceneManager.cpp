@@ -8,11 +8,24 @@ SceneManager * SceneManager::GetInstance() {
 	return instance;
 }
 
-void SceneManager::CreateScene(Scene * scene) {
-	if (scene) {
-		if (CurrentScene)
-			delete CurrentScene;
-		CurrentScene = scene;
+SceneManager::SceneManager() {
+	CurrentScene = NULL;
+	timeTransition = 0;
+	firstTime = true;
+	destSceneID = DataManager::GetCurrentStage();
+	hihi = 0;
+	srand(time(NULL));
+
+}
+
+void SceneManager::CreateScene(int sceneID) {
+	if (CurrentScene != NULL)
+		delete CurrentScene;
+	CurrentScene = NULL;
+	switch (sceneID) {
+	case 0:
+		CurrentScene = new PlayScene();
+		break;
 	}
 }
 
@@ -20,10 +33,36 @@ Scene * SceneManager::GetCurrentScene() {
 	return CurrentScene;
 }
 
-void SceneManager::LoadScene(Scene * scene) {
-	delete CurrentScene;
-	CurrentScene = NULL;
-	CreateScene(scene);
+void SceneManager::LoadScene(int sceneID) {
+	destSceneID = sceneID;
+	if (firstTime) {
+		CreateScene(sceneID);
+		firstTime = false;
+	}
+	else
+		isTransitioning = true;
+}
+
+
+#include "Debug.h"
+
+void SceneManager::UpdateTransition(double dt) {
+
+	if (timeTransition > SCENE_TIME_TRANSITION) {
+		CreateScene(destSceneID);
+		timeTransition = 0;
+		isTransitioning = false;
+		DataManager::SetGameColor(D3DCOLOR_XRGB(255, 255, 255));
+		return;
+	}
+
+	timeTransition += dt;
+	DataManager::SetGameColor(D3DCOLOR_XRGB(rand() % 255, rand() % 255, rand() % 255));
+	DebugOut(L"random: %d", rand() % 255);
+}
+
+bool SceneManager::IsTransitioning() {
+	return isTransitioning;
 }
 
 SceneManager::~SceneManager() {

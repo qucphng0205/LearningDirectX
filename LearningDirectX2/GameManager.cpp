@@ -3,7 +3,7 @@
 GameManager::GameManager(HWND hWnd, HINSTANCE hInstance) {
 	Graphic::GetInstance()->Init(hWnd);
 	KeyBoard::GetInstance()->InitKeyboard(hWnd, hInstance);
-	SceneManager::GetInstance()->CreateScene(new PlayScene());
+	SceneManager::GetInstance()->LoadScene(DataManager::GetCurrentStage());
 	this->hWnd = hWnd;
 	this->hInstance = hInstance;
 }
@@ -15,11 +15,11 @@ GameManager::~GameManager() {
 }
 
 void GameManager::Update(double dt) {
-	//hihi += dt;
-	//if ((int)hihi > 10) {
-	//	SceneManager::GetInstance()->LoadScene(new PlayScene());
-	//	hihi = 0;
-	//}
+	hihi += dt;
+	if ((int)hihi > 10) {
+		SceneManager::GetInstance()->LoadScene(DataManager::GetCurrentStage());
+		hihi = 0;
+	}
 	//neu khong chuyen canh thi update
 	/*if (!SceneManager::GetInstance()->isSceneTransitioning())
 		SceneManager::GetInstance()->GetCurrentScene()->Update(dt);
@@ -27,7 +27,12 @@ void GameManager::Update(double dt) {
 		SceneTransition::GetInstance()->Update();
 		SceneManager::GetInstance()->UpdateWithEffect();
 	}*/
-	SceneManager::GetInstance()->GetCurrentScene()->Update(dt);
+	SceneManager *sceneManager = SceneManager::GetInstance();
+
+	if (!sceneManager->IsTransitioning())
+		sceneManager->GetCurrentScene()->Update(dt);
+	else
+		sceneManager->UpdateTransition(dt);
 }
 
 void GameManager::Render() {
@@ -50,7 +55,7 @@ void GameManager::Render() {
 		device->EndScene();
 	}
 	device->Present(NULL, NULL, NULL, NULL);
-	
+
 }
 
 void GameManager::ProcessInput() {
