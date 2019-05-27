@@ -2,14 +2,12 @@
 #include "EnemyState.h"
 #include "Textures.h"
 #include "Animation.h"
-#include "Soldier.h"
+#include "Gunner.h"
 
-class SoldierAttackState : public EnemyState {
+class GunnerAttackState : public EnemyState {
 public:
-	SoldierAttackState(EnemyData *data);
-	~SoldierAttackState();
+	GunnerAttackState(EnemyData *data);
+	~GunnerAttackState();
 	void ResetState() override;
 	void Update(double dt) override;
-private:
-	int frame;
 };

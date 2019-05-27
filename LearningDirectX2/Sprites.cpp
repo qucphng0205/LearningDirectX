@@ -110,7 +110,7 @@ void Sprite::Draw(D3DXVECTOR3 position, BoxCollider r, D3DXCOLOR colorKey, bool 
 		&rr,
 		&center,
 		&p,
-		DataManager::GetGameColor()
+		colorKey
 	);
 	spriteHandler->SetTransform(&oldMatrix);
 }

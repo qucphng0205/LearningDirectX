@@ -7,7 +7,7 @@ PlayScene::PlayScene() {
 	//LoadResources
 
 	//map = new GameMap((char*)"Resources/map31xTileSet.png", (char*)"Resources/map31x.txt", 16, 16);
-	map = new GameMap((char*)"Resources/map31TileSet.png", (char*)"Resources/map31.txt", 32, 32);
+	map = new GameMap((char*)"Resources/map32TileSet.png", (char*)"Resources/map32.txt", 32, 32);
 	int width = Graphic::GetInstance()->GetBackBufferWidth();
 	int height = Graphic::GetInstance()->GetBackBufferHeight();
 	camera = new Camera(width, height);

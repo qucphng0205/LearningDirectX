@@ -20,6 +20,8 @@
 #define TEX_SHURIKEN 18
 #define TEX_BIGSHURIKEN 19
 #define TEX_FLAMESPROJECTILE 20
+#define TEX_GUNNER 21
+#define TEX_RUNNER 22
 
 //---------------------------------ANIMATION FRAME----------------------
 #define PLAYER_SLASH_FRAME 7
@@ -38,6 +40,10 @@
 //frame spawn bullet
 #define SOLDIER_ATTACK_SHOOT_FRAMES 10
 #define SOLDIER_FOLLOW_PERCENTTIME 2.5f
+#define GUNNER_FOLLOW_FRAME 60
+#define GUNNER_ATTACK_FRAME 4
+#define RUNNER_FRAME 12
+
 #define HOLDER_FRAME 10
 #define KNIFE_FRAME 8
 #define SHURIKEN_FRAME 3
@@ -80,12 +86,14 @@
 #define KNIFE_DRAG_FORCE 10.0f
 #define BULLET_FORCE 110
 #define OFFSET_TO_BULLET 6
+#define BIG_BULLET_FORCE 110
 #define SHURIKEN_VELOCITY 190
 #define BIGSHURIKEN_VELOCITY 190
 #define FLAMES_VELOCITY_X 190
 #define FLAMES_VELOCITY_Y_0 30
 #define FLAMES_VELOCITY_Y_1 60
 #define FLAMES_VELOCITY_Y_2 90
+#define RUNNER_SPEED 110
 
 #define PLAYER_OFFSET_GROUND PLAYER_JUMP_FORCE * 1.0 / 60
 #define ENEMY_OFFSET_BORDER 2
@@ -95,8 +103,8 @@
 //first
 #define KNIFE_QUANTITY 3
 #define KNIFE_POOL_INDEX 0
-//second
 #define KNIFE_SPEED 1
+//second
 #define BULLET_QUANTITY 9
 #define BULLET_POOL_INDEX 1
 //third
@@ -114,5 +122,8 @@
 #define FLAMES_COST 5
 #define FLAMES_QUANTITY 3
 #define FLAMES_POOL_INDEX 4
-
+//six
+#define BIG_BULLET_POOL_INDEX 5
+#define BIG_BULLET_QUANTITY 4
+//-----------------------------------------------SCENE
 #define SCENE_TIME_TRANSITION 3

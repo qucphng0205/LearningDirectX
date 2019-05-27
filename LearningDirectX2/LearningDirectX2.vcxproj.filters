@@ -94,6 +94,12 @@
     <Filter Include="Header Files\Object\Weapon\Bullet">
       <UniqueIdentifier>{e381dd12-fec6-4a54-80f3-a522dab43ba8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\Enemy\Gunner">
+      <UniqueIdentifier>{827d2f13-ca2c-45e1-bf07-c238b32d9a44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Enemy\Runner">
+      <UniqueIdentifier>{1c3dd496-02ba-4d09-ad38-293bd35e0277}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -281,6 +287,21 @@
     </ClCompile>
     <ClCompile Include="PlayerInjuredState.cpp">
       <Filter>Header Files\Object\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Gunner.cpp">
+      <Filter>Header Files\Object\Enemy\Gunner</Filter>
+    </ClCompile>
+    <ClCompile Include="GunnerFollowState.cpp">
+      <Filter>Header Files\Object\Enemy\Gunner</Filter>
+    </ClCompile>
+    <ClCompile Include="GunnerAttackState.cpp">
+      <Filter>Header Files\Object\Enemy\Gunner</Filter>
+    </ClCompile>
+    <ClCompile Include="Runner.cpp">
+      <Filter>Header Files\Object\Enemy\Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="RunnerFollowState.cpp">
+      <Filter>Header Files\Object\Enemy\Runner</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -484,6 +505,21 @@
     </ClInclude>
     <ClInclude Include="PlayerInjuredState.h">
       <Filter>Header Files\Object\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Gunner.h">
+      <Filter>Header Files\Object\Enemy\Gunner</Filter>
+    </ClInclude>
+    <ClInclude Include="GunnerFollowState.h">
+      <Filter>Header Files\Object\Enemy\Gunner</Filter>
+    </ClInclude>
+    <ClInclude Include="GunnerAttackState.h">
+      <Filter>Header Files\Object\Enemy\Gunner</Filter>
+    </ClInclude>
+    <ClInclude Include="Runner.h">
+      <Filter>Header Files\Object\Enemy\Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="RunnerFollowState.h">
+      <Filter>Header Files\Object\Enemy\Runner</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

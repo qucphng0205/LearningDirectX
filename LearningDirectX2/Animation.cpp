@@ -68,8 +68,6 @@ void Animation::SetCurrentFrame(int frame) {
 }
 
 void Animation::Render(D3DXVECTOR3 position, BoxCollider sourceRect, D3DXCOLOR colorKey, bool isReverse) {
-	if (currentFrame == 1)
-		currentFrame = 1;
 	frames[currentFrame]->Draw(position, sourceRect, colorKey, isReverse);
 }
 

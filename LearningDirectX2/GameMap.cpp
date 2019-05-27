@@ -187,7 +187,7 @@ void GameMap::Draw() {
 					D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, (rows - m - 1) * tileHeight + tileHeight / 2, 0);
 					sprite->SetHeight(tileHeight);
 					sprite->SetWidth(tileWidth);
-					sprite->Draw(position, BoxCollider());
+					sprite->Draw(position, BoxCollider(), DataManager::GetGameColor());
 				}
 			}
 
