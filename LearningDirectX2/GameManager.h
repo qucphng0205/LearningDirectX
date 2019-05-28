@@ -16,4 +16,7 @@ public:
 	void Render();
 private:
 	double hihi;
+	SceneManager *sceneManager;
+	KeyBoard *keyboard;
+	Graphic *graphic;
 };

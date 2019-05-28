@@ -100,6 +100,21 @@
     <Filter Include="Header Files\Object\Enemy\Runner">
       <UniqueIdentifier>{1c3dd496-02ba-4d09-ad38-293bd35e0277}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\Weapon\BigShuriken">
+      <UniqueIdentifier>{e7501e6d-61a7-4961-8bab-87e821541db1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Weapon\Flames">
+      <UniqueIdentifier>{a3cdb575-4bc8-466f-8e5d-0d20d286695d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Weapon\Shuriken">
+      <UniqueIdentifier>{5bc6694f-c3af-4775-a680-060456274559}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Weapon\Weapon">
+      <UniqueIdentifier>{44995564-471f-4fa8-a314-961f26cf9444}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Weapon\BigBullet">
+      <UniqueIdentifier>{38d453cc-57ff-4d92-9a00-29b4c86870dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -270,20 +285,8 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Header Files\Object\Weapon\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>Header Files\Object\Weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="Shuriken.cpp">
-      <Filter>Header Files\Object\Weapon</Filter>
-    </ClCompile>
     <ClCompile Include="DataManager.cpp">
       <Filter>Header Files\Manager\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="BigShuriken.cpp">
-      <Filter>Header Files\Object\Weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="Flames.cpp">
-      <Filter>Header Files\Object\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="PlayerInjuredState.cpp">
       <Filter>Header Files\Object\Player\State</Filter>
@@ -302,6 +305,24 @@
     </ClCompile>
     <ClCompile Include="RunnerFollowState.cpp">
       <Filter>Header Files\Object\Enemy\Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="BigShuriken.cpp">
+      <Filter>Header Files\Object\Weapon\BigShuriken</Filter>
+    </ClCompile>
+    <ClCompile Include="Flames.cpp">
+      <Filter>Header Files\Object\Weapon\Flames</Filter>
+    </ClCompile>
+    <ClCompile Include="Shuriken.cpp">
+      <Filter>Header Files\Object\Weapon\Shuriken</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Header Files\Object\Weapon\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="BigBullet.cpp">
+      <Filter>Header Files\Object\Weapon\BigBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticEntity.cpp">
+      <Filter>Header Files\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -485,20 +506,8 @@
     <ClInclude Include="Tag.h">
       <Filter>Header Files\Object\Tag</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Header Files\Object\Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="Shuriken.h">
-      <Filter>Header Files\Object\Weapon</Filter>
-    </ClInclude>
     <ClInclude Include="DataManager.h">
       <Filter>Header Files\Manager\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="BigShuriken.h">
-      <Filter>Header Files\Object\Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="Flames.h">
-      <Filter>Header Files\Object\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="Flow.h">
       <Filter>Header Files\Manager\Game</Filter>
@@ -520,6 +529,24 @@
     </ClInclude>
     <ClInclude Include="RunnerFollowState.h">
       <Filter>Header Files\Object\Enemy\Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="BigShuriken.h">
+      <Filter>Header Files\Object\Weapon\BigShuriken</Filter>
+    </ClInclude>
+    <ClInclude Include="Flames.h">
+      <Filter>Header Files\Object\Weapon\Flames</Filter>
+    </ClInclude>
+    <ClInclude Include="Shuriken.h">
+      <Filter>Header Files\Object\Weapon\Shuriken</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\Object\Weapon\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="BigBullet.h">
+      <Filter>Header Files\Object\Weapon\BigBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticEntity.h">
+      <Filter>Header Files\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -30,7 +30,7 @@ PlayerState::State PlayerClimbState::GetState() {
 
 void PlayerClimbState::ResetState(int dummy) {
 	auto player = playerData->player;
-
+	player->SetVy(0);
 	//Climb collider: DEMO JUST DEMO BRO?
 	player->SetColliderLeft(-7);
 	player->SetColliderTop(16);

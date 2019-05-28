@@ -1,24 +1,31 @@
 #include "GameManager.h"
 
 GameManager::GameManager(HWND hWnd, HINSTANCE hInstance) {
-	Graphic::GetInstance()->Init(hWnd);
-	KeyBoard::GetInstance()->InitKeyboard(hWnd, hInstance);
-	SceneManager::GetInstance()->LoadScene(DataManager::GetCurrentStage());
+	graphic = Graphic::GetInstance();
+	sceneManager = SceneManager::GetInstance();
+	keyboard = KeyBoard::GetInstance();
+
+	graphic->Init(hWnd);
+	keyboard->InitKeyboard(hWnd, hInstance);
+	sceneManager->LoadScene(DataManager::GetCurrentStage());
+
 	this->hWnd = hWnd;
 	this->hInstance = hInstance;
 }
 
 GameManager::~GameManager() {
-	delete Graphic::GetInstance();
-	delete KeyBoard::GetInstance();
-	delete SceneManager::GetInstance();
+	delete graphic;
+	graphic = NULL;
+	delete keyboard;
+	keyboard = NULL;
+	delete sceneManager;
+	sceneManager = NULL;
 }
 
 void GameManager::Update(double dt) {
 	hihi += dt;
-	if ((int)hihi > 10) {
-		SceneManager::GetInstance()->LoadScene(DataManager::GetCurrentStage());
-		hihi = 0;
+	if (SceneManager::GetInstance()->GetSceneID() != DataManager::GetCurrentStage()) {
+		sceneManager->LoadScene(DataManager::GetCurrentStage());
 	}
 	//neu khong chuyen canh thi update
 	/*if (!SceneManager::GetInstance()->isSceneTransitioning())

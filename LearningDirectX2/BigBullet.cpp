@@ -1,12 +1,12 @@
-#include "Bullet.h"
+#include "BigBullet.h"
 
-Bullet::Bullet() {
+BigBullet::BigBullet() {
 	auto textures = Textures::GetInstance();
-	textures->Add(TEX_BULLET, "Resources/Sprites/bulletspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
+	textures->Add(TEX_BIGBULLET, "Resources/Sprites/bigbulletspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));
 
-	PDIRECT3DTEXTURE9 tex = textures->Get(TEX_BULLET);
+	PDIRECT3DTEXTURE9 tex = textures->Get(TEX_BIGBULLET);
 	anim = new Animation();
-	anim->AddFrames(tex, 1, 1, 1 * (1 / 60.0f));
+	anim->AddFrames(tex, 1, 1, 1000 * (1 / 60.0f));
 
 	D3DSURFACE_DESC desc;
 	tex->GetLevelDesc(0, &desc);
@@ -19,23 +19,23 @@ Bullet::Bullet() {
 	SetColliderLeft(-height / 2);
 
 	isActive = false;
-	point = 0;
+	point = 200;
 }
 
-Bullet::~Bullet() {
+BigBullet::~BigBullet() {
 }
 
-void Bullet::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
+void BigBullet::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
 }
 
-void Bullet::Update(double dt) {
+void BigBullet::Update(double dt) {
 	Weapon::Update(dt);
 }
 
-void Bullet::Instantiate(D3DXVECTOR3 position) {
+void BigBullet::Instantiate(D3DXVECTOR3 position) {
 	this->position = position;
 
-	velocity.x = BULLET_FORCE;
+	velocity.x = BIG_BULLET_FORCE;
 
 	//DebugOut(L"velocity.x = %f\n", velocity.x);
 

@@ -111,6 +111,10 @@ int DataManager::GetCurrentStage() {
 	return currentStage;
 }
 
+void DataManager::SetCurrentStage(int stage) {
+	currentStage = stage;
+}
+
 void DataManager::SetGameColor(D3DXCOLOR color) {
 	gameColor = color;
 }

@@ -27,5 +27,6 @@ public:
 	void CheckCollision(double dt = 0.0167f);
 	void CheckActive();
 	void CheckCamera();
+	void CheckTransitionScene();
 	void Reset();
 };

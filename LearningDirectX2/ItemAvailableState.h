@@ -6,7 +6,7 @@
 class ItemAvailableState : public ItemState {
 public:
 	ItemAvailableState(ItemData *data, Tag Tag);
-	virtual void ResetState();
-	virtual void Update(double dt);
-	virtual ItemState::State GetState();
+	void ResetState() override;
+	void Update(double dt) override;
+	ItemState::State GetState() override;
 };

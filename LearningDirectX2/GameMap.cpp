@@ -81,7 +81,7 @@ void GameMap::SetMapPath(char * mapPath) {
 		reader >> hei;
 		reader >> direction;
 
-		if (id == 0) {
+		if (id == (int)Tag::GROUND || id == (int)Tag::LADDER) {
 			Entity *ground = new Entity();
 			ground->SetTag((Tag)id);
 			ground->SetType(Layer::StaticType);
@@ -100,37 +100,57 @@ void GameMap::SetMapPath(char * mapPath) {
 		box.right = posx + wid;
 
 		switch (id) {
-		case SPARTA: {
+		case SPARTA:
+		{
 			Sparta *sparta = new Sparta();
 			sparta->SetSpawnBox(box, direction);
 			unit = new Unit(grid, sparta);
 		}
-				break;
-		case CAT: {
+		break;
+		case CAT:
+		{
 			Cat *cat = new Cat();
 			cat->SetSpawnBox(box, direction);
 			unit = new Unit(grid, cat);
 		}
-				break;
-		case THROWER: {
+		break;
+		case THROWER:
+		{
 			Thrower *thrower = new Thrower();
 			thrower->SetSpawnBox(box, direction);
 			unit = new Unit(grid, thrower);
 		}
-				break;
-		case EAGLE: {
+		break;
+		case EAGLE:
+		{
 			Eagle *eagle = new Eagle();
 			eagle->SetSpawnBox(box, direction);
 			unit = new Unit(grid, eagle);
 		}
-				break;
-		case SOLDIER: {
+		break;
+		case SOLDIER:
+		{
 			Soldier *soldier = new Soldier();
 			soldier->SetSpawnBox(box, direction);
 			unit = new Unit(grid, soldier);
 		}
-				break;
-		default: {
+		break;
+		case GUNNER:
+		{
+			Gunner *gunner = new Gunner();
+			gunner->SetSpawnBox(box, direction);
+			unit = new Unit(grid, gunner);
+		}
+		break;
+		case RUNNER:
+		{
+			Runner *runner = new Runner();
+			runner->SetSpawnBox(box, direction);
+			unit = new Unit(grid, runner);
+		}
+		break;
+		default:
+		{
 			Item *item = new Item(0, (Tag)id);
 			item->SetSpawnBox(box);
 			unit = new Unit(grid, item);

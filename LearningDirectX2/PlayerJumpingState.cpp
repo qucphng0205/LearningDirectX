@@ -65,11 +65,12 @@ void PlayerJumpingState::OnCollision(Entity * impactor, Entity::SideCollision si
 
 	auto player = playerData->player;
 	auto impactorType = impactor->GetType();
+	auto impactorRect = impactor->GetRect();
 
 	if (impactorType == Layer::ItemAvailableType) {
 		DataManager::AddData(impactor->OnDestroy());
 	}
-	else if (impactor->GetTag() == GROUND && side == Entity::Bottom) {
+	else if (impactor->GetTag() == GROUND && side == Entity::Bottom && (abs(player->GetPosition().y - player->GetBigHeight() / 2.0 - impactorRect.top) <= PLAYER_OFFSET_GROUND)) {
 		if (player->status == Player::Jumping)
 			return;
 		auto keyboard = KeyBoard::GetInstance();
@@ -116,7 +117,7 @@ void PlayerJumpingState::ResetState(int dummy) {
 			player->timeOnAir = 0;
 		}
 		else {
-			player->timeOnAir = 0.5f;
+			player->timeOnAir = 0.4f;
 			player->status = Player::Falling;
 		}
 	}

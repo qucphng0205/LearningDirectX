@@ -77,6 +77,15 @@ void ObjectPooling::AddFlames(int number) {
 	}
 }
 
+void ObjectPooling::AddBigBullet(int number) {
+	Unit *unit;
+	for (int i = 0; i < number; i++) {
+		BigBullet* bigBullet = new BigBullet();
+		unit = new Unit(Grid::GetInstance(), bigBullet);
+		pool[BIGBULLET_POOL_INDEX].push_back(unit);
+	}
+}
+
 ObjectPooling::ObjectPooling() {
 	if (instance != NULL)
 		delete this;

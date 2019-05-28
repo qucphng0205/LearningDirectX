@@ -22,6 +22,7 @@
 #define TEX_FLAMESPROJECTILE 20
 #define TEX_GUNNER 21
 #define TEX_RUNNER 22
+#define TEX_BIGBULLET 23
 
 //---------------------------------ANIMATION FRAME----------------------
 #define PLAYER_SLASH_FRAME 7
@@ -85,6 +86,7 @@
 #define KNIFE_THROW_FORCE_MAX_X 120
 #define KNIFE_DRAG_FORCE 10.0f
 #define BULLET_FORCE 110
+#define BIGBULLET_FORCE 140
 #define OFFSET_TO_BULLET 6
 #define BIG_BULLET_FORCE 110
 #define SHURIKEN_VELOCITY 190
@@ -123,7 +125,7 @@
 #define FLAMES_QUANTITY 3
 #define FLAMES_POOL_INDEX 4
 //six
-#define BIG_BULLET_POOL_INDEX 5
-#define BIG_BULLET_QUANTITY 4
+#define BIGBULLET_POOL_INDEX 5
+#define BIGBULLET_QUANTITY 4
 //-----------------------------------------------SCENE
 #define SCENE_TIME_TRANSITION 3

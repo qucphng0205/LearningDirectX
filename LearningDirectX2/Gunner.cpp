@@ -69,6 +69,6 @@ void Gunner::SpawnBigBullet() {
 	D3DXVECTOR3 position = this->position;
 	//to attach to the head of the gun
 	position.y += OFFSET_TO_BULLET;
-	if (!ObjectPooling::GetInstance()->Instantiate(BIG_BULLET_POOL_INDEX, position))
+	if (!ObjectPooling::GetInstance()->Instantiate(BIGBULLET_POOL_INDEX, position))
 		SetState(EnemyState::Follow);
 }

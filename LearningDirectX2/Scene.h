@@ -7,7 +7,7 @@ public:
 	Scene();
 	virtual ~Scene() {}
 	D3DCOLOR GetBackColor();
-	//virtual void LoadContent();
+	//virtual void LoadContent() = 0;
 	virtual void ProcessInput();
 	virtual void Render() = 0;
 	virtual void Update(double dt) = 0;

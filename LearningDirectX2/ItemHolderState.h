@@ -6,7 +6,7 @@
 class ItemHolderState : public ItemState {
 public:
 	ItemHolderState(ItemData *data, int stage);
-	virtual void ResetState();
-	virtual void Update(double dt);
-	virtual ItemState::State GetState();
+	void ResetState() override;
+	void Update(double dt) override;
+	ItemState::State GetState() override;
 };

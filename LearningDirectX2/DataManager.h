@@ -62,6 +62,7 @@ public:
 #pragma region Loading data function
 	static bool IsDeath();
 	static int GetCurrentStage();
+	static void SetCurrentStage(int stage);
 	static void SetGameColor(D3DXCOLOR color);
 	static D3DXCOLOR GetGameColor();
 #pragma endregion

@@ -51,7 +51,7 @@ void PlayerSlashState::HandleInput() {
 	if (keyboard->GetKeyDown(DIK_F) && player->status == Player::OnGround)
 		player->SetState(Jump);
 	else
-		if (player->GetVelocity().y < 0) {
+		if (player->GetVelocity().y != 0) {
 
 			if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW)) {
 				if (player->GetMoveDirection() == Player::RightToLeft)
@@ -97,7 +97,7 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 				if (impactorType == Layer::ItemAvailableType) {
 					DataManager::AddData(impactor->OnDestroy());
 				}
-				else {
+				else if (impactorType != Layer::ItemHolderType) {
 					player->InjuredByOther(impactor);
 				}
 			}

@@ -18,6 +18,8 @@ public:
 	
 	bool IsTransitioning();
 
+	int GetSceneID();
+
 	~SceneManager();
 private:
 	void CreateScene(int sceneID);

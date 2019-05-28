@@ -65,6 +65,10 @@ bool SceneManager::IsTransitioning() {
 	return isTransitioning;
 }
 
+int SceneManager::GetSceneID() {
+	return CurrentScene->GetSceneID();
+}
+
 SceneManager::~SceneManager() {
 	delete CurrentScene;
 	CurrentScene = NULL;

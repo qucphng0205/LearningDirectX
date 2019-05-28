@@ -6,12 +6,12 @@ class PlayerUseItemState : public PlayerState {
 public:
 	PlayerUseItemState(PlayerData *data);
 	~PlayerUseItemState();
-	virtual void Update(double dt);
-	virtual void Render();
-	virtual void HandleInput();
-	virtual void OnCollision(Entity *impactor, Entity::SideCollision side);
-	virtual State GetState();
-	virtual void ResetState(int dummy);
+	void Update(double dt) override;
+	void Render() override;
+	void HandleInput() override;
+	void OnCollision(Entity *impactor, Entity::SideCollision side) override;
+	State GetState() override;
+	void ResetState(int dummy) override;
 private:
 	int currentState;
 };

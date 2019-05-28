@@ -12,27 +12,27 @@ public:
 	Item(int stage, enum Tag Tag);
 	~Item();
 
-	virtual void Update(double dt);
-	virtual void Render();
+	void Update(double dt) override;
+	void Render() override;
 
-	virtual void SetState(ItemState::State state);
-	virtual ItemState::State GetState();
-	virtual bool IsAvailable();
+	void SetState(ItemState::State state);
+	ItemState::State GetState();
+	bool IsAvailable();
 
-	virtual void SetSpawnBox(BoxCollider box);
+	void SetSpawnBox(BoxCollider box);
 	//Get real rect in world 
-	virtual BoxCollider GetRect();
+	BoxCollider GetRect() override;
 	//Get spawn box in world
-	virtual BoxCollider GetSpawnRect();
+	BoxCollider GetSpawnRect();
 
-	virtual void SetActive(bool active);
+	void SetActive(bool active) override;
 
-	virtual float GetWidth();
-	virtual float GetHeight();
-	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
-	virtual void MakeInactive();
-	virtual void Spawn();
-	virtual EarnedData OnDestroy();
+	float GetWidth() override;
+	float GetHeight() override;
+	void OnCollision(Entity *impactor, SideCollision side, float collisionTime) override;
+	void MakeInactive();
+	void Spawn();
+	EarnedData OnDestroy() override;
 	bool onGround;
 
 protected:

@@ -5,6 +5,6 @@ class CatFollowState : public EnemyState {
 public:
 	CatFollowState(EnemyData *data);
 	~CatFollowState();
-	virtual void ResetState();
-	virtual void Update(double dt);
+	void ResetState() override;
+	void Update(double dt) override;
 };

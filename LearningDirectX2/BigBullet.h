@@ -1,11 +1,12 @@
 #pragma once
 #include "Weapon.h"
 #include "Animation.h"
+#include "KnifeRotateState.h"
 
-class Bullet : public Weapon {
+class BigBullet : public Weapon {
 public:
-	Bullet();
-	~Bullet();
+	BigBullet();
+	~BigBullet();
 	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime) override;
 	void Update(double dt) override;
 	void Instantiate(D3DXVECTOR3 position) override;

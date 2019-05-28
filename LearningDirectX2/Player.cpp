@@ -162,16 +162,29 @@ void Player::SetState(PlayerState::State name, int dummy) {
 }
 
 void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
-
 	auto impactorRect = impactor->GetRect();
-	if (impactor->GetType() == StaticType && side == Bottom && status != Jumping) {
-		if (abs(position.y - GetBigHeight() / 2.0 - impactorRect.top) <= PLAYER_OFFSET_GROUND) {
-			velocity.y *= collisionTime;
-			checkGroundInFrame = true;
+	if (impactor->GetType() == StaticType)
+		if (side == Bottom && status != Jumping) {
+			if (abs(position.y - GetBigHeight() / 2.0 - impactorRect.top) <= PLAYER_OFFSET_GROUND) {
+				velocity.y *= collisionTime;
+				checkGroundInFrame = true;
+			}
 		}
-		else
-			return;
-	}
+		else {
+			if (((side == Left && velocity.x < 0) || (side == Right && velocity.x > 0))) {
+				velocity.x *= collisionTime;
+
+				if (impactorRect.bottom <= round(GetRect().bottom) && impactorRect.top > round(GetRect().top)) {
+
+					int sign = -1;
+					if (impactor->GetTag() == LADDER)
+						sign = 1;
+					int height = (int)impactorRect.top - (int)impactorRect.bottom;
+					if (height > 32)
+						SetState(PlayerState::Climb, sign * height);
+				}
+			}
+		}
 
 	playerData->state->OnCollision(impactor, side);
 

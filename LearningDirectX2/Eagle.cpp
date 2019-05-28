@@ -31,7 +31,7 @@ void Eagle::Update(double dt) {
 	Enemy::Update(dt);
 
 	D3DXVECTOR3 target = Player::GetInstance()->GetPosition();
-	target.y -= 15;
+	target.y -= 10;
 	D3DXVECTOR2 accelerate = D3DXVECTOR2(0, 0);
 
 	if (target.x < position.x)

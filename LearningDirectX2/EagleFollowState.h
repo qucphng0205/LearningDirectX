@@ -7,6 +7,6 @@ class EagleFollowState : public EnemyState {
 public:
 	EagleFollowState(EnemyData *data);
 	~EagleFollowState();
-	virtual void ResetState();
-	virtual void Update(double dt);
+	void ResetState() override;
+	void Update(double dt) override;
 };

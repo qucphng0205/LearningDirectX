@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="BigBullet.cpp" />
     <ClCompile Include="BigShuriken.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -80,6 +81,7 @@
     <ClCompile Include="Sparta.cpp" />
     <ClCompile Include="SpartaFollowState.cpp" />
     <ClCompile Include="Sprites.cpp" />
+    <ClCompile Include="StaticEntity.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Thrower.cpp" />
     <ClCompile Include="ThrowerAttackState.cpp" />
@@ -89,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="BigBullet.h" />
     <ClInclude Include="BigShuriken.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Bullet.h" />
@@ -153,6 +156,7 @@
     <ClInclude Include="Sparta.h" />
     <ClInclude Include="SpartaFollowState.h" />
     <ClInclude Include="Sprites.h" />
+    <ClInclude Include="StaticEntity.h" />
     <ClInclude Include="Tag.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Thrower.h" />
