@@ -80,7 +80,7 @@ float Weapon::GetBigHeight() {
 	return height;
 }
 
-void Weapon::OnCollision(Entity * impactor, SideCollision side, float collisionTime) {
+void Weapon::OnCollision(Entity * impactor, SideCollision side, float collisionTime, float dt) {
 }
 
 void Weapon::Instantiate(D3DXVECTOR3 position) {

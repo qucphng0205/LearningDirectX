@@ -20,7 +20,7 @@ Eagle::~Eagle() {
 	eagleFollowState = NULL;
 }
 
-void Eagle::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
+void Eagle::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, float dt) {
 }
 
 #include "Player.h"

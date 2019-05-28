@@ -32,7 +32,8 @@ public:
 	
 	enum EntityDirection {
 		LeftToRight,
-		RightToLeft
+		RightToLeft,
+		None
 	};
 
 	virtual BoxCollider GetRect();
@@ -78,7 +79,7 @@ public:
 	virtual void Update(double dt);
 	virtual void Render();
 
-	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime);
+	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime, float dt = (1.0/60));
 	virtual EarnedData OnDestroy();
 
 protected:

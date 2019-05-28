@@ -103,7 +103,7 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 			}
 		return;
 	}
-	else if (impactor->GetTag() == GROUND && side == Entity::Bottom && player->status == Player::Falling) {
+	else if (impactor->GetType() == StaticType && side == Entity::Bottom && player->status == Player::Falling) {
 		player->status = Player::OnGround;
 		player->timeOnAir = 0;
 		auto keyboard = KeyBoard::GetInstance();

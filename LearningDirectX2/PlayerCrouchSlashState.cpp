@@ -61,21 +61,21 @@ void PlayerCrouchSlashState::OnCollision(Entity * impactor, Entity::SideCollisio
 			}
 		return;
 	}
-	else if (impactor->GetTag() == GROUND && side == Entity::Bottom && player->status == Player::Falling) {
-		player->status = Player::OnGround;
-		player->timeOnAir = 0;
-		auto keyboard = KeyBoard::GetInstance();
-		if (keyboard->GetKey(DIK_LEFTARROW) && !(keyboard->GetKey(DIK_RIGHTARROW)))
-			player->SetState(Running);
-		else
-			if (keyboard->GetKey(DIK_RIGHTARROW) && !(keyboard->GetKey(DIK_LEFTARROW)))
-				player->SetState(Running);
-			else
-				if (keyboard->GetKey(DIK_DOWNARROW))
-					player->SetState(Crouch);
-				else
-					player->SetState(Idle);
-	}
+	//else if (impactor->GetTag() == GROUND && side == Entity::Bottom && player->status == Player::Falling) {
+	//	player->status = Player::OnGround;
+	//	player->timeOnAir = 0;
+	//	auto keyboard = KeyBoard::GetInstance();
+	//	if (keyboard->GetKey(DIK_LEFTARROW) && !(keyboard->GetKey(DIK_RIGHTARROW)))
+	//		player->SetState(Running);
+	//	else
+	//		if (keyboard->GetKey(DIK_RIGHTARROW) && !(keyboard->GetKey(DIK_LEFTARROW)))
+	//			player->SetState(Running);
+	//		else
+	//			if (keyboard->GetKey(DIK_DOWNARROW))
+	//				player->SetState(Crouch);
+	//			else
+	//				player->SetState(Idle);
+	//}
 }
 
 PlayerState::State PlayerCrouchSlashState::GetState() {

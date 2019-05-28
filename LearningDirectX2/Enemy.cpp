@@ -113,7 +113,7 @@ BoxCollider Enemy::GetCollider() {
 	return collider;
 }
 
-void Enemy::OnCollision(Entity * impactor, SideCollision side, float collisionTime) {
+void Enemy::OnCollision(Entity * impactor, SideCollision side, float collisionTime, float dt) {
 	auto impactorRect = impactor->GetRect();
 	auto myRect = GetRect();
 	if (impactor->GetType() == Layer::StaticType) {

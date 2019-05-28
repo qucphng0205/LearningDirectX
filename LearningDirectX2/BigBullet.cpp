@@ -25,7 +25,7 @@ BigBullet::BigBullet() {
 BigBullet::~BigBullet() {
 }
 
-void BigBullet::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
+void BigBullet::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, float dt) {
 }
 
 void BigBullet::Update(double dt) {

@@ -6,7 +6,7 @@
 class Knife : public Weapon {
 public:
 	Knife();
-	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime);
+	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime, float dt = 1.0/60);
 	virtual void Update(double dt);
 	virtual void Instantiate(D3DXVECTOR3 position);
 private:

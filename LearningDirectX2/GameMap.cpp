@@ -89,6 +89,7 @@ void GameMap::SetMapPath(char * mapPath) {
 			ground->SetPosition(D3DXVECTOR3(posx + wid / 2, posy - hei / 2, 0));
 			ground->SetWidth(wid);
 			ground->SetHeight(hei);
+			ground->SetMoveDirection((Entity::EntityDirection)direction);
 			grid->AddStaticObject(ground);
 			continue;
 		}
@@ -98,6 +99,10 @@ void GameMap::SetMapPath(char * mapPath) {
 		box.left = posx;
 		box.bottom = posy - hei;
 		box.right = posx + wid;
+
+		//--DEBUG
+		continue; 
+
 
 		switch (id) {
 		case SPARTA:

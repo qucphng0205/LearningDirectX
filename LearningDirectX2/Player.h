@@ -10,7 +10,8 @@ public:
 	enum Status {
 		Jumping,
 		Falling,
-		OnGround
+		OnGround,
+		Climbing
 	};
 
 	static Player *GetInstance();
@@ -19,7 +20,7 @@ public:
 	void Update(double dt) override;
 	void Render() override;
 	void SetState(PlayerState::State name, int dummy = 0);
-	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime);
+	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime, float dt)override;
 	BoxCollider GetRect();
 	BoxCollider GetBigBound();
 	PlayerState::State GetState();

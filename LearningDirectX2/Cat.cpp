@@ -19,7 +19,7 @@ Cat::~Cat() {
 	catFollowState = NULL;
 }
 
-void Cat::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
+void Cat::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, float dt) {
 	auto impactorRect = impactor->GetRect();
 	auto myRect = GetRect();
 	if (impactor->GetType() == Layer::StaticType) {

@@ -170,7 +170,7 @@ void Entity::Update(double dt) {
 void Entity::Render() {
 }
 
-void Entity::OnCollision(Entity * impactor, SideCollision side, float collisionTime) {
+void Entity::OnCollision(Entity * impactor, SideCollision side, float collisionTime, float dt) {
 	//velocity = D3DXVECTOR2(0, 0);
 }
 

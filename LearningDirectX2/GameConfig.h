@@ -27,7 +27,7 @@
 //---------------------------------ANIMATION FRAME----------------------
 #define PLAYER_SLASH_FRAME 7
 #define PLAYER_RUNNING_FRAME 4
-#define PLAYER_JUMPING_FRAME 3
+#define PLAYER_JUMPING_FRAME 8
 #define SPARTA_FRAME 15
 #define CAT_FRAME 15
 #define THROWER_FOLLOW_FRAME 12
@@ -68,6 +68,8 @@
 #define PLAYER_INJURED_FORCE_Y 110
 #define PLAYER_INJURED_SPEED 2
 #define PLAYER_IMMORTAL_TIME 0.4
+
+#define PLAYER_CLIM_SPEED 70
 
 //----------------------------BOT CONFIG-------------------------------
 #define SPARTA_SPEED 30.0f

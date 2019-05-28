@@ -9,7 +9,7 @@ class Thrower : public Enemy {
 public:
 	Thrower();
 	~Thrower();
-	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime);
+	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime, float dt = 1.0/60);
 	virtual void SetVelocity(D3DXVECTOR2 vel);
 	virtual void SetVx(float vx);
 	virtual void Update(double dt);

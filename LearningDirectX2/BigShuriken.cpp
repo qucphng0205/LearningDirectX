@@ -58,7 +58,7 @@ void BigShuriken::Update(double dt) {
 	//velocity.y = MyHelper::Clamp(velocity.y, -80.0f, 80.0f);
 }
 
-void BigShuriken::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
+void BigShuriken::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, float dt) {
 	auto impactorType = impactor->GetType();
 	if (impactorType == Layer::EnemyType || impactorType == Layer::ItemHolderType || impactorType == Layer::EProjectileType) {
 		impactor->OnDestroy();

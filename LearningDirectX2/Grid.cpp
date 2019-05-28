@@ -247,11 +247,11 @@ void Grid::HandleMelee(Entity * ent1, Entity * ent2, double dt) {
 		collisionTime = CollisionDetector::SweptAABB(ent1, ent2, side, dt);
 		if (collisionTime == 2)
 			return;
-		ent1->OnCollision(ent2, side, collisionTime);
+		ent1->OnCollision(ent2, side, collisionTime, dt);
 	}
 	if (!ent2->isStatic) {
 		collisionTime = CollisionDetector::SweptAABB(ent2, ent1, side, dt);
-		ent2->OnCollision(ent1, side, collisionTime);
+		ent2->OnCollision(ent1, side, collisionTime, dt);
 	}
 }
 
@@ -271,7 +271,7 @@ void Grid::HandleCollideStatic(Entity * ent1, Entity * ent2, double dt) {
 	if (groundTime == 2)
 		return;
 
-	ent1->OnCollision(ent2, side, groundTime);
+	ent1->OnCollision(ent2, side, groundTime, dt);
 }
 
 #pragma endregion

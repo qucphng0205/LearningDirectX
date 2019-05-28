@@ -70,7 +70,7 @@ void PlayerJumpingState::OnCollision(Entity * impactor, Entity::SideCollision si
 	if (impactorType == Layer::ItemAvailableType) {
 		DataManager::AddData(impactor->OnDestroy());
 	}
-	else if (impactor->GetTag() == GROUND && side == Entity::Bottom && (abs(player->GetPosition().y - player->GetBigHeight() / 2.0 - impactorRect.top) <= PLAYER_OFFSET_GROUND)) {
+	else if (impactor->GetType() == StaticType && side == Entity::Bottom && (abs(player->GetPosition().y - player->GetBigHeight() / 2.0 - impactorRect.top) <= PLAYER_OFFSET_GROUND)) {
 		if (player->status == Player::Jumping)
 			return;
 		auto keyboard = KeyBoard::GetInstance();

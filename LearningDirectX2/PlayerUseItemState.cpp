@@ -85,7 +85,7 @@ void PlayerUseItemState::OnCollision(Entity * impactor, Entity::SideCollision si
 	//if (impactorType == Layer::EnemyType)
 	//	impactor = impactor;
 
-	if (impactor->GetTag() == GROUND && side == Entity::Bottom && player->status == Player::Falling) {
+	if (impactor->GetType() == StaticType && side == Entity::Bottom && player->status == Player::Falling) {
 		player->status = Player::OnGround;
 		player->timeOnAir = 0;
 		auto keyboard = KeyBoard::GetInstance();

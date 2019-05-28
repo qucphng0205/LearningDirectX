@@ -94,7 +94,7 @@ float Item::GetHeight() {
 	return collider.top - collider.bottom;
 }
 
-void Item::OnCollision(Entity * impactor, SideCollision side, float collisionTime) {
+void Item::OnCollision(Entity * impactor, SideCollision side, float collisionTime, float dt) {
 	if (!itemData->state->GetState() == ItemState::Available)
 		return;
 	if (side == Entity::Bottom && impactor->GetType() == Layer::StaticType) {

@@ -19,7 +19,7 @@ Runner::~Runner() {
 	runnerFollowState = NULL;
 }
 
-void Runner::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime) {
+void Runner::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, float dt) {
 	Enemy::OnCollision(impactor, side, collisionTime);
 	if (impactor->GetType() == Layer::StaticType && side == Bottom)
 		onGround = true;

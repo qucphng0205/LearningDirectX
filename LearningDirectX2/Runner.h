@@ -8,7 +8,7 @@ class Runner : public Enemy {
 public:
 	Runner();
 	~Runner();
-	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime) override;
+	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime, float dt) override;
 	void Update(double dt) override;
 	//virtual float GetWidth();
 	//virtual float GetHeight();

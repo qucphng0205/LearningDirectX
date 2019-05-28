@@ -6,7 +6,7 @@ class Cat : public Enemy {
 public:
 	Cat();
 	~Cat();
-	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime) override;
+	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime, float dt) override;
 	void Update(double dt) override;
 	void SetColliderTop(int top);
 	void SetColliderLeft(int left);
