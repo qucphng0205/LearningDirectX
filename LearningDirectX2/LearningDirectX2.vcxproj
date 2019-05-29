@@ -73,6 +73,8 @@
     <ClCompile Include="Runner.cpp" />
     <ClCompile Include="RunnerFollowState.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Scene32.cpp" />
+    <ClCompile Include="Scene33.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Shuriken.cpp" />
     <ClCompile Include="Soldier.cpp" />
@@ -148,6 +150,8 @@
     <ClInclude Include="Runner.h" />
     <ClInclude Include="RunnerFollowState.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Scene32.h" />
+    <ClInclude Include="Scene33.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Shuriken.h" />
     <ClInclude Include="Soldier.h" />

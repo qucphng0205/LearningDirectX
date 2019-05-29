@@ -100,8 +100,8 @@ void GameMap::SetMapPath(char * mapPath) {
 		box.bottom = posy - hei;
 		box.right = posx + wid;
 
-		//--DEBUG
-		continue; 
+		////--DEBUG
+		//continue; 
 
 
 		switch (id) {
@@ -236,8 +236,8 @@ GameMap::~GameMap() {
 
 void GameMap::LoadTileset(char * filePath, int tileWidth, int tileHeight) {
 	//Parse map tu file 
-	Textures::GetInstance()->Add(TEX_stage31, filePath, D3DCOLOR_XRGB(255, 0, 255));
-	auto texture = Textures::GetInstance()->Get(TEX_stage31);
+	Textures::GetInstance()->Add(DataManager::GetCurrentStage(), filePath, D3DCOLOR_XRGB(255, 0, 255));
+	auto texture = Textures::GetInstance()->Get(DataManager::GetCurrentStage());
 	D3DSURFACE_DESC desc;
 	texture->GetLevelDesc(0, &desc);
 	auto width = desc.Width;

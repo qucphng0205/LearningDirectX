@@ -3,6 +3,8 @@
 #include "DataManager.h"
 #include "GameConfig.h"
 #include "PlayScene.h"
+#include "Scene32.h"
+#include "Scene33.h"
 #include <ctime>
 
 class SceneManager {

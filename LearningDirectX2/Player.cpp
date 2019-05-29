@@ -212,7 +212,7 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 							sign = 1;
 						bool climbToWall = (impactorDir != RightToLeft && velocity.x < 0) || (impactorDir != LeftToRight && velocity.x > 0);
 						bool climbToLadder = (sign == 1) && (playerBottom + LADDER_OFFSET < impactorRect.top) && climbToWall;
-						climbToWall = climbToWall && (sign == -1);
+						climbToWall = climbToWall && (sign == -1) && velocity.y != 0;
 						if (climbToWall || climbToLadder) {
 							SetMoveDirection(impactor->GetPosition().x > position.x ? LeftToRight : RightToLeft);
 							SetState(PlayerState::Climb, sign * impactorRect.top);
@@ -223,9 +223,10 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 			}
 		}
 
+	velocity = newVelocity;
+
 	playerData->state->OnCollision(impactor, side);
 
-	velocity = newVelocity;
 }
 
 BoxCollider Player::GetRect() {

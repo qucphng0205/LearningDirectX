@@ -26,6 +26,12 @@ void SceneManager::CreateScene(int sceneID) {
 	case 0:
 		CurrentScene = new PlayScene();
 		break;
+	case 1:
+		CurrentScene = new Scene32();
+		break;
+	case 2:
+		CurrentScene = new Scene33();
+		break;
 	}
 }
 

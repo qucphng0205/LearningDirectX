@@ -1,8 +1,8 @@
 #pragma once
 //-------------------------------TEXTURE INDEX-----------------------
-#define TEX_stage31 1
-#define TEX_stage32 2
-#define TEX_stage33 3
+#define TEX_STAGE31 0
+#define TEX_stage32 1
+#define TEX_stage33 2
 #define TEX_PLAYER 4
 #define TEX_SPARTA 5
 #define TEX_CAT 6

@@ -3,7 +3,6 @@
 
 class Scene {
 public:
-	static int sceneID;
 	Scene();
 	virtual ~Scene() {}
 	D3DCOLOR GetBackColor();

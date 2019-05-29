@@ -12,6 +12,7 @@ ObjectPooling * ObjectPooling::GetInstance() {
 
 void ObjectPooling::AddKnife(int number) {
 	Unit *unit;
+	pool[KNIFE_POOL_INDEX].clear();
 	for (int i = 0; i < number; i++) {
 		Knife* knife = new Knife();
 		unit = new Unit(Grid::GetInstance(), knife);
@@ -43,6 +44,7 @@ bool ObjectPooling::Instantiate(int index, D3DXVECTOR3 position) {
 
 void ObjectPooling::AddBullet(int number) {
 	Unit *unit;
+	pool[BULLET_POOL_INDEX].clear();
 	for (int i = 0; i < number; i++) {
 		Bullet* bullet = new Bullet();
 		unit = new Unit(Grid::GetInstance(), bullet);
@@ -52,6 +54,7 @@ void ObjectPooling::AddBullet(int number) {
 
 void ObjectPooling::AddShuriken(int number) {
 	Unit *unit;
+	pool[SHURIKEN_POOL_INDEX].clear();
 	for (int i = 0; i < number; i++) {
 		Shuriken* shuriken = new Shuriken();
 		unit = new Unit(Grid::GetInstance(), shuriken);
@@ -61,6 +64,7 @@ void ObjectPooling::AddShuriken(int number) {
 
 void ObjectPooling::AddBigShuriken(int number) {
 	Unit *unit;
+	pool[BIGSHURIKEN_POOL_INDEX].clear();
 	for (int i = 0; i < number; i++) {
 		BigShuriken* bigShuriken = new BigShuriken();
 		unit = new Unit(Grid::GetInstance(), bigShuriken);
@@ -70,6 +74,7 @@ void ObjectPooling::AddBigShuriken(int number) {
 
 void ObjectPooling::AddFlames(int number) {
 	Unit *unit;
+	pool[FLAMES_POOL_INDEX].clear();
 	for (int i = 0; i < number; i++) {
 		Flames* bigShuriken = new Flames();
 		unit = new Unit(Grid::GetInstance(), bigShuriken);
@@ -79,6 +84,7 @@ void ObjectPooling::AddFlames(int number) {
 
 void ObjectPooling::AddBigBullet(int number) {
 	Unit *unit;
+	pool[BIGBULLET_POOL_INDEX].clear();
 	for (int i = 0; i < number; i++) {
 		BigBullet* bigBullet = new BigBullet();
 		unit = new Unit(Grid::GetInstance(), bigBullet);
