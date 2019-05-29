@@ -164,18 +164,13 @@ void Player::SetState(PlayerState::State name, int dummy) {
 void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, float dt) {
 	auto impactorRect = impactor->GetRect();
 	auto impactorDir = impactor->GetMoveDirection();
-	bool specialWall = ((int)impactorRect.right - (int)impactorRect.left <= 16) && impactor->GetTag() == GROUND;
-	bool left = specialWall && velocity.x < 0 && impactorDir == LeftToRight;
-	bool right = specialWall && velocity.x > 0 && impactorDir == RightToLeft;
-	
-	float playerBottom = position.y - GetBigHeight() / 2.0;
+	auto impactorTag = impactor->GetTag();
+	float playerBottom = position.y - GetBigHeight() / 2.0 + collisionTime * dt * velocity.y;;
 
 	D3DXVECTOR2 newVelocity = velocity;
 
 	if (impactor->GetType() == StaticType)
-		if (side == Bottom && status != Jumping) {
-
-			playerBottom = playerBottom + collisionTime * dt * velocity.y;
+		if (side == Bottom && status != Jumping && (status != Climbing || impactorTag != THINSURFACE)) {
 
 			if (round(playerBottom) == impactorRect.top && velocity.y <= 0) {
 				newVelocity.y *= collisionTime;
@@ -183,30 +178,31 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 			}
 		}
 		else {
+
+			bool specialWall = ((int)impactorRect.right - (int)impactorRect.left <= 16) && impactorTag == GROUND;
+
+			bool canPassLeft = specialWall && velocity.x < 0 && impactorDir == RightToLeft;
+			bool canPassRight = specialWall && velocity.x > 0 && impactorDir == RightToLeft;
+
 			float playerLeft = GetRect().left + velocity.x * collisionTime * dt;
 			float playerRight = GetRect().right + velocity.x * collisionTime * dt;
 
-
 			if ((side == Left && velocity.x < 0 && impactorRect.right == round(playerLeft)) || ((side == Right && velocity.x > 0) && impactorRect.left == round(playerRight))) {
 				if (impactorRect.top > round(playerBottom) && impactorRect.bottom <= round(playerBottom)) {
-					if (left || right || !specialWall)
+
+					if (!canPassLeft || !canPassRight)
 						newVelocity.x *= collisionTime;
 
 					if ((int)impactorRect.top - (int)impactorRect.bottom > 32) {
 						//if (GetRect().bottom < impactorRect.bottom)
 						//	return;
 						int sign = -1;
-						if (impactor->GetTag() == LADDER)
+						if (impactorTag == LADDER)
 							sign = 1;
-						if (impactorDir != RightToLeft && velocity.x < 0) {
-							SetMoveDirection(impactor->GetPosition().x > position.x ? LeftToRight : RightToLeft);
-							SetState(PlayerState::Climb, sign * impactorRect.top);
-						}
-						else if (impactorDir != LeftToRight && velocity.x > 0) {
-							SetMoveDirection(impactor->GetPosition().x > position.x ? LeftToRight : RightToLeft);
-							SetState(PlayerState::Climb, sign * impactorRect.top);
-						}
-						else if (impactorDir == Entity::None) {
+						bool climbToWall = (impactorDir != RightToLeft && velocity.x < 0) || (impactorDir != LeftToRight && velocity.x > 0);
+						bool climbToLadder = (sign == 1) && (playerBottom + LADDER_OFFSET < impactorRect.top) && climbToWall;
+						climbToWall = climbToWall && (sign == -1);
+						if (climbToWall || climbToLadder) {
 							SetMoveDirection(impactor->GetPosition().x > position.x ? LeftToRight : RightToLeft);
 							SetState(PlayerState::Climb, sign * impactorRect.top);
 						}
@@ -218,17 +214,7 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 
 	playerData->state->OnCollision(impactor, side);
 
-
 	velocity = newVelocity;
-	//--OBSOLETE
-	//if (impactor->GetTag() != GROUND)
-	//	if ((side == Right && velocity.x > 0) || (side == Left && velocity.x < 0))
-	//		velocity.x *= collisionTime;
-
-	//--DEBUG
-	//if (impactorRect.left == 16 && impactorRect.top == 40 && collisionTime != 0)
-	//	collisionTime = collisionTime;
-
 }
 
 BoxCollider Player::GetRect() {

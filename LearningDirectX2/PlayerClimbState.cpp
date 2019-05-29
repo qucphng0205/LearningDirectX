@@ -41,15 +41,20 @@ void PlayerClimbState::HandleInput() {
 		player->SetVy(-PLAYER_CLIM_SPEED);
 		isClimbing = true;
 	}
-	else if (input->GetKey(DIK_F)) {
+	else if (input->GetKeyDown(DIK_F)) {
 		if (left) {
 			player->SetMoveDirection(Entity::RightToLeft);
-				player->SetState(Jump);
+			player->SetState(Jump);
 		}
 		else if (right) {
 			player->SetMoveDirection(Entity::LeftToRight);
-				player->SetState(Jump);
+			player->SetState(Jump);
 		}
+		else {
+			playerData->player->SetVy(0);
+			isClimbing = false;
+		}
+
 	}
 	else {
 		playerData->player->SetVy(0);
@@ -85,7 +90,7 @@ void PlayerClimbState::ResetState(int dummy) {
 	}
 	else {
 		isLadder = true;
-		topPoint = dummy;
+		topPoint = dummy - LADDER_OFFSET;
 	}
 	isClimbing = false;
 	player->status = Player::Status::Climbing;

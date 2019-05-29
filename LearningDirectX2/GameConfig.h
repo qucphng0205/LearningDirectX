@@ -129,5 +129,8 @@
 //six
 #define BIGBULLET_POOL_INDEX 5
 #define BIGBULLET_QUANTITY 4
+
+#define LADDER_OFFSET 20
+
 //-----------------------------------------------SCENE
 #define SCENE_TIME_TRANSITION 3

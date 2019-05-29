@@ -81,7 +81,7 @@ void GameMap::SetMapPath(char * mapPath) {
 		reader >> hei;
 		reader >> direction;
 
-		if (id == (int)Tag::GROUND || id == (int)Tag::LADDER) {
+		if (id == (int)Tag::GROUND || id == (int)Tag::LADDER || id == (int)Tag::THINSURFACE) {
 			Entity *ground = new Entity();
 			ground->SetTag((Tag)id);
 			ground->SetType(Layer::StaticType);
