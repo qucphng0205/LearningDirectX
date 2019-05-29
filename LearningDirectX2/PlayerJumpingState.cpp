@@ -121,6 +121,8 @@ void PlayerJumpingState::ResetState(int dummy) {
 			player->status = Player::Falling;
 		}
 	}
+	else
+		player->status = (player->timeOnAir >= 0.5) ? Player::Falling : Player::Jumping;
 	//else means from slash to jump with on air time = 0
 
 	PlayerState::ResetState(dummy);

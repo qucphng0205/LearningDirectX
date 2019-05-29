@@ -23,6 +23,7 @@ public:
 	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime, float dt)override;
 	BoxCollider GetRect();
 	BoxCollider GetBigBound();
+	BoxCollider GetBody();
 	PlayerState::State GetState();
 	float GetBigWidth() override;
 	float GetBigHeight() override;
@@ -34,7 +35,6 @@ public:
 	void SetColliderBottom(int bottom);
 	void SetColliderRight(int right);
 	void SetMoveDirection(Entity::EntityDirection dir) override;
-	BoxCollider GetBody();
 	void InjuredByOther(Entity *impactor);
 	void OnImmortal();
 	void OffImmortal();

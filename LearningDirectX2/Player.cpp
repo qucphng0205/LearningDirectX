@@ -171,7 +171,7 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 
 	if (impactor->GetType() == StaticType)
 		if (side == Bottom && status != Jumping && (status != Climbing || impactorTag != THINSURFACE)) {
-
+			
 			if (round(playerBottom) == impactorRect.top && velocity.y <= 0) {
 				newVelocity.y *= collisionTime;
 				checkGroundInFrame = true;
@@ -184,8 +184,19 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 			bool canPassLeft = specialWall && velocity.x < 0 && impactorDir == RightToLeft;
 			bool canPassRight = specialWall && velocity.x > 0 && impactorDir == RightToLeft;
 
-			float playerLeft = GetRect().left + velocity.x * collisionTime * dt;
-			float playerRight = GetRect().right + velocity.x * collisionTime * dt;
+			float slashCaseLeft = (impactorRect.left - GetBody().right) / (dt * velocity.x);
+			float slashCaseRight = (impactorRect.right - GetBody().left) / (dt * velocity.x);
+
+			if (currentState == PlayerState::Slash) {
+				//BUG
+				if (collisionTime == 0)
+					collisionTime = min(slashCaseLeft, slashCaseRight);
+				if (collisionTime > 1)
+					collisionTime = 0;
+			}
+
+			float playerLeft = GetBody().left + velocity.x * collisionTime * dt;
+			float playerRight = GetBody().right + velocity.x * collisionTime * dt;
 
 			if ((side == Left && velocity.x < 0 && impactorRect.right == round(playerLeft)) || ((side == Right && velocity.x > 0) && impactorRect.left == round(playerRight))) {
 				if (impactorRect.top > round(playerBottom) && impactorRect.bottom <= round(playerBottom)) {
