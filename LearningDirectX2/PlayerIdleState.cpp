@@ -46,7 +46,7 @@ void PlayerIdleState::HandleInput() {
 						playerData->player->SetVelocity(D3DXVECTOR2(0, 0));
 }
 
-void PlayerIdleState::OnCollision(Entity * impactor, Entity::SideCollision side) {
+void PlayerIdleState::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 	auto impactorType = impactor->GetType();
 	if (impactorType == Layer::ItemAvailableType)
 		DataManager::AddData(impactor->OnDestroy());

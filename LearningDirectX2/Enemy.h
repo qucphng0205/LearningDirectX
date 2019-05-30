@@ -38,7 +38,7 @@ public:
 	virtual float GetHeight();
 	virtual float GetBigHeight();
 	virtual BoxCollider GetCollider();
-	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime, float dt = 1.0/60);
+	virtual void OnCollision(Entity *impactor, SideCollision side, float collisionTime, double dt = 1.0/60);
 	virtual Entity::EntityDirection GetSpawnDirection();
 	virtual EarnedData OnDestroy();
 	//virtual void SwapLeftRightCollider();

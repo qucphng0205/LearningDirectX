@@ -53,7 +53,7 @@ void PlayerRunningState::HandleInput() {
 		}
 }
 
-void PlayerRunningState::OnCollision(Entity * impactor, Entity::SideCollision side) {
+void PlayerRunningState::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 	auto player = playerData->player;
 	auto impactorType = impactor->GetType();
 	if (impactorType == Layer::ItemAvailableType)

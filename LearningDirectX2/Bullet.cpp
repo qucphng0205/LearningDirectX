@@ -25,7 +25,7 @@ Bullet::Bullet() {
 Bullet::~Bullet() {
 }
 
-void Bullet::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, float dt) {
+void Bullet::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 }
 
 void Bullet::Update(double dt) {

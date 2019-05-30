@@ -19,8 +19,7 @@ void ItemState::Render() {
 	m_Animation->Render(itemData->item->GetPosition(), BoxCollider(), D3DCOLOR_XRGB(255, 255, 255), false);
 }
 
-void ItemState::OnCollision(Entity * impactor, Entity::SideCollision side) {
-
+void ItemState::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 }
 
 void ItemState::ResetState() {

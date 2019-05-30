@@ -22,7 +22,7 @@ Gunner::~Gunner() {
 	gunnerFollowState = NULL;
 }
 
-void Gunner::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, float dt) {
+void Gunner::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 	Enemy::OnCollision(impactor, side, collisionTime);
 }
 

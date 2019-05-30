@@ -74,7 +74,7 @@ void PlayerUseItemState::HandleInput() {
 		}
 }
 
-void PlayerUseItemState::OnCollision(Entity * impactor, Entity::SideCollision side) {
+void PlayerUseItemState::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 	auto impactorType = impactor->GetType();
 	if (impactorType == Layer::ItemAvailableType)
 		DataManager::AddData(impactor->OnDestroy());

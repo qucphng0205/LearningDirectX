@@ -161,7 +161,7 @@ void Player::SetState(PlayerState::State name, int dummy) {
 	playerData->state->ResetState(dummy);
 }
 
-void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, float dt) {
+void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 	auto impactorRect = impactor->GetRect();
 	auto impactorDir = impactor->GetMoveDirection();
 	auto impactorTag = impactor->GetTag();
@@ -225,7 +225,7 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 
 	velocity = newVelocity;
 
-	playerData->state->OnCollision(impactor, side);
+	playerData->state->OnCollision(impactor, side, collisionTime, dt);
 
 }
 

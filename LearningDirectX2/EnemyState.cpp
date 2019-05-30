@@ -21,7 +21,7 @@ void EnemyState::Render() {
 	m_Animation->Render(enemyData->enemy->GetPosition(), BoxCollider(), D3DCOLOR_XRGB(255, 255, 255), enemyData->enemy->GetMoveDirection() == Entity::EntityDirection::RightToLeft);
 }
 
-void EnemyState::OnCollision(Entity * impactor, Entity::SideCollision side) {
+void EnemyState::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 
 }
 

@@ -9,7 +9,7 @@ class Gunner : public Enemy {
 public:
 	Gunner();
 	~Gunner();
-	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime, float dt = 1.0/60);
+	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime, double dt = 1.0/60);
 	virtual void Update(double dt);
 	virtual void SetColliderTop(int top);
 	virtual void SetColliderLeft(int left);

@@ -62,7 +62,7 @@ void PlayerJumpingState::HandleInput() {
 		else player->SetVx(0);
 }
 
-void PlayerJumpingState::OnCollision(Entity * impactor, Entity::SideCollision side) {
+void PlayerJumpingState::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 
 	auto player = playerData->player;
 	auto impactorType = impactor->GetType();

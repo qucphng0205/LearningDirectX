@@ -30,7 +30,7 @@ void Shuriken::Update(double dt) {
 	Weapon::Update(dt);
 }
 
-void Shuriken::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, float dt) {
+void Shuriken::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 	auto impactorType = impactor->GetType();
 	if (impactorType == Layer::EnemyType || impactorType == Layer::ItemHolderType || impactorType == Layer::EProjectileType) {
 		impactor->OnDestroy();

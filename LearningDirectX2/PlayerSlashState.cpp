@@ -74,7 +74,7 @@ void PlayerSlashState::HandleInput() {
 		}
 }
 
-void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side) {
+void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 
 	Player *player = playerData->player;
 

@@ -62,7 +62,7 @@ void PlayerClimbState::HandleInput() {
 	}
 }
 
-void PlayerClimbState::OnCollision(Entity * impactor, Entity::SideCollision side) {
+void PlayerClimbState::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 	auto impactorType = impactor->GetType();
 	if (impactorType == Layer::ItemAvailableType)
 		DataManager::AddData(impactor->OnDestroy());

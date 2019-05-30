@@ -35,7 +35,7 @@ void PlayerCrouchSlashState::HandleInput() {
 		playerData->player->SetVelocity(D3DXVECTOR2(0, 0));
 }
 
-void PlayerCrouchSlashState::OnCollision(Entity * impactor, Entity::SideCollision side) {
+void PlayerCrouchSlashState::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 	Player *player = playerData->player;
 
 	auto impactorType = impactor->GetType();

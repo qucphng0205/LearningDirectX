@@ -45,7 +45,7 @@ void PlayerInjuredState::HandleInput() {
 
 }
 
-void PlayerInjuredState::OnCollision(Entity * impactor, Entity::SideCollision side) {
+void PlayerInjuredState::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 	auto impactorType = impactor->GetType();
 	auto player = playerData->player;
 

@@ -29,7 +29,7 @@ public:
 
 	float GetWidth() override;
 	float GetHeight() override;
-	void OnCollision(Entity *impactor, SideCollision side, float collisionTime, float dt) override;
+	void OnCollision(Entity *impactor, SideCollision side, float collisionTime, double dt = 1.0/60) override;
 	void MakeInactive();
 	void Spawn();
 	EarnedData OnDestroy() override;

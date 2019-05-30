@@ -24,7 +24,7 @@ Thrower::~Thrower() {
 	throwerAttackState = NULL;
 }
 
-void Thrower::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, float dt) {
+void Thrower::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 	Enemy::OnCollision(impactor, side, collisionTime);
 	if (impactor->GetType() == Layer::StaticType && side == Bottom)
 		onGround = true;

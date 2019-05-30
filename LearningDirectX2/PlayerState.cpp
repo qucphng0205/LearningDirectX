@@ -24,7 +24,7 @@ void PlayerState::Render() {
 void PlayerState::HandleInput() {
 }
 
-void PlayerState::OnCollision(Entity * impactor, Entity::SideCollision side) {
+void PlayerState::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 }
 
 PlayerState::State PlayerState::GetState() {

@@ -7,7 +7,7 @@ class Eagle : public Enemy {
 public:
 	Eagle();
 	~Eagle();
-	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime, float dt = 1.0/60);
+	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime, double dt = 1.0/60);
 
 	void Update(double dt) override;
 	void SetColliderTop(int top);
