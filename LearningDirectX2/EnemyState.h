@@ -13,7 +13,7 @@ public:
 	};
 	EnemyState(EnemyData *data);
 	EnemyState();
-	~EnemyState();
+	virtual ~EnemyState();
 	virtual void Update(double dt);
 	virtual void Render();
 	virtual void OnCollision(Entity *impactor, Entity::SideCollision side);

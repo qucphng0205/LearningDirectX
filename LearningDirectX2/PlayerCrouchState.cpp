@@ -15,6 +15,11 @@ void PlayerCrouchState::Render() {
 	m_Animation->Render(playerData->player->GetPosition(), BoxCollider(), D3DCOLOR_XRGB(255, 255, 255), playerData->player->GetMoveDirection() == Entity::EntityDirection::RightToLeft);
 }
 
+void PlayerCrouchState::Update(double dt) {
+	playerData->player->SetVelocity(D3DXVECTOR2(0, 0));
+	PlayerState::Update(dt);
+}
+
 void PlayerCrouchState::HandleInput() {
 	auto keyboard = KeyBoard::GetInstance();
 	//CrouchSlash, Slash, Jump, Running, Idle,...?

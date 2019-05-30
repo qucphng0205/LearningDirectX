@@ -15,6 +15,7 @@ void PlayerInjuredState::Render() {
 }
 
 void PlayerInjuredState::Update(double dt) {
+
 	auto player = playerData->player;
 
 	float t = PLAYER_INJURED_SPEED * player->timeOnAir;
@@ -22,16 +23,19 @@ void PlayerInjuredState::Update(double dt) {
 		t = 1;
 	float sign = player->GetMoveDirection() == Entity::LeftToRight ? -1 : 1;
 
+	float vx = sign * PLAYER_INJURED_FORCE_X;
+
 	//linear interpolation
-	player->SetVy(MyHelper::Lerp(PLAYER_INJURED_FORCE_Y, -PLAYER_INJURED_FORCE_Y * 2.5f, t));
-	//player->SetVx(MyHelper::Lerp(sign * PLAYER_INJURED_FORCE_X, 0, t));
+	float vy = MyHelper::Lerp(PLAYER_INJURED_FORCE_Y, -PLAYER_INJURED_FORCE_Y * 2.5f, t);
+
+	player->SetVelocity(D3DXVECTOR2(vx, vy));
 
 	player->SetMoveDirection(sign == -1 ? Entity::LeftToRight : Entity::RightToLeft);
 
 	if (player->GetVelocity().y <= 0) {
-		//DebugOut(L"timeOnAir = %f\n", player->timeOnAir);
 		player->status = Player::Falling;
 	}
+
 	PlayerState::Update(dt);
 	player->timeOnAir += dt;
 }
@@ -47,7 +51,7 @@ void PlayerInjuredState::OnCollision(Entity * impactor, Entity::SideCollision si
 
 	if (impactorType == Layer::ItemAvailableType) 
 		DataManager::AddData(impactor->OnDestroy());
-	else if (impactor->GetTag() == GROUND && side == Entity::Bottom) {
+	else if (impactor->GetType() == StaticType && side == Entity::Bottom) {
 		if (player->status == Player::Jumping)
 			return;
 		auto keyboard = KeyBoard::GetInstance();
@@ -88,7 +92,6 @@ void PlayerInjuredState::ResetState(int dummy) {
 	//if (player->timeOnAir == 0) {
 		//dummy = 0  means damage from enemy
 		if (dummy == 0) {
-			playerData->player->SetVelocity(D3DXVECTOR2(sign * PLAYER_INJURED_FORCE_X, PLAYER_JUMP_FORCE));
 			player->SetMoveDirection(sign == -1 ? Entity::LeftToRight : Entity::RightToLeft);
 			player->status = Player::Jumping;
 			player->timeOnAir = 0;

@@ -32,5 +32,6 @@ public:
 	bool IsRect(BoxCollider r);
 	LPDIRECT3DTEXTURE9 GetTexture() { return texture; }
 	void Draw(D3DXVECTOR3 position = D3DXVECTOR3(), BoxCollider r = BoxCollider(), D3DXCOLOR colorKey = D3DCOLOR_XRGB(255, 255, 255), bool reverse = false);
+	virtual ~Sprite();
 };
 typedef Sprite *LPSPRITE;

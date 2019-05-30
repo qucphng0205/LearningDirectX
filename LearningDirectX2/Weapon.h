@@ -12,7 +12,7 @@
 class Weapon : public Entity {
 public:
 	Weapon();
-	~Weapon();
+	virtual ~Weapon();
 
 	virtual void Update(double dt);
 	virtual void Render();

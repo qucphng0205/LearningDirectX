@@ -114,3 +114,6 @@ void Sprite::Draw(D3DXVECTOR3 position, BoxCollider r, D3DXCOLOR colorKey, bool 
 	);
 	spriteHandler->SetTransform(&oldMatrix);
 }
+
+Sprite::~Sprite() {
+}

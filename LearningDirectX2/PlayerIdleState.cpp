@@ -14,6 +14,11 @@ void PlayerIdleState::Render() {
 	m_Animation->Render(playerData->player->GetPosition(), BoxCollider(), D3DCOLOR_XRGB(255, 255, 255), playerData->player->GetMoveDirection() == Entity::EntityDirection::RightToLeft);
 }
 
+void PlayerIdleState::Update(double dt) {
+	playerData->player->SetVelocity(D3DXVECTOR2(0, 0));
+	PlayerState::Update(dt);
+}
+
 void PlayerIdleState::HandleInput() {
 	//xu ly theo priority 
 	KeyBoard *keyboard = KeyBoard::GetInstance();

@@ -12,6 +12,8 @@ Unit::Unit(Grid *gr, Entity *ent) {
 }
 
 Unit::~Unit() {
+	if (entity->GetType() == Layer::PProjectileType)
+		entity = entity;
 	delete entity;
 	entity = NULL;
 }

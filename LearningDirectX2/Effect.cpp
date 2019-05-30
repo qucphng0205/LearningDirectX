@@ -19,3 +19,8 @@ bool Effect::Update(double dt) {
 void Effect::Render() {
 	anim->Render(position);
 }
+
+Effect::~Effect() {
+	delete anim;
+	anim = NULL;
+}

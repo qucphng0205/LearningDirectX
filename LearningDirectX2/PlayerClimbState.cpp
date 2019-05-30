@@ -68,7 +68,7 @@ void PlayerClimbState::OnCollision(Entity * impactor, Entity::SideCollision side
 		DataManager::AddData(impactor->OnDestroy());
 	if (playerData->player->GetVy() < 0 && impactor->GetTag() == GROUND && side == Entity::Bottom) {
 		playerData->player->timeOnAir = 0;
-		playerData->player->SetState(Crouch);
+		playerData->player->SetState(Crouch); 
 	}
 }
 

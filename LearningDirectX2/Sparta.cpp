@@ -1,6 +1,6 @@
 #include "Sparta.h"
 
-Sparta::Sparta() : Enemy() {
+Sparta::Sparta() {
 	//Set type
 	auto textures = Textures::GetInstance();
 	textures->Add(TEX_SPARTA, "Resources/Sprites/spartaspritesheet.png", D3DCOLOR_XRGB(255, 163, 177));

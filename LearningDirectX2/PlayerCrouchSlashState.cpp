@@ -18,6 +18,8 @@ void PlayerCrouchSlashState::Update(double dt) {
 			playerData->player->SetState(Idle);
 		return;
 	}
+
+	playerData->player->SetVelocity(D3DXVECTOR2(0, 0));
 	m_Animation->Update(dt);
 }
 

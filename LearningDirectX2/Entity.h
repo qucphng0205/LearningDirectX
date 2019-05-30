@@ -12,6 +12,7 @@ public:
 	static int currentID;
 
 	Entity();
+	virtual ~Entity();
 
 	enum SideCollision {
 		Left, //0

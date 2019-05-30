@@ -11,6 +11,9 @@ Entity::Entity() {
 	isStatic = false;
 }
 
+Entity::~Entity() {
+}
+
 BoxCollider Entity::GetRect() {
 	BoxCollider r;
 	r.left = position.x - width / 2;

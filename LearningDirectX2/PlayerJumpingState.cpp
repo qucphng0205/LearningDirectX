@@ -9,6 +9,7 @@ PlayerJumpingState::PlayerJumpingState(PlayerData * data) {
 
 PlayerJumpingState::~PlayerJumpingState() {
 }
+
 #include "Debug.h"
 void PlayerJumpingState::Update(double dt) {
 	auto player = playerData->player;
@@ -112,7 +113,6 @@ void PlayerJumpingState::ResetState(int dummy) {
 	if (player->timeOnAir == 0) {
 		//dummy = 0  means jumping
 		if (dummy == 0) {
-			playerData->player->SetVy(PLAYER_JUMP_FORCE);
 			player->status = Player::Jumping;
 			player->timeOnAir = 0;
 		}

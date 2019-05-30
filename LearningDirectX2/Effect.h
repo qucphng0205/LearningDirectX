@@ -19,4 +19,5 @@ public:
 	Animation *anim;
 	//percentTime
 	float durationTime;
+	virtual ~Effect();
 };

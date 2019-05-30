@@ -76,10 +76,7 @@ void PlayerRunningState::ResetState(int dummy) {
 	player->SetColliderBottom(-16);
 
 	auto keyboard = KeyBoard::GetInstance();
-	//if dummy == 0, turn left else turn right
-	//if (dummy == 0) {
-	//	
-	//}
+
 	PlayerState::ResetState(dummy);
 }
 

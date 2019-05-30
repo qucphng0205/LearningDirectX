@@ -24,6 +24,7 @@ GameManager::~GameManager() {
 
 void GameManager::Update(double dt) {
 	hihi += dt;
+	DataManager::SetCurrentStage(1);
 	if (SceneManager::GetInstance()->GetSceneID() != DataManager::GetCurrentStage()) {
 		sceneManager->LoadScene(DataManager::GetCurrentStage());
 	}
