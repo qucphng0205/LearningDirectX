@@ -6,6 +6,7 @@
 #include "Flames.h"
 #include "Unit.h"
 #include "BigBullet.h"
+#include "Dart.h"
 #include <map>
 #include <vector>
 
@@ -19,6 +20,7 @@ public:
 	void AddBigShuriken(int number = BIGSHURIKEN_QUANTITY);
 	void AddFlames(int number = FLAMES_QUANTITY);
 	void AddBigBullet(int number = BIGBULLET_QUANTITY);
+	void AddDarts(int number = DARTS_QUANTITY);
 	int CheckQuantity(int index);
 	bool Instantiate(int index, D3DXVECTOR3 position);
 private:

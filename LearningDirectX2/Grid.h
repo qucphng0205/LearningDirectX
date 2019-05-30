@@ -14,7 +14,7 @@ class Unit;
 class Grid {
 public:
 	static Grid *GetInstance();
-	Grid(BoxCollider r);
+	Grid(BoxCollider r, int columns = GRID_COLUMN, int rows = GRID_ROW);
 	~Grid();
 	void Add(Unit *unit);
 	void AddStaticObject(Entity *ent);

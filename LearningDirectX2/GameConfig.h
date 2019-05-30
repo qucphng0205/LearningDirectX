@@ -23,6 +23,8 @@
 #define TEX_GUNNER 21
 #define TEX_RUNNER 22
 #define TEX_BIGBULLET 23
+#define TEX_BASAQUER 24
+#define TEX_DART 25
 
 //---------------------------------ANIMATION FRAME----------------------
 #define PLAYER_SLASH_FRAME 7
@@ -129,6 +131,9 @@
 //six
 #define BIGBULLET_POOL_INDEX 5
 #define BIGBULLET_QUANTITY 4
+//seven
+#define DARTS_QUANTITY 3
+#define DARTS_POOL_INDEX 6
 
 #define LADDER_OFFSET 20
 

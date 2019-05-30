@@ -1,15 +1,15 @@
 #pragma once
 #include "Enemy.h"
 #include "Animation.h"
-#include "SoldierFollowState.h"
-#include "SoldierAttackState.h"
+#include "BasaquerIdleState.h"
+#include "BasaquerJumpingState.h"
 #include "ObjectPooling.h"
 
-class Soldier : public Enemy {
+class Basaquer : public Enemy {
 public:
-	Soldier();
-	~Soldier();
-	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime, double dt = 1.0/60) override;
+	Basaquer();
+	~Basaquer();
+	void OnCollision(Entity *impactor, Entity::SideCollision side, float collisionTime, double dt = 1.0 / 60) override;
 	void Update(double dt) override;
 	virtual void SetColliderTop(int top);
 	virtual void SetColliderLeft(int left);
@@ -17,10 +17,12 @@ public:
 	virtual void SetColliderRight(int right);
 	void SetState(EnemyState::State) override;
 	BoxCollider GetCollider() override;
+	void SetActive(bool active) override;
 	void Spawn() override;
-	void SpawnBullet();
+	void SpawnDarts();
 protected:
 	EnemyState
-		*soldierFollowState,
-		*soldierAttackState;
+		*basaquerJumpingState,
+		*basaquerIdleState;
+	enum EnemyState::State state;
 };

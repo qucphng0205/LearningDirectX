@@ -14,9 +14,10 @@ Enemy::~Enemy() {
 }
 
 void Enemy::Update(double dt) {
-	if (isActive)
-		enemyData->state->Update(dt);
+	if (!isActive)
+		return;
 	Entity::Update(dt);
+	enemyData->state->Update(dt);
 }
 
 void Enemy::Render() {
@@ -64,7 +65,10 @@ void Enemy::SetSpawnBox(BoxCollider box, int direction) {
 	spawnPosition.x = (box.left + box.right) / 2.0f;
 	spawnPosition.y = (box.bottom + box.top) / 2.0f;
 	spawnDirection = (EntityDirection)direction;
+	//--DEBUG 
 	MakeInactive();
+	if (Tag == BASAQUER)
+		SetActive(true);
 }
 
 void Enemy::SetColliderTop(float top) {

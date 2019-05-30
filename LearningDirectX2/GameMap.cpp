@@ -62,7 +62,10 @@ void GameMap::SetMapPath(char * mapPath) {
 	}
 
 	BoxCollider gridRect = BoxCollider(GetHeight(), 0, 0, GetWidth());
-	grid = new Grid(gridRect);
+	if (DataManager::GetCurrentStage() == 2) {
+		grid = new Grid(gridRect, 1, 1);
+	} else 
+		grid = new Grid(gridRect);
 
 	reader >> mapObject;
 	int id = 0;
@@ -152,6 +155,13 @@ void GameMap::SetMapPath(char * mapPath) {
 			Runner *runner = new Runner();
 			runner->SetSpawnBox(box, direction);
 			unit = new Unit(grid, runner);
+		}
+		break;
+		case BASAQUER:
+		{
+			Basaquer *basaquer = new Basaquer();
+			basaquer->SetSpawnBox(box, direction);
+			unit = new Unit(grid, basaquer);
 		}
 		break;
 		default:

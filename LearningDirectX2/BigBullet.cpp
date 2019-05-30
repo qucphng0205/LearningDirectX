@@ -35,12 +35,13 @@ void BigBullet::Update(double dt) {
 void BigBullet::Instantiate(D3DXVECTOR3 position) {
 	this->position = position;
 
-	velocity.x = BIG_BULLET_FORCE;
+	SetVx(BIG_BULLET_FORCE);
 
 	//DebugOut(L"velocity.x = %f\n", velocity.x);
 
 	if (Camera::GetInstance()->GetPosition().x < position.x)
-		velocity.x = -velocity.x;
+		SetVx(-BIG_BULLET_FORCE);
+
 
 	velocity.y = 0;
 

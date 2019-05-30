@@ -12,6 +12,7 @@
 #include "Tag.h"
 #include "Gunner.h"
 #include "Runner.h"
+#include "Basaquer.h"
 #include <iostream>
 #include <fstream>
 

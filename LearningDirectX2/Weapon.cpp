@@ -16,7 +16,8 @@ void Weapon::Update(double dt) {
 }
 
 void Weapon::Render() {
-	anim->Render(position);
+	//anim->Render(position);
+	anim->Render(position, BoxCollider(), D3DCOLOR_XRGB(255, 255, 255), direction == Entity::EntityDirection::RightToLeft);
 }
 
 BoxCollider Weapon::GetRect() {

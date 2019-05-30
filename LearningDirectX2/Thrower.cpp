@@ -39,8 +39,8 @@ void Thrower::SetVx(float vx) {
 }
 
 void Thrower::Update(double dt) {
-	auto center = GetRect().GetCenter().x;
-	SetMoveDirection(Camera::GetInstance()->GetPosition().x < center ? Entity::RightToLeft : Entity::LeftToRight);
+	//auto center = GetRect().GetCenter().x;
+	SetMoveDirection(Camera::GetInstance()->GetPosition().x < position.x ? Entity::RightToLeft : Entity::LeftToRight);
 	Enemy::Update(dt);
 	if (!onGround)
 		AddVy(-CAT_GRAVITY);

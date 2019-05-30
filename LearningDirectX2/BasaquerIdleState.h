@@ -3,10 +3,10 @@
 #include "Textures.h"
 #include "Animation.h"
 
-class RunnerFollowState : public EnemyState {
+class BasaquerIdleState : public EnemyState {
 public:
-	RunnerFollowState(EnemyData *data);
-	~RunnerFollowState();
+	BasaquerIdleState(EnemyData *data);
+	~BasaquerIdleState();
 	virtual void ResetState();
 	virtual void Update(double dt);
 private:

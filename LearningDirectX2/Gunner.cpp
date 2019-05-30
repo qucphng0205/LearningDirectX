@@ -51,8 +51,10 @@ void Gunner::SetColliderRight(int right) {
 void Gunner::SetState(EnemyState::State state) {
 	if (state == EnemyState::Follow)
 		enemyData->state = gunnerFollowState;
-	if (state == EnemyState::Attack)
+	if (state == EnemyState::Attack) {
 		enemyData->state = gunnerAttackState;
+		SpawnBigBullet();
+	}
 	enemyData->state->ResetState();
 }
 

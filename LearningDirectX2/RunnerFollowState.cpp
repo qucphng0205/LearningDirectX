@@ -18,9 +18,9 @@ void RunnerFollowState::ResetState() {
 	auto playerX = Camera::GetInstance()->GetPosition().x;
 
 	if (playerX > enemyX)
-		enemy->SetVx(RUNNER_SPEED);
+		speed = (RUNNER_SPEED);
 	else
-		enemy->SetVx(-RUNNER_SPEED);
+		speed = (-RUNNER_SPEED);
 
 	enemy->SetColliderTop(16);
 	enemy->SetColliderBottom(-16);
@@ -30,5 +30,6 @@ void RunnerFollowState::ResetState() {
 }
 
 void RunnerFollowState::Update(double dt) {
+	enemyData->enemy->SetVx(speed);
 	m_Animation->Update(dt);
 }

@@ -76,8 +76,8 @@ void ObjectPooling::AddFlames(int number) {
 	Unit *unit;
 	pool[FLAMES_POOL_INDEX].clear();
 	for (int i = 0; i < number; i++) {
-		Flames* bigShuriken = new Flames();
-		unit = new Unit(Grid::GetInstance(), bigShuriken);
+		Flames* flames = new Flames();
+		unit = new Unit(Grid::GetInstance(), flames);
 		pool[FLAMES_POOL_INDEX].push_back(unit);
 	}
 }
@@ -89,6 +89,16 @@ void ObjectPooling::AddBigBullet(int number) {
 		BigBullet* bigBullet = new BigBullet();
 		unit = new Unit(Grid::GetInstance(), bigBullet);
 		pool[BIGBULLET_POOL_INDEX].push_back(unit);
+	}
+}
+
+void ObjectPooling::AddDarts(int number) {
+	Unit *unit;
+	pool[DARTS_POOL_INDEX].clear();
+	for (int i = 0; i < number; i++) {
+		Dart* dart = new Dart();
+		unit = new Unit(Grid::GetInstance(), dart);
+		pool[DARTS_POOL_INDEX].push_back(unit);
 	}
 }
 

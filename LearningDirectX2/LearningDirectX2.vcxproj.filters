@@ -115,6 +115,12 @@
     <Filter Include="Header Files\Object\Weapon\BigBullet">
       <UniqueIdentifier>{38d453cc-57ff-4d92-9a00-29b4c86870dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\Enemy\Basaquer">
+      <UniqueIdentifier>{2a461f82-9960-44d0-81b1-7da5789b50a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Weapon\Dart">
+      <UniqueIdentifier>{34e01d6c-7aa8-4dff-9444-7b93db6fa132}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -329,6 +335,18 @@
     </ClCompile>
     <ClCompile Include="Scene33.cpp">
       <Filter>Header Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Basaquer.cpp">
+      <Filter>Header Files\Object\Enemy\Basaquer</Filter>
+    </ClCompile>
+    <ClCompile Include="Dart.cpp">
+      <Filter>Header Files\Object\Weapon\Dart</Filter>
+    </ClCompile>
+    <ClCompile Include="BasaquerJumpingState.cpp">
+      <Filter>Header Files\Object\Enemy\Basaquer</Filter>
+    </ClCompile>
+    <ClCompile Include="BasaquerIdleState.cpp">
+      <Filter>Header Files\Object\Enemy\Basaquer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -559,6 +577,18 @@
     </ClInclude>
     <ClInclude Include="Scene33.h">
       <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Basaquer.h">
+      <Filter>Header Files\Object\Enemy\Basaquer</Filter>
+    </ClInclude>
+    <ClInclude Include="Dart.h">
+      <Filter>Header Files\Object\Weapon\Dart</Filter>
+    </ClInclude>
+    <ClInclude Include="BasaquerJumpingState.h">
+      <Filter>Header Files\Object\Enemy\Basaquer</Filter>
+    </ClInclude>
+    <ClInclude Include="BasaquerIdleState.h">
+      <Filter>Header Files\Object\Enemy\Basaquer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

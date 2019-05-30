@@ -20,6 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Basaquer.cpp" />
+    <ClCompile Include="BasaquerIdleState.cpp" />
+    <ClCompile Include="BasaquerJumpingState.cpp" />
     <ClCompile Include="BigBullet.cpp" />
     <ClCompile Include="BigShuriken.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -27,6 +30,7 @@
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="CatFollowState.cpp" />
     <ClCompile Include="CollisionDetector.cpp" />
+    <ClCompile Include="Dart.cpp" />
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Eagle.cpp" />
@@ -93,6 +97,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Basaquer.h" />
+    <ClInclude Include="BasaquerIdleState.h" />
+    <ClInclude Include="BasaquerJumpingState.h" />
     <ClInclude Include="BigBullet.h" />
     <ClInclude Include="BigShuriken.h" />
     <ClInclude Include="BoxCollider.h" />
@@ -101,6 +108,7 @@
     <ClInclude Include="Cat.h" />
     <ClInclude Include="CatFollowState.h" />
     <ClInclude Include="CollisionDetector.h" />
+    <ClInclude Include="Dart.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Eagle.h" />

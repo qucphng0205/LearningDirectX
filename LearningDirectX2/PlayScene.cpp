@@ -17,7 +17,7 @@ PlayScene::PlayScene() {
 	player->SetPosition(1200, 184 + player->GetBigHeight() / 2.0f);
 	camera->FollowPlayer(player->GetPosition().x, player->GetPosition().y);
 	(new Unit(map->GetGrid(), player))->SetActive(true);
-
+	CheckCamera();
 	ObjectPooling *pool = ObjectPooling::GetInstance();
 	pool->AddKnife();
 	pool->AddBullet();

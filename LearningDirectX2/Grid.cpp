@@ -9,9 +9,9 @@ Grid * Grid::GetInstance() {
 
 #pragma region Instantiate GRID
 
-Grid::Grid(BoxCollider r) {
-	columns = GRID_COLUMN;
-	rows = GRID_ROW;
+Grid::Grid(BoxCollider r, int columns, int rows) {
+	this->columns = columns;
+	this->rows = rows;
 	cellWidth = (float)(r.right - r.left) / columns;
 	cellHeight = (float)(r.top - r.bottom) / rows;
 

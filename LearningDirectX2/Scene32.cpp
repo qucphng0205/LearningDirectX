@@ -20,7 +20,7 @@ Scene32::Scene32() {
 
 	ObjectPooling *pool = ObjectPooling::GetInstance();
 	pool->AddKnife();
-	pool->AddBullet();
+	pool->AddBigBullet();
 	pool->AddShuriken();
 	pool->AddBigShuriken();
 	pool->AddFlames();

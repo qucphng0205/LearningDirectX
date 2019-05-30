@@ -11,7 +11,7 @@ Flames::Flames() {
 	anim = new Animation();
 	anim->AddFrames(tex, 1, 4, FLAMES_FRAME * (1 / 60.0f));
 
-	Tag = Tag::FLAMES;
+	Tag = Tag::PPROJECTILE;
 	type = Layer::PProjectileType;
 
 	D3DSURFACE_DESC desc;
