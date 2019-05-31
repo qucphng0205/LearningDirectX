@@ -15,6 +15,9 @@ public:
 	virtual void SetColliderLeft(int left);
 	virtual void SetColliderBottom(int bottom);
 	virtual void SetColliderRight(int right);
+	void SetVelocity(D3DXVECTOR2 vel) override;
+	void SetVx(float vx) override;
+	void SetVy(float vy) override;
 	void SetState(EnemyState::State) override;
 	BoxCollider GetCollider() override;
 	void SetActive(bool active) override;

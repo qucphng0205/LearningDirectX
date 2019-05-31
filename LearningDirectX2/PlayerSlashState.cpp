@@ -151,7 +151,7 @@ BoxCollider PlayerSlashState::GetBody() {
 bool PlayerSlashState::CollideWithKatana(BoxCollider r) {
 	BoxCollider katana = playerData->player->GetRect();
 	katana.top -= 3;
-	katana.bottom += 18;
+	katana.bottom += 8;
 	//tinh tu tay
 	if (playerData->player->GetMoveDirection() == Entity::LeftToRight)
 		katana.left += 14;

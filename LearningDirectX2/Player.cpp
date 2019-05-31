@@ -68,7 +68,7 @@ Player::~Player() {
 	delete useItemState;
 	useItemState = NULL;
 	delete playerData;
-	playerData = NULL;
+	instance = NULL;
 }
 
 void Player::Update(double dt) {
@@ -313,10 +313,10 @@ void Player::InjuredByOther(Entity *impactor) {
 		SetMoveDirection(Entity::LeftToRight);
 	else
 		SetMoveDirection(Entity::RightToLeft);
-	if (currentState != PlayerState::Climb)
+	//if (currentState != PlayerState::Climb)
 		SetState(PlayerState::Injured);
-	else
-		OnImmortal();
+	//else
+		//OnImmortal();
 	DataManager::MinusHealth();
 	DataManager::GetHealth();
 }

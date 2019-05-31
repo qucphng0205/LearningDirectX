@@ -66,9 +66,12 @@ void PlayerClimbState::OnCollision(Entity * impactor, Entity::SideCollision side
 	auto impactorType = impactor->GetType();
 	if (impactorType == Layer::ItemAvailableType)
 		DataManager::AddData(impactor->OnDestroy());
+	else
 	if (playerData->player->GetVy() < 0 && impactor->GetTag() == GROUND && side == Entity::Bottom) {
 		playerData->player->timeOnAir = 0;
 		playerData->player->SetState(Crouch); 
+	}else if (impactorType == Layer::EnemyType || impactorType == Layer::EProjectileType) {
+		playerData->player->InjuredByOther(impactor);
 	}
 }
 

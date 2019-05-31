@@ -16,6 +16,12 @@ public:
 		left = position.x - width / 2;
 		right = left + width;
 	}
+	BoxCollider(D3DXVECTOR3 position, float left, float right, float height) {
+		top = position.y + height / 2;
+		bottom = top - height;
+		left = position.x - left;
+		right = position.x + right;
+	}
 	D3DXVECTOR2 GetCenter() { return D3DXVECTOR2((left + right) / 2.0f, (top + bottom) / 2.0f); }
 	float GetWidth() { return right - left; }
 	float GetHeight() { return top - bottom; }

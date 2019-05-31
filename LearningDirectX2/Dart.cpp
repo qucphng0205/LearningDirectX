@@ -9,7 +9,7 @@ Dart::Dart() {
 	PDIRECT3DTEXTURE9 tex = textures->Get(TEX_DART);
 
 	anim = new Animation();
-	anim->AddFrames(tex, 1, 4, 1000 * (1 / 60.0f));
+	anim->AddFrames(tex, 1, 1, 1000 * (1 / 60.0f));
 
 	Tag = Tag::EPROJECTILE;
 	type = Layer::EProjectileType;
@@ -17,7 +17,7 @@ Dart::Dart() {
 	D3DSURFACE_DESC desc;
 	tex->GetLevelDesc(0, &desc);
 
-	width = desc.Width / 4;
+	width = desc.Width;
 	height = desc.Height;
 
 	SetColliderTop(width / 2);
@@ -35,39 +35,39 @@ Dart::~Dart() {
 }
 
 void Dart::Update(double dt) {
-	Weapon::Update(dt);
-}
-
-void Dart::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
+	if (delay + dt > 0.1875f * (index + 1))
+		Weapon::Update(dt);
+	else
+		delay += dt;
 }
 
 //instantiate flames please attached set velocity
 void Dart::Instantiate(D3DXVECTOR3 position) {
 
+	bool isReverse = false;
+
 	velocity.x = 120;
+	if (Player::GetInstance()->GetPosition().x < position.x) {
+		velocity.x = -velocity.x;
+	}
+
+	SetVelocity(velocity);
+
+	position.y -= 7;
 
 	switch (index) {
 	case 0:
-		position.x += 10;
-		position.y += 10;
+		//position.x += isReverse ? -15 : 15;
+		position.y += 15;
 		break;
 	case 1:
 		break;
 	case 2:
-		position.x -= 10;
-		position.y -= 10;
+		//position.x -= isReverse ? -15 : 15;
+		position.y -= 15;
 		break;
 	}
 
-	if (Player::GetInstance()->GetPosition().x > position.x)
-		velocity.x = -velocity.x;
-
-	SetVelocity(velocity);
-
+	delay = 0;
 	Weapon::Instantiate(position);
-}
-
-EarnedData Dart::OnDestroy() {
-	SetActive(false);
-	return EarnedData(point);
 }

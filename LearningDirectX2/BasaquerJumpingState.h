@@ -2,6 +2,7 @@
 #include "EnemyState.h"
 #include "Textures.h"
 #include "Animation.h"
+#include "Player.h"
 
 class BasaquerJumpingState : public EnemyState {
 public:

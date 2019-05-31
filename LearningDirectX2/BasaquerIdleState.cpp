@@ -20,6 +20,7 @@ void BasaquerIdleState::ResetState() {
 	enemy->SetColliderTop(27);
 	enemy->SetColliderBottom(-27);
 	enemy->SetColliderLeft(-19);
+	enemy->SetColliderRight(9);
 
 	EnemyState::ResetState();
 }

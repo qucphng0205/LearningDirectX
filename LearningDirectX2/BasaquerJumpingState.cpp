@@ -15,23 +15,30 @@ void BasaquerJumpingState::ResetState() {
 
 	auto enemy = enemyData->enemy;
 	auto enemyX = enemy->GetPosition().x;
-	auto playerX = Camera::GetInstance()->GetPosition().x;
+	float playerX = 0;
+
+	if (Player::GetInstance() != NULL)
+		playerX = Player::GetInstance()->GetPosition().x;
 
 	enemy->SetColliderTop(27);
 	enemy->SetColliderBottom(-27);
 	enemy->SetColliderLeft(-19);
+	enemy->SetColliderRight(9);
 
-	if (enemyData->enemy->GetPosition().x > 128)
-		vx = (-155);
+	if (enemyX > 128)
+		vx = (-170);
 	else
-		vx = (155);
+		vx = (170);
+
+	enemyData->enemy->SetMoveDirection(playerX < enemyX ? Entity::RightToLeft : Entity::LeftToRight);
+
 	timeState = 0;
 
 	EnemyState::ResetState();
 }
 
 void BasaquerJumpingState::Update(double dt) {
-	
+
 	if (timeState > 1)
 		timeState = 1;
 

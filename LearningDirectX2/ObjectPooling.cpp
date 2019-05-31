@@ -32,7 +32,7 @@ int ObjectPooling::CheckQuantity(int index) {
 bool ObjectPooling::Instantiate(int index, D3DXVECTOR3 position) {
 	auto weapons = pool[index];
 	for (size_t i = 0; i < weapons.size(); i++) {
-		Weapon *weapon = (Knife*)weapons[i]->GetEntity();
+		Weapon *weapon = (Weapon*)weapons[i]->GetEntity();
 		if (!weapon->IsActive()) {
 			weapon->Instantiate(position);
 			weapons[i]->Move(weapon->GetPosition());

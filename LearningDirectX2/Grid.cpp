@@ -259,7 +259,10 @@ void Grid::HandleCollideStatic(Entity * ent1, Entity * ent2, double dt) {
 	//ent2's always static
 	Entity::SideCollision side;
 
-	auto rectEnt1 = BoxCollider(ent1->GetPosition(), ent1->GetWidth(), ent1->GetBigHeight());
+	BoxCollider rectEnt1 = ent1->GetRect();
+	if (ent1->GetType() == Layer::PlayerType)
+		rectEnt1 = BoxCollider(ent1->GetPosition(), ent1->GetWidth(), ent1->GetBigHeight());
+
 	auto impactorRect = ent2->GetRect();
 
 	float groundTime = CollisionDetector::SweptAABB(rectEnt1, ent1->GetVelocity(), impactorRect, D3DXVECTOR2(0, 0), side, dt);
@@ -286,7 +289,7 @@ void Grid::Move(Unit * unit, float x, float y) {
 	int cellY = (int)(y / cellHeight);
 
 	//Out of screen
-	if (cellX >= GRID_COLUMN || cellX < 0 || cellY >= GRID_ROW || cellY < 0) {
+	if (cellX >= columns || cellX < 0 || cellY >= rows || cellY < 0) {
 		unit->entity->SetActive(false);
 		return;
 	}

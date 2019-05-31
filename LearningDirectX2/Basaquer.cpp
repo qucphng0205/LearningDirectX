@@ -33,8 +33,9 @@ void Basaquer::OnCollision(Entity * impactor, Entity::SideCollision side, float 
 			}
 		}
 		else if ((side == Left && velocity.x < 0) || (side == Right && velocity.x > 0)) {
-			SetVx(velocity.x * dt * collisionTime);
+			SetVx(velocity.x * collisionTime);
 		}
+	GetRect();
 }
 
 void Basaquer::Update(double dt) {
@@ -58,11 +59,25 @@ void Basaquer::SetColliderRight(int right) {
 	collider.right = right;
 }
 
+void Basaquer::SetVelocity(D3DXVECTOR2 vel) {
+	velocity = vel;
+}
+
+void Basaquer::SetVx(float vx) {
+	velocity.x = vx;
+}
+
+void Basaquer::SetVy(float vy) {
+	velocity.y = vy;
+}
+
 void Basaquer::SetState(EnemyState::State state) {
 	if (state == EnemyState::Follow)
 		enemyData->state = basaquerIdleState;
-	if (state == EnemyState::Attack)
+	if (state == EnemyState::Attack) {
 		enemyData->state = basaquerJumpingState;
+		SpawnDarts();
+	}
 	this->state = state;
 	enemyData->state->ResetState();
 }
