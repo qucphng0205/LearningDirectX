@@ -5,8 +5,11 @@ GameManager::GameManager(HWND hWnd, HINSTANCE hInstance) {
 	sceneManager = SceneManager::GetInstance();
 	keyboard = KeyBoard::GetInstance();
 
+
 	graphic->Init(hWnd);
 	keyboard->InitKeyboard(hWnd, hInstance);
+	gnhpSound::GetInstance()->LoadSound(hWnd);
+
 	sceneManager->LoadScene(DataManager::GetCurrentStage());
 
 	this->hWnd = hWnd;

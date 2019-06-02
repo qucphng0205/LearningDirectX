@@ -27,6 +27,7 @@ PlayScene::PlayScene() {
 
 	DataManager::Reset();
 	timeLeft = 150;
+	gnhpSound::GetInstance()->PlayMusic(0);
 }
 
 PlayScene::~PlayScene() {

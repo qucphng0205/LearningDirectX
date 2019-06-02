@@ -366,6 +366,9 @@
     <ClCompile Include="dxutil.cpp">
       <Filter>Header Files\Framework\Sound\ThirdParty</Filter>
     </ClCompile>
+    <ClCompile Include="gnhpSound.cpp">
+      <Filter>Header Files\Framework\Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -619,6 +622,9 @@
     </ClInclude>
     <ClInclude Include="dxutil.h">
       <Filter>Header Files\Framework\Sound\ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="gnhpSound.h">
+      <Filter>Header Files\Framework\Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

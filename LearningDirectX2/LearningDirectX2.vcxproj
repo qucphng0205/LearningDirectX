@@ -50,6 +50,7 @@
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GameTime.cpp" />
+    <ClCompile Include="gnhpSound.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Gunner.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="GameTime.h" />
+    <ClInclude Include="gnhpSound.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Gunner.h" />
