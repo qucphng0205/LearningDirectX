@@ -121,6 +121,12 @@
     <Filter Include="Header Files\Object\Player\Player">
       <UniqueIdentifier>{d187da9b-75ab-4f5d-974b-4a14e87d7d27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Framework\Sound">
+      <UniqueIdentifier>{c6de69ff-0c9d-407d-8709-33cd7db01e5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework\Sound\ThirdParty">
+      <UniqueIdentifier>{d6560473-9f41-4e93-8869-1286c9bc674f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -353,6 +359,12 @@
     </ClCompile>
     <ClCompile Include="GameOver.cpp">
       <Filter>Header Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="dsutil.cpp">
+      <Filter>Header Files\Framework\Sound\ThirdParty</Filter>
+    </ClCompile>
+    <ClCompile Include="dxutil.cpp">
+      <Filter>Header Files\Framework\Sound\ThirdParty</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -601,6 +613,12 @@
     </ClInclude>
     <ClInclude Include="GameOver.h">
       <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="dsutil.h">
+      <Filter>Header Files\Framework\Sound\ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="dxutil.h">
+      <Filter>Header Files\Framework\Sound\ThirdParty</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
