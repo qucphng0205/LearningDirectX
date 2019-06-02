@@ -22,6 +22,16 @@ void SceneManager::CreateScene(int sceneID) {
 	if (CurrentScene != NULL)
 		delete CurrentScene;
 	CurrentScene = NULL;
+	switch (type) {
+	case ToGameOverTo:
+		DataManager::HandleGameOver();
+		break;
+	case Reload:
+		DataManager::HandleReload();
+		break;
+	case Next:
+		break;
+	}
 	switch (sceneID) {
 	case 0:
 		CurrentScene = new PlayScene();
@@ -32,15 +42,23 @@ void SceneManager::CreateScene(int sceneID) {
 	case 2:
 		CurrentScene = new Scene33();
 		break;
+	case 3:
+		CurrentScene = new EndGame();
+		break;
+	case 4:
+		CurrentScene = new GameOver();
+		break;
 	}
+	
 }
 
 Scene * SceneManager::GetCurrentScene() {
 	return CurrentScene;
 }
 
-void SceneManager::LoadScene(int sceneID) {
+void SceneManager::LoadScene(int sceneID, TransitionType type) {
 	destSceneID = sceneID;
+	this->type = type;
 	if (firstTime) {
 		CreateScene(sceneID);
 		firstTime = false;
@@ -49,8 +67,6 @@ void SceneManager::LoadScene(int sceneID) {
 		isTransitioning = true;
 }
 
-
-#include "Debug.h"
 
 void SceneManager::UpdateTransition(double dt) {
 
@@ -64,7 +80,6 @@ void SceneManager::UpdateTransition(double dt) {
 
 	timeTransition += dt;
 	DataManager::SetGameColor(D3DCOLOR_XRGB(rand() % 255, rand() % 255, rand() % 255));
-	DebugOut(L"random: %d", rand() % 255);
 }
 
 bool SceneManager::IsTransitioning() {

@@ -7,9 +7,6 @@
 
 class PlayScene : public Scene {
 
-	DWORD showTime;
-	DWORD showTimeRate;
-
 	GameMap *map;
 	Camera *camera;
 	Player *player;

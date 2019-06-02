@@ -102,7 +102,7 @@ void Grid::HandleActiveUnit(BoxCollider camBox, Entity::EntityDirection camDirec
 			Entity::EntityDirection direction = entity->GetMoveDirection();
 			auto childPos = entity->GetPosition();
 
-			if (unit->entity->GetType() == Layer::ItemAvailableType || unit->entity->GetType() == Layer::ItemHolderType)
+			if (unit->entity->GetType() == Layer::ItemAvailableType || unit->entity->GetType() == Layer::ItemHolderType || (unit->entity->GetTag() == Tag::BASAQUER && !DataManager::IsBossReallyDead()))
 				entity->SetActive(true);
 
 			else if (direction == Entity::EntityDirection::RightToLeft) {

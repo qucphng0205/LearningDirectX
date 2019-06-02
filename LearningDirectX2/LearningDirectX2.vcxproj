@@ -24,6 +24,7 @@
     <ClCompile Include="BasaquerIdleState.cpp" />
     <ClCompile Include="BasaquerJumpingState.cpp" />
     <ClCompile Include="BigBullet.cpp" />
+    <ClCompile Include="BigExplosion.cpp" />
     <ClCompile Include="BigShuriken.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -37,6 +38,7 @@
     <ClCompile Include="EagleFollowState.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectChains.cpp" />
+    <ClCompile Include="EndGame.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -44,6 +46,7 @@
     <ClCompile Include="Flames.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameMap.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="Grid.cpp" />
@@ -87,7 +90,6 @@
     <ClCompile Include="Sparta.cpp" />
     <ClCompile Include="SpartaFollowState.cpp" />
     <ClCompile Include="Sprites.cpp" />
-    <ClCompile Include="StaticEntity.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Thrower.cpp" />
     <ClCompile Include="ThrowerAttackState.cpp" />
@@ -101,6 +103,7 @@
     <ClInclude Include="BasaquerIdleState.h" />
     <ClInclude Include="BasaquerJumpingState.h" />
     <ClInclude Include="BigBullet.h" />
+    <ClInclude Include="BigExplosion.h" />
     <ClInclude Include="BigShuriken.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Bullet.h" />
@@ -115,6 +118,7 @@
     <ClInclude Include="EagleFollowState.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectChains.h" />
+    <ClInclude Include="EndGame.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyData.h" />
     <ClInclude Include="EnemyState.h" />
@@ -125,6 +129,7 @@
     <ClInclude Include="GameConfig.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameMap.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="Grid.h" />
@@ -168,7 +173,6 @@
     <ClInclude Include="Sparta.h" />
     <ClInclude Include="SpartaFollowState.h" />
     <ClInclude Include="Sprites.h" />
-    <ClInclude Include="StaticEntity.h" />
     <ClInclude Include="Tag.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Thrower.h" />

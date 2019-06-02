@@ -23,6 +23,9 @@ Basaquer::~Basaquer() {
 }
 
 void Basaquer::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
+	if (isDead)
+		return;
+
 	if (impactor->GetType() == Layer::StaticType)
 		if (side == Bottom) {
 			onGround = true;
@@ -39,6 +42,13 @@ void Basaquer::OnCollision(Entity * impactor, Entity::SideCollision side, float 
 }
 
 void Basaquer::Update(double dt) {
+	if (isDead) {
+		explosionTime += dt;
+		if (explosionTime >= BOSS_DEATH_DELAY + 0.5f) {
+			SetActive(false);
+			DataManager::SetBossReallyDead();
+		}
+	} else 
 	Enemy::Update(dt);
 }
 
@@ -98,8 +108,28 @@ void Basaquer::SetActive(bool active) {
 }
 
 void Basaquer::Spawn() {
+	isDead = false;
+	DataManager::InitBossHealth();
 	SetState(EnemyState::Attack);
 	Enemy::Spawn();
+}
+
+EarnedData Basaquer::OnDestroy() {
+
+	DataManager::MinusBossHealth();
+	if (DataManager::GetBossHealth() > 0 || isDead)
+		return EarnedData(0);
+
+	explosionTime = 0;
+	isDead = true;
+	//for collide
+	type == Layer::NoneType;
+
+	//6 / (12/60) = 30 percent times
+	//*2 becauz 2 frames
+	effect = new EffectChain(new BigExplosion(position, (float)BOSS_DEATH_DELAY / (BIGEXPLOSION_FRAME * 2 /60.0)));
+	Grid::GetInstance()->AddEffect(effect);
+	return EarnedData(point);
 }
 
 void Basaquer::SpawnDarts() {

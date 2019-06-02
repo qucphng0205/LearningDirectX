@@ -1,7 +1,7 @@
 #include "Effect.h"
 
 Effect::Effect(D3DXVECTOR3 position, float durationTime) {
-	durationTime = durationTime;
+	this->durationTime = durationTime;
 	this->position = position;
 }
 
@@ -10,7 +10,7 @@ bool Effect::Update(double dt) {
 
 	anim->Update(dt);
 
-	if (anim->GetPercentTime() > 1)
+	if (anim->GetPercentTime() > durationTime)
 		return false;
 
 	return true;

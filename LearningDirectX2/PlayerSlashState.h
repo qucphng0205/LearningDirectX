@@ -17,4 +17,7 @@ public:
 	BoxCollider GetBody();
 	bool CollideWithKatana(BoxCollider r);
 	bool CollideWithBody(BoxCollider r);
+private:
+	//check for slash
+	int isSlash;
 };

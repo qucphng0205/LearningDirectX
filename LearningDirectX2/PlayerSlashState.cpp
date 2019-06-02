@@ -11,6 +11,11 @@ PlayerSlashState::~PlayerSlashState() {
 }
 
 void PlayerSlashState::Update(double dt) {
+
+	//slash from 0 -> 1 -> 2
+	if (m_Animation->GetCurrentFrameID() != 0 && isSlash < 2)
+		isSlash++;
+
 	auto player = playerData->player;
 
 	if (m_Animation->IsLastFrame(dt)) {
@@ -86,7 +91,7 @@ void PlayerSlashState::OnCollision(Entity * impactor, Entity::SideCollision side
 
 	if (impactorType == Layer::EnemyType || impactorType == Layer::EProjectileType || impactorType == Layer::ItemAvailableType || impactorType == Layer::ItemHolderType) {
 
-		bool isSlash = (m_Animation->GetCurrentFrameID() != 0);
+		bool isSlash = this->isSlash == 1;
 
 		if (CollideWithKatana(impactor->GetRect()) && isSlash) {
 			if (impactorType != Layer::ItemAvailableType)
@@ -133,6 +138,8 @@ void PlayerSlashState::ResetState(int dummy) {
 	player->SetColliderLeft(-7);
 	player->SetColliderRight(31);
 
+	isSlash = 0;
+
 	PlayerState::ResetState(dummy);
 	if (dummy != 0)
 		m_Animation->SetCurrentFrame(dummy);
@@ -151,7 +158,7 @@ BoxCollider PlayerSlashState::GetBody() {
 bool PlayerSlashState::CollideWithKatana(BoxCollider r) {
 	BoxCollider katana = playerData->player->GetRect();
 	katana.top -= 3;
-	katana.bottom += 8;
+	katana.bottom += 0;
 	//tinh tu tay
 	if (playerData->player->GetMoveDirection() == Entity::LeftToRight)
 		katana.left += 14;

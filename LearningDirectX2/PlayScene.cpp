@@ -25,6 +25,7 @@ PlayScene::PlayScene() {
 	pool->AddBigShuriken();
 	pool->AddFlames();
 
+	DataManager::Reset();
 	timeLeft = 150;
 }
 
@@ -103,9 +104,11 @@ void PlayScene::CheckTransitionScene() {
 	//--DEBDUG
 	//DataManager::SetCurrentStage(2);
 	//return;
-	if (player->GetPosition().x >= map->GetWidth() - 16) {
+	if (player->GetPosition().x >= map->GetWidth() - 16 && !DataManager::IsDeath()) {
 		DataManager::SetCurrentStage(1);
 	}
+	else if (timeLeft == 0)
+		player->SetActive(false);
 }
 
 void PlayScene::Reset() {

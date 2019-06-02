@@ -25,6 +25,7 @@ Scene33::Scene33() {
 	pool->AddFlames();
 
 	timeLeft = 150;
+	timeScale = 7;
 }
 
 Scene33::~Scene33() {
@@ -42,7 +43,7 @@ void Scene33::Render() {
 	g->SetSpiritInfo(DataManager::GetSpiritPoint());
 	g->SetstageInfo(1);
 	g->SetPlayerHealthInfo(DataManager::GetHealth());
-	g->SetEnemyHealthInfo(16);
+	g->SetEnemyHealthInfo(DataManager::GetBossHealth());
 	g->SetItemInfo(DataManager::GetItem());
 
 	map->Draw();
@@ -58,6 +59,10 @@ void Scene33::ProcessInput() {
 }
 
 void Scene33::Update(double dt) {
+	if (DataManager::GetBossHealth() == 0)
+		EarnReward(dt);
+	else
+		timeLeft -= dt;
 	//DebugOut(L"New Frame\n");
 	CheckActive();
 	ProcessInput();
@@ -98,7 +103,22 @@ void Scene33::CheckCamera() {
 }
 
 void Scene33::CheckTransitionScene() {
-		//DataManager::SetCurrentStage(0);
+	if (DataManager::IsBossReallyDead() && timeLeft == 0)
+		DataManager::SetCurrentStage(3);
+}
+
+void Scene33::EarnReward(double dt) {
+	earnRewardTime += dt;
+	if (timeLeft > 0)
+		if (earnRewardTime > 1.0 / timeScale) {
+			timeLeft -= 2;
+			DataManager::AddData(EarnedData(200));
+			if (timeLeft <= 0) {
+				timeLeft = 0;
+			}
+			earnRewardTime = 0;
+		}
+	CheckTransitionScene();
 }
 
 void Scene33::Reset() {

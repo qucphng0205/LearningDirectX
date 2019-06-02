@@ -25,6 +25,7 @@
 #define TEX_BIGBULLET 23
 #define TEX_BASAQUER 24
 #define TEX_DART 25
+#define TEX_BIGEXPLOSION 26
 
 //---------------------------------ANIMATION FRAME----------------------
 #define PLAYER_SLASH_FRAME 7
@@ -38,6 +39,7 @@
 #define SOLDIER_FOLLOW_FRAME 14
 #define SOLDIER_ATTACK_FRAME 2
 #define EXPLOSION_FRAME 2
+#define BIGEXPLOSION_FRAME 5
 //frame loops cua animation attack
 #define SOLDIER_ATTACK_LOOP_FRAMES 30
 //frame spawn bullet
@@ -139,3 +141,7 @@
 
 //-----------------------------------------------SCENE
 #define SCENE_TIME_TRANSITION 3
+#define BOSS_DEATH_DELAY 4
+#define PLAYER_DEATH_DELAY 4
+#define GAMEOVER_SCENE 4
+#define ENDGAME_SCENE 3

@@ -67,8 +67,6 @@ void Enemy::SetSpawnBox(BoxCollider box, int direction) {
 	spawnDirection = (EntityDirection)direction;
 	//--DEBUG 
 	MakeInactive();
-	if (Tag == BASAQUER)
-		SetActive(true);
 }
 
 void Enemy::SetColliderTop(float top) {

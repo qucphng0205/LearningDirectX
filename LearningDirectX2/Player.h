@@ -29,6 +29,7 @@ public:
 	float GetBigHeight() override;
 	float GetWidth() override;
 	float GetHeight() override;
+	void SetActive(bool active);
 	void OnFalling();
 	void SetColliderTop(int top);
 	void SetColliderLeft(int left);

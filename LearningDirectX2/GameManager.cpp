@@ -26,17 +26,16 @@ void GameManager::Update(double dt) {
 	hihi += dt;
 	if (DataManager::GetCurrentStage() == 0)
 		DataManager::SetCurrentStage(2);
-	if (SceneManager::GetInstance()->GetSceneID() != DataManager::GetCurrentStage()) {
-		sceneManager->LoadScene(DataManager::GetCurrentStage());
-	}
-	//neu khong chuyen canh thi update
-	/*if (!SceneManager::GetInstance()->isSceneTransitioning())
-		SceneManager::GetInstance()->GetCurrentScene()->Update(dt);
-	else {
-		SceneTransition::GetInstance()->Update();
-		SceneManager::GetInstance()->UpdateWithEffect();
-	}*/
-	SceneManager *sceneManager = SceneManager::GetInstance();
+
+	bool otherScene = sceneManager->GetSceneID() != DataManager::GetCurrentStage();
+	bool playerDead = DataManager::IsDeath();
+
+	if (DataManager::GetCurrentStage() == GAMEOVER_SCENE)
+		sceneManager->LoadScene(DataManager::GetCurrentStage(), SceneManager::TransitionType::ToGameOverTo);
+	else if (playerDead)
+		sceneManager->LoadScene(DataManager::GetCurrentStage(), SceneManager::TransitionType::Reload);
+	else if (otherScene)
+		sceneManager->LoadScene(DataManager::GetCurrentStage(), SceneManager::TransitionType::Next);
 
 	if (!sceneManager->IsTransitioning())
 		sceneManager->GetCurrentScene()->Update(dt);

@@ -16,6 +16,9 @@ class Scene33 : public Scene {
 
 	float timeLeft;
 
+	float timeScale;
+	float earnRewardTime;
+
 public:
 
 	Scene33();
@@ -28,5 +31,6 @@ public:
 	void CheckActive();
 	void CheckCamera();
 	void CheckTransitionScene();
+	void EarnReward(double dt);
 	void Reset();
 };

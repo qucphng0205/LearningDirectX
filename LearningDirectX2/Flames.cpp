@@ -44,6 +44,7 @@ void Flames::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 	auto impactorType = impactor->GetType();
 	if (impactorType == Layer::EnemyType || impactorType == Layer::ItemHolderType || impactorType == Layer::EProjectileType) {
 		impactor->OnDestroy();
+		OnDestroy();
 	}
 }
 

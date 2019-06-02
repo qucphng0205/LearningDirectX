@@ -1,6 +1,7 @@
 #pragma once
 #include "Tag.h"
 #include "MyHelper.h"
+#include "GameConfig.h"
 
 struct EarnedData {
 	int score;
@@ -19,7 +20,7 @@ struct EarnedData {
 	}
 };
 
-
+//SIGNAL CLASS + DATA CLASS
 class DataManager {
 private:
 #pragma region runtime data
@@ -30,6 +31,9 @@ private:
 	static int spiritPoint;
 	static Tag item;
 	static float freezeTimeLeft;
+	static int bossHealth;
+	static bool isBossDead;
+	static int unlockedStage;
 
 #pragma endregion
 #pragma region loading data
@@ -44,10 +48,20 @@ private:
 	static void SetSpiritPoint(int point);
 	static void SetLife(int lif);
 	static void SetItem(Tag itm);
+
 public:
-	
 #pragma region Run-time data function
 	static int GetHealth();
+	static void InitPlayerHealth();
+	static int GetBossHealth();
+	static void InitBossHealth();
+	static void MinusBossHealth();
+	static void SetBossReallyDead();
+	static bool IsBossReallyDead();
+	//static void SetPlayerDead(bool death);
+	static void SetPlayerDead();
+	static void SetPlayerAlive();
+
 	static int GetScore();
 	static int GetSpiritPoint();
 	static bool MinusHealth();
@@ -66,6 +80,7 @@ public:
 	static void SetGameColor(D3DXCOLOR color);
 	static D3DXCOLOR GetGameColor();
 #pragma endregion
-
-	
+	static void Reset();
+	static void HandleGameOver();
+	static void HandleReload();
 };

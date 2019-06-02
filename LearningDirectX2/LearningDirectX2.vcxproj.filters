@@ -58,15 +58,6 @@
     <Filter Include="Header Files\Object\Enemy\Soldier">
       <UniqueIdentifier>{23d0c80f-86da-4104-a0a4-c12191a101c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Object\Player">
-      <UniqueIdentifier>{2da1c967-07fd-42bf-9b5e-9e45dbb3237c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Object\Player\State">
-      <UniqueIdentifier>{46952d50-f538-4630-a631-f8bce52f3385}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Object\Player\Player">
-      <UniqueIdentifier>{d187da9b-75ab-4f5d-974b-4a14e87d7d27}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Object\General">
       <UniqueIdentifier>{491964bc-0835-4ecc-8927-b7c19ad0a036}</UniqueIdentifier>
     </Filter>
@@ -120,6 +111,15 @@
     </Filter>
     <Filter Include="Header Files\Object\Weapon\Dart">
       <UniqueIdentifier>{34e01d6c-7aa8-4dff-9444-7b93db6fa132}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Player">
+      <UniqueIdentifier>{2da1c967-07fd-42bf-9b5e-9e45dbb3237c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Player\State">
+      <UniqueIdentifier>{46952d50-f538-4630-a631-f8bce52f3385}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Player\Player">
+      <UniqueIdentifier>{d187da9b-75ab-4f5d-974b-4a14e87d7d27}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -327,9 +327,6 @@
     <ClCompile Include="BigBullet.cpp">
       <Filter>Header Files\Object\Weapon\BigBullet</Filter>
     </ClCompile>
-    <ClCompile Include="StaticEntity.cpp">
-      <Filter>Header Files\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Scene32.cpp">
       <Filter>Header Files\Scene</Filter>
     </ClCompile>
@@ -347,6 +344,15 @@
     </ClCompile>
     <ClCompile Include="BasaquerIdleState.cpp">
       <Filter>Header Files\Object\Enemy\Basaquer</Filter>
+    </ClCompile>
+    <ClCompile Include="BigExplosion.cpp">
+      <Filter>Header Files\Object\Effect\Explosion</Filter>
+    </ClCompile>
+    <ClCompile Include="EndGame.cpp">
+      <Filter>Header Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>Header Files\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -569,9 +575,6 @@
     <ClInclude Include="BigBullet.h">
       <Filter>Header Files\Object\Weapon\BigBullet</Filter>
     </ClInclude>
-    <ClInclude Include="StaticEntity.h">
-      <Filter>Header Files\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Scene32.h">
       <Filter>Header Files\Scene</Filter>
     </ClInclude>
@@ -589,6 +592,15 @@
     </ClInclude>
     <ClInclude Include="BasaquerIdleState.h">
       <Filter>Header Files\Object\Enemy\Basaquer</Filter>
+    </ClInclude>
+    <ClInclude Include="BigExplosion.h">
+      <Filter>Header Files\Object\Effect\Explosion</Filter>
+    </ClInclude>
+    <ClInclude Include="EndGame.h">
+      <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>Header Files\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -100,9 +100,12 @@ void Scene32::CheckCamera() {
 }
 
 void Scene32::CheckTransitionScene() {
-	if (player->GetPosition().x >= map->GetWidth() - 16) {
+	if (player->GetPosition().x >= map->GetWidth() - 16 && !DataManager::IsDeath()) {
 		DataManager::SetCurrentStage(2);
 	}
+	else
+		if (timeLeft == 0)
+			player->SetActive(false);
 }
 
 void Scene32::Reset() {

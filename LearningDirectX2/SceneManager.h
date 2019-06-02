@@ -5,16 +5,24 @@
 #include "PlayScene.h"
 #include "Scene32.h"
 #include "Scene33.h"
+#include "EndGame.h"
+#include "GameOver.h"
 #include <ctime>
 
 class SceneManager {
 public:
+	enum TransitionType {
+		ToGameOverTo,
+		Reload,
+		Next,
+	};
+
 	static SceneManager *GetInstance();
 
 	SceneManager();
 
 	Scene* GetCurrentScene();
-	void LoadScene(int sceneID);
+	void LoadScene(int sceneID, TransitionType type = Reload);
 
 	void UpdateTransition(double dt);
 	
@@ -31,6 +39,7 @@ private:
 	float destSceneID;
 
 	bool isTransitioning;
+	TransitionType type;
 	bool firstTime;
 	float timeTransition;
 

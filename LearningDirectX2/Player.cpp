@@ -47,7 +47,7 @@ Player::Player() : Entity() {
 	width = desc.Width / 4;
 	height = desc.Height / 9;
 
-	isActive = true;
+	SetActive(true);
 }
 
 Player::~Player() {
@@ -158,6 +158,12 @@ void Player::SetState(PlayerState::State name, int dummy) {
 	}
 
 	currentState = playerData->state->GetState();
+
+	if (currentState != PlayerState::Injured)
+		if (DataManager::GetHealth() == 0) {
+			SetActive(false);
+		}
+
 	playerData->state->ResetState(dummy);
 }
 
@@ -171,7 +177,7 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollision side, float co
 
 	if (impactor->GetType() == StaticType)
 		if (side == Bottom && status != Jumping && (status != Climbing || impactorTag != THINSURFACE)) {
-			
+
 			if (round(playerBottom) == impactorRect.top && velocity.y <= 0) {
 				newVelocity.y *= collisionTime;
 				checkGroundInFrame = true;
@@ -273,6 +279,16 @@ float Player::GetHeight() {
 	return collider.top - collider.bottom;
 }
 
+void Player::SetActive(bool active) {
+	if (active == false) {
+		playerData->state = injuredState;
+		DataManager::SetPlayerDead();
+	}
+	else {
+		Entity::SetActive(true);
+	}
+}
+
 void Player::OnFalling() {
 	SetState(PlayerState::Falling);
 }
@@ -314,7 +330,7 @@ void Player::InjuredByOther(Entity *impactor) {
 	else
 		SetMoveDirection(Entity::RightToLeft);
 	//if (currentState != PlayerState::Climb)
-		SetState(PlayerState::Injured);
+	SetState(PlayerState::Injured);
 	//else
 		//OnImmortal();
 	DataManager::MinusHealth();
