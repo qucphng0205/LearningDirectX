@@ -4,6 +4,7 @@
 #include <dxerr.h>
 #include <dsound.h>
 #include "dsutil.h"
+#include "GameConfig.h"
 
 class gnhpSound {
 private:

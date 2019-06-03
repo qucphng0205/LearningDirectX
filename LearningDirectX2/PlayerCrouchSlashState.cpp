@@ -94,6 +94,8 @@ void PlayerCrouchSlashState::ResetState(int dummy) {
 	player->SetColliderLeft(-7);
 	player->SetColliderRight(31);
 
+	gnhpSound::GetInstance()->PlayFX(SOUND_SLASH);
+
 	PlayerState::ResetState(dummy);
 }
 

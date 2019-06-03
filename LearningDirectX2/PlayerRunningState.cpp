@@ -75,8 +75,6 @@ void PlayerRunningState::ResetState(int dummy) {
 	player->SetColliderTop(16);
 	player->SetColliderBottom(-16);
 
-	auto keyboard = KeyBoard::GetInstance();
-
 	PlayerState::ResetState(dummy);
 }
 

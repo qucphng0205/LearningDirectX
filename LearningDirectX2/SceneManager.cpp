@@ -65,6 +65,10 @@ void SceneManager::LoadScene(int sceneID, TransitionType type) {
 	}
 	else
 		isTransitioning = true;
+	if (type == TransitionType::Reload || (type == TransitionType::ToGameOverTo && sceneID == GAMEOVER_SCENE)) {
+		gnhpSound::GetInstance()->StopMusic();
+		gnhpSound::GetInstance()->PlayFX(SOUND_GAMEOVER);
+	}
 }
 
 

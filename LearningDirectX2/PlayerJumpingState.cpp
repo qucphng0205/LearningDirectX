@@ -124,6 +124,6 @@ void PlayerJumpingState::ResetState(int dummy) {
 	else
 		player->status = (player->timeOnAir >= 0.5) ? Player::Falling : Player::Jumping;
 	//else means from slash to jump with on air time = 0
-
+	gnhpSound::GetInstance()->PlayFX(SOUND_JUMP);
 	PlayerState::ResetState(dummy);
 }

@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "ObjectPooling.h"
 #include "DataManager.h"
+#include "gnhpSound.h"
 
 class Scene32 : public Scene {
 

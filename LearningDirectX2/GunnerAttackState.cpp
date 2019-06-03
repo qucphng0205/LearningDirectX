@@ -24,6 +24,7 @@ void GunnerAttackState::ResetState() {
 	enemy->SetVx(0);
 
 	((Gunner*)enemy)->SpawnBigBullet();
+	gnhpSound::GetInstance()->PlayFX(SOUND_BIGBULLET);
 
 	EnemyState::ResetState();
 }

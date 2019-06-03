@@ -10,6 +10,8 @@
 #include "Unit.h"
 #include "Grid.h"
 
+#include "gnhpSound.h"
+
 
 
 class Enemy : public Entity {

@@ -140,7 +140,10 @@ void PlayerSlashState::ResetState(int dummy) {
 
 	isSlash = 0;
 
+	gnhpSound::GetInstance()->PlayFX(SOUND_SLASH);
+
 	PlayerState::ResetState(dummy);
+
 	if (dummy != 0)
 		m_Animation->SetCurrentFrame(dummy);
 }

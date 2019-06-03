@@ -26,6 +26,7 @@ Scene32::Scene32() {
 	pool->AddFlames();
 
 	timeLeft = 150;
+	gnhpSound::GetInstance()->PlayMusic(1);
 }
 
 Scene32::~Scene32() {

@@ -1,6 +1,7 @@
 #pragma once
 #include "PlayerState.h"
 #include "Player.h"
+#include "gnhpSound.h"
 
 class PlayerInjuredState : public PlayerState {
 public:

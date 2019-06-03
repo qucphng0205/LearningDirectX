@@ -140,8 +140,25 @@
 #define LADDER_OFFSET 20
 
 //-----------------------------------------------SCENE
-#define SCENE_TIME_TRANSITION 3
+#define SCENE_TIME_TRANSITION 4
 #define BOSS_DEATH_DELAY 4
 #define PLAYER_DEATH_DELAY 4
 #define GAMEOVER_SCENE 4
 #define ENDGAME_SCENE 3
+
+#pragma region Sound
+
+#define SOUND_MUSIC31 0
+#define SOUND_MUSIC32 1
+#define SOUND_MUSIC33 2
+#define SOUND_GAMEOVER 3
+#define SOUND_SLASH 4
+#define SOUND_JUMP 5
+#define SOUND_INJURED 6
+#define SOUND_EATITEM 7
+#define SOUND_DAMAGE 8
+#define SOUND_BIGBULLET 9
+#define SOUND_BASAQUER 10
+#define SOUND_BULLET 11
+
+#pragma endregion

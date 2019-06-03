@@ -101,6 +101,6 @@ void PlayerInjuredState::ResetState(int dummy) {
 			player->status = Player::Jumping;
 		}
 	//}
-
+	gnhpSound::GetInstance()->PlayFX(SOUND_INJURED);
 	PlayerState::ResetState(dummy);
 }

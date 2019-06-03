@@ -26,6 +26,7 @@ Scene33::Scene33() {
 
 	timeLeft = 150;
 	timeScale = 7;
+	gnhpSound::GetInstance()->PlayMusic(2);
 }
 
 Scene33::~Scene33() {

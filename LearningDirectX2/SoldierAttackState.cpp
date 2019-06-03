@@ -24,6 +24,8 @@ void SoldierAttackState::ResetState() {
 
 	frame = 0;
 
+	gnhpSound::GetInstance()->PlayFX(SOUND_BULLET);
+
 	EnemyState::ResetState();
 }
 

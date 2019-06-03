@@ -117,6 +117,7 @@ void Item::Spawn() {
 EarnedData Item::OnDestroy() {
 	if (itemData->state->GetState() == ItemState::Available) {
 		SetActive(false);
+		gnhpSound::GetInstance()->PlayFX(SOUND_EATITEM);
 		return EarnedData(Tag);
 	}
 	SetState(ItemState::Available);

@@ -22,6 +22,8 @@ void BasaquerIdleState::ResetState() {
 	enemy->SetColliderLeft(-19);
 	enemy->SetColliderRight(9);
 
+	gnhpSound::GetInstance()->PlayFX(SOUND_BASAQUER);
+
 	EnemyState::ResetState();
 }
 

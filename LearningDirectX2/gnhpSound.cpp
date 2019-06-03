@@ -20,10 +20,18 @@ void gnhpSound::LoadSound(HWND hwnd) {
 	{
 		MessageBox(NULL, "Unable to init DirectSound", "ERROR", MB_OK);
 	}
-	DSBuffer[0] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/soundtrack31.wav");
-	DSBuffer[1] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/soundtrack32.wav");
-	DSBuffer[2] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/soundtrack33.wav");
-
+	DSBuffer[SOUND_MUSIC31] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/soundtrack31.wav");
+	DSBuffer[SOUND_MUSIC32] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/soundtrack32.wav");
+	DSBuffer[SOUND_MUSIC33] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/soundtrack33.wav");
+	DSBuffer[SOUND_GAMEOVER] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/gameover.wav");
+	DSBuffer[SOUND_SLASH] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/slash.wav");
+	DSBuffer[SOUND_JUMP] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/jump.wav");
+	DSBuffer[SOUND_INJURED] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/injured.wav");
+	DSBuffer[SOUND_EATITEM] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/eatitem.wav");
+	DSBuffer[SOUND_DAMAGE] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/damage.wav");
+	DSBuffer[SOUND_BIGBULLET] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/bigbullet.wav");
+	DSBuffer[SOUND_BASAQUER] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/basaquer.wav");
+	
 	if (!DSBuffer)
 	{
 		MessageBox(NULL, "Unable to load sound", "ERROR", MB_OK);

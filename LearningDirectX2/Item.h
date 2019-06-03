@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "ItemState.h"
 #include "Textures.h"
+#include "gnhpSound.h"
 
 class Item : public Entity {
 public:

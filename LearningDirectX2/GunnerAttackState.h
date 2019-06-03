@@ -4,6 +4,8 @@
 #include "Animation.h"
 #include "Gunner.h"
 
+#include "gnhpSound.h"
+
 class GunnerAttackState : public EnemyState {
 public:
 	GunnerAttackState(EnemyData *data);

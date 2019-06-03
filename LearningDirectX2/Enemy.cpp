@@ -151,6 +151,7 @@ EarnedData Enemy::OnDestroy() {
 	effect = new EffectChain(new Explosion(position));
 	Grid::GetInstance()->AddEffect(effect);
 	SetActive(false);
+	gnhpSound::GetInstance()->PlayFX(SOUND_DAMAGE);
 	return EarnedData(point);
 }
 

@@ -1,8 +1,9 @@
 #pragma once
 #include "PlayerState.h"
 #include "Player.h"
-
 #include "Item.h"
+#include "gnhpSound.h"
+
 
 class PlayerSlashState : public PlayerState {
 public:

@@ -2,13 +2,14 @@
 #include "EnemyState.h"
 #include "Textures.h"
 #include "Animation.h"
+#include "gnhpSound.h"
 
 class BasaquerIdleState : public EnemyState {
 public:
 	BasaquerIdleState(EnemyData *data);
 	~BasaquerIdleState();
-	virtual void ResetState();
-	virtual void Update(double dt);
+	void ResetState() override;
+	void Update(double dt) override;
 private:
 	float speed;
 };
