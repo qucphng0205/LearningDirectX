@@ -127,6 +127,12 @@ Graphic * Graphic::GetInstance() {
 	return instance;
 }
 
+void Graphic::DrawCustomZone(RECT r, std::string content) {
+	RECT customZone = r;
+	normalFont->DrawText(spriteHandler, content.c_str(), -1, &customZone, DT_CENTER | DT_NOCLIP,
+		0xFFFFFFFF);
+}
+
 Graphic::~Graphic() {
 	if (backBuffer != NULL) {
 		backBuffer->Release();

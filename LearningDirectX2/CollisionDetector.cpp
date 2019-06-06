@@ -31,7 +31,7 @@ Entity::SideCollision CollisionDetector::GetSideCollision4(BoxCollider e1, Entit
 	float e1Width = e1.GetWidth();
 	float e1Height = e1.GetHeight();
 
-	Entity::SideCollision result;
+	Entity::SideCollision result = Entity::SideCollision();
 
 	auto pos1 = e1.GetCenter();
 	auto pos2 = data.regionCollision.GetCenter();

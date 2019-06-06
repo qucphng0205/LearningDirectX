@@ -26,11 +26,12 @@
 #define TEX_BASAQUER 24
 #define TEX_DART 25
 #define TEX_BIGEXPLOSION 26
+#define TEX_BAT 27
 
 //---------------------------------ANIMATION FRAME----------------------
 #define PLAYER_SLASH_FRAME 7
 #define PLAYER_RUNNING_FRAME 4
-#define PLAYER_JUMPING_FRAME 8
+#define PLAYER_JUMPING_FRAME 4
 #define SPARTA_FRAME 15
 #define CAT_FRAME 15
 #define THROWER_FOLLOW_FRAME 12
@@ -48,6 +49,8 @@
 #define GUNNER_FOLLOW_FRAME 60
 #define GUNNER_ATTACK_FRAME 4
 #define RUNNER_FRAME 12
+#define BAT_FRAME 10
+#define BASAQUER_IDLE_FRAME 30
 
 #define HOLDER_FRAME 10
 #define KNIFE_FRAME 8
@@ -160,5 +163,7 @@
 #define SOUND_BIGBULLET 9
 #define SOUND_BASAQUER 10
 #define SOUND_BULLET 11
+#define SOUND_EARN 12
+#define SOUND_BASAQUEREXPLOSION 13
 
 #pragma endregion

@@ -23,6 +23,8 @@
     <ClCompile Include="Basaquer.cpp" />
     <ClCompile Include="BasaquerIdleState.cpp" />
     <ClCompile Include="BasaquerJumpingState.cpp" />
+    <ClCompile Include="Bat.cpp" />
+    <ClCompile Include="BatFollowState.cpp" />
     <ClCompile Include="BigBullet.cpp" />
     <ClCompile Include="BigExplosion.cpp" />
     <ClCompile Include="BigShuriken.cpp" />
@@ -56,6 +58,7 @@
     <ClCompile Include="Gunner.cpp" />
     <ClCompile Include="GunnerAttackState.cpp" />
     <ClCompile Include="GunnerFollowState.cpp" />
+    <ClCompile Include="IntroScene.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemAvailableState.cpp" />
     <ClCompile Include="ItemHolderState.cpp" />
@@ -105,6 +108,8 @@
     <ClInclude Include="Basaquer.h" />
     <ClInclude Include="BasaquerIdleState.h" />
     <ClInclude Include="BasaquerJumpingState.h" />
+    <ClInclude Include="Bat.h" />
+    <ClInclude Include="BatFollowState.h" />
     <ClInclude Include="BigBullet.h" />
     <ClInclude Include="BigExplosion.h" />
     <ClInclude Include="BigShuriken.h" />
@@ -142,6 +147,7 @@
     <ClInclude Include="Gunner.h" />
     <ClInclude Include="GunnerAttackState.h" />
     <ClInclude Include="GunnerFollowState.h" />
+    <ClInclude Include="IntroScene.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemAvailableState.h" />
     <ClInclude Include="ItemData.h" />

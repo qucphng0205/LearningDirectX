@@ -127,6 +127,9 @@
     <Filter Include="Header Files\Framework\Sound\ThirdParty">
       <UniqueIdentifier>{d6560473-9f41-4e93-8869-1286c9bc674f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\Enemy\Bat">
+      <UniqueIdentifier>{34dbd0ec-3e7d-4be1-8f4a-8fdf92116235}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -368,6 +371,15 @@
     </ClCompile>
     <ClCompile Include="gnhpSound.cpp">
       <Filter>Header Files\Framework\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroScene.cpp">
+      <Filter>Header Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Bat.cpp">
+      <Filter>Header Files\Object\Enemy\Bat</Filter>
+    </ClCompile>
+    <ClCompile Include="BatFollowState.cpp">
+      <Filter>Header Files\Object\Enemy\Bat</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -625,6 +637,15 @@
     </ClInclude>
     <ClInclude Include="gnhpSound.h">
       <Filter>Header Files\Framework\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroScene.h">
+      <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Bat.h">
+      <Filter>Header Files\Object\Enemy\Bat</Filter>
+    </ClInclude>
+    <ClInclude Include="BatFollowState.h">
+      <Filter>Header Files\Object\Enemy\Bat</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

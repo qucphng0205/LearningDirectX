@@ -5,7 +5,6 @@ GameManager::GameManager(HWND hWnd, HINSTANCE hInstance) {
 	sceneManager = SceneManager::GetInstance();
 	keyboard = KeyBoard::GetInstance();
 
-
 	graphic->Init(hWnd);
 	keyboard->InitKeyboard(hWnd, hInstance);
 	gnhpSound::GetInstance()->LoadSound(hWnd);
@@ -27,9 +26,9 @@ GameManager::~GameManager() {
 
 void GameManager::Update(double dt) {
 	//--DEBUG
-	//hihi += dt;
-	//if (DataManager::GetCurrentStage() == 0)
-	//	DataManager::SetCurrentStage(2);
+	////hihi += dt;
+	if (DataManager::GetCurrentStage() == 0)
+		DataManager::SetCurrentStage(1);
 
 	bool otherScene = sceneManager->GetSceneID() != DataManager::GetCurrentStage();
 	bool playerDead = DataManager::IsDeath();

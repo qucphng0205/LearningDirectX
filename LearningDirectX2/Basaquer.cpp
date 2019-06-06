@@ -13,6 +13,7 @@ Basaquer::Basaquer() : Enemy() {
 	width = desc.Width;
 	height = desc.Height / 2;
 	point = 200;
+	jumpTimes = 2;
 }
 
 Basaquer::~Basaquer() {
@@ -44,7 +45,7 @@ void Basaquer::OnCollision(Entity * impactor, Entity::SideCollision side, float 
 void Basaquer::Update(double dt) {
 	if (isDead) {
 		explosionTime += dt;
-		if (explosionTime >= BOSS_DEATH_DELAY + 0.5f) {
+		if (explosionTime >= BOSS_DEATH_DELAY + 0.0f) {
 			SetActive(false);
 			DataManager::SetBossReallyDead();
 		}
@@ -86,6 +87,7 @@ void Basaquer::SetState(EnemyState::State state) {
 		enemyData->state = basaquerIdleState;
 	if (state == EnemyState::Attack) {
 		enemyData->state = basaquerJumpingState;
+		jumpTimes = (jumpTimes + 1) % 11;
 		SpawnDarts();
 	}
 	this->state = state;
@@ -122,8 +124,9 @@ EarnedData Basaquer::OnDestroy() {
 
 	explosionTime = 0;
 	isDead = true;
+	gnhpSound::GetInstance()->PlayFX(SOUND_BASAQUEREXPLOSION);
 	//for collide
-	type == Layer::NoneType;
+	type = Layer::NoneType;
 
 	//6 / (12/60) = 30 percent times
 	//*2 becauz 2 frames
@@ -136,6 +139,13 @@ void Basaquer::SpawnDarts() {
 	ObjectPooling *pool = ObjectPooling::GetInstance();
 
 	if (pool->CheckQuantity(DARTS_POOL_INDEX) < 3)
+		return;
+
+	//int jump2 = jumpTimes + 1;
+	//if (jump2 != 3 && jump2 != 6 && jump2 == 10)
+	//	return;
+
+	if ((jumpTimes + 1) % 3 != 0) 
 		return;
 
 	//--DEBUG WITH ZERO

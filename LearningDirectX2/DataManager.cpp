@@ -74,9 +74,25 @@ int DataManager::GetSpiritPoint() {
 	return spiritPoint;
 }
 
-bool DataManager::MinusHealth() {
-	health--;
+bool DataManager::MinusHealth(int hea) {
+	health -= hea;
+	if (health < 0)
+		health = 0;
 	return (isDeath);
+}
+
+bool DataManager::MinusHealth(Tag impactor) {
+	switch (impactor) {
+	case BASAQUER:
+	case DART:
+	case BIGBULLET:
+		return MinusHealth(2);
+	case EAGLE:
+		return MinusHealth(3);
+		break;
+	default:
+		return MinusHealth(1);
+	}
 }
 
 bool DataManager::IsFreezeTime() {
@@ -86,7 +102,7 @@ bool DataManager::IsFreezeTime() {
 void DataManager::MinusFreezeTimeLeft(float time) {
 	if (freezeTimeLeft > 0)
 		freezeTimeLeft = MyHelper::Clamp(freezeTimeLeft - time, 0, 5);
-	
+
 }
 
 bool DataManager::ConsumeSpiritPoint(int point) {
@@ -162,7 +178,7 @@ void DataManager::SetGameColor(D3DXCOLOR color) {
 	gameColor = color;
 }
 
-D3DXCOLOR DataManager::GetGameColor(){
+D3DXCOLOR DataManager::GetGameColor() {
 	return gameColor;
 }
 

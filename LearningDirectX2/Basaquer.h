@@ -32,4 +32,6 @@ protected:
 	enum EnemyState::State state;
 	bool isDead;
 	float explosionTime;
+
+	int jumpTimes;
 };

@@ -87,25 +87,6 @@ void Player::Update(double dt) {
 	if (playerData->state)
 		playerData->state->Update(dt);
 
-	//BoxCollider exPlayer = BoxCollider(GetPosition(), GetWidth(), GetBigHeight());
-
-	////--DEBUG--
-	//if (vely != velocity)
-	//	vely = vely;
-	////--DEBUG--
-	//if (exPlayer.bottom < 39) {
-	//	vely = vely;
-	//}
-	////-Debug
-	//auto xside = NotKnow;
-	//auto impactorRect = BoxCollider(40, 0, 0, 544);
-	//float groundTime = CollisionDetector::SweptAABB(exPlayer, GetVelocity(), impactorRect, D3DXVECTOR2(0, 0), xside, dt);
-
-	//if ((side == Left && velocity.x < 0) || (side == Right && velocity.x > 0))
-	//	velocity.x = 0;
-	//if ((side == Bottom && velocity.y < 0))
-	//	velocity.y = 0;
-
 	if (checkGroundInFrame == false && status == OnGround)
 		OnFalling();
 
@@ -333,8 +314,7 @@ void Player::InjuredByOther(Entity *impactor) {
 	SetState(PlayerState::Injured);
 	//else
 		//OnImmortal();
-	DataManager::MinusHealth();
-	DataManager::GetHealth();
+	DataManager::MinusHealth(impactor->GetTag());
 }
 
 void Player::OnImmortal() {

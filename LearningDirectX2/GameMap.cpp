@@ -39,9 +39,12 @@ LPSPRITE Tileset::GetSprite(int id) {
 //GameMap::GameMap(char * tilesetPath, int tileWidth, int tileHeight) {
 //}
 
-GameMap::GameMap(char * tilesetPath, char * mapPath, int tileHeight, int tileWidth) {
+GameMap::GameMap(char * tilesetPath, char * mapPath, int tileHeight, int tileWidth, bool gridBuildIn) {
 	LoadTileset(tilesetPath, tileWidth, tileHeight);
-	SetMapPath(mapPath);
+	if (gridBuildIn)
+		SetMapPathGridBuildIn(mapPath);
+	else
+		SetMapPath(mapPath);
 }
 
 void GameMap::SetMapPath(char * mapPath) {
@@ -64,7 +67,8 @@ void GameMap::SetMapPath(char * mapPath) {
 	BoxCollider gridRect = BoxCollider(GetHeight(), 0, 0, GetWidth());
 	if (DataManager::GetCurrentStage() == 2) {
 		grid = new Grid(gridRect, 1, 1);
-	} else 
+	}
+	else
 		grid = new Grid(gridRect);
 
 	reader >> mapObject;
@@ -75,6 +79,7 @@ void GameMap::SetMapPath(char * mapPath) {
 	int wid = 0;
 	int hei = 0;
 	int direction = 1;
+
 	Unit *unit;
 	for (int i = 0; i < mapObject; i++) {
 		reader >> id;
@@ -103,7 +108,7 @@ void GameMap::SetMapPath(char * mapPath) {
 		box.bottom = posy - hei;
 		box.right = posx + wid;
 
-		////--DEBUG
+		//--DEBUG
 		//continue; 
 
 
@@ -164,11 +169,168 @@ void GameMap::SetMapPath(char * mapPath) {
 			unit = new Unit(grid, basaquer);
 		}
 		break;
+		case BAT:
+		{
+			Bat *bat = new Bat();
+			bat->SetSpawnBox(box, direction);
+			unit = new Unit(grid, bat);
+		}
+		break;
 		default:
 		{
 			Item *item = new Item(0, (Tag)id);
 			item->SetSpawnBox(box);
 			unit = new Unit(grid, item);
+		}
+		}
+	}
+}
+
+void GameMap::SetMapPathGridBuildIn(char * mapPath) {
+	this->mapPath = mapPath;
+	std::fstream reader(mapPath);
+	if (reader.fail()) {
+		return;
+	}
+	reader >> rows;
+	reader >> columns;
+	mapIDs = new int*[rows];
+
+	for (int i = 0; i < rows; i++) {
+		mapIDs[i] = new int[columns];
+		for (int j = 0; j < columns; j++) {
+			reader >> mapIDs[i][j];
+		}
+	}
+
+	int gridColumns = 1;
+	int gridRows = 1;
+
+	reader >> gridColumns;
+	reader >> gridRows;
+
+
+	BoxCollider gridRect = BoxCollider(GetHeight(), 0, 0, GetWidth());
+	if (DataManager::GetCurrentStage() != 0) {
+		grid = new Grid(gridRect, 1, 1);
+	}
+	else
+		grid = new Grid(gridRect, gridColumns, gridRows);
+
+	reader >> mapObject;
+	int id = 0;
+	int i = 0;
+	int posx = 0;
+	int posy = 0;
+	int wid = 0;
+	int hei = 0;
+	int direction = 1;
+	int cellX = 0;
+	int cellY = 0;
+
+	Unit *unit;
+	for (int i = 0; i < mapObject; i++) {
+		reader >> id;
+		reader >> posx;
+		reader >> posy;
+		reader >> wid;
+		reader >> hei;
+		reader >> direction;
+		reader >> cellX;
+		reader >> cellY;
+
+		if (id == (int)Tag::GROUND || id == (int)Tag::LADDER || id == (int)Tag::THINSURFACE) {
+			Entity *ground = new Entity();
+			ground->SetTag((Tag)id);
+			ground->SetType(Layer::StaticType);
+			ground->SetStatic(true);
+			ground->SetPosition(D3DXVECTOR3(posx + wid / 2, posy - hei / 2, 0));
+			ground->SetWidth(wid);
+			ground->SetHeight(hei);
+			ground->SetMoveDirection((Entity::EntityDirection)direction);
+			grid->AddStaticObject(ground);
+			continue;
+		}
+
+		BoxCollider box;
+		box.top = posy;
+		box.left = posx;
+		box.bottom = posy - hei;
+		box.right = posx + wid;
+
+		////--DEBUG
+		//continue; 
+
+
+		switch (id) {
+		case SPARTA:
+		{
+			Sparta *sparta = new Sparta();
+			sparta->SetSpawnBox(box, direction);
+			unit = new Unit(grid, sparta, cellX, cellY);
+		}
+		break;
+		case CAT:
+		{
+			Cat *cat = new Cat();
+			cat->SetSpawnBox(box, direction);
+			unit = new Unit(grid, cat, cellX, cellY);
+		}
+		break;
+		case THROWER:
+		{
+			Thrower *thrower = new Thrower();
+			thrower->SetSpawnBox(box, direction);
+			unit = new Unit(grid, thrower, cellX, cellY);
+		}
+		break;
+		case EAGLE:
+		{
+			Eagle *eagle = new Eagle();
+			eagle->SetSpawnBox(box, direction);
+			unit = new Unit(grid, eagle, cellX, cellY);
+		}
+		break;
+		case SOLDIER:
+		{
+			Soldier *soldier = new Soldier();
+			soldier->SetSpawnBox(box, direction);
+			unit = new Unit(grid, soldier, cellX, cellY);
+		}
+		break;
+		case GUNNER:
+		{
+			Gunner *gunner = new Gunner();
+			gunner->SetSpawnBox(box, direction);
+			unit = new Unit(grid, gunner, cellX, cellY);
+		}
+		break;
+		case RUNNER:
+		{
+			Runner *runner = new Runner();
+			runner->SetSpawnBox(box, direction);
+			unit = new Unit(grid, runner, cellX, cellY);
+		}
+		break;
+		case BASAQUER:
+		{
+			Basaquer *basaquer = new Basaquer();
+			basaquer->SetSpawnBox(box, direction);
+			unit = new Unit(grid, basaquer, cellX, cellY);
+		}
+		break;
+		case BAT:
+		{
+			Bat *bat = new Bat();
+			bat->SetSpawnBox(box, direction);
+			unit = new Unit(grid, bat, cellX, cellY);
+		}
+		break;
+		default:
+		{
+			Item *item = new Item(0, (Tag)id);
+			item->SetSpawnBox(box);
+			unit = new Unit(grid, item, cellX, cellY);
 		}
 		}
 	}

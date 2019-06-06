@@ -18,6 +18,7 @@ void PlayerClimbState::Render() {
 void PlayerClimbState::Update(double dt) {
 	if (isClimbing)
 		PlayerState::Update(dt);
+	playerData->player->SetVx(0);
 }
 
 void PlayerClimbState::HandleInput() {

@@ -4,8 +4,10 @@
 PlayScene::PlayScene() {
 	//LoadResources
 
-	//map = new GameMap((char*)"Resources/map31xTileSet.png", (char*)"Resources/map31x.txt", 16, 16);
+	//map = new GameMap((char*)"Resources/map31TileSet.png", (char*)"Resources/map31grid.txt", 32, 32, true);
+
 	map = new GameMap((char*)"Resources/map31TileSet.png", (char*)"Resources/map31.txt", 32, 32);
+
 	int width = Graphic::GetInstance()->GetBackBufferWidth();
 	int height = Graphic::GetInstance()->GetBackBufferHeight();
 	camera = new Camera(width, height);
@@ -14,7 +16,12 @@ PlayScene::PlayScene() {
 
 	player = new Player();
 	player->SetPosition(32, 40 + player->GetBigHeight() / 2.0f);
-	player->SetPosition(1200, 184 + player->GetBigHeight() / 2.0f);
+
+	//CHECKPOINT1
+	//player->SetPosition(1264, 184 + player->GetBigHeight() / 2.0f);
+	//CHECKPOINT2
+	//player->SetPosition(1822, 184 + player->GetBigHeight() / 2.0f);
+
 	camera->FollowPlayer(player->GetPosition().x, player->GetPosition().y);
 	(new Unit(map->GetGrid(), player))->SetActive(true);
 	CheckCamera();
@@ -108,7 +115,7 @@ void PlayScene::CheckTransitionScene() {
 	if (player->GetPosition().x >= map->GetWidth() - 16 && !DataManager::IsDeath()) {
 		DataManager::SetCurrentStage(1);
 	}
-	else if (timeLeft == 0)
+	else if (timeLeft <= 0)
 		player->SetActive(false);
 }
 

@@ -33,6 +33,7 @@ protected:
 	RECT iconSpiritZone;
 	RECT playerHealthZone;
 	RECT enemyHealthZone;
+
 	std::string scoreInfor;
 	std::string timeInfor;
 	std::string lifeInfor;
@@ -72,5 +73,8 @@ public:
 	int GetBackBufferHeight() { return SCREEN_HEIGHT; }
 	HWND getHWND() { return hWnd; }
 	static Graphic *GetInstance();
+
+	void DrawCustomZone(RECT r, std::string content);
+
 	~Graphic();
 };

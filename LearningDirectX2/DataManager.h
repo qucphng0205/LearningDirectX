@@ -64,7 +64,8 @@ public:
 
 	static int GetScore();
 	static int GetSpiritPoint();
-	static bool MinusHealth();
+	static bool MinusHealth(int health = 1);
+	static bool MinusHealth(Tag impactor);
 	static bool IsFreezeTime();
 	static void MinusFreezeTimeLeft(float time);
 	static bool ConsumeSpiritPoint(int point);

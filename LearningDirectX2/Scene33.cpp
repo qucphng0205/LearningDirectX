@@ -13,7 +13,7 @@ Scene33::Scene33() {
 	camera->SetPosition(D3DXVECTOR3(width / 2, height / 2, 0));
 
 	player = new Player();
-	player->SetPosition(32, 40 + player->GetBigHeight() / 2.0f);
+	player->SetPosition(50, 40 + player->GetBigHeight() / 2.0f);
 	//player->SetPosition(1200, 184 + player->GetBigHeight() / 2.0f);
 	camera->FollowPlayer(player->GetPosition().x, player->GetPosition().y);
 	(new Unit(map->GetGrid(), player))->SetActive(true);
@@ -72,9 +72,11 @@ void Scene33::Update(double dt) {
 	D3DXVECTOR3 playerPos = player->GetPosition();
 	camera->FollowPlayer(playerPos.x, playerPos.y);
 	CheckCamera();
-	timeLeft -= dt;
 	if (DataManager::IsFreezeTime())
 		DataManager::MinusFreezeTimeLeft(dt);
+	if (playerPos.y > 176 - player->GetBigHeight() / 2.0f)
+		player->SetPosition(playerPos.x, 176 - player->GetBigHeight() / 2.0f);
+
 }
 
 int Scene33::GetSceneID() {
@@ -113,6 +115,7 @@ void Scene33::EarnReward(double dt) {
 	if (timeLeft > 0)
 		if (earnRewardTime > 1.0 / timeScale) {
 			timeLeft -= 2;
+			gnhpSound::GetInstance()->PlayFX(SOUND_EARN);
 			DataManager::AddData(EarnedData(200));
 			if (timeLeft <= 0) {
 				timeLeft = 0;

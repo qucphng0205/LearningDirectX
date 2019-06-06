@@ -5,7 +5,7 @@ BasaquerIdleState::BasaquerIdleState(EnemyData *data) : EnemyState(data) {
 	auto textures = Textures::GetInstance();
 	LPDIRECT3DTEXTURE9 texture = textures->Get(TEX_BASAQUER);
 	m_Animation = new Animation();
-	m_Animation->AddFramesA(texture, 1, 1, 1, 2, 1, 45 * (1 / 60.0f));
+	m_Animation->AddFramesA(texture, 1, 1, 1, 2, 1, BASAQUER_IDLE_FRAME * (1 / 60.0f));
 }
 
 BasaquerIdleState::~BasaquerIdleState() {

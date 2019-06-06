@@ -11,6 +11,16 @@ Unit::Unit(Grid *gr, Entity *ent) {
 	active = false;
 }
 
+Unit::Unit(Grid * gr, Entity * ent, int cellX, int cellY) {
+	grid = gr;
+	entity = ent;
+	pos = D3DXVECTOR2(ent->GetPosition());
+	prev = NULL;
+	next = NULL;
+	grid->Add(this, cellX, cellY);
+	active = false;
+}
+
 Unit::~Unit() {
 	if (entity->GetType() == Layer::PProjectileType)
 		entity = entity;

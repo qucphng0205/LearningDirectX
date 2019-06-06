@@ -70,8 +70,30 @@ Grid::~Grid() {
 void Grid::Add(Unit * unit) {
 	int cellX = (int)(unit->pos.x / cellWidth);
 	int cellY = (int)(unit->pos.y / cellHeight);
-	if (cellX >= GRID_COLUMN)
+	if (cellX >= columns)
 		return;
+	//link-list, add front
+	unit->prev = NULL;
+	unit->next = cells[cellX][cellY];
+	cells[cellX][cellY] = unit;
+
+	if (unit->next != NULL)
+		unit->next->prev = unit;
+}
+
+void Grid::Add(Unit * unit, int cellX, int cellY) {
+	if (cellX >= columns)
+		return;
+
+	int cellX2 = (int)(unit->pos.x / cellWidth);
+	int cellY2 = (int)(unit->pos.y / cellHeight);
+
+
+	if (cellX != cellX2)
+		cellX = cellX;
+
+	if (cellY != cellY2)
+		cellY = cellY;
 	//link-list, add front
 	unit->prev = NULL;
 	unit->next = cells[cellX][cellY];
@@ -117,7 +139,7 @@ void Grid::HandleActiveUnit(BoxCollider camBox, Entity::EntityDirection camDirec
 			else {
 				//Neu o ben trai va player di phai
 				//Neu o ben phai va player di trai: MAYBE WRONG
-				entity->SetActive((childPos.x < camCenterX && camDirection == Entity::LeftToRight && abs(entityRect.left - camBox.left) <= ENEMY_OFFSET_BORDER)/* || (childPos.x > camCenterX && camDirection == Entity::RightToLeft && camBox.right - entityRect.right <= ENEMY_OFFSET_BORDER)*/);
+				entity->SetActive((childPos.x < camCenterX && camDirection == Entity::LeftToRight && abs(entityRect.left - camBox.left) <= ENEMY_OFFSET_BORDER));
 			}
 		}
 		unit = unit->next;

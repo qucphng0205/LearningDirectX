@@ -31,7 +31,11 @@ void gnhpSound::LoadSound(HWND hwnd) {
 	DSBuffer[SOUND_DAMAGE] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/damage.wav");
 	DSBuffer[SOUND_BIGBULLET] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/bigbullet.wav");
 	DSBuffer[SOUND_BASAQUER] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/basaquer.wav");
+	DSBuffer[SOUND_BULLET] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/bullet.wav");
+	DSBuffer[SOUND_EARN] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/earn.wav");
+	DSBuffer[SOUND_BASAQUEREXPLOSION] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/basaquerexplosion.wav");
 	
+
 	if (!DSBuffer)
 	{
 		MessageBox(NULL, "Unable to load sound", "ERROR", MB_OK);

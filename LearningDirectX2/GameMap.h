@@ -12,6 +12,7 @@
 #include "Gunner.h"
 #include "Runner.h"
 #include "Basaquer.h"
+#include "Bat.h"
 #include <iostream>
 #include <fstream>
 
@@ -33,8 +34,9 @@ public:
 
 class GameMap {
 public:
-	GameMap(char* tilesetPath, char* mapPath, int tileHeight = 32, int tileWidth = 32);
+	GameMap(char* tilesetPath, char* mapPath, int tileHeight = 32, int tileWidth = 32, bool gridBuildIn = false);
 	void SetMapPath(char *mapPath);
+	void SetMapPathGridBuildIn(char *mapPath);
 	int GetWidth();
 	int GetHeight();
 	int GetTileWidth();

@@ -11,6 +11,8 @@ BigBullet::BigBullet() {
 	D3DSURFACE_DESC desc;
 	tex->GetLevelDesc(0, &desc);
 
+	Tag == Tag::BIGBULLET;
+
 	width = desc.Width;
 	height = desc.Height;
 

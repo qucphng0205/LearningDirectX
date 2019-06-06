@@ -13,8 +13,15 @@ Scene32::Scene32() {
 	camera->SetPosition(D3DXVECTOR3(width / 2, height / 2, 0));
 
 	player = new Player();
-	//player->SetPosition(32, 40 + player->GetBigHeight() / 2.0f);
-	player->SetPosition(1200, 184 + player->GetBigHeight() / 2.0f);
+	player->SetPosition(32, 40 + player->GetBigHeight() / 2.0f);
+
+	//--------------------------CHECKPOINT1
+	//player->SetPosition(1200, 184 + player->GetBigHeight() / 2.0f);
+	//--------------------------CHECKPOINT2
+	//player->SetPosition(1500, 184 + player->GetBigHeight() / 2.0f);
+	//--------------------------CHECKPOINT3
+	player->SetPosition(2850, 184 + player->GetBigHeight() / 2.0f);
+
 	camera->FollowPlayer(player->GetPosition().x, player->GetPosition().y);
 	(new Unit(map->GetGrid(), player))->SetActive(true);
 

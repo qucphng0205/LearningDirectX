@@ -62,6 +62,8 @@ void BigShuriken::OnCollision(Entity * impactor, Entity::SideCollision side, flo
 	auto impactorType = impactor->GetType();
 	if (impactorType == Layer::EnemyType || impactorType == Layer::ItemHolderType || impactorType == Layer::EProjectileType) {
 		impactor->OnDestroy();
+		if (impactor->GetTag() == Tag::BASAQUER)
+			OnDestroy();
 	}
 	else if (impactorType == Layer::PlayerType) {
 		auto body = ((Player*)impactor)->GetBody();

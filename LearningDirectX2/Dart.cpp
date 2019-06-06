@@ -11,7 +11,7 @@ Dart::Dart() {
 	anim = new Animation();
 	anim->AddFrames(tex, 1, 1, 1000 * (1 / 60.0f));
 
-	Tag = Tag::EPROJECTILE;
+	Tag = Tag::DART;
 	type = Layer::EProjectileType;
 
 	D3DSURFACE_DESC desc;

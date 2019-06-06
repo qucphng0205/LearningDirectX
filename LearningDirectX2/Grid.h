@@ -17,6 +17,7 @@ public:
 	Grid(BoxCollider r, int columns = GRID_COLUMN, int rows = GRID_ROW);
 	~Grid();
 	void Add(Unit *unit);
+	void Add(Unit *unit, int cellX, int cellY);
 	void AddStaticObject(Entity *ent);
 	void HandleActiveUnit(BoxCollider camBox, Entity::EntityDirection camDirection, int cellX, int cellY);
 	void HandleActive(BoxCollider camRect, Entity::EntityDirection camDirection);

@@ -5,6 +5,7 @@ class Unit {
 	friend class Grid;
 public:
 	Unit(Grid *gr, Entity *ent);
+	Unit(Grid *gr, Entity *ent, int cellX, int cellY);
 	void SetEntity(Entity *ent) { entity = ent;  }
 	Entity* GetEntity() { return entity; }
 	void Move(float x, float y);
