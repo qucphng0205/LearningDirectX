@@ -33,19 +33,22 @@ void SceneManager::CreateScene(int sceneID) {
 		break;
 	}
 	switch (sceneID) {
-	case 0:
-		CurrentScene = new PlayScene();
+	case 0: 
+		CurrentScene = new IntroScene();
 		break;
 	case 1:
-		CurrentScene = new Scene32();
+		CurrentScene = new PlayScene();
 		break;
 	case 2:
-		CurrentScene = new Scene33();
+		CurrentScene = new Scene32();
 		break;
 	case 3:
-		CurrentScene = new EndGame();
+		CurrentScene = new Scene33();
 		break;
 	case 4:
+		CurrentScene = new EndGame();
+		break;
+	case 5:
 		CurrentScene = new GameOver();
 		break;
 	}
@@ -73,6 +76,11 @@ void SceneManager::LoadScene(int sceneID, TransitionType type) {
 
 
 void SceneManager::UpdateTransition(double dt) {
+
+	auto previousStage = DataManager::GetPreviousStage();
+
+	if ((previousStage == INTRO_SCENE || previousStage == GAMEOVER_SCENE) && type == TransitionType::Next)
+		timeTransition = SCENE_TIME_TRANSITION + 1;
 
 	if (timeTransition > SCENE_TIME_TRANSITION) {
 		CreateScene(destSceneID);

@@ -8,7 +8,7 @@ int DataManager::bossHealth = 16;
 Tag DataManager::item = NONE;
 float DataManager::freezeTimeLeft = 0;
 bool DataManager::isBossDead = false;
-int DataManager::unlockedStage = 0;
+int DataManager::previousStage = 0;
 
 bool DataManager::isDeath = false;
 int DataManager::currentStage = 0;
@@ -39,7 +39,7 @@ void DataManager::SetPlayerDead() {
 		currentStage = GAMEOVER_SCENE;
 	else {
 		life--;
-		if (currentStage == 2)
+		if (currentStage == BOSS_STAGE)
 			currentStage--;
 	}
 	isDeath = true;
@@ -169,8 +169,12 @@ int DataManager::GetCurrentStage() {
 	return currentStage;
 }
 
+int DataManager::GetPreviousStage() {
+	return previousStage;
+}
+
 void DataManager::SetCurrentStage(int stage) {
-	unlockedStage = max(stage, unlockedStage);
+	previousStage = currentStage;
 	currentStage = stage;
 }
 
@@ -192,8 +196,6 @@ void DataManager::Reset() {
 	DataManager::freezeTimeLeft = 0;
 	DataManager::isBossDead = false;
 	DataManager::isDeath = false;
-	DataManager::currentStage = 0;
-	DataManager::unlockedStage = 0;
 	DataManager::gameColor = D3DCOLOR_XRGB(255, 255, 255);
 }
 
@@ -210,8 +212,6 @@ void DataManager::HandleGameOver() {
 	DataManager::isDeath = false;
 	DataManager::gameColor = D3DCOLOR_XRGB(255, 255, 255);
 	//IF BOSS_SCENE
-	if (currentStage == 3)
-		currentStage--;
 }
 
 //after transition scene and check life

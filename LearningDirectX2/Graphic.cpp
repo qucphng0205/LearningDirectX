@@ -32,9 +32,8 @@ void Graphic::Init(HWND hWnd) {
 }
 
 void Graphic::InitFont() {
-	AddFontResourceEx("Resources/NinjaGaiden.ttf", FR_PRIVATE, 0);
 	AddFontResourceEx("Resources/MyFont.ttf", FR_PRIVATE, 0);
-	AddFontResourceEx("Resources/NinjaGaidenIII.ttf", FR_PRIVATE, 0);
+	AddFontResourceEx("Resources/FontShui.ttf", FR_PRIVATE, 0);
 	D3DXCreateFont(d3ddv, 8, 0, FW_NORMAL, 1, false,
 		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
 		NONANTIALIASED_QUALITY, DEFAULT_PITCH,
@@ -43,6 +42,14 @@ void Graphic::InitFont() {
 		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
 		NONANTIALIASED_QUALITY, DEFAULT_PITCH,
 		"Ninja Gaiden II (NES)", &narrowFont);
+	D3DXCreateFont(d3ddv, 15, 0, FW_NORMAL, 1, false,
+		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+		CLEARTYPE_QUALITY, DEFAULT_PITCH,
+		"Font Shui", &customFont1);
+	D3DXCreateFont(d3ddv, 10, 0, FW_NORMAL, 1, false,
+		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+		CLEARTYPE_QUALITY, DEFAULT_PITCH,
+		"Font Shui", &customFont2);
 	SetRect(&leftZone, 24, 17, 300, 300);
 	SetRect(&rightZone, 128, 17, 300, 300);
 	SetRect(&playerHealthZone, 176, 25, 300, 300);
@@ -128,8 +135,12 @@ Graphic * Graphic::GetInstance() {
 }
 
 void Graphic::DrawCustomZone(RECT r, std::string content) {
-	RECT customZone = r;
-	normalFont->DrawText(spriteHandler, content.c_str(), -1, &customZone, DT_CENTER | DT_NOCLIP,
+	customFont1->DrawText(spriteHandler, content.c_str(), -1, &r, DT_CENTER | DT_VCENTER ,
+		0xFFFFFFFF);
+}
+
+void Graphic::DrawCustomZoneSmall(RECT r, std::string content) {
+	customFont2->DrawText(spriteHandler, content.c_str(), -1, &r, DT_CENTER | DT_VCENTER,
 		0xFFFFFFFF);
 }
 
@@ -145,6 +156,9 @@ Graphic::~Graphic() {
 	}
 	if (normalFont != NULL) {
 		normalFont->Release();
+	}
+	if (customFont1 != NULL) {
+		customFont1->Release();
 	}
 	if (narrowFont != NULL) {
 		narrowFont->Release();

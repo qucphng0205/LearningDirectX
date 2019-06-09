@@ -19,5 +19,5 @@ void EndGame::Update(double dt) {
 }
 
 int EndGame::GetSceneID() {
-	return 3;
+	return 4;
 }

@@ -65,11 +65,18 @@ void GameMap::SetMapPath(char * mapPath) {
 	}
 
 	BoxCollider gridRect = BoxCollider(GetHeight(), 0, 0, GetWidth());
-	if (DataManager::GetCurrentStage() == 2) {
-		grid = new Grid(gridRect, 1, 1);
-	}
-	else
+
+	switch (DataManager::GetCurrentStage()) {
+	case BOSS_STAGE:
+		grid = new Grid(gridRect, GRID_COLUMN_STAGE33, GRID_ROW_STAGE33);
+		break;
+	case BOSS_STAGE-1:
+		grid = new Grid(gridRect, GRID_COLUMN_STAGE32, GRID_ROW_STAGE32);
+		break;
+	default:
 		grid = new Grid(gridRect);
+		break;
+	}
 
 	reader >> mapObject;
 	int id = 0;
@@ -178,7 +185,7 @@ void GameMap::SetMapPath(char * mapPath) {
 		break;
 		default:
 		{
-			Item *item = new Item(0, (Tag)id);
+			Item *item = new Item(DataManager::GetCurrentStage(), (Tag)id);
 			item->SetSpawnBox(box);
 			unit = new Unit(grid, item);
 		}

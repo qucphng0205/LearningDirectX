@@ -33,7 +33,7 @@ private:
 	static float freezeTimeLeft;
 	static int bossHealth;
 	static bool isBossDead;
-	static int unlockedStage;
+	static int previousStage;
 
 #pragma endregion
 #pragma region loading data
@@ -77,6 +77,7 @@ public:
 #pragma region Loading data function
 	static bool IsDeath();
 	static int GetCurrentStage();
+	static int GetPreviousStage();
 	static void SetCurrentStage(int stage);
 	static void SetGameColor(D3DXCOLOR color);
 	static D3DXCOLOR GetGameColor();

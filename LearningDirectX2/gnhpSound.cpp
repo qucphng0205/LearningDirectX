@@ -18,7 +18,7 @@ gnhpSound * gnhpSound::GetInstance() {
 void gnhpSound::LoadSound(HWND hwnd) {
 	if (!InitDirectSound(hwnd))
 	{
-		MessageBox(NULL, "Unable to init DirectSound", "ERROR", MB_OK);
+		//MessageBox(NULL, "Unable to init DirectSound", "ERROR", MB_OK);
 	}
 	DSBuffer[SOUND_MUSIC31] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/soundtrack31.wav");
 	DSBuffer[SOUND_MUSIC32] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/soundtrack32.wav");

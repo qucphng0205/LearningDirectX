@@ -71,6 +71,10 @@ void Animation::Render(D3DXVECTOR3 position, BoxCollider sourceRect, D3DXCOLOR c
 	frames[currentFrame]->Draw(position, sourceRect, colorKey, isReverse);
 }
 
+void Animation::NormalRender(D3DXVECTOR3 position) {
+	frames[currentFrame]->NormalDraw(position);
+}
+
 void Animation::Update(double dt) {
 
 	//1. 0 frame -> fkey1 0

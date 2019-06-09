@@ -41,6 +41,7 @@ public:
 	int GetHeightCurrentFrame();
 	void SetCurrentFrame(int frame);
 	void Render(D3DXVECTOR3 position = D3DXVECTOR3(), BoxCollider sourceRect = BoxCollider(), D3DXCOLOR colorKey = D3DCOLOR_XRGB(255, 255, 255), bool isReverse = false);
+	void NormalRender(D3DXVECTOR3 position);
 	void Update(double dt);
 	void ResetAnimation();
 	int GetCurrentFrameID();

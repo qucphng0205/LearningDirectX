@@ -28,6 +28,8 @@ protected:
 	//DRAW STRING ON SCREEN BRO
 	ID3DXFont *normalFont;
 	ID3DXFont *narrowFont;
+	ID3DXFont *customFont1;
+	ID3DXFont *customFont2;
 	RECT leftZone;
 	RECT rightZone;
 	RECT iconSpiritZone;
@@ -75,6 +77,7 @@ public:
 	static Graphic *GetInstance();
 
 	void DrawCustomZone(RECT r, std::string content);
+	void DrawCustomZoneSmall(RECT r, std::string content);
 
 	~Graphic();
 };

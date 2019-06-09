@@ -7,6 +7,7 @@
 #include "Scene33.h"
 #include "EndGame.h"
 #include "GameOver.h"
+#include "IntroScene.h"
 #include "gnhpSound.h"
 #include <ctime>
 

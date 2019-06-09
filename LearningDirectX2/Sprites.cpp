@@ -105,6 +105,7 @@ void Sprite::Draw(D3DXVECTOR3 position, BoxCollider r, D3DXCOLOR colorKey, bool 
 
 	RECT rr = MyHelper::BoxColliderToRect(inSourceRect);
 
+
 	spriteHandler->Draw(
 		texture,
 		&rr,
@@ -113,6 +114,17 @@ void Sprite::Draw(D3DXVECTOR3 position, BoxCollider r, D3DXCOLOR colorKey, bool 
 		colorKey
 	);
 	spriteHandler->SetTransform(&oldMatrix);
+}
+
+void Sprite::NormalDraw(D3DXVECTOR3 position) {
+	RECT rr = MyHelper::BoxColliderToRect(rect);
+	spriteHandler->Draw(
+		texture,
+		&rr,
+		NULL,
+		&position,
+		D3DCOLOR_XRGB(255, 255, 255)
+	);
 }
 
 Sprite::~Sprite() {

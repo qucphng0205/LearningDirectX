@@ -27,13 +27,13 @@ GameManager::~GameManager() {
 void GameManager::Update(double dt) {
 	//--DEBUG
 	////hihi += dt;
-	if (DataManager::GetCurrentStage() == 0)
-		DataManager::SetCurrentStage(1);
+	//if (DataManager::GetCurrentStage() == 0)
+	//	DataManager::SetCurrentStage(1);
 
 	bool otherScene = sceneManager->GetSceneID() != DataManager::GetCurrentStage();
 	bool playerDead = DataManager::IsDeath();
 
-	if (DataManager::GetCurrentStage() == GAMEOVER_SCENE)
+	if (otherScene && DataManager::GetCurrentStage() == GAMEOVER_SCENE)
 		sceneManager->LoadScene(DataManager::GetCurrentStage(), SceneManager::TransitionType::ToGameOverTo);
 	else if (playerDead)
 		sceneManager->LoadScene(DataManager::GetCurrentStage(), SceneManager::TransitionType::Reload);

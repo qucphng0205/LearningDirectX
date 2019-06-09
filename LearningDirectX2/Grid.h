@@ -14,7 +14,7 @@ class Unit;
 class Grid {
 public:
 	static Grid *GetInstance();
-	Grid(BoxCollider r, int columns = GRID_COLUMN, int rows = GRID_ROW);
+	Grid(BoxCollider r, int columns = GRID_COLUMN_STAGE31, int rows = GRID_ROW_STAGE31);
 	~Grid();
 	void Add(Unit *unit);
 	void Add(Unit *unit, int cellX, int cellY);
@@ -49,8 +49,8 @@ private:
 	float cellHeight;
 	int rows;
 	int columns;
-	Unit *cells[GRID_COLUMN][GRID_ROW];
-	bool activeCells[GRID_COLUMN][GRID_ROW];
+	Unit *cells[GRID_COLUMN_STAGE32][GRID_ROW_STAGE32];
+	bool activeCells[GRID_COLUMN_STAGE32][GRID_ROW_STAGE32];
 	RECT activeRect;
 
 	EffectChain *effects;

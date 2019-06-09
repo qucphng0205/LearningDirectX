@@ -82,7 +82,7 @@ void Scene32::Update(double dt) {
 }
 
 int Scene32::GetSceneID() {
-	return 1;
+	return 2;
 }
 
 void Scene32::CheckCollision(double dt) {
@@ -109,7 +109,7 @@ void Scene32::CheckCamera() {
 
 void Scene32::CheckTransitionScene() {
 	if (player->GetPosition().x >= map->GetWidth() - 16 && !DataManager::IsDeath()) {
-		DataManager::SetCurrentStage(2);
+		DataManager::SetCurrentStage(DataManager::GetCurrentStage() + 1);
 	}
 	else
 		if (timeLeft == 0)

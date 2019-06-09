@@ -6,7 +6,9 @@
 #include "DataManager.h"
 
 class GameOver : public Scene {
-
+private:
+	RECT zone1;
+	std::string text1;
 public:
 	GameOver();
 	~GameOver();

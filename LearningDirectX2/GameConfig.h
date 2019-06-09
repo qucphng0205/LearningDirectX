@@ -27,6 +27,7 @@
 #define TEX_DART 25
 #define TEX_BIGEXPLOSION 26
 #define TEX_BAT 27
+#define TEX_INTRO 28
 
 //---------------------------------ANIMATION FRAME----------------------
 #define PLAYER_SLASH_FRAME 7
@@ -59,8 +60,12 @@
 #define FLAMES_FRAME 1
 
 //-------------------------------------- GRID -------------------------
-#define GRID_ROW 4
-#define GRID_COLUMN 40
+#define GRID_ROW_STAGE31 4
+#define GRID_COLUMN_STAGE31 40
+#define GRID_ROW_STAGE32 4
+#define GRID_COLUMN_STAGE32 60
+#define GRID_ROW_STAGE33 1
+#define GRID_COLUMN_STAGE33 1
 
 //----------------------------PLAYER SPEED AND FORCE-------------------
 #define PLAYER_RUN_VELOCITY 90
@@ -146,8 +151,10 @@
 #define SCENE_TIME_TRANSITION 4
 #define BOSS_DEATH_DELAY 4
 #define PLAYER_DEATH_DELAY 4
-#define GAMEOVER_SCENE 4
-#define ENDGAME_SCENE 3
+#define GAMEOVER_SCENE 5
+#define BOSS_STAGE 3
+#define ENDGAME_SCENE 4
+#define INTRO_SCENE 0
 
 #pragma region Sound
 

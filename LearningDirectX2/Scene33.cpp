@@ -80,7 +80,7 @@ void Scene33::Update(double dt) {
 }
 
 int Scene33::GetSceneID() {
-	return 2;
+	return 3;
 }
 
 void Scene33::CheckCollision(double dt) {
@@ -107,7 +107,7 @@ void Scene33::CheckCamera() {
 
 void Scene33::CheckTransitionScene() {
 	if (DataManager::IsBossReallyDead() && timeLeft == 0)
-		DataManager::SetCurrentStage(3);
+		DataManager::SetCurrentStage(ENDGAME_SCENE);
 }
 
 void Scene33::EarnReward(double dt) {

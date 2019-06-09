@@ -32,7 +32,6 @@ PlayScene::PlayScene() {
 	pool->AddBigShuriken();
 	pool->AddFlames();
 
-	DataManager::Reset();
 	timeLeft = 150;
 	gnhpSound::GetInstance()->PlayMusic(0);
 }
@@ -83,7 +82,7 @@ void PlayScene::Update(double dt) {
 }
 
 int PlayScene::GetSceneID() {
-	return 0;
+	return 1;
 }
 
 void PlayScene::CheckCollision(double dt) {
@@ -113,7 +112,7 @@ void PlayScene::CheckTransitionScene() {
 	//DataManager::SetCurrentStage(2);
 	//return;
 	if (player->GetPosition().x >= map->GetWidth() - 16 && !DataManager::IsDeath()) {
-		DataManager::SetCurrentStage(1);
+		DataManager::SetCurrentStage(DataManager::GetCurrentStage() + 1);
 	}
 	else if (timeLeft <= 0)
 		player->SetActive(false);

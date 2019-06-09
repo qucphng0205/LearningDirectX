@@ -182,6 +182,7 @@ void Grid::HandleInactiveUnit(Unit * unit) {
 		unit = other;
 		other = unit->next;
 		unit->active = false;
+		if (unit->entity->GetTag() != Tag::PLAYER)
 		//maybe unit value of this unit pointer delete
 		unit->entity->SetActive(false);
 	}
@@ -223,8 +224,8 @@ void Grid::HandleCell(int x, int y, RECT r, double dt) {
 
 			if (x > 0 && y > 0) HandleUnit(unit, cells[x - 1][y - 1], dt);
 			if (x > 0) HandleUnit(unit, cells[x - 1][y], dt);
-			if (y < GRID_ROW - 1) HandleUnit(unit, cells[x][y + 1], dt);
-			if (x > 0 && y < GRID_ROW - 1)
+			if (y < rows - 1) HandleUnit(unit, cells[x][y + 1], dt);
+			if (x > 0 && y < rows - 1)
 				HandleUnit(unit, cells[x - 1][y + 1], dt);
 		}
 		unit = unit->next;
