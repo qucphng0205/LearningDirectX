@@ -81,8 +81,7 @@ void Player::Update(double dt) {
 		}
 	}
 
-	if ((position.x + collider.left) + velocity.x * dt >= 16)
-		Entity::Update(dt);
+	Entity::Update(dt);
 
 	if (playerData->state)
 		playerData->state->Update(dt);

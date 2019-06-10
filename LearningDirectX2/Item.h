@@ -17,10 +17,18 @@ public:
 	void Render() override;
 
 	void SetState(ItemState::State state);
+
+	void SetColliderTop(int top);
+	void SetColliderLeft(int left);
+	void SetColliderBottom(int bottom);
+	void SetColliderRight(int right);
+
+
 	ItemState::State GetState();
 	bool IsAvailable();
 
 	void SetSpawnBox(BoxCollider box);
+
 	//Get real rect in world 
 	BoxCollider GetRect() override;
 	//Get spawn box in world

@@ -60,5 +60,5 @@ void IntroScene::Update(double dt) {
 }
 
 int IntroScene::GetSceneID() {
-	return 0;
+	return INTRO_SCENE;
 }

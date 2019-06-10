@@ -45,6 +45,23 @@ void Item::SetState(ItemState::State state) {
 	itemData->state->ResetState();
 }
 
+void Item::SetColliderTop(int top) {
+	collider.top = top;
+}
+
+void Item::SetColliderLeft(int left) {
+	collider.left = left;
+	collider.right = -left;
+}
+
+void Item::SetColliderBottom(int bottom) {
+	collider.bottom = bottom;
+}
+
+void Item::SetColliderRight(int right) {
+	collider.right = right;
+}
+
 ItemState::State Item::GetState() {
 	return itemData->state->GetState();
 }

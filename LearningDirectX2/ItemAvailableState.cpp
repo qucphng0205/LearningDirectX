@@ -40,7 +40,10 @@ ItemAvailableState::ItemAvailableState(ItemData *data, Tag Tag) : ItemState(data
 }
 
 void ItemAvailableState::ResetState() {
-	//auto item = itemData->item;
+	auto item = itemData->item;
+	item->SetColliderTop(8);
+	item->SetColliderBottom(-8);
+	item->SetColliderLeft(-8);
 }
 
 void ItemAvailableState::Update(double dt) {

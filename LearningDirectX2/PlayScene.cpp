@@ -79,6 +79,9 @@ void PlayScene::Update(double dt) {
 	if (DataManager::IsFreezeTime())
 		DataManager::MinusFreezeTimeLeft(dt);
 	CheckTransitionScene();
+
+	if (playerPos.x < 16)
+		player->SetPosition(16, playerPos.y);
 }
 
 int PlayScene::GetSceneID() {

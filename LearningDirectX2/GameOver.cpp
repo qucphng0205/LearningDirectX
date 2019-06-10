@@ -28,5 +28,5 @@ void GameOver::Update(double dt) {
 }
 
 int GameOver::GetSceneID() {
-	return 5;
+	return GAMEOVER_SCENE;
 }

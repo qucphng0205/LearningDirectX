@@ -79,7 +79,7 @@ void SceneManager::UpdateTransition(double dt) {
 
 	auto previousStage = DataManager::GetPreviousStage();
 
-	if ((previousStage == INTRO_SCENE || previousStage == GAMEOVER_SCENE) && type == TransitionType::Next)
+	if ((previousStage == INTRO_SCENE || previousStage == GAMEOVER_SCENE || previousStage == ENDGAME_SCENE) && type == TransitionType::Next)
 		timeTransition = SCENE_TIME_TRANSITION + 1;
 
 	if (timeTransition > SCENE_TIME_TRANSITION) {

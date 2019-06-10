@@ -20,7 +20,7 @@ Scene32::Scene32() {
 	//--------------------------CHECKPOINT2
 	//player->SetPosition(1500, 184 + player->GetBigHeight() / 2.0f);
 	//--------------------------CHECKPOINT3
-	player->SetPosition(2850, 184 + player->GetBigHeight() / 2.0f);
+	//player->SetPosition(2850, 184 + player->GetBigHeight() / 2.0f);
 
 	camera->FollowPlayer(player->GetPosition().x, player->GetPosition().y);
 	(new Unit(map->GetGrid(), player))->SetActive(true);
@@ -75,14 +75,18 @@ void Scene32::Update(double dt) {
 	D3DXVECTOR3 playerPos = player->GetPosition();
 	camera->FollowPlayer(playerPos.x, playerPos.y);
 	CheckCamera();
-	timeLeft -= dt;
+	timeLeft -= dt;// *10;
 	if (DataManager::IsFreezeTime())
 		DataManager::MinusFreezeTimeLeft(dt);
 	CheckTransitionScene();
+
+
+	if (playerPos.x < 16)
+		player->SetPosition(16, playerPos.y);
 }
 
 int Scene32::GetSceneID() {
-	return 2;
+	return BOSS_STAGE - 1;
 }
 
 void Scene32::CheckCollision(double dt) {
@@ -112,7 +116,7 @@ void Scene32::CheckTransitionScene() {
 		DataManager::SetCurrentStage(DataManager::GetCurrentStage() + 1);
 	}
 	else
-		if (timeLeft == 0)
+		if (timeLeft <= 0)
 			player->SetActive(false);
 }
 

@@ -135,7 +135,7 @@ Graphic * Graphic::GetInstance() {
 }
 
 void Graphic::DrawCustomZone(RECT r, std::string content) {
-	customFont1->DrawText(spriteHandler, content.c_str(), -1, &r, DT_CENTER | DT_VCENTER ,
+	customFont1->DrawText(spriteHandler, content.c_str(), -1, &r, DT_CENTER | DT_VCENTER,
 		0xFFFFFFFF);
 }
 

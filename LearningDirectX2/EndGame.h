@@ -6,7 +6,10 @@
 #include "DataManager.h"
 
 class EndGame : public Scene {
-
+private:
+	BoxCollider zone1Box;
+	std::string text1;
+	float speed;
 public:
 	EndGame();
 	~EndGame();

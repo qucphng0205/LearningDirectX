@@ -26,8 +26,9 @@ Thrower::~Thrower() {
 
 void Thrower::OnCollision(Entity * impactor, Entity::SideCollision side, float collisionTime, double dt) {
 	Enemy::OnCollision(impactor, side, collisionTime);
-	if (impactor->GetType() == Layer::StaticType && side == Bottom)
+	if (impactor->GetType() == Layer::StaticType && side == Bottom) {
 		onGround = true;
+	}
 }
 
 void Thrower::SetVelocity(D3DXVECTOR2 vel) {
