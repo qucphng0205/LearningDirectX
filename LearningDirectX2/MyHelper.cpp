@@ -6,6 +6,7 @@ RECT MyHelper::BoxColliderToRect(BoxCollider col) {
 	r.left = col.left;
 	r.bottom = col.bottom;
 	r.right = col.right;
+	
 	return r;
 }
 

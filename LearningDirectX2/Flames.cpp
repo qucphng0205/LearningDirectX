@@ -55,13 +55,13 @@ void Flames::Instantiate(D3DXVECTOR3 position) {
 
 	switch (index) {
 	case 0:
-		velocity.y = 120; //FLAMES_VELOCITY_Y_0;
+		velocity.y = FLAMES_VELOCITY_Y_0;
 		break;
 	case 1:
-		velocity.y = 240; //FLAMES_VELOCITY_Y_1;
+		velocity.y = FLAMES_VELOCITY_Y_1; 
 		break;
 	case 2:
-		velocity.y = 360; //FLAMES_VELOCITY_Y_2;
+		velocity.y = FLAMES_VELOCITY_Y_2; 
 		break;
 	}
 

@@ -328,7 +328,7 @@ void Player::CheckForUseItem() {
 	enum Tag item = DataManager::GetItem();
 	switch (item) {
 	case (NONE):
-		ThrowFlames();
+		//ThrowFlames();
 		//ThrowBigShuriken();
 		break;
 	case (THROWINGSTAR):
@@ -356,8 +356,10 @@ void Player::ThrowShuriken() {
 	else
 		position.x += collider.left;
 
-	if (ObjectPooling::GetInstance()->Instantiate(SHURIKEN_POOL_INDEX, position))
+	if (ObjectPooling::GetInstance()->Instantiate(SHURIKEN_POOL_INDEX, position)) {
 		DataManager::ConsumeSpiritPoint(SHURIKEN_COST);
+		gnhpSound::GetInstance()->PlayFX(SOUND_THROWSHURIKEN);
+	}
 }
 
 void Player::ThrowBigShuriken() {
@@ -374,13 +376,37 @@ void Player::ThrowBigShuriken() {
 		position.x += collider.left;
 
 	//--DEBUG WITH ZERO
-	if (ObjectPooling::GetInstance()->Instantiate(BIGSHURIKEN_POOL_INDEX, position))
+	if (ObjectPooling::GetInstance()->Instantiate(BIGSHURIKEN_POOL_INDEX, position)) {
 		DataManager::ConsumeSpiritPoint(0);// BIGSHURIKEN_COST);
+		gnhpSound::GetInstance()->PlayFX(SOUND_THROWBIGSHURIKEN);
+	}
 }
 
 void Player::ThrowFlames() {
-	//--DEBUG
-	if (DataManager::GetSpiritPoint() < 0) //BIGSHURIKEN_COST)
+
+#pragma region DEBUG WITH ZERO
+	//if (DataManager::GetSpiritPoint() < 0)
+	//	return;
+	//ObjectPooling *pool = ObjectPooling::GetInstance();
+
+	//if (pool->CheckQuantity(FLAMES_POOL_INDEX) < 3)
+	//	return;
+
+	//D3DXVECTOR3 position = this->position;
+	//if (direction == LeftToRight)
+	//	position.x += collider.right;
+	//else
+	//	position.x += collider.left;
+
+	//for (int i = 0; i < 3; i++)
+	//	ObjectPooling::GetInstance()->Instantiate(FLAMES_POOL_INDEX, position);
+
+	//DataManager::ConsumeSpiritPoint(0);
+	//gnhpSound::GetInstance()->PlayFX(SOUND_THROWFLAMES);
+	//return;
+#pragma endregion
+
+	if (DataManager::GetSpiritPoint() < FLAMES_COST)
 		return;
 	ObjectPooling *pool = ObjectPooling::GetInstance();
 
@@ -397,7 +423,8 @@ void Player::ThrowFlames() {
 	for (int i = 0; i < 3; i++)
 		ObjectPooling::GetInstance()->Instantiate(FLAMES_POOL_INDEX, position);
 
-	DataManager::ConsumeSpiritPoint(0);// BIGSHURIKEN_COST);
+	DataManager::ConsumeSpiritPoint(FLAMES_COST);
+	gnhpSound::GetInstance()->PlayFX(SOUND_THROWFLAMES);
 }
 
 BoxCollider Player::GetCollider() {

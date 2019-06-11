@@ -35,22 +35,13 @@ void Eagle::Update(double dt) {
 	D3DXVECTOR2 accelerate = D3DXVECTOR2(0, 0);
 
 	if (target.x < position.x)
-		accelerate.x = -5;
+		accelerate.x = -EAGLE_ACCELERATE_X;
 	else if (target.x > position.x)
-		accelerate.x = 5;
+		accelerate.x = EAGLE_ACCELERATE_X;
 
 	position.y = MyHelper::Lerp(position.y, target.y, 0.02f);
 
-	//--DEBUG
-	if (i == 110)
-		i = i;
-	if (i == 60)
-		i = 60;
-
 	AddVelocity(accelerate);
-
-	//velocity.x = MyHelper::Clamp(velocity.x, -200.0f, 200.0f);
-	//velocity.y = MyHelper::Clamp(velocity.y, -80.0f, 80.0f);
 }
 
 void Eagle::SetColliderTop(int top) {

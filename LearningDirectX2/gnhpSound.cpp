@@ -34,7 +34,9 @@ void gnhpSound::LoadSound(HWND hwnd) {
 	DSBuffer[SOUND_BULLET] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/bullet.wav");
 	DSBuffer[SOUND_EARN] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/earn.wav");
 	DSBuffer[SOUND_BASAQUEREXPLOSION] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/basaquerexplosion.wav");
-	
+	DSBuffer[SOUND_THROWFLAMES] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/throwflames.wav");
+	DSBuffer[SOUND_THROWBIGSHURIKEN] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/throwbigshuriken.wav");
+	DSBuffer[SOUND_THROWSHURIKEN] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/throwshuriken.wav");
 
 	if (!DSBuffer)
 	{
