@@ -114,9 +114,13 @@ float Item::GetHeight() {
 void Item::OnCollision(Entity * impactor, SideCollision side, float collisionTime, double dt) {
 	if (!itemData->state->GetState() == ItemState::Available)
 		return;
+	auto myRect = itemData->item->GetRect();
+	auto impactorRect = impactor->GetRect();
 	if (side == Entity::Bottom && impactor->GetType() == Layer::StaticType) {
-		velocity.y *= collisionTime;
-		onGround = true;
+		if ((MyHelper::Distance(myRect.bottom, impactorRect.top) < ENEMY_OFFSET_BORDER)) {
+			velocity.y *= collisionTime;
+			onGround = true;
+		}
 	}
 }
 
