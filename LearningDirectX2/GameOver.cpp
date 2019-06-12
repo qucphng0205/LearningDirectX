@@ -3,6 +3,7 @@
 GameOver::GameOver() {
 	text1 = "GAME OVER";
 	SetRect(&zone1, 0, 0, 256, 224);
+	gnhpSound::GetInstance()->PlayMusic(SOUND_THEME);
 }
 
 GameOver::~GameOver() {

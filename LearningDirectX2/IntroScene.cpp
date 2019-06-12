@@ -13,7 +13,7 @@ IntroScene::IntroScene() {
 	text2 = "Mentor Nguyen Vinh Kha\nRemade by Le Quoc Phuong";
 	text3 = "Press enter to play";
 	showText3 = false;
-
+	gnhpSound::GetInstance()->PlayMusic(SOUND_THEME);
 	DataManager::Reset();
 }
 

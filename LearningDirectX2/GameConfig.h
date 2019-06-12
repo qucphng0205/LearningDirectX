@@ -247,5 +247,6 @@
 #define SOUND_THROWFLAMES 14
 #define SOUND_THROWSHURIKEN 15
 #define SOUND_THROWBIGSHURIKEN 16
+#define SOUND_THEME 17
 
 #pragma endregion

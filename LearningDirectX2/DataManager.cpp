@@ -35,8 +35,10 @@ bool DataManager::IsBossReallyDead() {
 }
 
 void DataManager::SetPlayerDead() {
-	if (life <= 0)
+	if (life <= 0) {
+		previousStage = currentStage;
 		currentStage = GAMEOVER_SCENE;
+	}
 	else {
 		life--;
 		if (currentStage == BOSS_STAGE)

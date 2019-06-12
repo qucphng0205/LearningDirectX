@@ -37,6 +37,7 @@ void gnhpSound::LoadSound(HWND hwnd) {
 	DSBuffer[SOUND_THROWFLAMES] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/throwflames.wav");
 	DSBuffer[SOUND_THROWBIGSHURIKEN] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/throwbigshuriken.wav");
 	DSBuffer[SOUND_THROWSHURIKEN] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/throwshuriken.wav");
+	DSBuffer[SOUND_THEME] = LoadWaveToSoundBuffer((char*)"Resources/Sounds/theme.wav");
 
 	if (!DSBuffer)
 	{

@@ -16,6 +16,7 @@ public:
 	void Render();
 private:
 	double hihi;
+	bool isPause;
 	SceneManager *sceneManager;
 	KeyBoard *keyboard;
 	Graphic *graphic;

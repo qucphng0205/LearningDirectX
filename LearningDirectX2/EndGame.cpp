@@ -2,8 +2,11 @@
 
 EndGame::EndGame() {
 	zone1Box = BoxCollider(0, 0, 224, 256);
+	zone1Box.top += 200;
+	zone1Box.bottom = zone1Box.top + 224;
 	text1 = "Ninja Gaiden Remake\n\nC++, DirectX, Win32\n\nMentor Nguyen Vinh Kha\n\n\n Remade by Le Quoc Phuong\n\nProject\nStage 3-1\nStage 3-2\nBoss Basaquer (Stage 3-3)";
 	speed = 20.0f;
+	gnhpSound::GetInstance()->PlayMusic(SOUND_THEME);
 }
 
 EndGame::~EndGame() {
