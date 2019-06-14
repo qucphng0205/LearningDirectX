@@ -9,8 +9,8 @@ GameManager::GameManager(HWND hWnd, HINSTANCE hInstance) {
 	keyboard->InitKeyboard(hWnd, hInstance);
 	gnhpSound::GetInstance()->LoadSound(hWnd);
 
-	//--DEBUG
-	DataManager::SetCurrentStage(3);
+	////--DEBUG
+	//DataManager::SetCurrentStage(3);
 	sceneManager->LoadScene(DataManager::GetCurrentStage(), SceneManager::TransitionType::Next);
 
 	this->hWnd = hWnd;
