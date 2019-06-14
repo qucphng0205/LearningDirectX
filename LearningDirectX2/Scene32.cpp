@@ -15,6 +15,8 @@ Scene32::Scene32() {
 	player = new Player();
 	player->SetPosition(32, 40 + player->GetBigHeight() / 2.0f);
 
+	//--------------------------CHECKPOINT0
+	//player->SetPosition(872, 111 + player->GetBigHeight() / 2.0f);
 	//--------------------------CHECKPOINT1
 	//player->SetPosition(1200, 184 + player->GetBigHeight() / 2.0f);
 	//--------------------------CHECKPOINT2
@@ -33,7 +35,7 @@ Scene32::Scene32() {
 	pool->AddFlames();
 
 	timeLeft = 150;
-	gnhpSound::GetInstance()->PlayMusic(1);
+	gnhpSound::GetInstance()->PlayMusic(SOUND_MUSIC32);
 }
 
 Scene32::~Scene32() {

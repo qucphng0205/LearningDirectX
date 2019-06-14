@@ -33,7 +33,7 @@ PlayScene::PlayScene() {
 	pool->AddFlames();
 
 	timeLeft = 150;
-	gnhpSound::GetInstance()->PlayMusic(0);
+	gnhpSound::GetInstance()->PlayMusic(SOUND_MUSIC31);
 }
 
 PlayScene::~PlayScene() {
@@ -85,7 +85,7 @@ void PlayScene::Update(double dt) {
 }
 
 int PlayScene::GetSceneID() {
-	return 1;
+	return INTRO_SCENE + 1;
 }
 
 void PlayScene::CheckCollision(double dt) {

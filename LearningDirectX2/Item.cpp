@@ -117,9 +117,11 @@ void Item::OnCollision(Entity * impactor, SideCollision side, float collisionTim
 	auto myRect = itemData->item->GetRect();
 	auto impactorRect = impactor->GetRect();
 	if (side == Entity::Bottom && impactor->GetType() == Layer::StaticType) {
-		if ((MyHelper::Distance(myRect.bottom, impactorRect.top) < ENEMY_OFFSET_BORDER)) {
+		if (myRect.bottom >= impactorRect.top) {
+			//if ((MyHelper::Distance(myRect.bottom, impactorRect.top) < ENEMY_OFFSET_BORDER)) {
 			velocity.y *= collisionTime;
 			onGround = true;
+			//}
 		}
 	}
 }

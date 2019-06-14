@@ -26,7 +26,7 @@ Scene33::Scene33() {
 
 	timeLeft = 150;
 	timeScale = 7;
-	gnhpSound::GetInstance()->PlayMusic(2);
+	gnhpSound::GetInstance()->PlayMusic(SOUND_MUSIC33);
 }
 
 Scene33::~Scene33() {
@@ -80,7 +80,7 @@ void Scene33::Update(double dt) {
 }
 
 int Scene33::GetSceneID() {
-	return 3;
+	return BOSS_STAGE;
 }
 
 void Scene33::CheckCollision(double dt) {
