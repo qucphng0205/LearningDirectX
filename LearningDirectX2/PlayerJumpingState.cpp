@@ -35,14 +35,14 @@ void PlayerJumpingState::Render() {
 void PlayerJumpingState::HandleInput() {
 	auto player = playerData->player;
 	auto keyboard = KeyBoard::GetInstance();
-	if (keyboard->GetKeyDown(DIK_D)) {
-		if (keyboard->GetKey(DIK_UPARROW))
+	if (keyboard->GetKeyDown(SLASH_BUTTON)) {
+		if (keyboard->GetKey(UP_ARROW))
 			player->SetState(UseItem, 1);
 		else
 			player->SetState(Slash, 1);
 		return;
 	}
-	if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW)) {
+	if (keyboard->GetKey(LEFT_ARROW) && !keyboard->GetKey(RIGHT_ARROW)) {
 		if (player->GetMoveDirection() == Player::RightToLeft)
 			player->SetVx(-PLAYER_RUN_VELOCITY);
 		else {
@@ -51,7 +51,7 @@ void PlayerJumpingState::HandleInput() {
 		}
 	}
 	else
-		if (keyboard->GetKey(DIK_RIGHTARROW) && !keyboard->GetKey(DIK_LEFTARROW)) {
+		if (keyboard->GetKey(RIGHT_ARROW) && !keyboard->GetKey(LEFT_ARROW)) {
 			if (player->GetMoveDirection() == Player::LeftToRight)
 				player->SetVx(PLAYER_RUN_VELOCITY);
 			else {
@@ -79,13 +79,13 @@ void PlayerJumpingState::OnCollision(Entity * impactor, Entity::SideCollision si
 		player->status = Player::OnGround;
 		player->timeOnAir = 0;
 
-		if (keyboard->GetKey(DIK_LEFTARROW) && !(keyboard->GetKey(DIK_RIGHTARROW)))
+		if (keyboard->GetKey(LEFT_ARROW) && !(keyboard->GetKey(RIGHT_ARROW)))
 			player->SetState(Running);
 		else
-			if (keyboard->GetKey(DIK_RIGHTARROW) && !(keyboard->GetKey(DIK_LEFTARROW)))
+			if (keyboard->GetKey(RIGHT_ARROW) && !(keyboard->GetKey(LEFT_ARROW)))
 				player->SetState(Running);
 			else
-				if (keyboard->GetKey(DIK_DOWNARROW))
+				if (keyboard->GetKey(DOWN_ARROW))
 					player->SetState(Crouch);
 				else
 					player->SetState(Idle);

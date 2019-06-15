@@ -22,25 +22,25 @@ void PlayerIdleState::Update(double dt) {
 void PlayerIdleState::HandleInput() {
 	//xu ly theo priority 
 	KeyBoard *keyboard = KeyBoard::GetInstance();
-	if (keyboard->GetKeyDown(DIK_D)) {
-		if (keyboard->GetKey(DIK_UPARROW))
+	if (keyboard->GetKeyDown(SLASH_BUTTON)) {
+		if (keyboard->GetKey(UP_ARROW))
 			playerData->player->SetState(UseItem);
 		else
 			playerData->player->SetState(Slash);
 	}
 	else
-		if (keyboard->GetKeyDown(DIK_F))
+		if (keyboard->GetKeyDown(JUMP_BUTTON))
 			playerData->player->SetState(Jump);
 		else
-			if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW)) {
+			if (keyboard->GetKey(LEFT_ARROW) && !keyboard->GetKey(RIGHT_ARROW)) {
 				playerData->player->SetState(Running, 0);
 			}
 			else
-				if (keyboard->GetKey(DIK_RIGHTARROW) && !keyboard->GetKey(DIK_LEFTARROW)) {
+				if (keyboard->GetKey(RIGHT_ARROW) && !keyboard->GetKey(LEFT_ARROW)) {
 					playerData->player->SetState(Running, 0);
 				}
 				else
-					if (keyboard->GetKey(DIK_DOWNARROW))
+					if (keyboard->GetKey(DOWN_ARROW))
 						playerData->player->SetState(Crouch);
 					else
 						playerData->player->SetVelocity(D3DXVECTOR2(0, 0));

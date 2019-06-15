@@ -23,19 +23,19 @@ void PlayerCrouchState::Update(double dt) {
 void PlayerCrouchState::HandleInput() {
 	auto keyboard = KeyBoard::GetInstance();
 	//CrouchSlash, Slash, Jump, Running, Idle,...?
-	if (keyboard->GetKey(DIK_UPARROW))
+	if (keyboard->GetKey(UP_ARROW))
 		playerData->player->SetState(Idle);
-	else if (keyboard->GetKeyDown(DIK_D) && keyboard->GetKey(DIK_DOWNARROW))
+	else if (keyboard->GetKeyDown(SLASH_BUTTON) && keyboard->GetKey(DOWN_ARROW))
 		playerData->player->SetState(CrouchSlash);
-	else if (keyboard->GetKeyDown(DIK_D) && !keyboard->GetKey(DIK_DOWNARROW))
+	else if (keyboard->GetKeyDown(SLASH_BUTTON) && !keyboard->GetKey(DOWN_ARROW))
 		playerData->player->SetState(Slash);
-	else if (keyboard->GetKeyDown(DIK_F))
+	else if (keyboard->GetKeyDown(JUMP_BUTTON))
 		playerData->player->SetState(Jump);
 	else if (keyboard->GetKey(DIK_LEFT) && !keyboard->GetKey(DIK_RIGHT))
 		playerData->player->SetState(Running);
 	else if (keyboard->GetKey(DIK_RIGHT) && !keyboard->GetKey(DIK_LEFT))
 		playerData->player->SetState(Running);
-	else if (!keyboard->GetKey(DIK_DOWNARROW))
+	else if (!keyboard->GetKey(DOWN_ARROW))
 		playerData->player->SetState(Idle);
 }
 

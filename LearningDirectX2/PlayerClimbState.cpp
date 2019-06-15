@@ -27,8 +27,8 @@ void PlayerClimbState::HandleInput() {
 	auto bottom = player->GetRect().bottom;
 	Entity::EntityDirection dir = player->GetMoveDirection();
 
-	bool left = (dir == Entity::LeftToRight && input->GetKey(DIK_LEFTARROW));
-	bool right = (dir == Entity::RightToLeft && input->GetKey(DIK_RIGHTARROW));
+	bool left = (dir == Entity::LeftToRight && input->GetKey(LEFT_ARROW));
+	bool right = (dir == Entity::RightToLeft && input->GetKey(RIGHT_ARROW));
 
 	if (input->GetKey(DIK_UP) && isLadder) {
 		if (bottom < topPoint) {
@@ -42,7 +42,7 @@ void PlayerClimbState::HandleInput() {
 		player->SetVy(-PLAYER_CLIM_SPEED);
 		isClimbing = true;
 	}
-	else if (input->GetKeyDown(DIK_F)) {
+	else if (input->GetKeyDown(JUMP_BUTTON)) {
 		if (left) {
 			player->SetMoveDirection(Entity::RightToLeft);
 			player->SetState(Jump);

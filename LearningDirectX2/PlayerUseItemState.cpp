@@ -19,7 +19,7 @@ void PlayerUseItemState::Update(double dt) {
 			player->SetState(Jump);
 		}
 		else
-			if (KeyBoard::GetInstance()->GetKey(DIK_DOWNARROW))
+			if (KeyBoard::GetInstance()->GetKey(DOWN_ARROW))
 				player->SetState(Crouch);
 			else
 				player->SetState(Idle);
@@ -48,12 +48,12 @@ void PlayerUseItemState::Render() {
 void PlayerUseItemState::HandleInput() {
 	auto keyboard = KeyBoard::GetInstance();
 	auto player = playerData->player;
-	if (keyboard->GetKeyDown(DIK_F) && player->status == Player::OnGround)
+	if (keyboard->GetKeyDown(JUMP_BUTTON) && player->status == Player::OnGround)
 		player->SetState(Jump);
 	else
 		if (player->GetVelocity().y < 0) {
 
-			if (keyboard->GetKey(DIK_LEFTARROW) && !keyboard->GetKey(DIK_RIGHTARROW)) {
+			if (keyboard->GetKey(LEFT_ARROW) && !keyboard->GetKey(RIGHT_ARROW)) {
 				if (player->GetMoveDirection() == Player::RightToLeft)
 					player->SetVx(-PLAYER_RUN_VELOCITY);
 				else {
@@ -62,7 +62,7 @@ void PlayerUseItemState::HandleInput() {
 				}
 			}
 			else
-				if (keyboard->GetKey(DIK_RIGHTARROW) && !keyboard->GetKey(DIK_LEFTARROW)) {
+				if (keyboard->GetKey(RIGHT_ARROW) && !keyboard->GetKey(LEFT_ARROW)) {
 					if (player->GetMoveDirection() == Player::LeftToRight)
 						player->SetVx(PLAYER_RUN_VELOCITY);
 					else {
@@ -89,13 +89,13 @@ void PlayerUseItemState::OnCollision(Entity * impactor, Entity::SideCollision si
 		player->status = Player::OnGround;
 		player->timeOnAir = 0;
 		auto keyboard = KeyBoard::GetInstance();
-		if (keyboard->GetKey(DIK_LEFTARROW) && !(keyboard->GetKey(DIK_RIGHTARROW)))
+		if (keyboard->GetKey(LEFT_ARROW) && !(keyboard->GetKey(RIGHT_ARROW)))
 			player->SetState(Running);
 		else
-			if (keyboard->GetKey(DIK_RIGHTARROW) && !(keyboard->GetKey(DIK_LEFTARROW)))
+			if (keyboard->GetKey(RIGHT_ARROW) && !(keyboard->GetKey(LEFT_ARROW)))
 				player->SetState(Running);
 			else
-				if (keyboard->GetKey(DIK_DOWNARROW))
+				if (keyboard->GetKey(DOWN_ARROW))
 					player->SetState(Crouch);
 				else
 					player->SetState(Idle);

@@ -12,7 +12,7 @@ PlayerCrouchSlashState::~PlayerCrouchSlashState() {
 
 void PlayerCrouchSlashState::Update(double dt) {
 	if (m_Animation->IsLastFrame(dt)) {
-		if (KeyBoard::GetInstance()->GetKey(DIK_DOWNARROW))
+		if (KeyBoard::GetInstance()->GetKey(DOWN_ARROW))
 			playerData->player->SetState(Crouch);
 		else
 			playerData->player->SetState(Idle);
@@ -29,7 +29,7 @@ void PlayerCrouchSlashState::Render() {
 
 void PlayerCrouchSlashState::HandleInput() {
 	auto keyboard = KeyBoard::GetInstance();
-	if (keyboard->GetKeyDown(DIK_F))
+	if (keyboard->GetKeyDown(JUMP_BUTTON))
 		playerData->player->SetState(Jump);
 	else
 		playerData->player->SetVelocity(D3DXVECTOR2(0, 0));
@@ -67,13 +67,13 @@ void PlayerCrouchSlashState::OnCollision(Entity * impactor, Entity::SideCollisio
 	//	player->status = Player::OnGround;
 	//	player->timeOnAir = 0;
 	//	auto keyboard = KeyBoard::GetInstance();
-	//	if (keyboard->GetKey(DIK_LEFTARROW) && !(keyboard->GetKey(DIK_RIGHTARROW)))
+	//	if (keyboard->GetKey(LEFT_ARROW) && !(keyboard->GetKey(RIGHT_ARROW)))
 	//		player->SetState(Running);
 	//	else
-	//		if (keyboard->GetKey(DIK_RIGHTARROW) && !(keyboard->GetKey(DIK_LEFTARROW)))
+	//		if (keyboard->GetKey(RIGHT_ARROW) && !(keyboard->GetKey(LEFT_ARROW)))
 	//			player->SetState(Running);
 	//		else
-	//			if (keyboard->GetKey(DIK_DOWNARROW))
+	//			if (keyboard->GetKey(DOWN_ARROW))
 	//				player->SetState(Crouch);
 	//			else
 	//				player->SetState(Idle);
