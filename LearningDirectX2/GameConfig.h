@@ -250,3 +250,10 @@
 #define SOUND_THEME 17
 
 #pragma endregion
+
+#define DOWN_ARROW DIK_S
+#define UP_ARROW DIK_W
+#define LEFT_ARROW DIK_A
+#define RIGHT_ARROW DIK_D
+#define SLASH_BUTTON DIK_G
+#define JUMP_BOTTON DIK_H
