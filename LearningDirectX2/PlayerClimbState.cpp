@@ -30,7 +30,7 @@ void PlayerClimbState::HandleInput() {
 	bool left = (dir == Entity::LeftToRight && input->GetKey(LEFT_ARROW));
 	bool right = (dir == Entity::RightToLeft && input->GetKey(RIGHT_ARROW));
 
-	if (input->GetKey(DIK_UP) && isLadder) {
+	if (input->GetKey(UP_ARROW) && isLadder) {
 		if (bottom < topPoint) {
 			player->SetVy(PLAYER_CLIM_SPEED);
 		}
@@ -38,7 +38,7 @@ void PlayerClimbState::HandleInput() {
 			player->SetVy(0);
 		isClimbing = true;
 	}
-	else if (input->GetKey(DIK_DOWN) && isLadder) {
+	else if (input->GetKey(DOWN_ARROW) && isLadder) {
 		player->SetVy(-PLAYER_CLIM_SPEED);
 		isClimbing = true;
 	}

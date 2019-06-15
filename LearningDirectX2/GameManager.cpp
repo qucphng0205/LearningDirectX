@@ -10,7 +10,7 @@ GameManager::GameManager(HWND hWnd, HINSTANCE hInstance) {
 	gnhpSound::GetInstance()->LoadSound(hWnd);
 
 	////--DEBUG
-	//DataManager::SetCurrentStage(2);
+	DataManager::SetCurrentStage(2);
 	sceneManager->LoadScene(DataManager::GetCurrentStage(), SceneManager::TransitionType::Next);
 
 	this->hWnd = hWnd;
