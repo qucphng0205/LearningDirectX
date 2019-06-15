@@ -1,0 +1,29 @@
+﻿1
+VC++ Directories 
+Include directories: MCS DirectXSDK
+Library Directories: \lib\x86
+sử dụng SDK của các bạn cài vào
+2
+Linker -> Input
+chọn Additional Dependencies thêm
+d3d9.lib
+d3dx9.lib
+dinput8.lib
+dxguid.lib
+dsound.lib
+dxerr.lib
+winmm.lib
+3. 
+C/C++ -> Proprocessor
+Chọn Preprocessor Definitions thêm
+WIN32
+_CRT_SECURE_NO_WARNINGS
+_DEBUG
+4
+C/C++ -> Optimization
+Chọn Optimization
+Disable (/Od)
+5
+CharacterSet chọn Use Multi-Byte Character Set
+6
+C/C++ -> Advanced chọn Calling Convention chọn _stdcall(/Gz)
